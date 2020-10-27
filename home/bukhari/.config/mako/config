@@ -1,0 +1,19 @@
+font=pango:DejaVu Sans 12
+anchor=top-center
+width=450
+padding=15
+margin=15
+border-size=3
+# default-timeout=5000
+
+# Only for desktop, ignored when no such output exists
+# output='Dell Inc. DELL U2415 08DXD49E5DUL'
+
+ignore-timeout=true
+default-timeout=0
+background-color=#231f20
+border-color=#eee8d5
+text-color=#2aa198
+
+[urgency=high]
+border-color=#ee2e24

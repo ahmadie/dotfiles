@@ -1,0 +1,23 @@
+{
+  "tsserver.npm": "/home/bukhari/.nvm/versions/node/v11.10.0/bin/npm",
+  "coc.preferences.formatOnType": true,
+  "javascript.suggestionActions.enabled": false,
+  "javascript.showUnused": false,
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "javascript.suggest.paths": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "javascriptreact",
+    "css",
+    "markdown",
+    "md"
+  ],
+  "json.format.enable": false,
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": true,
+  "explorer.keyMappings": {
+    "<cr>": ["expandable?", "expand", "open"],
+    "v": "open:vsplit"
+  }
+}
