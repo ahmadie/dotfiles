@@ -1,0 +1,14 @@
+reporting: "on"
+startuppopupversion: 1
+gui:
+   theme:
+      selectedLineBgColor:
+        - reverse
+      selectedRangeBgColor:
+        - reverse
+git:
+  paging:
+    colorArg: always -w
+    pager: delta --dark --paging=never --24-bit-color=never
+    merging:
+      args: "--no-ff"
