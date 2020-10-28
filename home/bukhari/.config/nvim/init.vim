@@ -474,7 +474,7 @@ omap <silent> iU <Plug>AngryInnerSuffix
 nnoremap <leader>d :BD<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :BLines<cr>
-nnoremap <leader>i :Lines<cr>
+nnoremap <leader>i :Lines!<cr>
 nnoremap <leader>e :GFiles<cr>
 nnoremap <leader>E :Files!<cr>
 nnoremap <leader>f :Rj<cr>
@@ -713,35 +713,35 @@ let g:fzf_colors =
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}), <bang>0)
 
 command! -bang -nargs=* Rj
   \ call fzf#vim#grep(
-  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case --type=project ".shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case --type=project ".shellescape(<q-args>), '--pointer "  "',
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}), <bang>0)
 
 command! -bang -nargs=* Lines
   \ call fzf#vim#lines(
   \   <q-args>, 
-  \   {'options': '--layout=default --info=inline'}, <bang>0)
+  \   {'options': '--layout=default --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}, <bang>0)
 
 command! -bang -nargs=* BLines
   \ call fzf#vim#buffer_lines(
   \   <q-args>, 
-  \   {'options': '--layout=default --info=inline'}, <bang>0)
+  \   {'options': '--layout=default --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}, <bang>0)
 
 
 " command! -bang -nargs=? -complete=dir Files
 "    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1' ]}), <bang>0)
 
 command! -bang -nargs=? -complete=dir GFiles
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1' ]}), <bang>0)
 
-
-imap <c-x><c-f> <plug>(fzf-complete-file)
+command! -bar -bang -nargs=? -complete=buffer Buffers
+    \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}", 'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1' ]}), <bang>0)
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'CursorLineNr' } }
 
