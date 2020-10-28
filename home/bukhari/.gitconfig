@@ -26,5 +26,15 @@
   oldHighlight = "red bold 52"
   newNormal = "green bold"
   newHighlight = "green bold 22"
+  editor = nvim 
+  pager = delta
 [diff]
+  colorMoved = default
 	algorithm = patience
+[delta]
+  color-only = true
+  line-numbers = true
+  line-numbers-left-format = ""
+  line-numbers-right-format = "{np} "
+  # keep-plus-minus-markers = false
+
