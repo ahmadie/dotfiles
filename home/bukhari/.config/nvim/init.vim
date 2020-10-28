@@ -678,15 +678,6 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-" Default fzf layout
-" - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
-
-" You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
-" let g:fzf_layout = { 'window': 'enew' }
-" let g:fzf_layout = { 'window': '-tabnew' }
-" let g:fzf_layout = { 'window': '10new' }
-
 " Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
 let g:fzf_colors =
@@ -713,35 +704,35 @@ let g:fzf_colors =
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}), <bang>0)
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}), <bang>0)
 
 command! -bang -nargs=* Rj
   \ call fzf#vim#grep(
-  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case --type=project ".shellescape(<q-args>), '--pointer "  "',
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}), <bang>0)
+  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case --type=project ".shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}), <bang>0)
 
 command! -bang -nargs=* Lines
   \ call fzf#vim#lines(
   \   <q-args>, 
-  \   {'options': '--layout=default --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}, <bang>0)
+  \   {'options': '--layout=default --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}, <bang>0)
 
 command! -bang -nargs=* BLines
   \ call fzf#vim#buffer_lines(
   \   <q-args>, 
-  \   {'options': '--layout=default --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}, <bang>0)
+  \   {'options': '--layout=default --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}, <bang>0)
 
 
 " command! -bang -nargs=? -complete=dir Files
 "    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1' ]}), <bang>0)
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1', '--marker=●']}), <bang>0)
 
 command! -bang -nargs=? -complete=dir GFiles
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1' ]}), <bang>0)
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1', '--marker=●'  ]}), <bang>0)
 
 command! -bar -bang -nargs=? -complete=buffer Buffers
-    \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}", 'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1' ]}), <bang>0)
+    \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}", 'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1', '--marker=● ']}), <bang>0)
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'CursorLineNr' } }
 
@@ -955,7 +946,7 @@ endfunction
 command! BD call fzf#run(fzf#wrap({
   \ 'source': s:list_buffers(),
   \ 'sink*': { lines -> s:delete_buffers(lines) },
-  \ 'options': '--multi --bind ctrl-a:select-all+accept'
+  \ 'options': '--multi --bind ctrl-a:select-all+accept --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1 --prompt "Delete> "'
 \ }))
 
 
