@@ -115,6 +115,7 @@ fi
 export FZF_DEFAULT_COMMAND='rg --files' 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--bind alt-j:down,alt-k:up,alt-u:up,alt-d:down,alt-i:toggle+up'
+export FZF_PREVIEW_PREVIEW_BAT_THEME="gruvbox"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -123,6 +124,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export GTK_IM_MODULE="ibus"
+
+export BAT_THEME="gruvbox"
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=/'
 alias lgdotfiles='lg --work-tree / --git-dir ~/.dotfiles'

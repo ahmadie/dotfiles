@@ -1,5 +1,5 @@
 " good source for vimplugs ^^ https://bluz71.github.io/2017/05/21/vim-plugins-i-like.html#fernvim
-
+" also learn to run nvim from docker haha : https://github.com/yuki-ycino/fzf-preview.vim/issues/161
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
@@ -25,7 +25,7 @@ Plug 'mhinz/vim-signify'
 " Plug 'tpope/vim-commentary'
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'psliwka/vim-smoothie'
@@ -62,6 +62,13 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'rhysd/clever-f.vim'
 
 Plug 'diepm/vim-rest-console'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/switch.vim'
+Plug 'AndrewRadev/sideways.vim'
+
+Plug 'mattn/emmet-vim'
+" Plug 'dosimple/workspace.vim'
+" Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -204,7 +211,6 @@ let g:coc_node_path='/home/bukhari/.nvm/versions/node/v11.10.0/bin/node'
 
 
 
-
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 nmap s <Nop>
 xmap s <Nop>
@@ -233,7 +239,6 @@ nnoremap m d
 xnoremap m d
 nnoremap mm dd
 nnoremap M D
-nnoremap <leader>m m
 
 " Make Y yank till end of line. Super useful. This is the most important thing
 " in this file
@@ -471,14 +476,88 @@ omap <silent> iU <Plug>AngryInnerSuffix
 " map ]Q :clast<cr>
 
  
-nnoremap <leader>d :BD<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>/ :BLines<cr>
-nnoremap <leader>i :Lines!<cr>
-nnoremap <leader>e :GFiles<cr>
-nnoremap <leader>E :Files!<cr>
-nnoremap <leader>f :Rj<cr>
-nnoremap <leader>F :Rg!<cr>
+nnoremap <leader>< :SidewaysLeft<cr>
+nnoremap <leader>> :SidewaysRight<cr>
+
+nnoremap <leader>r :Switch<cr>
+
+" nnoremap <leader>d :BD<cr>
+" nnoremap <leader>b :Buffers<cr>
+" nnoremap <leader>/ :BLines<cr>
+" nnoremap <leader>i :Lines!<cr>
+" nnoremap <leader>e :GFiles<cr>
+" nnoremap <leader>E :Files!<cr>
+" nnoremap <leader>f :Rj<cr>
+" nnoremap <leader>F :Rg!<cr>
+
+augroup fzf_preview
+  autocmd!
+  autocmd User fzf_preview#initialized call s:fzf_preview_settings()
+augroup END
+
+function! s:fzf_preview_settings() abort
+  let g:fzf_preview_command = 'COLORTERM=truecolor ' . g:fzf_preview_command
+  let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
+endfunction
+
+let g:fzf_preview_default_fzf_options = { '--preview-window': 'wrap' }
+
+nnoremap <silent> <leader>b :<C-u>CocCommand fzf-preview.AllBuffers
+   \ --add-fzf-arg=--pointer=" " --add-fzf-arg=--color=pointer:reverse<CR>
+
+nnoremap <silent> <leader>/ :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--pointer=" "
+   \ --add-fzf-arg=--color=pointer:reverse --add-fzf-arg=--reverse --add-fzf-arg=--query="'"<CR>
+
+nnoremap <silent> <leader>i :<C-u>CocCommand fzf-preview.BufferLines --add-fzf-arg=--no-sort --add-fzf-arg=--pointer=" "
+   \ --add-fzf-arg=--color=pointer:reverse --add-fzf-arg=--reverse --add-fzf-arg=--query="'"<CR>
+
+nnoremap <silent> <leader>e  :<C-u>CocCommand fzf-preview.FromResources project_mru git --add-fzf-arg=--pointer=" " 
+   \ --add-fzf-arg=--color=pointer:reverse<CR>
+
+nnoremap <silent> <leader>E  :<C-u>CocCommand fzf-preview.FromResources project_mru directory --add-fzf-arg=--pointer=" "
+   \ --add-fzf-arg=--color=pointer:reverse<CR>
+
+nnoremap          <leader>f    :<C-u>CocCommand fzf-preview.ProjectGrep --add-fzf-arg=--pointer=" "
+   \ --add-fzf-arg=--color=pointer:reverse<Space>
+
+" nnoremap          <leader>F    :<C-u>CocCommand fzf-preview.ProjectGrep directory --add-fzf-arg=--pointer=" "
+   " \ --add-fzf-arg=--color=pointer:reverse<Space>
+
+let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --smart-case'
+
+" let g:fzf_preview_custom_processes['open-file'] = fzf_preview#remote#process#get_default_processes('open-file', 'coc')
+" to view content of g:fzf_preview_custom_processes use:
+" :let g:abc = fzf_preview#remote#process#get_default_processes('open-file', 'coc')
+" :echo g:abc
+" processes_name is 'open-file', 'open-buffer' and 'open-bufnr'.
+let g:fzf_preview_custom_processes = {
+      \  'open-file': {
+      \            'alt-o': 'OpenFileCtrlO',
+      \            'alt-q': 'OpenFileCtrlQ',
+      \            'alt-t': 'OpenFileCtrlT',
+      \            'alt-v': 'OpenFileCtrlV',
+      \            'alt-x': 'OpenFileCtrlX',
+      \            'enter': 'OpenFileEnter'
+      \          },
+      \  'open-bufnr': {
+      \            'alt-o': 'OpenBufnrCtrlO',
+      \            'alt-q': 'OpenBufnrCtrlQ',
+      \            'alt-t': 'OpenBufnrCtrlT',
+      \            'alt-v': 'OpenBufnrCtrlV',
+      \            'alt-x': 'OpenBufnrCtrlX',
+      \            'enter': 'OpenBufnrEnter'
+      \          },
+      \  'register': {
+      \            'enter': 'RegisterEnter'
+      \          }
+      \   }
+
+
+
+
+
+
+
 nnoremap <leader>x :bp\|bd #<cr>
 nnoremap <leader><leader>x :bp\|bd #!<cr>
 " nnoremap ? /\<\><left><left>
@@ -545,7 +624,7 @@ nnoremap <leader><leader>pc :call CocAction('pickColor')<CR>
 nnoremap <leader><leader>cp :call CocAction('colorPresentation')<CR>
 
 
-
+" autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
 " let g:airline_section_z=''
 " let g:airline_section_y=''
 let g:airline_section_x=''
@@ -581,6 +660,8 @@ let g:loaded_netrwPlugin = 1
 let g:XkbSwitchEnabled = 1
 " let g:XkbSwitchLib = '/usr/local/lib/libg3kbswitch.so'
 let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
+let g:XkbSwitchNLayout = 'us'
+" let g:XkbSwitchILayout = 'us'
 let g:XkbSwitchIMappings = ['ar']
 let g:XkbSwitchIMappingsTr = {
           \ 'ar':
@@ -590,7 +671,13 @@ let g:XkbSwitchIMappingsTr = {
           \       ''}
           \ }
 
+function! RestoreKeyboardLayout()
+  call system("ibus engine xkb:us::eng")
+  call system("xkb-switch -s 'us'")
+endfunction
 
+" set ttimeoutlen=100
+autocmd InsertLeave * silent call RestoreKeyboardLayout()
 
 
 
@@ -754,9 +841,11 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Curs
 
 highlight QuickScopePrimary guifg='#898989' gui=underline ctermfg=155 cterm=underline
 highlight QuickScopeSecondary guifg='#898989' ctermfg=81 
+let g:qs_second_highlight = 0
+let g:qs_ignorecase = 1
 
 
-
+let g:clever_f_ignore_case = 1
 
 
 
@@ -911,7 +1000,7 @@ call s:maps()
 
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+" nmap <leader>rn <Plug>(coc-rename)
 
 function CJKInput()
   let l:cmd = 'zenity --entry --text=CJK-Input 2>/dev/null'
@@ -950,4 +1039,18 @@ command! BD call fzf#run(fzf#wrap({
 \ }))
 
 
+nnoremap <leader>m mM
+nnoremap <leader><leader>m 'M 
+nnoremap <leader>u mU
+nnoremap <leader><leader>u 'U
 
+augroup VIMRC
+    autocmd!
+    autocmd BufLeave *.css,*.scss normal! mC
+    autocmd BufLeave *.html       normal! mH
+    autocmd BufLeave *.js,*.ts    normal! mJ
+    autocmd BufLeave *.md         normal! mM
+    autocmd BufLeave *.yml,*.yaml normal! mY
+    autocmd BufLeave *.vim        normal! mV
+    autocmd BufLeave .env*        normal! mE
+augroup END
