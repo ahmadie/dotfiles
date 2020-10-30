@@ -342,7 +342,7 @@ let g:coc_explorer_global_presets = {
 \     'open-action-strategy': 'sourceWindow',
 \   },
 \   'simplify': {
-\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1][git]'
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1] [git]'
 \   }
 \ }
 
@@ -518,7 +518,7 @@ nnoremap <silent> <leader>E  :<C-u>CocCommand fzf-preview.FromResources project_
    \ --add-fzf-arg=--color=pointer:reverse<CR>
 
 nnoremap          <leader>f    :<C-u>CocCommand fzf-preview.ProjectGrep --add-fzf-arg=--pointer=" "
-   \ --add-fzf-arg=--color=pointer:reverse<Space>
+   \ --add-fzf-arg=--color=pointer:reverse<Space>.<CR>
 
 " nnoremap          <leader>F    :<C-u>CocCommand fzf-preview.ProjectGrep directory --add-fzf-arg=--pointer=" "
    " \ --add-fzf-arg=--color=pointer:reverse<Space>
@@ -540,7 +540,6 @@ let g:fzf_preview_custom_processes = {
       \            'enter': 'OpenFileEnter'
       \          },
       \  'open-bufnr': {
-      \            'alt-o': 'OpenBufnrCtrlO',
       \            'alt-q': 'OpenBufnrCtrlQ',
       \            'alt-t': 'OpenBufnrCtrlT',
       \            'alt-v': 'OpenBufnrCtrlV',
@@ -552,7 +551,7 @@ let g:fzf_preview_custom_processes = {
       \          }
       \   }
 
-
+let g:fzf_preview_preview_key_bindings = 'alt-d:preview-page-down,alt-u:preview-page-up,?:toggle-preview'
 
 
 
@@ -589,7 +588,7 @@ nmap <A-o> <C-O>
 nmap <A-6> <C-^> 
 
 " adjust scroll height to 1/3 of screen
-execute "set scroll=" . winheight('.') / 3
+au BufEnter * execute "set scroll=" . winheight('.') / 3
 au VimResized * execute "set scroll=" . winheight('.') / 3
 
 nnoremap H ^
@@ -713,6 +712,7 @@ let g:indentLine_char = '·'
 " }}
 " let g:indentLine_enabled = 0
 " let g:indentLine_leadingSpaceEnabled = 1
+autocmd Filetype json :IndentLinesDisable
 highlight SignifySignAdd guifg=green guibg=NONE
 highlight SignifySignDelete guifg=red guibg=NONE
 highlight SignifySignChange guifg=yellow guibg=NONE
@@ -1054,3 +1054,15 @@ augroup VIMRC
     autocmd BufLeave *.vim        normal! mV
     autocmd BufLeave .env*        normal! mE
 augroup END
+
+
+inoremap II <Esc>I
+inoremap AA <Esc>A
+inoremap HH <Esc>i
+inoremap LL <Esc>la
+:imap <A-h> <C-o>h
+:imap <A-j> <C-o>j
+:imap <A-k> <C-o>k
+:imap <A-l> <C-o>l
+:imap <A-w> <C-o>w
+:imap <A-b> <C-o>b

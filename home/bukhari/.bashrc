@@ -115,7 +115,9 @@ fi
 export FZF_DEFAULT_COMMAND='rg --files' 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--bind alt-j:down,alt-k:up,alt-u:up,alt-d:down,alt-i:toggle+up'
-export FZF_PREVIEW_PREVIEW_BAT_THEME="gruvbox"
+
+export FZF_PREVIEW_PREVIEW_BAT_THEME="zenburn"
+export BAT_THEME="zenburn"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -125,7 +127,8 @@ export NVM_DIR="$HOME/.nvm"
 
 export GTK_IM_MODULE="ibus"
 
-export BAT_THEME="gruvbox"
-
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=/'
 alias lgdotfiles='lg --work-tree / --git-dir ~/.dotfiles'
+
+# fzf color picker =D >>> https://minsw.github.io/fzf-color-picker/
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:-1,hl:#5f87af --color=fg+:#d0d0d0,hl+:#5fd7ff --color=info:#f50062,prompt:#f7df00,pointer:#af5fff --color=marker:#f50062,spinner:#af5fff,header:#525252'

@@ -16,8 +16,6 @@
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": true,
-  "explorer.keyMappings": {
-    "<cr>": ["expandable?", "expand", "open"],
-    "v": "open:vsplit"
-  }
+  "pairs.enableBackspace": false,
+  "coc.preferences.colorSupport": true
 }
