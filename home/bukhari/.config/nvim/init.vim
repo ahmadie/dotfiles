@@ -192,10 +192,10 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 imap <C-l> <Plug>(coc-snippets-expand)
 
-let g:coc_node_path='/home/bukhari/.nvm/versions/node/v11.10.0/bin/node'
+let g:coc_node_path='/home/bukhari/.nvm/versions/node/v12.19.0/bin/node'
 
 
-let g:coc_global_extensions = []
+let g:coc_global_extensions = ['coc-explorer']
 
 
 
