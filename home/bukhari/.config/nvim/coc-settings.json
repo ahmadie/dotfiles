@@ -1,5 +1,5 @@
 {
-  "tsserver.npm": "/home/bukhari/.nvm/versions/node/v11.10.0/bin/npm",
+  "tsserver.npm": "/home/bukhari/.nvm/versions/node/v12.19.0/bin/npm",
   "coc.preferences.formatOnType": true,
   "javascript.suggestionActions.enabled": false,
   "javascript.showUnused": false,

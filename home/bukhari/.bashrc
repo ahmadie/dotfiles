@@ -131,4 +131,9 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=/'
 alias lgdotfiles='lg --work-tree / --git-dir ~/.dotfiles'
 
 # fzf color picker =D >>> https://minsw.github.io/fzf-color-picker/
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:-1,hl:#5f87af --color=fg+:#d0d0d0,hl+:#5fd7ff --color=info:#f50062,prompt:#f7df00,pointer:#af5fff --color=marker:#f50062,spinner:#af5fff,header:#525252'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:-1,hl:#5f87af 
+--color=fg+:#d0d0d0,hl+:#5fd7ff 
+--color=info:#f50062,prompt:#f7df00,pointer:#af5fff 
+--color=marker:#f50062,spinner:#af5fff,header:#525252 
+--color=border:#f7df00 
+--preview-window=sharp '

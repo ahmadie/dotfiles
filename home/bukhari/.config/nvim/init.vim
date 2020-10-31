@@ -1,4 +1,3 @@
-" good source for vimplugs ^^ https://bluz71.github.io/2017/05/21/vim-plugins-i-like.html#fernvim
 " also learn to run nvim from docker haha : https://github.com/yuki-ycino/fzf-preview.vim/issues/161
 call plug#begin('~/.vim/plugged')
 
@@ -24,7 +23,7 @@ Plug 'mhinz/vim-signify'
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'psliwka/vim-smoothie'
@@ -66,6 +65,9 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/sideways.vim'
 
 Plug 'mattn/emmet-vim'
+Plug 'chrisbra/Colorizer'
+Plug 'KabbAmine/vCoolor.vim'
+
 " Plug 'dosimple/workspace.vim'
 " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 
@@ -196,9 +198,6 @@ let g:coc_node_path='/home/bukhari/.nvm/versions/node/v12.19.0/bin/node'
 
 
 let g:coc_global_extensions = ['coc-explorer']
-
-
-
 
 
 
@@ -454,8 +453,8 @@ nnoremap <leader>r :Switch<cr>
 " nnoremap <leader>i :Lines!<cr>
 " nnoremap <leader>e :GFiles<cr>
 " nnoremap <leader>E :Files!<cr>
-" nnoremap <leader>f :Rj<cr>
-" nnoremap <leader>F :Rg!<cr>
+" nnoremap <leader>f :Rj<space>
+nnoremap <leader>f :Rg!<space>
 
 augroup fzf_preview
   autocmd!
@@ -463,11 +462,14 @@ augroup fzf_preview
 augroup END
 
 function! s:fzf_preview_settings() abort
-  let g:fzf_preview_command = 'COLORTERM=truecolor ' . g:fzf_preview_command
+  let g:fzf_preview_command = 'COLORTERM=truecolor --plain ' . g:fzf_preview_command
   let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
 endfunction
 
 let g:fzf_preview_default_fzf_options = { '--preview-window': 'wrap' }
+
+" value is not 0, then disable mru and mrw for speed up
+let g:fzf_preview_disable_mru = 1
 
 nnoremap <silent> <leader>b :<C-u>FzfPreviewAllBuffers
    \ --add-fzf-arg=--pointer=" " --add-fzf-arg=--color=pointer:reverse<CR>
@@ -484,11 +486,8 @@ nnoremap <silent> <leader>e  :<C-u>FzfPreviewFromResources  project_mru git --ad
 nnoremap <silent> <leader>E  :<C-u>FzfPreviewFromResources  project_mru directory --add-fzf-arg=--pointer=" "
    \ --add-fzf-arg=--color=pointer:reverse<CR>
 
-nnoremap          <leader>f    :<C-u>FzfPreviewProjectGrep  --add-fzf-arg=--pointer=" "
-   \ --add-fzf-arg=--color=pointer:reverse<Space>
-
-" nnoremap          <leader>F    :<C-u>CocCommand fzf-preview.ProjectGrep directory --add-fzf-arg=--pointer=" "
-   " \ --add-fzf-arg=--color=pointer:reverse<Space>
+" nnoremap          <leader>f    :<C-u>FzfPreviewProjectGrep  --add-fzf-arg=--pointer=" "
+"    \ --add-fzf-arg=--color=pointer:reverse<Space>
 
 let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --smart-case'
 
