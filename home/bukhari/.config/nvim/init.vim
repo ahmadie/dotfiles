@@ -6,8 +6,6 @@ Plug 'altercation/vim-colors-solarized'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
-" Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'sheerun/vim-polyglot'
 " Plug 'pangloss/vim-javascript'
@@ -25,6 +23,7 @@ Plug 'mhinz/vim-signify'
 " Plug 'tpope/vim-commentary'
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 " Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
@@ -196,6 +195,7 @@ imap <C-l> <Plug>(coc-snippets-expand)
 let g:coc_node_path='/home/bukhari/.nvm/versions/node/v11.10.0/bin/node'
 
 
+let g:coc_global_extensions = []
 
 
 
@@ -371,39 +371,6 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, {'s': '~/.config/
 
 
 
-let g:DevIconsEnableFoldersOpenClose = 1
-" NERDTree Git
-" let g:NERDTreeGitStatusNodeColorization = 1  "enables colorization
-" let g:NERDTreeGitStatusWithFlags = 1  "enables flags, (may be default), required for colorization
-let g:NERDTreeDirArrowExpandable = " " 
-let g:NERDTreeDirArrowCollapsible = " " 
-" " let g:WebDevIconsUnicodeDecorateFolderNodes = 1  "enables decorating folder nodes
-
-" augroup nerdtreeconcealbrackets
-"       autocmd!
-"       autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL 
-"       autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
-"       " autocmd FileType nerdtree setlocal conceallevel=2
-"       " autocmd FileType nerdtree setlocal concealcursor=nvic
-" augroup END
-
-" let g:NERDTreeIndicatorMapCustom = {
-"     \ "Modified"  : "✹ ",
-"     \ "Staged"    : "✚ ",
-"     \ "Untracked" : "✭ ",
-"     \ "Renamed"   : "➜ ",
-"     \ "Unmerged"  : "═ ",
-"     \ "Deleted"   : "✖ ",
-"     \ "Dirty"     : "✗ ",
-"     \ "Clean"     : "✔︎ ",
-"     \ 'Ignored'   : '☒ ',
-"     \ "Unknown"   : "? "
-"     \ }
-
-
-
-
-
 
 
 set foldnestmax=2
@@ -502,23 +469,23 @@ endfunction
 
 let g:fzf_preview_default_fzf_options = { '--preview-window': 'wrap' }
 
-nnoremap <silent> <leader>b :<C-u>CocCommand fzf-preview.AllBuffers
+nnoremap <silent> <leader>b :<C-u>FzfPreviewAllBuffers
    \ --add-fzf-arg=--pointer=" " --add-fzf-arg=--color=pointer:reverse<CR>
 
-nnoremap <silent> <leader>/ :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--pointer=" "
+nnoremap <silent> <leader>/ :<C-u>FzfPreviewLines --add-fzf-arg=--no-sort --add-fzf-arg=--pointer=" "
    \ --add-fzf-arg=--color=pointer:reverse --add-fzf-arg=--reverse --add-fzf-arg=--query="'"<CR>
 
-nnoremap <silent> <leader>i :<C-u>CocCommand fzf-preview.BufferLines --add-fzf-arg=--no-sort --add-fzf-arg=--pointer=" "
+nnoremap <silent> <leader>i :<C-u>FzfPreviewBufferLines  --add-fzf-arg=--no-sort --add-fzf-arg=--pointer=" "
    \ --add-fzf-arg=--color=pointer:reverse --add-fzf-arg=--reverse --add-fzf-arg=--query="'"<CR>
 
-nnoremap <silent> <leader>e  :<C-u>CocCommand fzf-preview.FromResources project_mru git --add-fzf-arg=--pointer=" " 
+nnoremap <silent> <leader>e  :<C-u>FzfPreviewFromResources  project_mru git --add-fzf-arg=--pointer=" " 
    \ --add-fzf-arg=--color=pointer:reverse<CR>
 
-nnoremap <silent> <leader>E  :<C-u>CocCommand fzf-preview.FromResources project_mru directory --add-fzf-arg=--pointer=" "
+nnoremap <silent> <leader>E  :<C-u>FzfPreviewFromResources  project_mru directory --add-fzf-arg=--pointer=" "
    \ --add-fzf-arg=--color=pointer:reverse<CR>
 
-nnoremap          <leader>f    :<C-u>CocCommand fzf-preview.ProjectGrep --add-fzf-arg=--pointer=" "
-   \ --add-fzf-arg=--color=pointer:reverse<Space>.<CR>
+nnoremap          <leader>f    :<C-u>FzfPreviewProjectGrep  --add-fzf-arg=--pointer=" "
+   \ --add-fzf-arg=--color=pointer:reverse<Space>
 
 " nnoremap          <leader>F    :<C-u>CocCommand fzf-preview.ProjectGrep directory --add-fzf-arg=--pointer=" "
    " \ --add-fzf-arg=--color=pointer:reverse<Space>
@@ -532,19 +499,19 @@ let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --smar
 " processes_name is 'open-file', 'open-buffer' and 'open-bufnr'.
 let g:fzf_preview_custom_processes = {
       \  'open-file': {
-      \            'alt-o': 'OpenFileCtrlO',
-      \            'alt-q': 'OpenFileCtrlQ',
-      \            'alt-t': 'OpenFileCtrlT',
-      \            'alt-v': 'OpenFileCtrlV',
-      \            'alt-x': 'OpenFileCtrlX',
-      \            'enter': 'OpenFileEnter'
+      \            'alt-o': 'FzfPreviewOpenFileCtrlO',
+      \            'alt-q': 'FzfPreviewOpenFileCtrlQ',
+      \            'alt-t': 'FzfPreviewOpenFileCtrlT',
+      \            'alt-v': 'FzfPreviewOpenFileCtrlV',
+      \            'alt-x': 'FzfPreviewOpenFileCtrlX',
+      \            'enter': 'FzfPreviewOpenFileEnter'
       \          },
       \  'open-bufnr': {
-      \            'alt-q': 'OpenBufnrCtrlQ',
-      \            'alt-t': 'OpenBufnrCtrlT',
-      \            'alt-v': 'OpenBufnrCtrlV',
-      \            'alt-x': 'OpenBufnrCtrlX',
-      \            'enter': 'OpenBufnrEnter'
+      \            'alt-q': 'FzfPreviewOpenBufnrCtrlQ',
+      \            'alt-t': 'FzfPreviewOpenBufnrCtrlT',
+      \            'alt-v': 'FzfPreviewOpenBufnrCtrlV',
+      \            'alt-x': 'FzfPreviewOpenBufnrCtrlX',
+      \            'enter': 'FzfPreviewOpenBufnrEnter'
       \          },
       \  'register': {
       \            'enter': 'RegisterEnter'
