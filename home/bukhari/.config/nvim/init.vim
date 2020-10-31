@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
 " Plug 'ayu-theme/ayu-vim'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'sheerun/vim-polyglot'
@@ -197,7 +197,7 @@ imap <C-l> <Plug>(coc-snippets-expand)
 let g:coc_node_path='/home/bukhari/.nvm/versions/node/v12.19.0/bin/node'
 
 
-let g:coc_global_extensions = ['coc-explorer']
+let g:coc_global_extensions = ['coc-explorer', 'coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte']
 
 
 
@@ -449,12 +449,12 @@ nnoremap <leader>r :Switch<cr>
 
 " nnoremap <leader>d :BD<cr>
 " nnoremap <leader>b :Buffers<cr>
-" nnoremap <leader>/ :BLines<cr>
-" nnoremap <leader>i :Lines!<cr>
-" nnoremap <leader>e :GFiles<cr>
+nnoremap <leader>/ :BLines<cr>
+nnoremap <leader>i :Lines!<cr>
+nnoremap <leader>e :GFiles<cr>
 " nnoremap <leader>E :Files!<cr>
-" nnoremap <leader>f :Rj<space>
-nnoremap <leader>f :Rg!<space>
+nnoremap <leader>f :Rj<space>
+nnoremap <leader>F :Rg!<space>
 
 augroup fzf_preview
   autocmd!
@@ -462,7 +462,7 @@ augroup fzf_preview
 augroup END
 
 function! s:fzf_preview_settings() abort
-  let g:fzf_preview_command = 'COLORTERM=truecolor --plain ' . g:fzf_preview_command
+  let g:fzf_preview_command = 'COLORTERM=truecolor ' . g:fzf_preview_command
   let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
 endfunction
 
@@ -471,21 +471,18 @@ let g:fzf_preview_default_fzf_options = { '--preview-window': 'wrap' }
 " value is not 0, then disable mru and mrw for speed up
 let g:fzf_preview_disable_mru = 1
 
-nnoremap <silent> <leader>b :<C-u>FzfPreviewAllBuffers
-   \ --add-fzf-arg=--pointer=" " --add-fzf-arg=--color=pointer:reverse<CR>
-
-nnoremap <silent> <leader>/ :<C-u>FzfPreviewLines --add-fzf-arg=--no-sort --add-fzf-arg=--pointer=" "
-   \ --add-fzf-arg=--color=pointer:reverse --add-fzf-arg=--reverse --add-fzf-arg=--query="'"<CR>
-
-nnoremap <silent> <leader>i :<C-u>FzfPreviewBufferLines  --add-fzf-arg=--no-sort --add-fzf-arg=--pointer=" "
-   \ --add-fzf-arg=--color=pointer:reverse --add-fzf-arg=--reverse --add-fzf-arg=--query="'"<CR>
-
-nnoremap <silent> <leader>e  :<C-u>FzfPreviewFromResources  project_mru git --add-fzf-arg=--pointer=" " 
-   \ --add-fzf-arg=--color=pointer:reverse<CR>
-
-nnoremap <silent> <leader>E  :<C-u>FzfPreviewFromResources  project_mru directory --add-fzf-arg=--pointer=" "
-   \ --add-fzf-arg=--color=pointer:reverse<CR>
-
+nnoremap <silent> <leader>b :<C-u>FzfPreviewAllBuffers<CR>
+"
+" nnoremap <silent> <leader>/ :<C-u>FzfPreviewLines --add-fzf-arg=--no-sort  
+"    \  --add-fzf-arg=--reverse --add-fzf-arg=--query="'"<CR>
+"
+" nnoremap <silent> <leader>i :<C-u>FzfPreviewBufferLines  --add-fzf-arg=--no-sort  
+"    \  --add-fzf-arg=--reverse --add-fzf-arg=--query="'"<CR>
+"
+" nnoremap <silent> <leader>e  :<C-u>FzfPreviewFromResources project_mru git<CR>   
+"    
+nnoremap <silent> <leader>E  :<C-u>FzfPreviewFromResources project_mru directory<CR>  
+"
 " nnoremap          <leader>f    :<C-u>FzfPreviewProjectGrep  --add-fzf-arg=--pointer=" "
 "    \ --add-fzf-arg=--color=pointer:reverse<Space>
 
@@ -765,20 +762,21 @@ let g:fzf_action = {
 
 " Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+"
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
 " Enable per-command history
 " - History files will be stored in the specified directory
@@ -789,35 +787,35 @@ let g:fzf_colors =
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}), <bang>0)
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. '}), <bang>0)
 
 command! -bang -nargs=* Rj
   \ call fzf#vim#grep(
   \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case --type=project ".shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}), <bang>0)
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. '}), <bang>0)
 
 command! -bang -nargs=* Lines
   \ call fzf#vim#lines(
   \   <q-args>, 
-  \   {'options': '--layout=default --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}, <bang>0)
+  \   {'options': '--layout=default '}, <bang>0)
 
 command! -bang -nargs=* BLines
   \ call fzf#vim#buffer_lines(
   \   <q-args>, 
-  \   {'options': '--layout=default --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'}, <bang>0)
+  \   {'options': '--layout=default '}, <bang>0)
 
 
 " command! -bang -nargs=? -complete=dir Files
 "    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1', '--marker=●']}), <bang>0)
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': []}), <bang>0)
 
-command! -bang -nargs=? -complete=dir GFiles
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1', '--marker=●'  ]}), <bang>0)
+command! -bang -nargs=? GFiles
+    \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': []}), <bang>0)
 
 command! -bar -bang -nargs=? -complete=buffer Buffers
-    \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}", 'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1', '--marker=● ']}), <bang>0)
+    \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}", 'options': []}), <bang>0)
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'CursorLineNr' } }
 
@@ -1033,7 +1031,7 @@ endfunction
 command! BD call fzf#run(fzf#wrap({
   \ 'source': s:list_buffers(),
   \ 'sink*': { lines -> s:delete_buffers(lines) },
-  \ 'options': '--multi --bind ctrl-a:select-all+accept --marker=● --pointer="  " --color=pointer:reverse,prompt:reverse,input:159 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1 --prompt "Delete> "'
+  \ 'options': '--multi --bind ctrl-a:select-all+accept --prompt "Delete> "'
 \ }))
 
 
