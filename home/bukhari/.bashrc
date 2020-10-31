@@ -116,8 +116,8 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--bind alt-j:down,alt-k:up,alt-u:up,alt-d:down,alt-i:toggle+up'
 
-export FZF_PREVIEW_PREVIEW_BAT_THEME="zenburn"
-export BAT_THEME="zenburn"
+export FZF_PREVIEW_PREVIEW_BAT_THEME=""
+export BAT_THEME=""
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -132,8 +132,13 @@ alias lgdotfiles='lg --work-tree / --git-dir ~/.dotfiles'
 
 # fzf color picker =D >>> https://minsw.github.io/fzf-color-picker/
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:-1,hl:#5f87af 
---color=fg+:#d0d0d0,hl+:#5fd7ff 
---color=info:#f50062,prompt:#f7df00,pointer:#af5fff 
+--color=fg+:#d0d0d0,hl+:#f50062 
+--color=info:#f50062,prompt:-1,pointer:#af5fff 
 --color=marker:#f50062,spinner:#af5fff,header:#525252 
 --color=border:#f7df00 
---preview-window=sharp '
+--preview-window=sharp 
+--pointer=" " 
+--marker="→" 
+--border=sharp
+--color=pointer:reverse,prompt:reverse,input:159 
+--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'
