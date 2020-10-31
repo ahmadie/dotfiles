@@ -297,15 +297,7 @@ set encoding=UTF-8
 
 
 
-" Open nerd tree at the current file or close nerd tree if pressed again.
-" nnoremap <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-
-let g:NERDTreeWinSize=30
-let g:NERDTreeShowHidden=1
-let g:NERDTreeAutoDeleteBuffer=1
 
 
 
@@ -350,6 +342,14 @@ let g:coc_explorer_global_presets = {
 " Explorer
 nnoremap <leader>n :CocCommand explorer --preset simplify --sources buffer+,file+<CR>
 " nmap <space>f :CocCommand explorer --preset floating<CR>
+
+
+
+
+
+
+
+
 
 set sessionoptions-=blank
 
@@ -491,7 +491,6 @@ nnoremap <silent> <leader>E  :<C-u>FzfPreviewFromResources  project_mru director
 
 let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --smart-case'
 
-" let g:fzf_preview_custom_processes['open-file'] = fzf_preview#remote#process#get_default_processes('open-file', 'coc')
 " to view content of g:fzf_preview_custom_processes use:
 " :let g:abc = fzf_preview#remote#process#get_default_processes('open-file', 'coc')
 " :echo g:abc
@@ -572,6 +571,20 @@ nnoremap ; :
 nnoremap : ;
 nnoremap ` ;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 set mouse=a
 set number
 set relativenumber
@@ -585,8 +598,28 @@ set shiftwidth=2
 set expandtab
 set scrolloff=0
 
+
+
+
+
+
+
+
+
+
+
 nnoremap <leader><leader>pc :call CocAction('pickColor')<CR>
 nnoremap <leader><leader>cp :call CocAction('colorPresentation')<CR>
+
+
+
+
+
+
+
+
+
+
 
 
 " autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
@@ -647,7 +680,6 @@ autocmd InsertLeave * silent call RestoreKeyboardLayout()
 
 
 
-let g:clever_f_fix_key_direction = 1
 
 
 
@@ -787,7 +819,7 @@ command! -bang -nargs=? -complete=dir GFiles
 command! -bar -bang -nargs=? -complete=buffer Buffers
     \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}", 'options': ['--pointer=  ', '--color=pointer:reverse,prompt:reverse,input:159','--color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1', '--marker=● ']}), <bang>0)
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'CursorLineNr' } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'CursorLineNr' } }
 
 
 
@@ -812,7 +844,7 @@ let g:qs_ignorecase = 1
 
 
 let g:clever_f_ignore_case = 1
-
+let g:clever_f_fix_key_direction = 1
 
 
 
