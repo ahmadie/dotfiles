@@ -68,8 +68,7 @@ Plug 'mattn/emmet-vim'
 Plug 'chrisbra/Colorizer'
 Plug 'KabbAmine/vCoolor.vim'
 
-" Plug 'dosimple/workspace.vim'
-" Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+Plug 'dosimple/workspace.vim'
 
 call plug#end()
 
@@ -100,6 +99,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+" coc {{{
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -199,7 +199,7 @@ let g:coc_node_path='/home/bukhari/.nvm/versions/node/v12.19.0/bin/node'
 
 let g:coc_global_extensions = ['coc-explorer', 'coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte']
 
-
+" }}}
 
 
 
@@ -640,14 +640,11 @@ let g:airline#extensions#branch#format = 2
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#nerdtree_status = 0
-" let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
-
-
-
-
+let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#tabline#show_tab_count = 2
+let g:airline#extensions#tabline#show_tab_type = 0
 
 
 
@@ -670,10 +667,11 @@ function! RestoreKeyboardLayout()
   call system("ibus engine xkb:us::eng")
   call system("xkb-switch -s 'us'")
 endfunction
-
 " set ttimeoutlen=100
-autocmd InsertLeave * silent call RestoreKeyboardLayout()
-
+augroup restorekeyboard
+    autocmd!
+    autocmd InsertLeave * silent call RestoreKeyboardLayout()
+  augroup END
 
 
 
@@ -1062,3 +1060,43 @@ inoremap LL <Esc>la
 :imap <A-l> <C-o>l
 :imap <A-w> <C-o>w
 :imap <A-b> <C-o>b
+
+:nnoremap <leader>ve :vsplit $MYVIMRC<cr>
+  :nnoremap <leader>vs :source $MYVIMRC<cr>
+
+:iabbrev waht what
+augroup filetype_html
+    autocmd!
+    autocmd FileType typescript :iabbrev <buffer> arr ()=>{}<left>
+augroup END
+
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+
+
+nnoremap <silent> <leader>1 :WS 1<CR>
+nnoremap <silent> <leader>2 :WS 2<CR>
+nnoremap <silent> <leader>3 :WS 3<CR>
+nnoremap <silent> <leader>4 :WS 4<CR>
+nnoremap <silent> <leader>5 :WS 5<CR>
+nnoremap <silent> <leader>6 :WS 6<CR>
+nnoremap <silent> <leader>7 :WS 7<CR>
+nnoremap <silent> <leader>8 :WS 8<CR>
+nnoremap <silent> <leader>9 :WS 9<CR>
+nnoremap <silent> <leader>0 :WS 10<CR>
+
+nnoremap <silent> <leader><leader>1 :WSbm 1<CR>
+nnoremap <silent> <leader><leader>2 :WSbm 2<CR>
+nnoremap <silent> <leader><leader>3 :WSbm 3<CR>
+nnoremap <silent> <leader><leader>4 :WSbm 4<CR>
+nnoremap <silent> <leader><leader>5 :WSbm 5<CR>
+nnoremap <silent> <leader><leader>6 :WSbm 6<CR>
+nnoremap <silent> <leader><leader>7 :WSbm 7<CR>
+nnoremap <silent> <leader><leader>8 :WSbm 8<CR>
+nnoremap <silent> <leader><leader>9 :WSbm 9<CR>
+nnoremap <silent> <leader><leader>0 :WSbm 10<CR>
+
+nnoremap <silent> <leader>` :call WS_Backforth()<CR>
