@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
 " Plug 'ayu-theme/ayu-vim'
-" Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'sheerun/vim-polyglot'
@@ -78,6 +78,7 @@ augroup SyntaxSettings
     autocmd!
     autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
     autocmd BufNewFile,BufRead *.js set filetype=typescript.tsx
+    au BufNewFile,BufRead *.ejs set filetype=html
 augroup END
 
 " if hidden is not set, TextEdit might fail.
@@ -223,7 +224,7 @@ set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 
 
 
-
+let g:AutoPairsMapBS = 0
 
 
 set autoread
@@ -349,9 +350,9 @@ nnoremap <leader>n :CocCommand explorer --preset simplify --sources buffer+,file
 
 
 
-
-
-set sessionoptions-=blank
+" remove blank to not see empty buffer when close with coc-explorer opened
+" set sessionoptions-=blank
+set sessionoptions+=blank,buffers
 
 let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
@@ -1086,7 +1087,6 @@ nnoremap <silent> <leader>6 :WS 6<CR>
 nnoremap <silent> <leader>7 :WS 7<CR>
 nnoremap <silent> <leader>8 :WS 8<CR>
 nnoremap <silent> <leader>9 :WS 9<CR>
-nnoremap <silent> <leader>0 :WS 10<CR>
 
 nnoremap <silent> <leader><leader>1 :WSbm 1<CR>
 nnoremap <silent> <leader><leader>2 :WSbm 2<CR>
@@ -1097,6 +1097,5 @@ nnoremap <silent> <leader><leader>6 :WSbm 6<CR>
 nnoremap <silent> <leader><leader>7 :WSbm 7<CR>
 nnoremap <silent> <leader><leader>8 :WSbm 8<CR>
 nnoremap <silent> <leader><leader>9 :WSbm 9<CR>
-nnoremap <silent> <leader><leader>0 :WSbm 10<CR>
 
 nnoremap <silent> <leader>` :call WS_Backforth()<CR>
