@@ -157,10 +157,11 @@ function! s:tabclosed()
     for b in getbufinfo()
         let WS = get(b.variables, "WS")
         if WS && ! WS_Tabnum(WS)
-            if get(b.variables, "WS_listed")
+            let bWS = WS_Tabnum(WS, 1)
+            if bWS == t:WS && get(b.variables, "WS_listed")
                 call s:buflisted(b.bufnr, 1)
             endif
-            call setbufvar(b.bufnr, "WS", "")
+            call setbufvar(b.bufnr, "WS", bWS)
         endif
     endfor
 endfunc
