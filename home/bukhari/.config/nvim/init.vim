@@ -69,7 +69,6 @@ Plug 'chrisbra/Colorizer'
 Plug 'KabbAmine/vCoolor.vim'
 
 Plug 'dosimple/workspace.vim'
-
 call plug#end()
 
 let mapleader =" "
@@ -376,6 +375,7 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, {'s': '~/.config/
 set foldnestmax=2
 set foldlevel=20
 set noswapfile
+set incsearch
 
 
 
@@ -890,7 +890,11 @@ function! s:MapNextFamily(map,cmd) abort
   execute 'nnoremap <silent> '.map.'First    :<C-U>exe "'.cmd.'first'.end
   execute 'nnoremap <silent> '.map.'Last     :<C-U>exe "'.cmd.'last'.end
   call s:map('n', '['.        a:map , map.'Previous')
+  call s:map('n', '[['.        a:map , map.'Previous'.map.'Previous')
+  call s:map('n', '[[['.        a:map , map.'Previous'.map.'Previous'.map.'Previous')
   call s:map('n', ']'.        a:map , map.'Next')
+  call s:map('n', ']]'.        a:map , map.'Next'.map.'Next')
+  call s:map('n', ']]]'.        a:map , map.'Next'.map.'Next'.map.'Next')
   call s:map('n', '['.toupper(a:map), map.'First')
   call s:map('n', ']'.toupper(a:map), map.'Last')
   if exists(':'.a:cmd.'nfile')
@@ -908,7 +912,7 @@ endfunction
 
 call s:MapNextFamily('b','b')
 call s:MapNextFamily('q','c')
-call s:MapNextFamily('t','tab')
+" call s:MapNextFamily('t','tab')
 
 
 " Section: Line operations
@@ -929,7 +933,11 @@ nnoremap <silent> <Plug>unimpairedBlankUp   :<C-U>call <SID>BlankUp(v:count1)<CR
 nnoremap <silent> <Plug>unimpairedBlankDown :<C-U>call <SID>BlankDown(v:count1)<CR>
 
 call s:map('n', '[<Space>', '<Plug>unimpairedBlankUp')
+call s:map('n', '[[<Space>', '<Plug>unimpairedBlankUp<Plug>unimpairedBlankUp')
+call s:map('n', '[[[<Space>', '<Plug>unimpairedBlankUp<Plug>unimpairedBlankUp<Plug>unimpairedBlankUp')
 call s:map('n', ']<Space>', '<Plug>unimpairedBlankDown')
+call s:map('n', ']]<Space>', '<Plug>unimpairedBlankDown<Plug>unimpairedBlankDown')
+call s:map('n', ']]]<Space>', '<Plug>unimpairedBlankDown<Plug>unimpairedBlankDown<Plug>unimpairedBlankDown')
 
 function! s:ExecMove(cmd) abort
   let old_fdm = &foldmethod
