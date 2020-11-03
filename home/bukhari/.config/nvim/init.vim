@@ -223,6 +223,8 @@ xmap s <Nop>
 
 set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 
+" this hide end of line annoying ~ chars
+set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
 
 
 
