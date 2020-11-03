@@ -2,6 +2,9 @@
   "tsserver.npm": "/home/bukhari/.nvm/versions/node/v12.19.0/bin/npm",
   "coc.preferences.formatOnType": true,
   "javascript.suggestionActions.enabled": false,
+  "typescript.suggestionActions.enabled": false,
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
   "javascript.showUnused": false,
   "javascript.preferences.importModuleSpecifier": "relative",
   "javascript.suggest.paths": false,
@@ -16,6 +19,12 @@
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.keyMappings.global": {
+    "<cr>": ["expanded?", "collapse", "expand"], 
+    "v": "open:vsplit"
+  },
+"explorer.buffer.showHiddenBuffers": true,
   "pairs.enableBackspace": false,
   "coc.preferences.colorSupport": true
 }
