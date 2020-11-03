@@ -369,7 +369,7 @@ let g:startify_lists = [
           \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
           \ ]
 let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, {'s': '~/.config/sway/config'},
-      \ {'t': '~/.config/kitty/kitty.conf'}, {'n': '~/.config/kanshi/config'}]
+      \ {'t': '~/.config/kitty/kitty.conf'}, {'n': '~/.config/kanshi/config'}, {'b': '~/.bashrc'}]
 
 
 
