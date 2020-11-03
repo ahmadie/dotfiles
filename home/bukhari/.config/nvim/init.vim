@@ -65,11 +65,14 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/sideways.vim'
 
 Plug 'mattn/emmet-vim'
-Plug 'chrisbra/Colorizer'
+" Plug 'chrisbra/Colorizer'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'KabbAmine/vCoolor.vim'
 
 Plug 'dosimple/workspace.vim'
 call plug#end()
+
+
 
 let mapleader =" "
 
@@ -291,6 +294,7 @@ set encoding=UTF-8
 
 " nmap <silent> <C-d> <Plug>(coc-cursors-position)
 " nmap <leader>d  <Plug>(coc-cursors-operator)
+
 
 
 
@@ -646,9 +650,8 @@ let g:loaded_netrwPlugin = 1
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#show_tab_count = 2
 let g:airline#extensions#tabline#show_tab_type = 0
-
-
-
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme='base16_snazzy'
 
 let g:XkbSwitchEnabled = 1
 " let g:XkbSwitchLib = '/usr/local/lib/libg3kbswitch.so'
@@ -684,11 +687,13 @@ augroup restorekeyboard
 
 " colorscheme onedark
 set termguicolors     " enable true colors support
+lua require'colorizer'.setup()
 " let ayucolor="light"  " for light version of theme
 " let ayucolor="mirage" " for mirage version of theme
 " let ayucolor="dark"   " for dark version of theme
 " colorscheme ayu
 syntax enable
+syntax sync fromstart
 "
 let g:solarized_italic = 1
 let g:solarized_bold = 1 
@@ -732,11 +737,13 @@ highlight SignColumn guibg=NONE gui=NONE
 " highlight CocFloating guibg=red
 " highlight NormalFloat guibg=red
 highlight Pmenu guibg=#586e75
-let g:solarized_italic = 1
+" let g:solarized_italic = 1
 
-
-
-
+hi VertSplit gui=NONE guifg=#2e3a36  
+" to hide vertical line, space at end
+" set fillchars+=vert:\  
+hi StatusLine guifg=#282a36 guibg=#282a36
+hi StatusLineNC guifg=#282a36 guibg=#282a36
 
 
 
