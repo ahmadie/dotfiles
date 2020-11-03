@@ -142,3 +142,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:-1,hl:#5f87af
 --border=sharp
 --color=pointer:reverse,prompt:reverse,input:159 
 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'
+
+set -o vi
+export VISUAL="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
+export EDITOR="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
