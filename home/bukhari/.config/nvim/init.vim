@@ -68,8 +68,7 @@ Plug 'mattn/emmet-vim'
 " Plug 'chrisbra/Colorizer'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'KabbAmine/vCoolor.vim'
-
-Plug 'dosimple/workspace.vim'
+Plug 'ahmadie/workspace.vim'
 call plug#end()
 
 
@@ -200,7 +199,7 @@ imap <C-l> <Plug>(coc-snippets-expand)
 let g:coc_node_path='/home/bukhari/.nvm/versions/node/v12.19.0/bin/node'
 
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte']
+let g:coc_global_extensions = ['coc-explorer', 'coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte', 'coc-prettier']
 
 " }}}
 
@@ -235,6 +234,58 @@ set autoread
 au FocusGained * :checktime
 
 set undofile
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" terminal stuff
+" https://www.youtube.com/watch?v=8m5t9VDAqDE 
+" https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
+tnoremap <silent> <C-[><C-[> <C-\><C-n>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1051,10 +1102,12 @@ command! BD call fzf#run(fzf#wrap({
 \ }))
 
 
-nnoremap <leader>m mM
-nnoremap <leader><leader>m 'M 
-nnoremap <leader>u mU
-nnoremap <leader><leader>u 'U
+nnoremap <leader>m 'M
+nnoremap <leader><leader>m mM 
+nnoremap <leader>u 'U
+nnoremap <leader><leader>u mU
+" nnoremap <leader>t 'T
+" nnoremap <leader><leader>t mT
 
 augroup VIMRC
     autocmd!
@@ -1116,3 +1169,32 @@ nnoremap <silent> <leader><leader>8 :WSbm 8<CR>
 nnoremap <silent> <leader><leader>9 :WSbm 9<CR>
 
 nnoremap <silent> <leader>` :call WS_Backforth()<CR>
+
+
+
+nnoremap <leader>t :call GotoBuffer(0)<CR>
+nnoremap <leader><leader>t :call GotoBuffer(1)<CR>
+nnoremap <leader><leader><leader>t :call GotoBuffer(2)<CR>
+
+let g:ctrlId = -1
+let g:win_ctrl_buf_list = [0,0,0,0]
+
+fun! GotoBuffer(ctrlId)
+  let g:ctrlId = a:ctrlId
+  let l:contents = g:win_ctrl_buf_list[a:ctrlId]
+  if(l:contents == 0 || len(getbufinfo(l:contents)) == 0)
+    exe "terminal"
+  else
+    exe "buffer " . l:contents
+  endif
+endfun
+
+autocmd TermOpen * nested call TerminalOpen()
+
+fun! TerminalOpen()
+  let bnr = bufnr('%') 
+  call setbufvar(bnr, "&buflisted", 0)
+  let g:win_ctrl_buf_list[g:ctrlId] = bnr
+  let g:ctrlId = -1
+endfun
+
