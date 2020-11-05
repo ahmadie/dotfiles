@@ -102,6 +102,8 @@ function! WS_B_Move(to)
     let bnr = bufnr("%")
     call WS_Open(a:to)
     exe "buffer " . bnr
+    let b:WS = t:WS
+    call s:buflisted(bnr, 1)
 endfunc
 
 function! WS_Tabnum(WS, ...)
@@ -210,9 +212,7 @@ endfunc
 function! s:tableave()
     let s:prev = t:WS
     for b in WS_Buffers(t:WS)
-        if b.listed
-            call s:buflisted(b.bufnr, 0)
-        endif
+      call s:buflisted(b.bufnr, 0)
     endfor
 endfunc
 
@@ -225,15 +225,13 @@ function! s:tabenter()
     let bnr = bufnr("%")
     let wsbuffers = WS_Buffers(t:WS)
     for b in wsbuffers 
-        if get(b.variables, "WS_listed")
-            if(empty(target))
-               let target = b 
-            endif
-            call s:buflisted(b.bufnr, 1)
-            if(bnr == b.bufnr)
-              let switchbuf = 0
-            endif
-        endif
+      if(empty(target))
+         let target = b 
+      endif
+      call s:buflisted(b.bufnr, 1)
+      if(bnr == b.bufnr)
+        let switchbuf = 0
+      endif
     endfor
     if(empty(target)) 
         let switchbuf = 0
@@ -272,14 +270,14 @@ function! s:bufenter()
               endfor
             if(!foundWindow)
               exe "buffer " . b.bufnr 
+              call s:buflisted(bnr, 1)
             endif
         endif
       endif
     endfor
 
-    let b:WS = t:WS
-    if getbufvar(bnr, "WS_listed")
-        call s:buflisted(bnr, 1)
+    if(b:WS == 0)
+      let b:WS = t:WS
     endif
     " Workaround for BufAdd
     call s:collect_orphans()
