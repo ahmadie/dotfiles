@@ -208,6 +208,7 @@ function! s:collect_orphans()
 endfunc
 
 function! s:tableave()
+    call s:cleanemptybuffers()
     let s:prev = t:WS
     for b in WS_Buffers(t:WS)
       call s:buflisted(b.bufnr, 0)
@@ -288,6 +289,13 @@ function! s:bufdummy()
     setl bufhidden=wipe
     "setl buftype=nofile
 endfunc
+
+function! s:cleanemptybuffers()
+    let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val)<0 && !getbufvar(v:val, "&mod")')
+    if !empty(buffers)
+        exe 'bw ' . join(buffers, ' ')
+    endif
+endfunction
 
 augroup workspace
     autocmd!
