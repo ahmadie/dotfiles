@@ -21,10 +21,10 @@
   "explorer.previewAction.onHover": true,
   "explorer.file.showHiddenFiles": true,
   "explorer.keyMappings.global": {
-    "<cr>": ["expanded?", "collapse", "expand"], 
-    "v": "open:vsplit"
+    "v": "open:vsplit",
+    "o": ["expandable?", ["expanded?", "collapse", "expand"], "open"]
   },
-"explorer.buffer.showHiddenBuffers": true,
+  "explorer.buffer.showHiddenBuffers": true,
   "pairs.enableBackspace": false,
   "coc.preferences.colorSupport": true
 }
