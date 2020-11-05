@@ -1158,15 +1158,15 @@ nnoremap <silent> <leader>7 :WS 7<CR>
 nnoremap <silent> <leader>8 :WS 8<CR>
 nnoremap <silent> <leader>9 :WS 9<CR>
 
-nnoremap <silent> <leader><leader>1 :WSbm 1<CR>
-nnoremap <silent> <leader><leader>2 :WSbm 2<CR>
-nnoremap <silent> <leader><leader>3 :WSbm 3<CR>
-nnoremap <silent> <leader><leader>4 :WSbm 4<CR>
-nnoremap <silent> <leader><leader>5 :WSbm 5<CR>
-nnoremap <silent> <leader><leader>6 :WSbm 6<CR>
-nnoremap <silent> <leader><leader>7 :WSbm 7<CR>
-nnoremap <silent> <leader><leader>8 :WSbm 8<CR>
-nnoremap <silent> <leader><leader>9 :WSbm 9<CR>
+nnoremap <silent> <leader><leader>1 :WSbmv 1<CR>
+nnoremap <silent> <leader><leader>2 :WSbmv 2<CR>
+nnoremap <silent> <leader><leader>3 :WSbmv 3<CR>
+nnoremap <silent> <leader><leader>4 :WSbmv 4<CR>
+nnoremap <silent> <leader><leader>5 :WSbmv 5<CR>
+nnoremap <silent> <leader><leader>6 :WSbmv 6<CR>
+nnoremap <silent> <leader><leader>7 :WSbmv 7<CR>
+nnoremap <silent> <leader><leader>8 :WSbmv 8<CR>
+nnoremap <silent> <leader><leader>9 :WSbmv 9<CR>
 
 nnoremap <silent> <leader>` :call WS_Backforth()<CR>
 
