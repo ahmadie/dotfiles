@@ -64,11 +64,10 @@ function! WS_Line()
     for t in range(1, tabpagenr("$"))
         let tWS = gettabvar(t, "WS")
         if t == tabpagenr()
-          let tWS = "<" . tWS . ">"
-        elseif WS_Empty(tWS)
-          continue
+          call add(st, "<" . tWS . ">")
+        else
+          call add(st, tWS)
         endif
-        call add(st, tWS)
     endfor
     return " " . join(st, " | ")
 endfunc
