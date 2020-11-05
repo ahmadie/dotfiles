@@ -31,7 +31,8 @@ function! WS_Open(WS)
     else
         exe WS_Tabnum(a:WS, 1) . "tabnew"
         call WS_Rename(a:WS)
-        call s:bufdummy()
+        enew
+        " call s:bufdummy()
     endif
     echo WS_Line()
     return ! tabnum
@@ -234,12 +235,14 @@ function! s:tabenter()
             endif
         endif
     endfor
-    if(empty(target))
+    if(empty(target)) 
+        " call setbufvar(bnr, '&hidden', 1)
         let switchbuf = 0
+        " exe 'bunload ' . bnr 
         enew
-        call s:bufdummy()
+        " call s:bufdummy()
     endif
-    if(switchbuf && !empty(target))
+    if(switchbuf && !empty(target) && !getbufinfo(bnr)[0].loaded)
         exe "buffer " . target.bufnr 
     endif
 endfunc
