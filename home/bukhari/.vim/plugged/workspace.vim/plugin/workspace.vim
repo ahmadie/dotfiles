@@ -236,12 +236,8 @@ function! s:tabenter()
         endif
     endfor
     if(empty(target)) 
-        " call setbufvar(bnr, '&hidden', 1)
         let switchbuf = 0
-        " exe 'bunload ' . bnr 
-        " echo 'enewwww'
         enew
-        " call s:bufdummy()
     endif
     " loaded hidden
     " 1      1      exe
