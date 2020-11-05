@@ -239,10 +239,16 @@ function! s:tabenter()
         " call setbufvar(bnr, '&hidden', 1)
         let switchbuf = 0
         " exe 'bunload ' . bnr 
+        " echo 'enewwww'
         enew
         " call s:bufdummy()
     endif
-    if(switchbuf && !empty(target) && !getbufinfo(bnr)[0].loaded)
+    " loaded hidden
+    " 1      1      exe
+    " 1      0      no
+    " 0      ?      exe
+    if(switchbuf && !empty(target) && !(getbufinfo(target.bufnr)[0].loaded == 1 && getbufinfo(target.bufnr)[0].hidden == 0))
+        echo 'swiiitch'
         exe "buffer " . target.bufnr 
     endif
 endfunc
@@ -260,8 +266,17 @@ function! s:bufenter()
         let b:WS = get(b.variables, "WS")
         let tabnum = WS_Tabnum(b:WS)
         if tabnum
+            let foundWindow = 0
             exe "tabnext " . tabnum
-            exe "buffer " . b.bufnr 
+              for wid in win_findbuf(b.bufnr)
+                  if tabnum == win_id2tabwin(wid)[0]
+                      let foundWindow= 1
+                      call win_gotoid(wid)
+                  endif
+              endfor
+            if(!foundWindow)
+              exe "buffer " . b.bufnr 
+            endif
         endif
       endif
     endfor
