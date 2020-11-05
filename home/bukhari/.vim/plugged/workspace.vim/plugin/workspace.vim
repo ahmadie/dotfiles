@@ -157,10 +157,8 @@ endfunc
 
 function! s:buflisted(bufnum, listed)
     if a:listed
-        call setbufvar(a:bufnum, "WS_listed", "")
         call setbufvar(a:bufnum, "&buflisted", 1)
     else
-        call setbufvar(a:bufnum, "WS_listed", 1)
         call setbufvar(a:bufnum, "&buflisted", 0)
     endif
 endfunc
@@ -192,7 +190,7 @@ function! s:tabclosed()
               let firstTab = gettabinfo()[0]
               let bWS = get(firstTab.variables, "WS")
             endif
-            if bWS == t:WS && get(b.variables, "WS_listed")
+            if bWS == t:WS
                 call s:buflisted(b.bufnr, 1)
             endif
             " move buffer to prev tab, or first tab.
