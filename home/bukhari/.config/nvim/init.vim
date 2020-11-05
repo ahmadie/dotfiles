@@ -68,7 +68,7 @@ Plug 'mattn/emmet-vim'
 " Plug 'chrisbra/Colorizer'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'KabbAmine/vCoolor.vim'
-Plug 'ahmadie/workspace.vim'
+Plug 'dosimple/workspace.vim'
 call plug#end()
 
 
@@ -1172,9 +1172,9 @@ nnoremap <silent> <leader>` :call WS_Backforth()<CR>
 
 
 
-nnoremap <leader>t :call GotoBuffer(0)<CR>
-nnoremap <leader><leader>t :call GotoBuffer(1)<CR>
-nnoremap <leader><leader><leader>t :call GotoBuffer(2)<CR>
+nnoremap <silent> <leader>t :call GotoBuffer(0)<CR>
+nnoremap <silent> <leader><leader>t :call GotoBuffer(1)<CR>
+nnoremap <silent> <leader><leader><leader>t :call GotoBuffer(2)<CR>
 
 let g:ctrlId = -1
 let g:win_ctrl_buf_list = [0,0,0,0]
@@ -1197,4 +1197,15 @@ fun! TerminalOpen()
   let g:win_ctrl_buf_list[g:ctrlId] = bnr
   let g:ctrlId = -1
 endfun
+
+autocmd VimLeavePre * nested call CleanTerminals()
+
+fun! CleanTerminals()
+  for bnr in g:win_ctrl_buf_list
+    if(bnr != 0)
+      exe 'bd!' . bnr
+    endif
+  endfor
+endfun
+
 
