@@ -69,6 +69,7 @@ Plug 'mattn/emmet-vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'dosimple/workspace.vim'
+Plug 'moll/vim-bbye'
 call plug#end()
 
 
@@ -577,8 +578,9 @@ let g:fzf_preview_preview_key_bindings = 'alt-d:preview-page-down,alt-u:preview-
 
 
 
-nnoremap <leader>x :bp\|bd #<cr>
-nnoremap <leader><leader>x :bp\|bd #!<cr>
+nnoremap <leader>x :Bdelete<CR>
+nnoremap <leader><leader>x :Bdelete!<CR>
+"
 " nnoremap ? /\<\><left><left>
 
 " nnoremap <C-L> <C-W><C-L>
@@ -606,6 +608,7 @@ nmap <A-z> zz
 nmap <A-i> <C-I>
 nmap <A-o> <C-O> 
 nmap <A-6> <C-^> 
+nmap <A-`> <C-^> 
 
 " adjust scroll height to 1/3 of screen
 au BufEnter * execute "set scroll=" . winheight('.') / 3
@@ -972,7 +975,7 @@ endfunction
 
 call s:MapNextFamily('b','b')
 call s:MapNextFamily('q','c')
-" call s:MapNextFamily('t','tab')
+call s:MapNextFamily('t','tab')
 
 
 " Section: Line operations
