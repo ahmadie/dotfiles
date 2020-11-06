@@ -409,7 +409,7 @@ nnoremap <leader>n :CocCommand explorer --preset simplify --sources buffer+,file
 
 " remove blank to not see empty buffer when close with coc-explorer opened
 " set sessionoptions-=blank
-set sessionoptions+=blank,buffers
+set sessionoptions-=blank
 
 let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
@@ -1204,6 +1204,7 @@ endfun
 autocmd VimLeavePre * nested call CleanTerminals()
 
 fun! CleanTerminals()
+  exe 'tabo'
   for bnr in g:win_ctrl_buf_list
     if(bnr != 0)
       exe 'bd!' . bnr
