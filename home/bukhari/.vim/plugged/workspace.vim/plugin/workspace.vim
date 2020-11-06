@@ -32,6 +32,8 @@ function! WS_Open(WS)
         exe WS_Tabnum(a:WS, 1) . "tabnew"
         call WS_Rename(a:WS)
         enew
+        setl nobuflisted
+        setl bufhidden=wipe
         " call s:bufdummy()
     endif
     echo WS_Line()
@@ -239,6 +241,8 @@ function! s:tabenter()
     if(empty(target)) 
         let switchbuf = 0
         enew
+        setl nobuflisted
+        setl bufhidden=wipe
     endif
     " loaded hidden
     " 1      1      exe
@@ -257,7 +261,6 @@ endfunc
 function! s:bufenter()
     let bnr = bufnr("%")
     
-
     if getbufvar(bnr, "WS_listed")
       call s:buflisted(bnr, 1)
     endif
