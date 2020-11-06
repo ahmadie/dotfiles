@@ -102,8 +102,10 @@ function! WS_Buffers(WS)
 endfunc
 
 function! WS_B_Move(to)
-    let s:trydeleteprev = 1
     let bnr = bufnr("%")
+    exe 'bn'
+    " call s:buflisted(bnr, 0)
+    let s:trydeleteprev = 1
     call setbufvar(bnr, 'WS', a:to)
     call WS_Open(a:to)
     exe "buffer " . bnr
