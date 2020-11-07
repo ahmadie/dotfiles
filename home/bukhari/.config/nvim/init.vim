@@ -700,14 +700,17 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#branch#format = 2
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
-let g:airline#extensions#tabline#show_tabs = 0
-let g:airline#extensions#tabline#show_tab_count = 2
-let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='base16_snazzy'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#tabline#show_tab_count = 0
+let g:airline#extensions#tabline#show_tab_type = 1
+let g:workspace#vim#airline#enable = 1
+
 
 let g:XkbSwitchEnabled = 1
 " let g:XkbSwitchLib = '/usr/local/lib/libg3kbswitch.so'
