@@ -1,4 +1,7 @@
 " also learn to run nvim from docker haha : https://github.com/yuki-ycino/fzf-preview.vim/issues/161
+
+let g:textobj_line_no_default_key_mappings = 1
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
@@ -51,7 +54,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'unblevable/quick-scope'
 " Plug 'rhysd/clever-f.vim'
 " Plug 'justinmk/vim-sneak'
-Plug 'b4winckler/vim-angry'
+" Plug 'b4winckler/vim-angry'
 Plug 'tommcdo/vim-exchange'
 Plug 'rhysd/git-messenger.vim'
 Plug 'ThePrimeagen/vim-be-good'
@@ -70,6 +73,10 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'dosimple/workspace.vim'
 Plug 'moll/vim-bbye'
+Plug 'wellle/targets.vim'
+" to align text
+" Plug 'tommcdo/vim-lion'
+
 call plug#end()
 
 
@@ -213,13 +220,14 @@ let g:coc_global_extensions = ['coc-explorer', 'coc-html', 'coc-css', 'coc-json'
 
 
 
-let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+" let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 nmap s <Nop>
 xmap s <Nop>
 
+" let g:sandwich_no_default_key_mappings = 1
+let g:textobj_sandwich_no_default_key_mappings = 1
 
-
-
+let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr rr ll lb ar ab lB Ar aB Ab AB rb rB al Al'
 
 set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 
@@ -466,17 +474,21 @@ vnoremap <silent>aI :<C-u>cal HandleTextObjectMapping(0, 0, 1, [line("'<"), line
 
 
 
+vmap <silent> au <Plug>(textobj-line-a)
+omap <silent> au <Plug>(textobj-line-a)
+vmap <silent> iu <Plug>(textobj-line-i)
+omap <silent> iu <Plug>(textobj-line-i)
 
-let g:angry_disable_maps = 1
-vmap <silent> au <Plug>AngryOuterPrefix
-omap <silent> au <Plug>AngryOuterPrefix
-vmap <silent> iu <Plug>AngryInnerPrefix
-omap <silent> iu <Plug>AngryInnerPrefix
-
-vmap <silent> aU <Plug>AngryOuterSuffix
-omap <silent> aU <Plug>AngryOuterSuffix
-vmap <silent> iU <Plug>AngryInnerSuffix
-omap <silent> iU <Plug>AngryInnerSuffix
+" let g:angry_disable_maps = 1
+" vmap <silent> au <Plug>AngryOuterPrefix
+" omap <silent> au <Plug>AngryOuterPrefix
+" vmap <silent> iu <Plug>AngryInnerPrefix
+" omap <silent> iu <Plug>AngryInnerPrefix
+"
+" vmap <silent> aU <Plug>AngryOuterSuffix
+" omap <silent> aU <Plug>AngryOuterSuffix
+" vmap <silent> iU <Plug>AngryInnerSuffix
+" omap <silent> iU <Plug>AngryInnerSuffix
 
 
 
@@ -502,7 +514,9 @@ omap <silent> iU <Plug>AngryInnerSuffix
 
  
 nnoremap <leader>< :SidewaysLeft<cr>
+nnoremap <leader>, :SidewaysLeft<cr>
 nnoremap <leader>> :SidewaysRight<cr>
+nnoremap <leader>. :SidewaysRight<cr>
 
 nnoremap <leader>r :Switch<cr>
 
