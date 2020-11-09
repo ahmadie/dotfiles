@@ -4,6 +4,7 @@ let g:textobj_line_no_default_key_mappings = 1
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'dosimple/workspace.vim'
 Plug 'altercation/vim-colors-solarized'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'jiangmiao/auto-pairs'
@@ -71,11 +72,12 @@ Plug 'mattn/emmet-vim'
 " Plug 'chrisbra/Colorizer'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'KabbAmine/vCoolor.vim'
-Plug 'dosimple/workspace.vim'
 Plug 'moll/vim-bbye'
 Plug 'wellle/targets.vim'
 " to align text
 " Plug 'tommcdo/vim-lion'
+" to diff block by visual selection
+" Plug 'AndrewRadev/linediff.vim'
 
 call plug#end()
 

@@ -4,7 +4,7 @@
 " Made by Ayush Shenoy (masala-man)
 "
 "   BASE16-SNAZZY        XTERM
-let s:base00 = '#282a36' "236 
+let s:base00 = '#342836' "236 
 let s:base01 = '#34353e' "237
 let s:base02 = '#43454f' "238
 let s:base03 = '#78787e' "244
