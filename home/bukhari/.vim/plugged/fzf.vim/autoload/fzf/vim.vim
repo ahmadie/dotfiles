@@ -266,7 +266,7 @@ for s:color_name in keys(s:ansi)
 endfor
 
 function! s:buflisted()
-  return filter(range(1, bufnr('$')), 'buflisted(v:val) && getbufvar(v:val, "&filetype") != "qf"')
+  return filter(range(1, bufnr('$')), 'bufexists(v:val) && getbufvar(v:val, "&filetype") != "qf"')
 endfunction
 
 function! s:fzf(name, opts, extra)
