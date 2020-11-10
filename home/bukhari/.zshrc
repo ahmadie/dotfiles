@@ -54,3 +54,14 @@ export VISUAL="nvim -c \"set norelativenumber nonumber nolist showtabline=0 fold
 export EDITOR="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt SHARE_HISTORY
+
+eval "$(starship init zsh)"
+
+# fpath+=$HOME/.zsh/pure
+# autoload -U promptinit; promptinit
+# prompt pure
