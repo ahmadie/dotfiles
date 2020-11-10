@@ -8,7 +8,7 @@
 # fdfind --type f | fzf
 
 # Setting fd as the default source for fzf
-export FZF_DEFAULT_COMMAND='fdfind --type f'
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 # Now fzf (w/o pipe) will use fd instead of find
 # fzf
@@ -64,8 +64,6 @@ HISTSIZE=10000
 SAVEHIST=1000
 setopt SHARE_HISTORY
 
-eval "$(starship init zsh)"
-
 # fpath+=$HOME/.zsh/pure
 # autoload -U promptinit; promptinit
 # prompt pure
@@ -79,3 +77,5 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
 
 source /home/bukhari/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+eval "$(starship init zsh)"
