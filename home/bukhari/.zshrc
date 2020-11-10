@@ -53,6 +53,10 @@ set -o vi
 export VISUAL="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
 export EDITOR="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
 
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+  
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 HISTFILE=~/.zsh_history
