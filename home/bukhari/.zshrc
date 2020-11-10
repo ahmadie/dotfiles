@@ -70,3 +70,8 @@ alias ls='ls --color=auto'
 
 # got colors from here https://github.com/trapd00r/LS_COLORS
 source ~/.local/share/lscolors.sh
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
+
+source /home/bukhari/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
