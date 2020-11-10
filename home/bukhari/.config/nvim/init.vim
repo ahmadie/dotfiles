@@ -310,6 +310,8 @@ nnoremap M D
 " in this file
 nnoremap Y y$
 
+vnoremap y "+y
+
 set shada=!,'100,<50,s10,h
 let g:yoinkSavePersistently = 1
 " set clipboard=unnamed,unnamedplus
