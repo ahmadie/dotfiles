@@ -65,3 +65,8 @@ eval "$(starship init zsh)"
 # fpath+=$HOME/.zsh/pure
 # autoload -U promptinit; promptinit
 # prompt pure
+
+alias ls='ls --color=auto'
+
+# got colors from here https://github.com/trapd00r/LS_COLORS
+source ~/.local/share/lscolors.sh
