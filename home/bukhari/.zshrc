@@ -20,8 +20,8 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--bind alt-j:down,alt-k:up,alt-u:up,alt-d:down,alt-i:toggle+up'
 
-export FZF_PREVIEW_PREVIEW_BAT_THEME=""
-export BAT_THEME=""
+export FZF_PREVIEW_PREVIEW_BAT_THEME="Monokai Extended Origin"
+export BAT_THEME="Monokai Extended Origin"
 
 
 export NVM_DIR="$HOME/.nvm"

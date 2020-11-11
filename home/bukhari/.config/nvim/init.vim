@@ -5,8 +5,9 @@ let g:textobj_line_no_default_key_mappings = 1
 call plug#begin('~/.vim/plugged')
 
 Plug 'dosimple/workspace.vim'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 " Plug 'ayu-theme/ayu-vim'
+Plug 'keyvchan/vim-monokai'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -314,7 +315,8 @@ vnoremap y "+y
 
 set shada=!,'100,<50,s10,h
 let g:yoinkSavePersistently = 1
-" set clipboard=unnamed,unnamedplus
+set clipboard=unnamed,unnamedplus
+let g:yoinkSyncSystemClipboardOnFocus = 0
 
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
 nmap <c-p> <plug>(YoinkPostPasteSwapForward)
@@ -775,8 +777,13 @@ syntax sync fromstart
 let g:solarized_italic = 1
 let g:solarized_bold = 1 
 let g:solarized_underline = 1
+
 set background=dark
-colorscheme solarized
+" colorscheme solarized
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
+colorscheme monokai
+"
 " IndentLine {{
 " let g:indentLine_char = '▏'
 " let g:indentLine_char = '⋮'
