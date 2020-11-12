@@ -274,12 +274,6 @@ set undofile
 
 
 
-" terminal stuff
-" https://www.youtube.com/watch?v=8m5t9VDAqDE 
-" https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
-tnoremap <silent> <C-[><C-[> <C-\><C-n>
-
-
 
 
 
@@ -414,7 +408,8 @@ let g:coc_explorer_global_presets = {
 
 
 " Explorer
-nnoremap <leader>n :CocCommand explorer --preset simplify --sources buffer+,file+<CR>
+" nnoremap <leader>n :CocCommand explorer --preset simplify --sources buffer+,file+<CR>
+nnoremap <leader>n :Vifm<CR>
 " nmap <space>f :CocCommand explorer --preset floating<CR>
 
 
@@ -1210,14 +1205,21 @@ nnoremap <silent> <leader>` :call WS_Backforth()<CR>
 
 
 
-nnoremap <silent> <leader>t :call GotoBuffer(0)<CR>
-nnoremap <silent> <leader><leader>t :call GotoBuffer(1)<CR>
-nnoremap <silent> <leader><leader><leader>t :call GotoBuffer(2)<CR>
+nnoremap <silent> <leader>t :call GotoTerminal(0)<CR>
+nnoremap <silent> <leader><leader>t :call GotoTerminal(1)<CR>
+nnoremap <silent> <leader><leader><leader>t :call GotoTerminal(2)<CR>
 
 let g:ctrlId = -1
 let g:win_ctrl_buf_list = [0,0,0,0]
 
-fun! GotoBuffer(ctrlId)
+
+augroup terminalgrp
+  autocmd!
+  autocmd VimLeavePre * nested call CleanTerminals()
+  autocmd TermOpen * nested call TerminalOpen()
+augroup END
+
+fun! GotoTerminal(ctrlId)
   let g:ctrlId = a:ctrlId
   let l:contents = g:win_ctrl_buf_list[a:ctrlId]
   if(l:contents == 0 || len(getbufinfo(l:contents)) == 0)
@@ -1225,24 +1227,30 @@ fun! GotoBuffer(ctrlId)
   else
     exe "buffer " . l:contents
   endif
+  exe ":normal i"
 endfun
 
-autocmd TermOpen * nested call TerminalOpen()
 
 fun! TerminalOpen()
   let bnr = bufnr('%') 
   call setbufvar(bnr, "&buflisted", 0)
-  let g:win_ctrl_buf_list[g:ctrlId] = bnr
-  let g:ctrlId = -1
+
+  if -1 == stridx(getbufinfo(bnr)[0].name, "vifm")
+    let g:win_ctrl_buf_list[g:ctrlId] = bnr
+    let g:ctrlId = -1
+    " terminal stuff
+    " https://www.youtube.com/watch?v=8m5t9VDAqDE 
+    " https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
+    exe ":tnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n><C-^>"
+  endif
 endfun
 
-autocmd VimLeavePre * nested call CleanTerminals()
 
 fun! CleanTerminals()
   exe 'tabo'
   for bnr in g:win_ctrl_buf_list
     if(bnr != 0)
-      exe 'bd!' . bnr
+      exe 'bd! ' . bnr
     endif
   endfor
 endfun

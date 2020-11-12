@@ -452,6 +452,8 @@ nnoremap <f8> :delete<cr>
 nnoremap ; :
 nnoremap : ;
 
+nnoremap <wait> <esc><esc> ZZ 
+
 " ------------------------------------------------------------------------------
 
 " Various customization examples
