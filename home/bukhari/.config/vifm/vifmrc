@@ -226,7 +226,7 @@ filextype *.html,*.htm
         \ firefox %f &,
         \ {Open with uzbl}
         \ uzbl-browser %f %i &,
-filetype *.html,*.htm links, lynx
+" filetype *.html,*.htm links, lynx
 
 " Object
 filetype *.o nm %f | less
@@ -234,6 +234,10 @@ filetype *.o nm %f | less
 " Man page
 filetype *.[1-8] batman ./%c
 fileviewer *.[1-8] batman ./%c | col -b
+
+" Bat
+fileviewer *.[ch],*.[ch]pp,*.[ch]xx,*.js,*.svelte,*.json,*.css,*.html,*.jsx,*.sass
+        \ env -uCOLORTERM bat --color always --wrap never --pager never %c -p
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
