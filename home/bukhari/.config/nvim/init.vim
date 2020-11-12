@@ -75,6 +75,8 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'moll/vim-bbye'
 Plug 'wellle/targets.vim'
+Plug 'vifm/vifm.vim'
+
 " to align text
 " Plug 'tommcdo/vim-lion'
 " to diff block by visual selection
@@ -608,10 +610,16 @@ nnoremap <leader><leader>x :Bdelete!<CR>
 " nnoremap <C-K> <C-W><C-K>
 " nnoremap <C-J> <C-W><C-J>
 
-nnoremap <leader>l <C-W><C-L>
-nnoremap <leader>h <C-W><C-H>
-nnoremap <leader>k <C-W><C-K>
-nnoremap <leader>j <C-W><C-J>
+nnoremap <leader>l <C-W>l
+nnoremap <leader>h <C-W>h
+nnoremap <leader>k <C-W>k
+nnoremap <leader>j <C-W>j
+
+
+nnoremap <leader><leader>l <C-W>L
+nnoremap <leader><leader>h <C-W>H
+nnoremap <leader><leader>k <C-W>K
+nnoremap <leader><leader>j <C-W>J
 
 nnoremap <A-l> L 
 nnoremap <A-h> H
@@ -647,8 +655,7 @@ onoremap L $
 
 nnoremap ; :
 nnoremap : ;
-nnoremap ` ;
-
+" nnoremap ` ;
 
 
 
