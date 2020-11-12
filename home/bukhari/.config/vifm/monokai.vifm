@@ -19,7 +19,7 @@ highlight StatusLine ctermfg=59 ctermbg=none cterm=none
 highlight Border ctermfg=239 ctermbg=none cterm=none
 
 " highlight OtherLine ctermfg=234 ctermbg=15 cterm=none
-highlight CurrLine ctermfg=0 ctermbg=4 cterm=none
+highlight CurrLine ctermfg=0 ctermbg=197 cterm=none
 highlight LineNr ctermfg=226 ctermbg=-1 cterm=none
 
 highlight Selected ctermfg=0 ctermbg=237 cterm=none
@@ -31,12 +31,12 @@ highlight WildMenu ctermfg=15 ctermbg=225 cterm=none
 highlight CmdLine ctermfg=15 ctermbg=0 cterm=none
 highlight ErrorMsg ctermfg=196 ctermbg=1 cterm=none
 
-highlight Directory ctermfg=197 ctermbg=-1 cterm=bold
+highlight Directory ctermfg=141 ctermbg=-1 cterm=bold
 highlight Executable ctermfg=10 ctermbg=-1 cterm=none
 highlight Socket ctermfg=141 ctermbg=-1 cterm=none
 highlight Device ctermfg=15 ctermbg=-1 cterm=none
 highlight Fifo ctermfg=226 ctermbg=-1 cterm=none
-highlight Link ctermfg=141 ctermbg=-1 cterm=none
+highlight Link ctermfg=4 ctermbg=-1 cterm=none
 highlight BrokenLink ctermfg=208 ctermbg=11 cterm=bold
 " no conversion defined for HardLink
 
