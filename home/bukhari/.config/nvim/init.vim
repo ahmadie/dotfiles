@@ -1234,7 +1234,7 @@ endfun
 fun! TerminalOpen()
   let bnr = bufnr('%') 
   call setbufvar(bnr, "&buflisted", 0)
-
+  exe ":IndentLinesDisable"
   if -1 == stridx(getbufinfo(bnr)[0].name, "vifm")
     let g:win_ctrl_buf_list[g:ctrlId] = bnr
     let g:ctrlId = -1
