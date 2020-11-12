@@ -25,7 +25,7 @@ highlight LineNr ctermfg=226 ctermbg=-1 cterm=none
 highlight Selected ctermfg=0 ctermbg=237 cterm=none
 highlight CmpMismatch ctermfg=189 ctermbg=60 cterm=none
 
-highlight SuggestBox ctermfg=15 ctermbg=14 cterm=none
+highlight SuggestBox ctermfg=15 ctermbg=none cterm=none
 highlight WildMenu ctermfg=15 ctermbg=59 cterm=none
 
 highlight CmdLine ctermfg=15 ctermbg=0 cterm=none
