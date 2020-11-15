@@ -63,6 +63,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=1000
 setopt SHARE_HISTORY
+export KEYTIMEOUT=1
 
 # fpath+=$HOME/.zsh/pure
 # autoload -U promptinit; promptinit
@@ -71,7 +72,10 @@ setopt SHARE_HISTORY
 alias ls='ls --color=auto'
 
 # got colors from here https://github.com/trapd00r/LS_COLORS
-source ~/.local/share/lscolors.sh
+# source ~/.local/share/lscolors.sh
+
+# https://github.com/sharkdp/vivid
+export LS_COLORS="$(vivid generate molokai)"
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
