@@ -1,7 +1,35 @@
 add_newline = false
 
+format = """
+[┌  $all](bold 208)
+"""
+
+[line_break]
+# disabled = true
+
 [character]
-vicmd_symbol = "[V](bold green)"
+# disabled = true
+vicmd_symbol = "[└ ](bold 208)"
+success_symbol = "[└ ](bold 208)"
+error_symbol = "[✗ ](bold 208)"
+
+[directory]
+style = "bold 153"
+truncation_length = 5
+truncate_to_repo = false
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [aws]
 symbol = " "
