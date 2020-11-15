@@ -63,3 +63,20 @@ highlight BrokenLink ctermfg=208 ctermbg=11 cterm=bold
 " - incomplete source color scheme: missing bg of String
 " - incomplete source color scheme: missing bg of Number
 " - incomplete source color scheme: missing bg of Todo
+
+" file name specific highlight
+
+" generic file types
+
+" file name specific highlight
+highlight /.*CONTRIBUTORS$|.*CONTRIBUTORS.md$|.*CONTRIBUTORS.txt$|.*INSTALL$|.*INSTALL.md$|.*INSTALL.txt$|.*readme.md$|.*README$|.*README.md$|.*README.txt$/I cterm=none ctermfg=0 ctermbg=228
+highlight /.*\.applescript$|.*\.as$|.*\.asa$|.*\.awk$|.*\.bash$|.*\.bsh$|.*\.c$|.*\.c++$|.*\.cabal$|.*\.cc$|.*\.cgi$|.*\.clj$|.*\.cp$|.*\.cpp$|.*\.cr$|.*\.cs$|.*\.csx$|.*\.cxx$|.*\.d$|.*\.dart$|.*\.def$|.*\.di$|.*\.diff$|.*\.dot$|.*\.dpr$|.*\.el$|.*\.elm$|.*\.epp$|.*\.erl$|.*\.ex$|.*\.exs$|.*\.fish$|.*\.fs$|.*\.fsi$|.*\.fsx$|.*\.go$|.*\.gradle$|.*\.groovy$|.*\.gv$|.*\.gvy$|.*\.h$|.*\.h++$|.*\.hh$|.*\.hpp$|.*\.hs$|.*\.htc$|.*\.hxx$|.*\.inc$|.*\.inl$|.*\.ipp$|.*\.ipynb$|.*\.java$|.*\.jl$|.*\.js$|.*\.kt$|.*\.kts$|.*\.less$|.*\.lisp$|.*\.ll$|.*\.ltx$|.*\.lua$|.*\.m$|.*\.matlab$|.*\.mir$|.*\.ml$|.*\.mli$|.*\.mn$|.*\.nb$|.*\.p$|.*\.pas$|.*\.patch$|.*\.php$|.*\.pl$|.*\.pm$|.*\.pod$|.*\.pp$|.*\.ps1$|.*\.psd1$|.*\.psm1$|.*\.purs$|.*\.py$|.*\.r$|.*\.rb$|.*\.rs$|.*\.sbt$|.*\.scala$|.*\.sh$|.*\.sql$|.*\.swift$|.*\.t$|.*\.tcl$|.*\.td$|.*\.tex$|.*\.ts$|.*\.tsx$|.*\.vb$|.*\.vim$|.*\.zsh$|.*css$/I cterm=none ctermfg=48 ctermbg=default
+highlight /.*CMakeCache.txt$|.*Makefile.in$|.*\.CFUserTextEncoding$|.*\.DS_Store$|.*\.aux$|.*\.bak$|.*\.bbl$|.*\.bc$|.*\.bcf$|.*\.blg$|.*\.cache$|.*\.class$|.*\.dyn_hi$|.*\.dyn_o$|.*\.fdb_latexmk$|.*\.fls$|.*\.git$|.*\.hi$|.*\.idx$|.*\.ilg$|.*\.ind$|.*\.la$|.*\.lo$|.*\.localized$|.*\.lock$|.*\.log$|.*\.o$|.*\.orig$|.*\.out$|.*\.pid$|.*\.pyc$|.*\.rlib$|.*\.scons_opt$|.*\.sconsign.dblite$|.*\.sty$|.*\.swp$|.*\.synctex.gz$|.*\.tmp$|.*\.toc$|.*package-lock.json$|.*~$/I cterm=none ctermfg=244 ctermbg=default
+highlight /.*CMakeLists.txt$|.*CODEOWNERS$|.*Dockerfile$|.*Doxyfile$|.*MANIFEST.in$|.*Makefile$|.*Makefile.am$|.*SConscript$|.*SConstruct$|.*\.bib$|.*\.bst$|.*\.cfg$|.*\.clang-format$|.*\.cmake$|.*\.cmake.in$|.*\.conf$|.*\.config$|.*\.desktop$|.*\.dox$|.*\.fdignore$|.*\.flake8$|.*\.gemspec$|.*\.gitattributes$|.*\.gitconfig$|.*\.gitignore$|.*\.gitmodules$|.*\.hgrc$|.*\.ignore$|.*\.ini$|.*\.json$|.*\.kdevelop$|.*\.make$|.*\.nix$|.*\.pro$|.*\.rgignore$|.*\.tml$|.*\.toml$|.*\.ui$|.*\.xmp$|.*\.yaml$|.*\.yml$|.*configure$|.*configure.ac$|.*hgrc$|.*passwd$|.*requirements.txt$|.*setup.py$|.*shadow$/I cterm=none ctermfg=82 ctermbg=default
+highlight /.*COPYING$|.*COPYRIGHT$|.*LICENSE$|.*LICENSE-APACHE$|.*LICENSE-MIT$/I cterm=none ctermfg=default ctermbg=default
+highlight /.*\.csv$|.*\.htm$|.*\.html$|.*\.markdown$|.*\.md$|.*\.mdown$|.*\.rst$|.*\.shtml$|.*\.txt$|.*\.xhtml$|.*\.xml$/I cterm=none ctermfg=190 ctermbg=default
+highlight /.*\.doc$|.*\.docx$|.*\.epub$|.*\.ics$|.*\.kex$|.*\.odp$|.*\.ods$|.*\.odt$|.*\.pdf$|.*\.pps$|.*\.ppt$|.*\.pptx$|.*\.ps$|.*\.rtf$|.*\.sxi$|.*\.sxw$|.*\.travis.yml$|.*\.xlr$|.*\.xls$|.*\.xlsx$|.*appveyor.yml$/I cterm=none ctermfg=228 ctermbg=default
+highlight /.*\.aif$|.*\.avi$|.*\.bmp$|.*\.eps$|.*\.flac$|.*\.flv$|.*\.fnt$|.*\.fon$|.*\.gif$|.*\.h264$|.*\.ico$|.*\.jpeg$|.*\.jpg$|.*\.m4a$|.*\.m4v$|.*\.mid$|.*\.mkv$|.*\.mov$|.*\.mp3$|.*\.mp4$|.*\.mpeg$|.*\.mpg$|.*\.ogg$|.*\.otf$|.*\.pbm$|.*\.pgm$|.*\.png$|.*\.ppm$|.*\.psd$|.*\.rm$|.*\.svg$|.*\.swf$|.*\.tif$|.*\.tiff$|.*\.ttf$|.*\.vob$|.*\.wav$|.*\.wma$|.*\.wmv$|.*\.xcf$/I cterm=none ctermfg=214 ctermbg=default
+highlight /.*TODO$|.*TODO.md$|.*TODO.txt$/I cterm=bold ctermfg=default ctermbg=default
+highlight /.*\.a$|.*\.bat$|.*\.com$|.*\.dll$|.*\.exe$|.*\.ko$|.*\.so$/I cterm=bold ctermfg=default ctermbg=default
+highlight /.*\.7z$|.*\.apk$|.*\.arj$|.*\.bag$|.*\.bin$|.*\.bz$|.*\.bz2$|.*\.deb$|.*\.dmg$|.*\.gz$|.*\.img$|.*\.iso$|.*\.jar$|.*\.pkg$|.*\.rar$|.*\.rpm$|.*\.tar$|.*\.tbz$|.*\.tbz2$|.*\.tgz$|.*\.toast$|.*\.vcd$|.*\.xz$|.*\.z$|.*\.zip$/I cterm=underline ctermfg=197 ctermbg=default
