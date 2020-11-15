@@ -1227,13 +1227,14 @@ fun! GotoTerminal(ctrlId)
   else
     exe "buffer " . l:contents
   endif
-  exe ":normal i"
+  " exe ":normal i"
 endfun
 
 
 fun! TerminalOpen()
   let bnr = bufnr('%') 
   call setbufvar(bnr, "&buflisted", 0)
+
   exe ":IndentLinesDisable"
   if -1 == stridx(getbufinfo(bnr)[0].name, "vifm")
     let g:win_ctrl_buf_list[g:ctrlId] = bnr
