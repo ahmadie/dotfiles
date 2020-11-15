@@ -14,7 +14,7 @@ success_symbol = "[└ ](bold 208)"
 error_symbol = "[✗ ](bold 208)"
 
 [directory]
-style = "bold 153"
+style = "bold 117"
 truncation_length = 5
 truncate_to_repo = false
 
