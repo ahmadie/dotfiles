@@ -239,6 +239,7 @@ function! s:tableave()
 endfunc
 
 function! s:tabenter()
+    let g:SessionLoad = 1
     if ! get(t:, "WS")
         call s:tabinit()
     endif
@@ -295,6 +296,7 @@ function! s:bufadd(bnr)
 endfunc
 
 function! s:bufenter()
+    let g:SessionLoad = 1
     let bnr = bufnr("%")
 
     if getbufvar(bnr, "WS_listed")
@@ -309,12 +311,12 @@ function! s:bufenter()
         if tabnum
             let foundWindow = 0
             exe "tabnext " . tabnum
-              for wid in win_findbuf(bnr)
-                  if tabnum == win_id2tabwin(wid)[0]
-                      let foundWindow= 1
-                      call win_gotoid(wid)
-                  endif
-              endfor
+            for wid in win_findbuf(bnr)
+                if tabnum == win_id2tabwin(wid)[0]
+                    let foundWindow= 1
+                    call win_gotoid(wid)
+                endif
+            endfor
             if(!foundWindow)
               exe "buffer " . bnr 
             endif
