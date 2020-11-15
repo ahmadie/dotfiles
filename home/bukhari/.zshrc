@@ -95,6 +95,11 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
 
 source /home/bukhari/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
+[[ -s /home/bukhari/.autojump/etc/profile.d/autojump.sh ]] && source /home/bukhari/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
+
+
 eval "$(starship init zsh)"
 
 # Change cursor shape for different vi modes.
