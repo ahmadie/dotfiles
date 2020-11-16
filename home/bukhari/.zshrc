@@ -31,9 +31,7 @@ export FZF_PREVIEW_PREVIEW_BAT_THEME="Monokai Extended Origin"
 export BAT_THEME="Monokai Extended Origin"
 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias loadnvm=". ${HOME}/.nvm/nvm.sh"
 
 
 #  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -105,7 +103,6 @@ source /home/bukhari/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 [[ -s /home/bukhari/.autojump/etc/profile.d/autojump.sh ]] && source /home/bukhari/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
 
 
 eval "$(starship init zsh)"
