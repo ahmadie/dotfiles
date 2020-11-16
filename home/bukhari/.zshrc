@@ -10,12 +10,6 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
 
 # f fd into fzf
 # fdfind --type f | fzf
@@ -62,13 +56,27 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:-1,hl:#5f87af
 --color=pointer:reverse,prompt:reverse,input:159 
 --color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'
 
-set -o vi
+# enable vi mode
+bindkey -v
+# set -o vi
 export VISUAL="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
 export EDITOR="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
 
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# allow to use v to edit command line in nvim
 autoload edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+bindkey -M vicmd '^v' edit-command-line
+
+#auto full directory
+setopt  autocd autopushd pushdignoredups
   
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
