@@ -11,6 +11,12 @@ compinit
 _comp_options+=(globdots)
 
 
+# rever menu auto complete
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+bindkey -M vicmd '^I' menu-complete
+bindkey -M vicmd '^[[Z' reverse-menu-complete
+# bindkey '^[[Z' reverse-menu-complete
+
 # f fd into fzf
 # fdfind --type f | fzf
 
@@ -68,6 +74,9 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+# Exit menuselect
+bindkey -M menuselect '\e' send-break
+
 # allow to use v to edit command line in nvim
 autoload edit-command-line
 zle -N edit-command-line
@@ -99,9 +108,17 @@ export LS_COLORS="$(vivid generate molokai)"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
 
-source /home/bukhari/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/bukhari/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
+# zsh history substing search
+source /home/bukhari/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
+# Autojump
 [[ -s /home/bukhari/.autojump/etc/profile.d/autojump.sh ]] && source /home/bukhari/.autojump/etc/profile.d/autojump.sh
 
 
