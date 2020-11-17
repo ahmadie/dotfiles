@@ -62,7 +62,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:-1,hl:#5f87af
 bindkey -v
 # set -o vi
 export VISUAL="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
-export EDITOR="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
+export EDITOR="nvim"
 
 
 # Use vim keys in tab complete menu:
@@ -107,6 +107,7 @@ export LS_COLORS="$(vivid generate molokai)"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC='aa'
 
 source /home/bukhari/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -122,6 +123,8 @@ bindkey '^[[B' history-substring-search-down
 # Autojump
 [[ -s /home/bukhari/.autojump/etc/profile.d/autojump.sh ]] && source /home/bukhari/.autojump/etc/profile.d/autojump.sh
 
+# zfm
+source ~/.zsh/zfm/zfm.zsh
 
 eval "$(starship init zsh)"
 
@@ -146,3 +149,5 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+
+eval $(thefuck --alias)
