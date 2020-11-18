@@ -77,7 +77,7 @@ set $term ~/Downloads/kitty-0.19.1-x86_64/bin/kitty
 # set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 # set $menu 'rofi -modi run, drun, window -show drun'
 # set $menu wofi -i -I --show drun
-set $menu "rofi -combi-modi window,drun -m $(swaymsg -t get_outputs | jq 'map(select(.active) | .focused) | index(true)') -show combi -modi combi -show-icons" 
+set $menu "rofi -font 'InputMonoCondensed 16' -combi-modi window,drun -m $(swaymsg -t get_outputs | jq 'map(select(.active) | .focused) | index(true)') -show combi -modi combi -show-icons" 
 
 ### Output configuration
 #
