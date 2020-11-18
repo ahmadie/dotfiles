@@ -480,7 +480,7 @@ nnoremap yd :!printf -- %d | xclip -sel c %i<CR>
 " Yank current file path into the clipboard
 nnoremap yf :!printf -- %c:p | xclip -sel c %i<CR>
 
-" nnoremap l :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | set previewprg='' | view | endif<cr>
+nnoremap gl :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | else | set previewprg='' | endif | view!<cr>
 
 " ------------------------------------------------------------------------------
 
