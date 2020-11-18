@@ -3,6 +3,13 @@
 # chsh -s /bin/zsh root
 # chsh -s /bin/zsh bukhari
 
+
+path=(${HOME}/bin ${path})
+path=(${HOME}/.local/bin ${path})
+path=(${HOME}/.cargo/bin ${path})
+
+
+
 # Basic auto/tab complete
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -96,6 +103,8 @@ export KEYTIMEOUT=1
 # prompt pure
 
 alias ls='ls --color=auto'
+alias vf=vifmrun
+alias n=nvim
 
 # got colors from here https://github.com/trapd00r/LS_COLORS
 # source ~/.local/share/lscolors.sh
