@@ -187,7 +187,7 @@ command! fzfcd : let $FZF_RES = term('fd --type d . %a --hidden --exclude .git |
 filextype *.pdf evince %f
 " fileviewer *.pdf pdftotext -nopgbrk %c -
 fileviewer *.pdf
-      \ vifmimg pdfpreview %px %py %pw %ph %c
+      \ vifmimg pdfpreview %px %py %pw %ph %f "png"
       \ %pc
       \ vifmimg clear
 
