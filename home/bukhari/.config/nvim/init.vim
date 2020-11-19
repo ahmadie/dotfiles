@@ -95,6 +95,8 @@ augroup SyntaxSettings
     au BufNewFile,BufRead *.ejs set filetype=html
 augroup END
 
+set wop=tagfile
+
 " if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -798,6 +800,8 @@ let g:indentLine_char = '·'
 " let g:indentLine_enabled = 0
 " let g:indentLine_leadingSpaceEnabled = 1
 autocmd Filetype json :IndentLinesDisable
+autocmd FileType * set formatoptions-=o
+autocmd InsertEnter * norm zz
 highlight SignifySignAdd guifg=green guibg=NONE
 highlight SignifySignDelete guifg=red guibg=NONE
 highlight SignifySignChange guifg=yellow guibg=NONE
