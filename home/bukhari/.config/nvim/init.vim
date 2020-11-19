@@ -1,5 +1,4 @@
 " also learn to run nvim from docker haha : https://github.com/yuki-ycino/fzf-preview.vim/issues/161
-
 let g:textobj_line_no_default_key_mappings = 1
 
 call plug#begin('~/.vim/plugged')
@@ -95,7 +94,7 @@ augroup SyntaxSettings
     au BufNewFile,BufRead *.ejs set filetype=html
 augroup END
 
-set wop=tagfile
+set wop-=pum
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -826,16 +825,18 @@ highlight SignColumn guibg=NONE gui=NONE
 
 " highlight CocFloating guibg=red
 " highlight NormalFloat guibg=red
-highlight Pmenu guibg=#586e75
-" let g:solarized_italic = 1
 
-hi VertSplit gui=NONE guifg=#2e3a36  
+" got this colors from base16_snazzy.vim file, 
+let s:statuslineinsertcolor = '#57c7ff'
+let s:statuslinebg = '#2e3a36'  
+
+exe 'highlight Pmenu guibg=' . s:statuslinebg . ' guifg=' . s:statuslineinsertcolor
+" let g:solarized_italic = 1
+exe 'hi VertSplit gui=NONE guifg=' . s:statuslinebg  
 " to hide vertical line, space at end
 " set fillchars+=vert:\  
-hi StatusLine guifg=#282a36 guibg=#282a36
-hi StatusLineNC guifg=#282a36 guibg=#282a36
-
-
+exe 'hi StatusLine guifg=' . s:statuslinebg . ' guibg=' . s:statuslineinsertcolor
+exe 'hi StatusLineNC guifg=' . s:statuslinebg . ' guibg=' . s:statuslinebg
 
 
 
