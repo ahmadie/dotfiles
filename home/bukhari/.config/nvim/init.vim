@@ -827,7 +827,7 @@ highlight SignColumn guibg=NONE gui=NONE
 " highlight NormalFloat guibg=red
 
 " got this colors from base16_snazzy.vim file, 
-let s:statuslineinsertcolor = '#57c7ff'
+let s:statuslineinsertcolor = '#5af78e'
 let s:statuslinebg = '#2e3a36'  
 
 exe 'highlight Pmenu guibg=' . s:statuslinebg . ' guifg=' . s:statuslineinsertcolor
@@ -1248,6 +1248,7 @@ fun! TerminalOpen()
     " https://www.youtube.com/watch?v=8m5t9VDAqDE 
     " https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
     exe ":tnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n><C-^>"
+    exe ":nnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n><C-^>"
   endif
 endfun
 
