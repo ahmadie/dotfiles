@@ -115,6 +115,7 @@ bindkey -M menuselect '\e' send-break
 autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd '^v' edit-command-line
+bindkey '^v' edit-command-line
 
 #auto full directory
 setopt  autocd autopushd pushdignoredups
