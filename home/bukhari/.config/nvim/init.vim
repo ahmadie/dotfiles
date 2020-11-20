@@ -60,7 +60,7 @@ Plug 'tommcdo/vim-exchange'
 Plug 'rhysd/git-messenger.vim'
 Plug 'ThePrimeagen/vim-be-good'
 
-Plug 'nelstrom/vim-visual-star-search'
+Plug 'bronson/vim-visual-star-search'
 Plug 'rhysd/clever-f.vim'
 
 Plug 'diepm/vim-rest-console'
@@ -835,8 +835,8 @@ exe 'highlight Pmenu guibg=' . s:statuslinebg . ' guifg=' . s:statuslineinsertco
 exe 'hi VertSplit gui=NONE guifg=' . s:statuslinebg  
 " to hide vertical line, space at end
 " set fillchars+=vert:\  
-exe 'hi StatusLine guifg=' . s:statuslinebg . ' guibg=' . s:statuslineinsertcolor
-exe 'hi StatusLineNC guifg=' . s:statuslinebg . ' guibg=' . s:statuslinebg
+exe 'hi StatusLine gui=NONE guifg=' . s:statuslineinsertcolor . ' guibg=NONE'
+exe 'hi StatusLineNC guifg=' . s:statuslinebg . ' guibg=NONE gui=NONE'
 
 
 
@@ -1263,3 +1263,24 @@ fun! CleanTerminals()
 endfun
 
 
+augroup ReduceNoise
+    autocmd!
+    " Automatically resize active split to 85 width
+    autocmd WinEnter * :call ResizeSplits()
+augroup END
+
+function! ResizeSplits()
+    set winwidth=100
+    wincmd =
+endfunction
+" autocmd WinEnter * setlocal cursorline
+autocmd WinEnter * setlocal signcolumn=auto
+autocmd WinEnter * setlocal relativenumber
+autocmd WinEnter * setlocal number
+autocmd WinEnter * setlocal wrap
+
+" autocmd WinLeave * setlocal nocursorline
+autocmd WinLeave * setlocal signcolumn=no
+autocmd WinLeave * setlocal norelativenumber
+autocmd WinLeave * setlocal nonumber
+autocmd WinLeave * setlocal nowrap
