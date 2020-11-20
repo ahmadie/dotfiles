@@ -410,10 +410,23 @@ let g:coc_explorer_global_presets = {
 
 " Explorer
 " nnoremap <leader>n :CocCommand explorer --preset simplify --sources buffer+,file+<CR>
-nnoremap <leader>n :Vifm<CR>
 " nmap <space>f :CocCommand explorer --preset floating<CR>
+let g:vifm_exec = 'vifmrun'
 
+nnoremap <silent> <leader>n :call GotoVifm()<CR>
 
+fun! GotoVifm()
+  let pathstr = expand('%:p:h')
+  exe "WS 9"
+
+  echo pathstr
+  if -1 == stridx(pathstr, "term://")
+    exe "EditVifm " . expand('%:p:h')
+  else
+    exe "EditVifm " . getcwd()
+  endif
+  exe ":normal i"
+endfun
 
 
 
