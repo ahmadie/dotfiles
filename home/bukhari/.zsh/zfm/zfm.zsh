@@ -12,6 +12,14 @@ function __zfm_select_with_query()
     __zfm_decorate | FZF_DEFAULT_OPTS="${opts}" fzf -q "$@" -1 -0 | awk '{ print $1 }'
 }
 
+
+function __zfm_select_command_with_query()
+{
+    setopt localoptions pipefail no_aliases 2> /dev/null
+    local opts="--reverse --exact --no-sort --cycle --height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS"
+    __zfm_decorate | FZF_DEFAULT_OPTS="${opts}" fzf -q "$@" -1 -0 | awk '{ $NF=""; print $0 }'
+}
+
 function __zfm_filter_files()
 {
     while read line
@@ -185,6 +193,8 @@ function zfm()
                 cat "$bookmarks_file" | __zfm_filter_files | __zfm_select_with_query "${@:3}"
             elif [[ "$2" == "--dirs" ]]; then
                 cat "$bookmarks_file" | __zfm_filter_dirs | __zfm_select_with_query "${@:3}"
+            elif [[ "$2" == "--commands" ]]; then
+                cat "$bookmarks_file" | __zfm_filter_commands | __zfm_select_command_with_query "${@:3}"
             else
                 cat "$bookmarks_file" | __zfm_select_with_query "$2"
             fi
@@ -271,4 +281,11 @@ function f()
         return 0
     fi
     cd "$dir"
+}
+
+# fx - execute commands
+function fx()
+{
+    local com=$(zfm query --commands "$@")
+    eval ${com}
 }
