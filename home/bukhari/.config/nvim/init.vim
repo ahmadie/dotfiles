@@ -417,15 +417,12 @@ nnoremap <silent> <leader>n :call GotoVifm()<CR>
 
 fun! GotoVifm()
   let pathstr = expand('%:p:h')
-  exe "WS 9"
-
-  echo pathstr
   if -1 == stridx(pathstr, "term://")
     exe "EditVifm " . expand('%:p:h')
   else
     exe "EditVifm " . getcwd()
   endif
-  exe ":normal i"
+  " exe ":normal i"
 endfun
 
 
@@ -1262,6 +1259,7 @@ fun! TerminalOpen()
     " https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
     exe ":tnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n><C-^>"
     exe ":nnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n><C-^>"
+    exe ":tnoremap <silent> <buffer> <C-\\> <C-\\><C-n>"
   endif
 endfun
 
@@ -1283,7 +1281,7 @@ augroup ReduceNoise
 augroup END
 
 function! ResizeSplits()
-    set winwidth=100
+    set winwidth=120
     wincmd =
 endfunction
 " autocmd WinEnter * setlocal cursorline
