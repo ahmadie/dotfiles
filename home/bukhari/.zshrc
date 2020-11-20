@@ -134,6 +134,7 @@ export KEYTIMEOUT=1
 
 alias ls='ls --color=auto'
 alias vf=vifmrun
+alias vifm=vifmrun
 alias n=nvim
 
 # got colors from here https://github.com/trapd00r/LS_COLORS

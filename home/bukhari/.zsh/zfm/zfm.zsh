@@ -283,8 +283,8 @@ function f()
     cd "$dir"
 }
 
-# fx - execute commands
-function fx()
+# x - execute commands
+function x()
 {
     local com=$(zfm query --commands "$@")
     eval ${com}
