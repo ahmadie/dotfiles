@@ -210,24 +210,17 @@ function zfm()
 }
 
 #######################################################################
-# CTRL-B - insert command
-function __zfm_append_command_to_prompt()
-{
-    if [[ -z "$1" ]]; then
-        zle fzf-redraw-prompt
-        return 0
-    fi
-    LBUFFER="${LBUFFER}$(echo "$1" | tr '\r\n' ' '| sed -e 's/\s$//')"
-    local ret=$?
-    zle fzf-redraw-prompt
-    return $ret
+# CTRL-B - execute commands
+zfm-exec-command() {
+local com=$(zfm select --commands)
+zle redisplay
+eval ${com}
+local ret=$?
+zle fzf-redraw-prompt
+return $ret
 }
-function zfm-insert-command
-{
-    __zfm_append_command_to_prompt "$(zfm select --commands)"
-}
-zle     -N    zfm-insert-command
-bindkey '^B' zfm-insert-command
+zle     -N    zfm-exec-command
+bindkey '^B' zfm-exec-command
 
 #######################################################################
 # CTRL-O - insert bookmark
