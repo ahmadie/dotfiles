@@ -12,6 +12,10 @@ if exists('loaded_workspace')
 endif
 let loaded_workspace = 1
 
+if !exists("g:workspace#vim#airline#enable")
+    let g:workspace#vim#airline#enable = 0
+endif
+
 if v:version < 700
     finish
 endif
@@ -39,9 +43,6 @@ function! WS_Open(WS)
         " call s:bufdummy()
     endif
 
-    if !exists("g:workspace#vim#airline#enable")
-      let g:workspace#vim#airline#enable = 0
-    endif
     if(!g:workspace#vim#airline#enable)
       echo WS_Line()
     endif
@@ -70,9 +71,6 @@ function! s:isbufdummy(b)
 endfunc
 
 function! WS_Letter()
-    if !exists("g:workspace#vim#airline#enable")
-      let g:workspace#vim#airline#enable = 0
-    endif
     if(!g:workspace#vim#airline#enable)
       return ''
     endif
@@ -357,8 +355,10 @@ function! WorkspaceColor(...)
   hi link airline_tablabel_right User1
 endfunc
 
-call airline#add_statusline_func('WorkspaceColor')
-
+if g:workspace#vim#airline#enable
+  call airline#add_statusline_func('WorkspaceColor')
+endif
+ 
 function! s:bufwinenter()
     let g:airline#extensions#tabline#buffers_label = WS_Letter() 
 endfunc
