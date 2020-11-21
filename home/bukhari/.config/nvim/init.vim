@@ -1,5 +1,6 @@
 " also learn to run nvim from docker haha : https://github.com/yuki-ycino/fzf-preview.vim/issues/161
 let g:textobj_line_no_default_key_mappings = 1
+let g:workspace#vim#airline#enable = 1
 
 call plug#begin('~/.vim/plugged')
 
@@ -431,6 +432,7 @@ endfun
 " remove blank to not see empty buffer when close with coc-explorer opened
 " set sessionoptions-=blank
 set sessionoptions-=blank
+set sessionoptions+=localoptions,globals,options
 
 " To save session go to project directory, open nvim, then: SSave, session name: Session.vim 
 let g:startify_change_to_dir = 0
@@ -1267,7 +1269,9 @@ endfun
 
 
 fun! CleanTerminals()
+  " to remove all tabs and make all buffers to bufferlisted=true bcz workspace.vim unlist tabs
   exe 'tabo'
+
   for bnr in g:win_ctrl_buf_list
     if(bnr != 0)
       exe 'bd! ' . bnr
