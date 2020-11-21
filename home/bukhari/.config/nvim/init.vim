@@ -411,7 +411,6 @@ let g:coc_explorer_global_presets = {
 " Explorer
 " nnoremap <leader>n :CocCommand explorer --preset simplify --sources buffer+,file+<CR>
 " nmap <space>f :CocCommand explorer --preset floating<CR>
-let g:vifm_exec = 'vifmrun'
 
 nnoremap <silent> <leader>n :call GotoVifm()<CR>
 
@@ -433,9 +432,11 @@ endfun
 " set sessionoptions-=blank
 set sessionoptions-=blank
 
+" To save session go to project directory, open nvim, then: SSave, session name: Session.vim 
 let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
-let g:startify_session_autoload    = 1
+let g:startify_session_autoload = 1
+let g:startify_session_dir = '.'
 
 let g:startify_lists = [
           \ { 'type': 'sessions',  'header': ['   Sessions']       },
@@ -1249,6 +1250,7 @@ endfun
 fun! TerminalOpen()
   let bnr = bufnr('%') 
   call setbufvar(bnr, "&buflisted", 0)
+  exe ":setl signcolumn=no"
 
   exe ":IndentLinesDisable"
   if -1 == stridx(getbufinfo(bnr)[0].name, "vifm")

@@ -8,3 +8,5 @@ nvim /home/bukhari/.config/sway/config
 nvim /home/bukhari/.zsh/zfm/zfm.zsh
 nvim /home/bukhari/.config/nvim/init.vim
 cd /home/bukhari/TW.Electron ; nvim
+nvim /home/bukhari/.zshrc
+nvim /home/bukhari/.config/vifm/monokai.vifm
