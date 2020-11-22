@@ -1,4 +1,4 @@
-add_newline = false
+add_newline = true
 
 format = """
 [┌  $all](bold 208)
@@ -18,6 +18,9 @@ style = "bold 117"
 truncation_length = 5
 truncate_to_repo = false
 
+[package]
+disabled = true
+symbol = " "
 
 
 
@@ -83,9 +86,6 @@ symbol = " "
 
 [nodejs]
 symbol = " "
-
-[package]
-symbol = " "
 
 [perl]
 symbol = " "
