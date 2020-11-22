@@ -136,6 +136,7 @@ alias ls='ls --color=auto'
 alias v=vifmrun
 # alias vifm=vifmrun
 alias n=nvim
+alias c=clear
 
 # got colors from here https://github.com/trapd00r/LS_COLORS
 # source ~/.local/share/lscolors.sh

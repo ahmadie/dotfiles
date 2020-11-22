@@ -1,12 +1,17 @@
 
 nvim /home/bukhari/.vim/plugged/vim-airline-themes/autoload/airline/themes/base16_snazzy.vim
-/home/bukhari/TW.Electron
-/home/bukhari/Simple.Project
 nvim /home/bukhari/.vim/plugged/workspace.vim/plugin/workspace.vim
 nvim /home/bukhari/.config/kitty/kitty.conf
 nvim /home/bukhari/.config/sway/config
 nvim /home/bukhari/.zsh/zfm/zfm.zsh
 nvim /home/bukhari/.config/nvim/init.vim
-cd /home/bukhari/TW.Electron ; nvim
+cd /home/bukhari/TW.Electron && nvim
+cd /home/bukhari/Simple.Project && nvim
+cd /home/bukhari/Client && nvim
+cd /home/bukhari/AizawaDoc && nvim
 nvim /home/bukhari/.zshrc
 nvim /home/bukhari/.config/vifm/monokai.vifm
+nvim /home/bukhari/.config/starship.toml
+nvim /home/bukhari/.config/vifm/vifmrc
+./font-patcher /home/bukhari/.fonts/InputMono-Italic.ttf -c --careful
+./font-patcher /home/bukhari/.fonts/InputMono-Regular.ttf -c --careful
