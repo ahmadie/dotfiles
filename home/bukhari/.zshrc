@@ -142,7 +142,7 @@ alias c=clear
 # source ~/.local/share/lscolors.sh
 
 # https://github.com/sharkdp/vivid
-export LS_COLORS="$(vivid generate molokai)"
+export LS_COLORS="$(vivid -m 8-bit generate ~/.config/vivid/themes/molokai.yml)"
 
 # autosuggestions plugin
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
