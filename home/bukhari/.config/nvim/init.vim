@@ -1255,6 +1255,7 @@ fun! TerminalOpen()
 
   exe ":IndentLinesDisable"
   if -1 == stridx(getbufinfo(bnr)[0].name, "vifm")
+        \ && -1 == stridx(getbufinfo(bnr)[0].name, "fzf")
     let g:win_ctrl_buf_list[g:ctrlId] = bnr
     let g:ctrlId = -1
     " terminal stuff
