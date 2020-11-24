@@ -214,7 +214,7 @@ imap <C-l> <Plug>(coc-snippets-expand)
 let g:coc_node_path='/home/bukhari/.nvm/versions/node/v12.19.0/bin/node'
 
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte', 'coc-prettier']
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte', 'coc-prettier']
 
 " }}}
 
@@ -458,7 +458,8 @@ set foldnestmax=2
 set foldlevel=20
 set noswapfile
 set incsearch
-
+" this will allow to use :find as fuzzy file finder O.O
+set path+=**
 
 
 
