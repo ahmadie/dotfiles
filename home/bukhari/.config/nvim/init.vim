@@ -630,22 +630,26 @@ nnoremap <leader><leader>h <C-W>H
 nnoremap <leader><leader>k <C-W>K
 nnoremap <leader><leader>j <C-W>J
 
-nnoremap <A-l> L 
-nnoremap <A-h> H
-nnoremap <A-m> M 
+nnoremap <C-l> L 
+nnoremap <C-h> H
+nnoremap <C-m> M 
 " use + instead of j and - instead of k for mapping bcz j & k cause cursor to
 " shift problem
-map <A-k> 3-
-map <A-j> 3+ 
-nmap <A-u> <Plug>(SmoothieUpwards)
-nmap <A-d> <Plug>(SmoothieDownwards)
-nmap <A-f> <Plug>(SmoothieForwards)
-nmap <A-b> <Plug>(SmoothieBackwards)
-nmap <A-z> zz
-nmap <A-i> <C-I>
-nmap <A-o> <C-O> 
-nmap <A-6> <C-^> 
-nmap <A-`> <C-^> 
+map <C-k> 3-
+map <C-j> 3+ 
+nmap <C-u> <Plug>(SmoothieUpwards)
+nmap <C-d> <Plug>(SmoothieDownwards)
+nmap <C-f> <Plug>(SmoothieForwards)
+nmap <C-b> <Plug>(SmoothieBackwards)
+nmap <C-z> zz
+" nmap <C-i> <C-I>
+" nmap <C-o> <C-O> 
+" nmap <C-6> <C-^> 
+" nmap <C-`> <C-^> 
+nnoremap <C-]> }
+nnoremap <C-[> {
+" vnoremap <C-]> }
+" vnoremap <C-[> {
 
 " adjust scroll height to 1/3 of screen
 au BufEnter * execute "set scroll=" . winheight('.') / 3
