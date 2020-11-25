@@ -1,14 +1,21 @@
 " also learn to run nvim from docker haha : https://github.com/yuki-ycino/fzf-preview.vim/issues/161
 let g:textobj_line_no_default_key_mappings = 1
 let g:workspace#vim#airline#enable = 1
+let g:sandwich_no_default_key_mappings = 1
+let g:textobj_sandwich_no_default_key_mappings = 1
+
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'dosimple/workspace.vim'
+Plug 'takac/vim-hardtime'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'keyvchan/vim-monokai'
-Plug 'jiangmiao/auto-pairs'
+Plug 'axvr/photon.vim'
+
+" Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'sheerun/vim-polyglot'
@@ -43,7 +50,7 @@ Plug 'svermeulen/vim-subversive'
 " Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'christoomey/vim-sort-motion'
 " Need wl-clipboard package
-Plug 'christoomey/vim-system-copy'
+" Plug 'christoomey/vim-system-copy'
 " Plug 'michaeljsmith/vim-indent-object'
 Plug 'ColinKennedy/vim-indent-object'
 Plug 'kana/vim-textobj-user'
@@ -214,7 +221,7 @@ imap <C-l> <Plug>(coc-snippets-expand)
 let g:coc_node_path='/home/bukhari/.nvm/versions/node/v12.19.0/bin/node'
 
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte', 'coc-prettier']
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte', 'coc-prettier']
 
 " }}}
 
@@ -224,15 +231,15 @@ let g:coc_global_extensions = ['coc-explorer', 'coc-html', 'coc-css', 'coc-json'
 
 
 
+" let g:hardtime_default_on = 1
 
-
+nmap sd <Plug>(operator-sandwich-delete)A
+nmap sr <Plug>(operator-sandwich-replace)A
 
 " let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 nmap s <Nop>
 xmap s <Nop>
 
-" let g:sandwich_no_default_key_mappings = 1
-let g:textobj_sandwich_no_default_key_mappings = 1
 
 let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr rr ll lb ar ab lB Ar aB Ab AB rb rB al Al'
 
@@ -251,7 +258,10 @@ au FocusGained * :checktime
 
 set undofile
 
-
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
 
 
 
@@ -458,7 +468,8 @@ set foldnestmax=2
 set foldlevel=20
 set noswapfile
 set incsearch
-
+" this will allow to use :find as fuzzy file finder O.O
+set path+=**
 
 
 
@@ -623,28 +634,34 @@ nnoremap <leader>h <C-W>h
 nnoremap <leader>k <C-W>k
 nnoremap <leader>j <C-W>j
 
+nnoremap ]w <C-W>l
+nnoremap [w <C-W>h
 
 nnoremap <leader><leader>l <C-W>L
 nnoremap <leader><leader>h <C-W>H
 nnoremap <leader><leader>k <C-W>K
 nnoremap <leader><leader>j <C-W>J
 
-nnoremap <A-l> L 
-nnoremap <A-h> H
-nnoremap <A-m> M 
+nnoremap <C-l> L 
+nnoremap <C-h> H
+nnoremap <C-m> M 
 " use + instead of j and - instead of k for mapping bcz j & k cause cursor to
 " shift problem
-map <A-k> 3-
-map <A-j> 3+ 
-nmap <A-u> <Plug>(SmoothieUpwards)
-nmap <A-d> <Plug>(SmoothieDownwards)
-nmap <A-f> <Plug>(SmoothieForwards)
-nmap <A-b> <Plug>(SmoothieBackwards)
-nmap <A-z> zz
-nmap <A-i> <C-I>
-nmap <A-o> <C-O> 
-nmap <A-6> <C-^> 
-nmap <A-`> <C-^> 
+map <C-k> 3-
+map <C-j> 3+ 
+nmap <C-u> <Plug>(SmoothieUpwards)
+nmap <C-d> <Plug>(SmoothieDownwards)
+nmap <C-f> <Plug>(SmoothieForwards)
+nmap <C-b> <Plug>(SmoothieBackwards)
+nmap <C-z> zz
+" nmap <C-i> <C-I>
+" nmap <C-o> <C-O> 
+" nmap <C-6> <C-^> 
+" nmap <C-`> <C-^> 
+nnoremap <C-]> }
+nnoremap <C-[> {
+" vnoremap <C-]> }
+" vnoremap <C-[> {
 
 " adjust scroll height to 1/3 of screen
 au BufEnter * execute "set scroll=" . winheight('.') / 3
@@ -798,6 +815,8 @@ set background=dark
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 colorscheme monokai
+" colorscheme photon
+
 "
 " IndentLine {{
 " let g:indentLine_char = '▏'

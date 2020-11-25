@@ -36,7 +36,6 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclu
 # To apply the command to CTRL-T as well
 # export FZF_DEFAULT_COMMAND='rg --files' 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--bind alt-j:down,alt-k:up,alt-u:up,alt-d:down,alt-i:toggle+up'
 
 export FZF_PREVIEW_PREVIEW_BAT_THEME="Monokai Extended Origin"
 export BAT_THEME="Monokai Extended Origin"
@@ -142,7 +141,7 @@ alias c=clear
 # source ~/.local/share/lscolors.sh
 
 # https://github.com/sharkdp/vivid
-export LS_COLORS="$(vivid generate molokai)"
+export LS_COLORS="$(vivid generate ~/.config/vivid/themes/molokai.yml)"
 
 # autosuggestions plugin
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

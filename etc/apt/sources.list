@@ -34,6 +34,8 @@
 
 deb http://ftp.tr.debian.org/debian/ buster main non-free contrib
 deb-src http://ftp.tr.debian.org/debian/ buster main non-free contrib
+# deb http://ftp.tr.debian.org/debian/ buster-backports main non-free contrib
+# deb-src http://ftp.tr.debian.org/debian/ buster-backports main non-free contrib
 
 #
 # deb http://ftp.de.debian.org/debian sid main
