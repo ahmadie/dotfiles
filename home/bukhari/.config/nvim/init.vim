@@ -1,6 +1,9 @@
 " also learn to run nvim from docker haha : https://github.com/yuki-ycino/fzf-preview.vim/issues/161
 let g:textobj_line_no_default_key_mappings = 1
 let g:workspace#vim#airline#enable = 1
+let g:sandwich_no_default_key_mappings = 1
+let g:textobj_sandwich_no_default_key_mappings = 1
+
 
 call plug#begin('~/.vim/plugged')
 
@@ -226,13 +229,13 @@ let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-json', 'coc-tsserver'
 
 
 
+nmap sd <Plug>(operator-sandwich-delete)A
+nmap sr <Plug>(operator-sandwich-replace)A
 
 " let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 nmap s <Nop>
 xmap s <Nop>
 
-" let g:sandwich_no_default_key_mappings = 1
-let g:textobj_sandwich_no_default_key_mappings = 1
 
 let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr rr ll lb ar ab lB Ar aB Ab AB rb rB al Al'
 
@@ -624,6 +627,8 @@ nnoremap <leader>h <C-W>h
 nnoremap <leader>k <C-W>k
 nnoremap <leader>j <C-W>j
 
+nnoremap ]w <C-W>l
+nnoremap [w <C-W>h
 
 nnoremap <leader><leader>l <C-W>L
 nnoremap <leader><leader>h <C-W>H
