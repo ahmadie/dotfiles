@@ -8,10 +8,14 @@ let g:textobj_sandwich_no_default_key_mappings = 1
 call plug#begin('~/.vim/plugged')
 
 Plug 'dosimple/workspace.vim'
+Plug 'takac/vim-hardtime'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'keyvchan/vim-monokai'
-Plug 'jiangmiao/auto-pairs'
+Plug 'axvr/photon.vim'
+
+" Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'sheerun/vim-polyglot'
@@ -46,7 +50,7 @@ Plug 'svermeulen/vim-subversive'
 " Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'christoomey/vim-sort-motion'
 " Need wl-clipboard package
-Plug 'christoomey/vim-system-copy'
+" Plug 'christoomey/vim-system-copy'
 " Plug 'michaeljsmith/vim-indent-object'
 Plug 'ColinKennedy/vim-indent-object'
 Plug 'kana/vim-textobj-user'
@@ -227,7 +231,7 @@ let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-json', 'coc-tsserver'
 
 
 
-
+" let g:hardtime_default_on = 1
 
 nmap sd <Plug>(operator-sandwich-delete)A
 nmap sr <Plug>(operator-sandwich-replace)A
@@ -254,7 +258,10 @@ au FocusGained * :checktime
 
 set undofile
 
-
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
 
 
 
@@ -808,6 +815,8 @@ set background=dark
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 colorscheme monokai
+" colorscheme photon
+
 "
 " IndentLine {{
 " let g:indentLine_char = '▏'
