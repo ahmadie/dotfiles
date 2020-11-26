@@ -116,6 +116,9 @@ zle -N edit-command-line
 bindkey -M vicmd '^v' edit-command-line
 bindkey '^v' edit-command-line
 
+# can use comments in commandline
+setopt interactivecomments
+
 #auto full directory
 setopt  autocd autopushd pushdignoredups
   
@@ -149,6 +152,11 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC='aa'
 
+
+
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[comment]='fg=cyan'
 source /home/bukhari/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # zsh history substing search

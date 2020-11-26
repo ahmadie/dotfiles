@@ -1,13 +1,81 @@
+" set options{{{
+" Display the completion matches using the popupmenu in the same style as the |ins-completion-menu|.
+set wop-=pum
+
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Open diffs in vertical splits
+" Use 'xdiff' library options: patience algorithm with indent-heuristics (same to Git options)
+" NOTE: vim uses the external diff utility which doesn't do word diffs nor can it find moved-and-modified lines.
+" See: https://stackoverflow.com/questions/36519864/the-way-to-improve-vimdiff-similarity-searching-mechanism
+set diffopt=internal,filler,vertical,context:5,foldcolumn:1,indent-heuristic,algorithm:patience
+
+" set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+
+" this hide end of line annoying ~ chars
+set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
+
+" auto read changes
+set autoread
+au FocusGained * :checktime
+
+" load undo history
+set undofile
+set encoding=UTF-8
+set foldnestmax=2
+set foldlevel=20
+set noswapfile
+set incsearch
+
+" this will allow to use :find as fuzzy file finder O.O
+set path+=**
+
+set mouse=a
+set number
+set relativenumber
+set ignorecase
+set smartcase
+set smarttab
+set cindent
+set tabstop=2
+set shiftwidth=2
+
+" always uses spaces instead of tab characters
+set expandtab
+set scrolloff=0
+
+
+" required for minimal configuration for vim-mergetool
+set nocompatible
+filetype plugin indent on
+
 " also learn to run nvim from docker haha : https://github.com/yuki-ycino/fzf-preview.vim/issues/161
 let g:textobj_line_no_default_key_mappings = 1
 let g:workspace#vim#airline#enable = 1
 let g:sandwich_no_default_key_mappings = 1
 let g:textobj_sandwich_no_default_key_mappings = 1
 
-" required for minimal configuration for vim-mergetool
-set nocompatible
-filetype plugin indent on
+let mapleader =" "
+" }}}
 
+" plug#begin{{{
 call plug#begin('~/.vim/plugged')
 
 Plug 'dosimple/workspace.vim'
@@ -94,38 +162,7 @@ Plug 'samoshkin/vim-mergetool'
 " Plug 'AndrewRadev/linediff.vim'
 
 call plug#end()
-
-
-
-let mapleader =" "
-
-augroup SyntaxSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
-    autocmd BufNewFile,BufRead *.js set filetype=typescript.tsx
-    au BufNewFile,BufRead *.ejs set filetype=html
-augroup END
-
-set wop-=pum
-
-" if hidden is not set, TextEdit might fail.
-set hidden
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
+" }}}
 
 " coc {{{
 " Use tab for trigger completion with characters ahead and navigate.
@@ -218,7 +255,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 imap <C-l> <Plug>(coc-snippets-expand)
 
@@ -227,16 +264,19 @@ let g:coc_node_path='/home/bukhari/.nvm/versions/node/v12.19.0/bin/node'
 
 let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte', 'coc-prettier']
 
+nnoremap <leader><leader>pc :call CocAction('pickColor')<CR>
+nnoremap <leader><leader>cp :call CocAction('colorPresentation')<CR>
+
+" Remap for rename current word
+" nmap <leader>rn <Plug>(coc-rename)
+
+nnoremap <leader>p :CocCommand prettier.formatFile<cr>
+
+" nmap <silent> <C-d> <Plug>(coc-cursors-position)
+" nmap <leader>d  <Plug>(coc-cursors-operator)
 " }}}
 
-
-
-
-
-
-
-" let g:hardtime_default_on = 1
-
+" vim-sandwich, auto-pairs, pear-tree, vim-targets {{{
 nmap sd <Plug>(operator-sandwich-delete)A
 nmap sr <Plug>(operator-sandwich-replace)A
 
@@ -244,83 +284,25 @@ nmap sr <Plug>(operator-sandwich-replace)A
 nmap s <Nop>
 xmap s <Nop>
 
-
+" vim targets
 let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr rr ll lb ar ab lB Ar aB Ab AB rb rB al Al'
 
-set diffopt=filler,internal,algorithm:histogram,indent-heuristic
-
-" this hide end of line annoying ~ chars
-set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
-
-
-
+" auto-pars
 let g:AutoPairsMapBS = 0
-
-
-set autoread
-au FocusGained * :checktime
-
-set undofile
 
 " Smart pairs are disabled by default:
 let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
+"}}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+" vim-yoink, yoinkvim-cutlass, vim-subversive{{{
 nnoremap m d
 xnoremap m d
 nnoremap mm dd
 nnoremap M D
 
-" Make Y yank till end of line. Super useful. This is the most important thing
-" in this file
+" Make Y yank till end of line. Super useful. This is the most important thing in this file
 nnoremap Y y$
 
 vnoremap y "+y
@@ -360,33 +342,9 @@ onoremap ie :exec "normal! ggVG"<cr>
 
 " iv = current viewable text in the buffer
 onoremap iv :exec "normal! HVL"<cr>
+"}}}
 
-
-nnoremap <leader>p :CocCommand prettier.formatFile<cr>
-
-
-" j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-
-set encoding=UTF-8
-" set guifont=InputMonoCompressed\ Nerd\ Font\ Light\ 10
-
-" nmap <silent> <C-d> <Plug>(coc-cursors-position)
-" nmap <leader>d  <Plug>(coc-cursors-operator)
-
-
-
-
-
-
-
-
-
-
-
-
-
+" coc-explorer, vifm{{{
 let g:coc_explorer_global_presets = {
 \   '.vim': {
 \     'root-uri': '~/.vim',
@@ -421,8 +379,6 @@ let g:coc_explorer_global_presets = {
 \   }
 \ }
 
-
-
 " Explorer
 " nnoremap <leader>n :CocCommand explorer --preset simplify --sources buffer+,file+<CR>
 " nmap <space>f :CocCommand explorer --preset floating<CR>
@@ -438,11 +394,9 @@ fun! GotoVifm()
   endif
   " exe ":normal i"
 endfun
+"}}}
 
-
-
-
-
+" startify{{{
 " remove blank to not see empty buffer when close with coc-explorer opened
 " set sessionoptions-=blank
 set sessionoptions-=blank
@@ -460,33 +414,9 @@ let g:startify_lists = [
           \ ]
 let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, {'s': '~/.config/sway/config'},
       \ {'t': '~/.config/kitty/kitty.conf'}, {'n': '~/.config/kanshi/config'}, {'b': '~/.bashrc'}]
+"}}}
 
-
-
-
-
-
-
-
-set foldnestmax=2
-set foldlevel=20
-set noswapfile
-set incsearch
-" this will allow to use :find as fuzzy file finder O.O
-set path+=**
-
-
-
-
-
-
-
-
-
-
-
-
-
+" vim-indent-object, vim-textobj-line{{{
 let g:indent_object_no_default_key_mappings = '1'
 " Mappings including line below.
 onoremap <silent>ii :<C-u>cal HandleTextObjectMapping(1, 0, 0, [line("."), line("."), col("."), col(".")])<CR>
@@ -498,12 +428,6 @@ vnoremap <silent>ai :<C-u>cal HandleTextObjectMapping(0, 1, 1, [line("'<"), line
 
 onoremap <silent>aI :<C-u>cal HandleTextObjectMapping(0, 0, 0, [line("."), line("."), col("."), col(".")])<CR>
 vnoremap <silent>aI :<C-u>cal HandleTextObjectMapping(0, 0, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv
-
-
-
-
-
-
 
 vmap <silent> au <Plug>(textobj-line-a)
 omap <silent> au <Plug>(textobj-line-a)
@@ -520,37 +444,9 @@ omap <silent> iu <Plug>(textobj-line-i)
 " omap <silent> aU <Plug>AngryOuterSuffix
 " vmap <silent> iU <Plug>AngryInnerSuffix
 " omap <silent> iU <Plug>AngryInnerSuffix
+"}}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-" map ]b :bn<cr>
-" map [b :bp<cr>
-" map [B :bfirst<cr>
-" map ]B :blast<cr>
-
-" map ]q :cn<cr>
-" map [q :cp<cr>
-" map [Q :cfirst<cr>
-" map ]Q :clast<cr>
-
- 
-nnoremap <leader>< :SidewaysLeft<cr>
-nnoremap <leader>, :SidewaysLeft<cr>
-nnoremap <leader>> :SidewaysRight<cr>
-nnoremap <leader>. :SidewaysRight<cr>
-
-nnoremap <leader>r :Switch<cr>
-
+" fzf{{{
 " nnoremap <leader>d :BD<cr>
 " nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :BLines<cr>
@@ -617,267 +513,7 @@ let g:fzf_preview_custom_processes = {
       \          }
       \   }
 
-let g:fzf_preview_preview_key_bindings = 'alt-d:preview-page-down,alt-u:preview-page-up,?:toggle-preview'
-
-
-
-
-
-nnoremap <leader>x :Bdelete<CR>
-nnoremap <leader><leader>x :Bdelete!<CR>
-"
-" nnoremap ? /\<\><left><left>
-
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-J> <C-W><C-J>
-
-nnoremap <leader>l <C-W>l
-nnoremap <leader>h <C-W>h
-nnoremap <leader>k <C-W>k
-nnoremap <leader>j <C-W>j
-
-nnoremap ]w <C-W>l
-nnoremap [w <C-W>h
-
-nnoremap <leader><leader>l <C-W>L
-nnoremap <leader><leader>h <C-W>H
-nnoremap <leader><leader>k <C-W>K
-nnoremap <leader><leader>j <C-W>J
-
-nnoremap <C-l> L 
-nnoremap <C-h> H
-nnoremap <C-m> M 
-" use + instead of j and - instead of k for mapping bcz j & k cause cursor to
-" shift problem
-map <C-k> 3-
-map <C-j> 3+ 
-nmap <C-u> <Plug>(SmoothieUpwards)
-nmap <C-d> <Plug>(SmoothieDownwards)
-nmap <C-f> <Plug>(SmoothieForwards)
-nmap <C-b> <Plug>(SmoothieBackwards)
-nmap <C-z> zz
-" nmap <C-i> <C-I>
-" nmap <C-o> <C-O> 
-" nmap <C-6> <C-^> 
-" nmap <C-`> <C-^> 
-nnoremap <C-]> }
-nnoremap <C-[> {
-" vnoremap <C-]> }
-" vnoremap <C-[> {
-
-" adjust scroll height to 1/3 of screen
-au BufEnter * execute "set scroll=" . winheight('.') / 3
-au VimResized * execute "set scroll=" . winheight('.') / 3
-
-nnoremap H ^
-nnoremap L $
-xnoremap H ^
-xnoremap L $
-onoremap H ^
-onoremap L $
-
-" nnoremap j jzz
-" nnoremap k kzz
-" nnoremap G Gzz 
-
-nnoremap ; :
-nnoremap : ;
-" nnoremap ` ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-set mouse=a
-set number
-set relativenumber
-set ignorecase
-set smartcase
-set smarttab
-set cindent
-set tabstop=2
-set shiftwidth=2
-" always uses spaces instead of tab characters
-set expandtab
-set scrolloff=0
-
-
-
-
-
-
-
-
-
-
-
-nnoremap <leader><leader>pc :call CocAction('pickColor')<CR>
-nnoremap <leader><leader>cp :call CocAction('colorPresentation')<CR>
-
-
-
-
-
-
-
-
-
-
-
-
-" autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
-" let g:airline_section_z=''
-" let g:airline_section_y=''
-let g:airline_section_x=''
-let g:airline_skip_empty_sections = 1
-let g:airline#extensions#tabline#formatter = 'jsformatter'
-" let g:airline_powerline_fonts = 1
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#xkblayout#enabled = 0
-let g:airline#extensions#fugitiveline#enabled = 1
-let g:airline#extensions#keymap#enabled = 0
-let g:airline#extensions#term#enabled = 0
-let g:airline#extensions#quickfix#enabled = 1
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#netrw#enabled = 0
-let g:airline#extensions#po#enabled = 0
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#branch#format = 2
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#wordcount#enabled = 0
-let g:loaded_netrw       = 1
-let g:loaded_netrwPlugin = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme='base16_snazzy'
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tabs = 0
-let g:airline#extensions#tabline#show_tab_count = 0
-let g:airline#extensions#tabline#show_tab_type = 1
-let g:workspace#vim#airline#enable = 1
-
-
-let g:XkbSwitchEnabled = 1
-" let g:XkbSwitchLib = '/usr/local/lib/libg3kbswitch.so'
-let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
-let g:XkbSwitchNLayout = 'us'
-" let g:XkbSwitchILayout = 'us'
-let g:XkbSwitchIMappings = ['ar']
-let g:XkbSwitchIMappingsTr = {
-          \ 'ar':
-          \ {'<': 'jk'.
-          \       '',
-          \  '>': 'تن'.
-          \       ''}
-          \ }
-
-function! RestoreKeyboardLayout()
-  call system("ibus engine xkb:us::eng")
-  call system("xkb-switch -s 'us'")
-endfunction
-" set ttimeoutlen=100
-augroup restorekeyboard
-    autocmd!
-    autocmd InsertLeave * silent call RestoreKeyboardLayout()
-  augroup END
-
-
-
-
-
-
-
-
-
-" colorscheme onedark
-set termguicolors     " enable true colors support
-lua require'colorizer'.setup()
-" let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-" colorscheme ayu
-syntax enable
-syntax sync fromstart
-"
-let g:solarized_italic = 1
-let g:solarized_bold = 1 
-let g:solarized_underline = 1
-
-set background=dark
-" colorscheme solarized
-let g:monokai_term_italic = 1
-let g:monokai_gui_italic = 1
-colorscheme monokai
-" colorscheme photon
-
-"
-" IndentLine {{
-" let g:indentLine_char = '▏'
-" let g:indentLine_char = '⋮'
-let g:indentLine_char = '·'
-let g:indentLine_char = '·'
-" let g:indentLine_first_char = ''
-" let g:indentLine_showFirstIndentLevel = 1
-" let g:indentLine_setColors = 0
-" }}
-" let g:indentLine_enabled = 0
-" let g:indentLine_leadingSpaceEnabled = 1
-autocmd Filetype json :IndentLinesDisable
-autocmd FileType * set formatoptions-=o
-autocmd InsertEnter * norm zz
-highlight SignifySignAdd guifg=green guibg=NONE
-highlight SignifySignDelete guifg=red guibg=NONE
-highlight SignifySignChange guifg=yellow guibg=NONE
-" highlight SignifyLineAdd ctermfg=green ctermbg=blue
-highlight SignColumn guibg=NONE gui=NONE 
-" hi! link CocPumFloatingDetail markdown
-" function! CocNvimHighlight()
-  " hi! link CocFloating DiffText 
-  " highlight CocFloating guibg=red
-  " highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
-  " highlight CocWarningHighlight ctermfg=Red  guifg=#ff0000
-  " highlight CocInfoHighlight ctermfg=Red  guifg=#ff0000
-  " highlight CocHintHighlight ctermfg=Red  guifg=#ff0000
-  " highlight CocErrorLine ctermfg=Red  guifg=#ff0000
-  " highlight CocWarningLine ctermfg=Red  guifg=#ff0000
-  " highlight CocInfoLine ctermfg=Red  guifg=#ff0000
-  " highlight CocHintLine ctermfg=Red  guifg=#ff0000
-  " highlight CocHighlightText  guibg=#111111 ctermbg=223
-" endfunction
-
-" autocmd VimEnter function CocNvimHighligt()
-
-" highlight CocFloating guibg=red
-" highlight NormalFloat guibg=red
-
-" got this colors from base16_snazzy.vim file, 
-let s:statuslineinsertcolor = '#5af78e'
-let s:statuslinebg = '#2e3a36'  
-
-exe 'highlight Pmenu guibg=' . s:statuslinebg . ' guifg=' . s:statuslineinsertcolor
-" let g:solarized_italic = 1
-exe 'hi VertSplit gui=NONE guifg=' . s:statuslinebg  
-" to hide vertical line, space at end
-" set fillchars+=vert:\  
-exe 'hi StatusLine gui=NONE guifg=' . s:statuslineinsertcolor . ' guibg=NONE'
-exe 'hi StatusLineNC guifg=' . s:statuslinebg . ' guibg=NONE gui=NONE'
-
-
-
-
-
-
+" let g:fzf_preview_preview_key_bindings = 'alt-d:preview-page-down,alt-u:preview-page-up,?:toggle-preview'
 
 " An action can be a reference to a function that processes selected lines
 function! s:build_quickfix_list(lines)
@@ -951,38 +587,316 @@ command! -bar -bang -nargs=? -complete=buffer Buffers
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'CursorLineNr' } }
 
+function! s:list_buffers()
+  redir => list
+  silent ls
+  redir END
+  return split(list, "\n")
+endfunction
 
+function! s:delete_buffers(lines)
+  execute 'bdelete' join(map(a:lines, {_, line -> split(line)[0]}))
+endfunction
 
+command! BD call fzf#run(fzf#wrap({
+  \ 'source': s:list_buffers(),
+  \ 'sink*': { lines -> s:delete_buffers(lines) },
+  \ 'options': '--multi --bind ctrl-a:select-all+accept --prompt "Delete> "'
+\ }))
+"}}}
 
+" maps{{{
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.js set filetype=typescript.tsx
+    au BufNewFile,BufRead *.ejs set filetype=html
+augroup END
 
+" j/k will move virtual lines (lines that wrap)
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
+nnoremap <leader>< :SidewaysLeft<cr>
+nnoremap <leader>, :SidewaysLeft<cr>
+nnoremap <leader>> :SidewaysRight<cr>
+nnoremap <leader>. :SidewaysRight<cr>
 
+nnoremap <leader>r :Switch<cr>
 
+nnoremap <leader>x :Bdelete<CR>
+nnoremap <leader><leader>x :Bdelete!<CR>
+"
+" nnoremap ? /\<\><left><left>
 
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-J> <C-W><C-J>
 
+nnoremap <leader>l <C-W>l
+nnoremap <leader>h <C-W>h
+nnoremap <leader>k <C-W>k
+nnoremap <leader>j <C-W>j
 
+nnoremap ]w <C-W>l
+nnoremap [w <C-W>h
 
+nnoremap <leader><leader>l <C-W>L
+nnoremap <leader><leader>h <C-W>H
+nnoremap <leader><leader>k <C-W>K
+nnoremap <leader><leader>j <C-W>J
 
+nnoremap <C-l> L 
+nnoremap <C-h> H
+nnoremap <C-m> M 
+" use + instead of j and - instead of k for mapping bcz j & k cause cursor to
+" shift problem
+map <C-k> 3-
+map <C-j> 3+ 
+nmap <C-u> <Plug>(SmoothieUpwards)
+nmap <C-d> <Plug>(SmoothieDownwards)
+nmap <C-f> <Plug>(SmoothieForwards)
+nmap <C-b> <Plug>(SmoothieBackwards)
+nmap <C-z> zz
+" nmap <C-i> <C-I>
+" nmap <C-o> <C-O> 
+" nmap <C-6> <C-^> 
+" nmap <C-`> <C-^> 
+nnoremap <C-]> }
+nnoremap <C-[> {
+" vnoremap <C-]> }
+" vnoremap <C-[> {
 
+" adjust scroll height to 1/3 of screen
+au BufEnter * execute "set scroll=" . winheight('.') / 3
+au VimResized * execute "set scroll=" . winheight('.') / 3
 
+nnoremap H ^
+nnoremap L $
+xnoremap H ^
+xnoremap L $
+onoremap H ^
+onoremap L $
 
+" nnoremap j jzz
+" nnoremap k kzz
+" nnoremap G Gzz 
 
+nnoremap ; :
+nnoremap : ;
+" nnoremap ` ;
+
+nnoremap <leader>m 'M
+nnoremap <leader><leader>m mM 
+nnoremap <leader>u 'U
+nnoremap <leader><leader>u mU
+" nnoremap <leader>t 'T
+" nnoremap <leader><leader>t mT
+
+augroup VIMRC
+    autocmd!
+    autocmd BufLeave *.css,*.scss normal! mC
+    autocmd BufLeave *.html       normal! mH
+    autocmd BufLeave *.js,*.ts    normal! mJ
+    autocmd BufLeave *.md         normal! mM
+    autocmd BufLeave *.yml,*.yaml normal! mY
+    autocmd BufLeave *.vim        normal! mV
+    autocmd BufLeave .env*        normal! mE
+augroup END
+
+inoremap II <Esc>I
+inoremap AA <Esc>A
+inoremap HH <Esc>i
+inoremap LL <Esc>la
+:imap <A-h> <C-o>h
+:imap <A-j> <C-o>j
+:imap <A-k> <C-o>k
+:imap <A-l> <C-o>l
+:imap <A-w> <C-o>w
+:imap <A-b> <C-o>b
+
+:nnoremap <leader>ve :vsplit $MYVIMRC<cr>
+:nnoremap <leader>vs :source $MYVIMRC<cr>
+
+:iabbrev waht what
+augroup filetype_html
+    autocmd!
+    autocmd FileType typescript :iabbrev <buffer> arr ()=>{}<left>
+augroup END
+
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker | setl foldlevel=0
+augroup END
+
+" Remove automatically insert the current comment leader after hitting 'o' or
+autocmd FileType * set formatoptions-=o
+
+"center when insert mode
+autocmd InsertEnter * norm zz
+"}}}
+
+" airline{{{
+" autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
+" let g:airline_section_z=''
+" let g:airline_section_y=''
+let g:airline_section_x=''
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#tabline#formatter = 'jsformatter'
+" let g:airline_powerline_fonts = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#xkblayout#enabled = 0
+let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#keymap#enabled = 0
+let g:airline#extensions#term#enabled = 0
+let g:airline#extensions#quickfix#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#netrw#enabled = 0
+let g:airline#extensions#po#enabled = 0
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#format = 2
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#wordcount#enabled = 0
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme='base16_snazzy'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#tabline#show_tab_count = 0
+let g:airline#extensions#tabline#show_tab_type = 1
+let g:workspace#vim#airline#enable = 1
+"}}}
+
+" xkbswitch{{{
+let g:XkbSwitchEnabled = 1
+" let g:XkbSwitchLib = '/usr/local/lib/libg3kbswitch.so'
+let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
+let g:XkbSwitchNLayout = 'us'
+" let g:XkbSwitchILayout = 'us'
+let g:XkbSwitchIMappings = ['ar']
+let g:XkbSwitchIMappingsTr = {
+          \ 'ar':
+          \ {'<': 'jk'.
+          \       '',
+          \  '>': 'تن'.
+          \       ''}
+          \ }
+
+function! RestoreKeyboardLayout()
+  call system("ibus engine xkb:us::eng")
+  call system("xkb-switch -s 'us'")
+endfunction
+" set ttimeoutlen=100
+augroup restorekeyboard
+    autocmd!
+    autocmd InsertLeave * silent call RestoreKeyboardLayout()
+augroup END
+
+function CJKInput()
+  let l:cmd = 'zenity --entry --text=CJK-Input 2>/dev/null'
+  let l:output = system(l:cmd)
+  let l:output = substitute(l:output, '[\r\n]*$', '', '')
+  execute 'normal i' . l:output
+endfunction
+" nmap <silent> <leader>i :call CJKInput()<CR>
+" }}}
+
+" colorscheme{{{
+" colorscheme onedark
+set termguicolors     " enable true colors support
+lua require'colorizer'.setup()
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
+syntax enable
+syntax sync fromstart
+"
+let g:solarized_italic = 1
+let g:solarized_bold = 1 
+let g:solarized_underline = 1
+
+set background=dark
+" colorscheme solarized
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
+colorscheme monokai
+" colorscheme photon
+"}}}
+
+" indentLine{{{
+" let g:indentLine_char = '▏'
+" let g:indentLine_char = '⋮'
+let g:indentLine_char = '·'
+let g:indentLine_char = '·'
+" let g:indentLine_first_char = ''
+" let g:indentLine_showFirstIndentLevel = 1
+" let g:indentLine_setColors = 0
+" let g:indentLine_enabled = 0
+" let g:indentLine_leadingSpaceEnabled = 1
+autocmd Filetype json :IndentLinesDisable
+"}}}
+
+" signify, hardtime{{{
+highlight SignifySignAdd guifg=green guibg=NONE
+highlight SignifySignDelete guifg=red guibg=NONE
+highlight SignifySignChange guifg=yellow guibg=NONE
+" highlight SignifyLineAdd ctermfg=green ctermbg=blue
+highlight SignColumn guibg=NONE gui=NONE 
+
+" let g:hardtime_default_on = 1
+" }}}
+
+" CocHighlight{{{
+" hi! link CocPumFloatingDetail markdown
+" function! CocNvimHighlight()
+  " hi! link CocFloating DiffText 
+  " highlight CocFloating guibg=red
+  " highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
+  " highlight CocWarningHighlight ctermfg=Red  guifg=#ff0000
+  " highlight CocInfoHighlight ctermfg=Red  guifg=#ff0000
+  " highlight CocHintHighlight ctermfg=Red  guifg=#ff0000
+  " highlight CocErrorLine ctermfg=Red  guifg=#ff0000
+  " highlight CocWarningLine ctermfg=Red  guifg=#ff0000
+  " highlight CocInfoLine ctermfg=Red  guifg=#ff0000
+  " highlight CocHintLine ctermfg=Red  guifg=#ff0000
+  " highlight CocHighlightText  guibg=#111111 ctermbg=223
+" endfunction
+
+" autocmd VimEnter function CocNvimHighligt()
+
+" highlight CocFloating guibg=red
+" highlight NormalFloat guibg=red
+"}}}
+
+" statline line color{{{
+" got this colors from base16_snazzy.vim file, 
+let s:statuslineinsertcolor = '#5af78e'
+let s:statuslinebg = '#2e3a36'  
+
+exe 'highlight Pmenu guibg=' . s:statuslinebg . ' guifg=' . s:statuslineinsertcolor
+" let g:solarized_italic = 1
+exe 'hi VertSplit gui=NONE guifg=' . s:statuslinebg  
+" to hide vertical line, space at end
+" set fillchars+=vert:\  
+exe 'hi StatusLine gui=NONE guifg=' . s:statuslineinsertcolor . ' guibg=NONE'
+exe 'hi StatusLineNC guifg=' . s:statuslinebg . ' guibg=NONE gui=NONE'
+"}}}
+
+" quickscope, cleve_f{{{
 highlight QuickScopePrimary guifg='#898989' gui=underline ctermfg=155 cterm=underline
 highlight QuickScopeSecondary guifg='#898989' ctermfg=81 
 let g:qs_second_highlight = 0
 let g:qs_ignorecase = 1
 
-
 let g:clever_f_ignore_case = 1
 let g:clever_f_fix_key_direction = 1
+" }}}
 
-
-
-
-
-
-
-
+" vim-something code{{{
 " Section: Next and previous
 let s:maps = []
 function! s:map(...) abort
@@ -1047,9 +961,7 @@ call s:MapNextFamily('b','b')
 call s:MapNextFamily('q','c')
 call s:MapNextFamily('t','tab')
 
-
 " Section: Line operations
-
 function! s:BlankUp(count) abort
   put!=repeat(nr2char(10), a:count)
   ']+1
@@ -1111,116 +1023,9 @@ call s:map('x', '[e', '<Plug>unimpairedMoveSelectionUp')
 call s:map('x', ']e', '<Plug>unimpairedMoveSelectionDown')
 
 call s:maps()
+"}}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-" Remap for rename current word
-" nmap <leader>rn <Plug>(coc-rename)
-
-function CJKInput()
-  let l:cmd = 'zenity --entry --text=CJK-Input 2>/dev/null'
-  let l:output = system(l:cmd)
-  let l:output = substitute(l:output, '[\r\n]*$', '', '')
-  execute 'normal i' . l:output
-endfunction
-" nmap <silent> <leader>i :call CJKInput()<CR>
-
-
-
-
-
-
-
-
-
-
-
-
-function! s:list_buffers()
-  redir => list
-  silent ls
-  redir END
-  return split(list, "\n")
-endfunction
-
-function! s:delete_buffers(lines)
-  execute 'bdelete' join(map(a:lines, {_, line -> split(line)[0]}))
-endfunction
-
-command! BD call fzf#run(fzf#wrap({
-  \ 'source': s:list_buffers(),
-  \ 'sink*': { lines -> s:delete_buffers(lines) },
-  \ 'options': '--multi --bind ctrl-a:select-all+accept --prompt "Delete> "'
-\ }))
-
-
-nnoremap <leader>m 'M
-nnoremap <leader><leader>m mM 
-nnoremap <leader>u 'U
-nnoremap <leader><leader>u mU
-" nnoremap <leader>t 'T
-" nnoremap <leader><leader>t mT
-
-augroup VIMRC
-    autocmd!
-    autocmd BufLeave *.css,*.scss normal! mC
-    autocmd BufLeave *.html       normal! mH
-    autocmd BufLeave *.js,*.ts    normal! mJ
-    autocmd BufLeave *.md         normal! mM
-    autocmd BufLeave *.yml,*.yaml normal! mY
-    autocmd BufLeave *.vim        normal! mV
-    autocmd BufLeave .env*        normal! mE
-augroup END
-
-
-inoremap II <Esc>I
-inoremap AA <Esc>A
-inoremap HH <Esc>i
-inoremap LL <Esc>la
-:imap <A-h> <C-o>h
-:imap <A-j> <C-o>j
-:imap <A-k> <C-o>k
-:imap <A-l> <C-o>l
-:imap <A-w> <C-o>w
-:imap <A-b> <C-o>b
-
-:nnoremap <leader>ve :vsplit $MYVIMRC<cr>
-  :nnoremap <leader>vs :source $MYVIMRC<cr>
-
-:iabbrev waht what
-augroup filetype_html
-    autocmd!
-    autocmd FileType typescript :iabbrev <buffer> arr ()=>{}<left>
-augroup END
-
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-
-
+" vim-workpace{{{
 nnoremap <silent> <leader>1 :WS 1<CR>
 nnoremap <silent> <leader>2 :WS 2<CR>
 nnoremap <silent> <leader>3 :WS 3<CR>
@@ -1243,15 +1048,12 @@ nnoremap <silent> <leader><leader>9 :WSbmv 9<CR>
 
 nnoremap <silent> <leader>` :call WS_Backforth()<CR>
 
-
-
 nnoremap <silent> <leader>t :call GotoTerminal(0)<CR>
 nnoremap <silent> <leader><leader>t :call GotoTerminal(1)<CR>
 nnoremap <silent> <leader><leader><leader>t :call GotoTerminal(2)<CR>
 
 let g:ctrlId = -1
 let g:win_ctrl_buf_list = [0,0,0,0]
-
 
 augroup terminalgrp
   autocmd!
@@ -1269,7 +1071,6 @@ fun! GotoTerminal(ctrlId)
   endif
   " exe ":normal i"
 endfun
-
 
 fun! TerminalOpen()
   let bnr = bufnr('%') 
@@ -1290,7 +1091,6 @@ fun! TerminalOpen()
   endif
 endfun
 
-
 fun! CleanTerminals()
   " to remove all tabs and make all buffers to bufferlisted=true bcz workspace.vim unlist tabs
   exe 'tabo'
@@ -1301,8 +1101,9 @@ fun! CleanTerminals()
     endif
   endfor
 endfun
+" }}}
 
-
+" resize splits{{{
 " augroup ReduceNoise
     " autocmd!
     " Automatically resize active split to 85 width
@@ -1324,16 +1125,9 @@ endfun
 " autocmd WinLeave * setlocal norelativenumber
 " autocmd WinLeave * setlocal nonumber
 " autocmd WinLeave * setlocal nowrap
+" }}}
 
-
-" Diffs{{{
-
-" Open diffs in vertical splits
-" Use 'xdiff' library options: patience algorithm with indent-heuristics (same to Git options)
-" NOTE: vim uses the external diff utility which doesn't do word diffs nor can it find moved-and-modified lines.
-" See: https://stackoverflow.com/questions/36519864/the-way-to-improve-vimdiff-similarity-searching-mechanism
-set diffopt=internal,filler,vertical,context:5,foldcolumn:1,indent-heuristic,algorithm:patience
-
+" mergetool{{{
 " vim-mergetool minimal working configuration
 let g:mergetool_layout = 'mr'
 let g:mergetool_prefer_revision = 'local'
@@ -1352,5 +1146,4 @@ function s:on_mergetool_set_layout(split)
 endfunction
 
 let g:MergetoolSetLayoutCallback = function('s:on_mergetool_set_layout')
-
 " }}}
