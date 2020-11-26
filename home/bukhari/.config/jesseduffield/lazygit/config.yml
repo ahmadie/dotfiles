@@ -12,3 +12,9 @@ git:
     pager: delta --dark --paging=never --24-bit-color=never
     merging:
       args: "--no-ff"
+customCommands:
+  - key: "M"
+    command: "git mergetool {{ .SelectedFile.Name }}"
+    context: "files"
+    loadingText: "opening git mergetool"
+    subprocess: true

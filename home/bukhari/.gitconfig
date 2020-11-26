@@ -38,4 +38,9 @@
   line-numbers-left-format = ""
   line-numbers-right-format = "{np} "
   # keep-plus-minus-markers = false
-
+[merge]
+  tool = vim_mergetool
+  conflictstyle = diff3
+[mergetool "vim_mergetool"]
+  cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+  trustExitCode = false

@@ -4,6 +4,9 @@ let g:workspace#vim#airline#enable = 1
 let g:sandwich_no_default_key_mappings = 1
 let g:textobj_sandwich_no_default_key_mappings = 1
 
+" required for minimal configuration for vim-mergetool
+set nocompatible
+filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
@@ -83,6 +86,7 @@ Plug 'KabbAmine/vCoolor.vim'
 Plug 'moll/vim-bbye'
 Plug 'wellle/targets.vim'
 Plug 'vifm/vifm.vim'
+Plug 'samoshkin/vim-mergetool'
 
 " to align text
 " Plug 'tommcdo/vim-lion'
@@ -428,9 +432,9 @@ nnoremap <silent> <leader>n :call GotoVifm()<CR>
 fun! GotoVifm()
   let pathstr = expand('%:p:h')
   if -1 == stridx(pathstr, "term://")
-    exe "EditVifm " . expand('%:p:h')
+    exe "VsplitVifm " . expand('%:p:h')
   else
-    exe "EditVifm " . getcwd()
+    exe "VsplitVifm " . getcwd()
   endif
   " exe ":normal i"
 endfun
@@ -442,7 +446,7 @@ endfun
 " remove blank to not see empty buffer when close with coc-explorer opened
 " set sessionoptions-=blank
 set sessionoptions-=blank
-set sessionoptions+=localoptions,globals,options
+" set sessionoptions+=localoptions,globals,options
 
 " To save session go to project directory, open nvim, then: SSave, session name: Session.vim 
 let g:startify_change_to_dir = 0
@@ -1299,24 +1303,54 @@ fun! CleanTerminals()
 endfun
 
 
-augroup ReduceNoise
-    autocmd!
+" augroup ReduceNoise
+    " autocmd!
     " Automatically resize active split to 85 width
-    autocmd WinEnter * :call ResizeSplits()
-augroup END
+    " autocmd WinEnter * :call ResizeSplits()
+" augroup END
 
-function! ResizeSplits()
-    set winwidth=120
-    wincmd =
-endfunction
+" function! ResizeSplits()
+    " set winwidth=120
+    " wincmd =
+" endfunction
 " autocmd WinEnter * setlocal cursorline
-autocmd WinEnter * setlocal signcolumn=auto
-autocmd WinEnter * setlocal relativenumber
-autocmd WinEnter * setlocal number
-autocmd WinEnter * setlocal wrap
+" autocmd WinEnter * setlocal signcolumn=auto
+" autocmd WinEnter * setlocal relativenumber
+" autocmd WinEnter * setlocal number
+" autocmd WinEnter * setlocal wrap
 
 " autocmd WinLeave * setlocal nocursorline
-autocmd WinLeave * setlocal signcolumn=no
-autocmd WinLeave * setlocal norelativenumber
-autocmd WinLeave * setlocal nonumber
-autocmd WinLeave * setlocal nowrap
+" autocmd WinLeave * setlocal signcolumn=no
+" autocmd WinLeave * setlocal norelativenumber
+" autocmd WinLeave * setlocal nonumber
+" autocmd WinLeave * setlocal nowrap
+
+
+" Diffs{{{
+
+" Open diffs in vertical splits
+" Use 'xdiff' library options: patience algorithm with indent-heuristics (same to Git options)
+" NOTE: vim uses the external diff utility which doesn't do word diffs nor can it find moved-and-modified lines.
+" See: https://stackoverflow.com/questions/36519864/the-way-to-improve-vimdiff-similarity-searching-mechanism
+set diffopt=internal,filler,vertical,context:5,foldcolumn:1,indent-heuristic,algorithm:patience
+
+" vim-mergetool minimal working configuration
+let g:mergetool_layout = 'mr'
+let g:mergetool_prefer_revision = 'local'
+
+augroup aug_diffs
+  au!
+  " Highlight VCS conflict markers
+  au VimEnter,WinEnter * if !exists('w:_vsc_conflict_marker_match') |
+        \   let w:_vsc_conflict_marker_match = matchadd('ErrorMsg', '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$') |
+        \ endif
+augroup END
+
+function s:on_mergetool_set_layout(split)
+  set syntax=off
+  set nospell
+endfunction
+
+let g:MergetoolSetLayoutCallback = function('s:on_mergetool_set_layout')
+
+" }}}

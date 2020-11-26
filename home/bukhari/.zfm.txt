@@ -16,3 +16,4 @@ nvim /home/bukhari/.config/vifm/vifmrc
 ./font-patcher /home/bukhari/.fonts/InputMono-Italic.ttf -c --careful
 ./font-patcher /home/bukhari/.fonts/InputMono-Regular.ttf -c --careful
 /home/bukhari/Downloads
+nvim /home/bukhari/.gitconfig
