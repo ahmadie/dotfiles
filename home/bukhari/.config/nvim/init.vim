@@ -61,6 +61,10 @@ set shiftwidth=2
 set expandtab
 set scrolloff=0
 
+" Experimental. Allow cursor to move one character after the end of line
+" In visual block mode, allow cursor to be positioned
+" where there's no actual character
+set virtualedit+=onemore,block
 
 " required for minimal configuration for vim-mergetool
 set nocompatible
@@ -158,6 +162,8 @@ Plug 'samoshkin/vim-mergetool'
 
 " to align text
 " Plug 'tommcdo/vim-lion'
+" to aling text 2
+" Plug 'junegunn/vim-easy-align'
 " to diff block by visual selection
 " Plug 'AndrewRadev/linediff.vim'
 
@@ -447,6 +453,20 @@ omap <silent> iu <Plug>(textobj-line-i)
 "}}}
 
 " fzf{{{
+let $FZF_DEFAULT_OPTS=" --color=fg:#9aedfe,bg:-1,hl:#f50062:bold 
+      \--color=fg+:#FFFFFF 
+      \--color=info:#f50062,prompt:-1,pointer:#af5fff 
+      \--color=marker:#f50062,spinner:#af5fff,header:#525252 
+      \--color=border:#57c7ff 
+      \--preview-window=sharp 
+      \--pointer=' ' 
+      \--marker='→' 
+      \--border=sharp 
+      \--prompt=' ' 
+      \--color=pointer:reverse,prompt:#57c7ff,input:159 
+      \--color=fg+:bold,hl+:#f50062:bold"
+
+
 " nnoremap <leader>d :BD<cr>
 " nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :BLines<cr>
@@ -466,7 +486,7 @@ function! s:fzf_preview_settings() abort
   let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
 endfunction
 
-let g:fzf_preview_default_fzf_options = { '--preview-window': 'wrap' }
+let g:fzf_preview_default_fzf_options = { '--preview-window': 'wrap'}
 
 " value is not 0, then disable mru and mrw for speed up
 let g:fzf_preview_disable_mru = 1
@@ -492,26 +512,26 @@ let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --smar
 " :let g:abc = fzf_preview#remote#process#get_default_processes('open-file', 'coc')
 " :echo g:abc
 " processes_name is 'open-file', 'open-buffer' and 'open-bufnr'.
-let g:fzf_preview_custom_processes = {
-      \  'open-file': {
-      \            'alt-o': 'FzfPreviewOpenFileCtrlO',
-      \            'alt-q': 'FzfPreviewOpenFileCtrlQ',
-      \            'alt-t': 'FzfPreviewOpenFileCtrlT',
-      \            'alt-v': 'FzfPreviewOpenFileCtrlV',
-      \            'alt-x': 'FzfPreviewOpenFileCtrlX',
-      \            'enter': 'FzfPreviewOpenFileEnter'
-      \          },
-      \  'open-bufnr': {
-      \            'alt-q': 'FzfPreviewOpenBufnrCtrlQ',
-      \            'alt-t': 'FzfPreviewOpenBufnrCtrlT',
-      \            'alt-v': 'FzfPreviewOpenBufnrCtrlV',
-      \            'alt-x': 'FzfPreviewOpenBufnrCtrlX',
-      \            'enter': 'FzfPreviewOpenBufnrEnter'
-      \          },
-      \  'register': {
-      \            'enter': 'RegisterEnter'
-      \          }
-      \   }
+" let g:fzf_preview_custom_processes = {
+"       \  'open-file': {
+"       \            'alt-o': 'FzfPreviewOpenFileCtrlO',
+"       \            'alt-q': 'FzfPreviewOpenFileCtrlQ',
+"       \            'alt-t': 'FzfPreviewOpenFileCtrlT',
+"       \            'alt-v': 'FzfPreviewOpenFileCtrlV',
+"       \            'alt-x': 'FzfPreviewOpenFileCtrlX',
+"       \            'enter': 'FzfPreviewOpenFileEnter'
+"       \          },
+"       \  'open-bufnr': {
+"       \            'alt-q': 'FzfPreviewOpenBufnrCtrlQ',
+"       \            'alt-t': 'FzfPreviewOpenBufnrCtrlT',
+"       \            'alt-v': 'FzfPreviewOpenBufnrCtrlV',
+"       \            'alt-x': 'FzfPreviewOpenBufnrCtrlX',
+"       \            'enter': 'FzfPreviewOpenBufnrEnter'
+"       \          },
+"       \  'register': {
+"       \            'enter': 'RegisterEnter'
+"       \          }
+"       \   }
 
 " let g:fzf_preview_preview_key_bindings = 'alt-d:preview-page-down,alt-u:preview-page-up,?:toggle-preview'
 
@@ -555,37 +575,37 @@ let g:fzf_action = {
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. '}), <bang>0)
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. ' . $FZF_DEFAULT_OPTS}), <bang>0)
 
 command! -bang -nargs=* Rj
   \ call fzf#vim#grep(
   \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case --type=project ".shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. '}), <bang>0)
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. ' . $FZF_DEFAULT_OPTS}), <bang>0)
 
 command! -bang -nargs=* Lines
   \ call fzf#vim#lines(
   \   <q-args>, 
-  \   {'options': '--layout=default '}, <bang>0)
+  \   {'options': $FZF_DEFAULT_OPTS}, <bang>0)
 
 command! -bang -nargs=* BLines
   \ call fzf#vim#buffer_lines(
   \   <q-args>, 
-  \   {'options': '--layout=default '}, <bang>0)
-
+  \   {'options': $FZF_DEFAULT_OPTS}, <bang>0)
 
 " command! -bang -nargs=? -complete=dir Files
 "    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': []}), <bang>0)
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': $FZF_DEFAULT_OPTS}), <bang>0)
 
 command! -bang -nargs=? GFiles
-    \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': []}), <bang>0)
+    \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': $FZF_DEFAULT_OPTS}), <bang>0)
 
 command! -bar -bang -nargs=? -complete=buffer Buffers
-    \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}", 'options': []}), <bang>0)
+    \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}", 'options': $FZF_DEFAULT_OPTS}), <bang>0)
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'CursorLineNr' } }
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'CursorLineNr' } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'border': 'sharp' } }
 
 function! s:list_buffers()
   redir => list
@@ -601,7 +621,7 @@ endfunction
 command! BD call fzf#run(fzf#wrap({
   \ 'source': s:list_buffers(),
   \ 'sink*': { lines -> s:delete_buffers(lines) },
-  \ 'options': '--multi --bind ctrl-a:select-all+accept --prompt "Delete> "'
+  \ 'options': '--multi --bind ctrl-a:select-all+accept ' . $FZF_DEFAULT_OPTS
 \ }))
 "}}}
 

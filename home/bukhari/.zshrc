@@ -81,17 +81,18 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=/'
 alias lgdotfiles='lg --work-tree / --git-dir ~/.dotfiles'
 
 # fzf color picker =D >>> https://minsw.github.io/fzf-color-picker/
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:-1,hl:#5f87af 
---color=fg+:#d0d0d0,hl+:#f50062 
+export FZF_DEFAULT_OPTS=' --color=fg:#9aedfe,bg:-1,hl:#f50062:bold 
+--color=fg+:#FFFFFF 
 --color=info:#f50062,prompt:-1,pointer:#af5fff 
 --color=marker:#f50062,spinner:#af5fff,header:#525252 
 --color=border:#57c7ff 
 --preview-window=sharp 
 --pointer=" " 
 --marker="→" 
---border=sharp
---color=pointer:reverse,prompt:reverse,input:159 
---color=fg+:italic,hl:underline:-1,hl+:italic:underline:reverse:-1'
+--border=sharp 
+--prompt=" " 
+--color=pointer:reverse,prompt:#57c7ff,input:159 
+--color=fg+:bold,hl+:#f50062:bold'
 
 # enable vi mode
 bindkey -v
