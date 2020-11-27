@@ -61,6 +61,11 @@ set shiftwidth=2
 set expandtab
 set scrolloff=0
 
+" What triggers automatic fold opening
+set foldopen-=block
+set foldopen-=hor
+set foldopen+=jump
+
 " Experimental. Allow cursor to move one character after the end of line
 " In visual block mode, allow cursor to be positioned
 " where there's no actual character
@@ -637,6 +642,19 @@ augroup SyntaxSettings
     autocmd BufNewFile,BufRead *.js set filetype=typescript.tsx
     au BufNewFile,BufRead *.ejs set filetype=html
 augroup END
+
+" Recenter when jump back
+nnoremap <C-o> <C-o>zz
+
+" Center search results
+nnoremap n nzvzz
+nnoremap N Nzvzz
+nnoremap * *zvzz
+nnoremap # #zvzz
+
+"operator shortucts
+omap q iq
+omap b ib
 
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
