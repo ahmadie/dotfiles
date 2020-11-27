@@ -72,7 +72,7 @@ function! s:check_requirements()
     throw "fzf#exec function not found. You need to upgrade Vim plugin from the main fzf repository ('junegunn/fzf')"
   endif
   let exec = fzf#exec()
-  let output = systemlist(exec . ' --version')
+  let output = split(system(exec . ' --version'), "\n")
   if v:shell_error || empty(output)
     throw 'Failed to run "fzf --version": ' . string(output)
   endif
@@ -741,7 +741,7 @@ function! s:ag_handler(lines, has_column)
     call s:open(cmd, first.filename)
     execute first.lnum
     if a:has_column
-      execute 'normal!' first.col.'|'
+      call cursor(0, first.col)
     endif
     normal! zz
   catch
