@@ -467,12 +467,14 @@ let $FZF_DEFAULT_OPTS=" --color=fg:#9aedfe,bg:-1,hl:#f50062:bold
       \--color=fg+:bold,hl+:#f50062:bold"
 
 
+let $FZF_DEFAULT_COMMAND='fd --type f --hidden  --no-ignore-vcs --follow --exclude .git --exclude .local/share/nvim/undo'
+
 " nnoremap <leader>d :BD<cr>
 " nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :BLines<cr>
 nnoremap <leader>i :Lines!<cr>
 nnoremap <leader>e :GFiles<cr>
-" nnoremap <leader>E :Files!<cr>
+nnoremap <leader>E :Files!<cr>
 nnoremap <leader>f :Rj<space>
 nnoremap <leader>F :Rg!<space>
 
@@ -501,7 +503,7 @@ nnoremap <silent> <leader>b :<C-u>FzfPreviewAllBuffers<CR>
 "
 " nnoremap <silent> <leader>e  :<C-u>FzfPreviewFromResources project_mru git<CR>   
 "    
-nnoremap <silent> <leader>E  :<C-u>FzfPreviewFromResources project_mru directory<CR>  
+" nnoremap <silent> <leader>E  :<C-u>FzfPreviewFromResources project_mru directory<CR>  
 "
 " nnoremap          <leader>f    :<C-u>FzfPreviewProjectGrep  --add-fzf-arg=--pointer=" "
 "    \ --add-fzf-arg=--color=pointer:reverse<Space>
@@ -585,12 +587,12 @@ command! -bang -nargs=* Rj
 command! -bang -nargs=* Lines
   \ call fzf#vim#lines(
   \   <q-args>, 
-  \   {'options': $FZF_DEFAULT_OPTS}, <bang>0)
+  \   {'options': '--layout=default --with-nth 3.. ' . $FZF_DEFAULT_OPTS}, <bang>0)
 
 command! -bang -nargs=* BLines
   \ call fzf#vim#buffer_lines(
   \   <q-args>, 
-  \   {'options': $FZF_DEFAULT_OPTS}, <bang>0)
+  \   {'options': '--layout=default --with-nth 2.. ' . $FZF_DEFAULT_OPTS}, <bang>0)
 
 " command! -bang -nargs=? -complete=dir Files
 "    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
