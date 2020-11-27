@@ -595,12 +595,12 @@ command! -bang -nargs=* Rj
 command! -bang -nargs=* Lines
   \ call fzf#vim#lines(
   \   <q-args>, 
-  \   {'options': '--layout=default --with-nth 3.. ' . $FZF_DEFAULT_OPTS}, <bang>0)
+  \   {'options': '--layout=reverse --with-nth 3.. ' . $FZF_DEFAULT_OPTS}, <bang>0)
 
 command! -bang -nargs=* BLines
   \ call fzf#vim#buffer_lines(
   \   <q-args>, 
-  \   {'options': '--layout=default --with-nth 2.. ' . $FZF_DEFAULT_OPTS}, <bang>0)
+  \   {'options': '--layout=reverse --with-nth 2.. ' . $FZF_DEFAULT_OPTS}, <bang>0)
 
 " command! -bang -nargs=? -complete=dir Files
 "    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
