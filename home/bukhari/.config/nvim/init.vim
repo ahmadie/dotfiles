@@ -131,6 +131,9 @@ Plug 'ColinKennedy/vim-indent-object'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'                      " Add function based text objects
 Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-syntax'
+Plug 'Julian/vim-textobj-variable-segment'
+Plug 'tkhren/vim-textobj-numeral'
 Plug 'thinca/vim-textobj-function-javascript'         " Add JS function object
 " Plug 'kana/vim-textobj-indent'
 Plug 'ryanoasis/vim-devicons'
@@ -347,7 +350,7 @@ let g:subversivePromptWithActualCommand=1
 onoremap ie :exec "normal! ggVG"<cr>
 
 " iv = current viewable text in the buffer
-onoremap iv :exec "normal! HVL"<cr>
+" onoremap iv :exec "normal! HVL"<cr>
 "}}}
 
 " coc-explorer, vifm{{{
