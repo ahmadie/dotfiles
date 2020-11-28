@@ -90,7 +90,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'dosimple/workspace.vim'
 Plug 'takac/vim-hardtime'
 " Plug 'altercation/vim-colors-solarized'
-" Plug 'ayu-theme/ayu-vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'keyvchan/vim-monokai'
 Plug 'axvr/photon.vim'
 
@@ -853,8 +853,8 @@ set termguicolors     " enable true colors support
 lua require'colorizer'.setup()
 " let ayucolor="light"  " for light version of theme
 " let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-" colorscheme ayu
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
 syntax enable
 syntax sync fromstart
 "
@@ -866,7 +866,7 @@ set background=dark
 " colorscheme solarized
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
-colorscheme monokai
+" colorscheme monokai
 " colorscheme photon
 "}}}
 

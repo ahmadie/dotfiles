@@ -547,4 +547,5 @@ nnoremap gl :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' 
 " let $VIFM_SERVER_NAME = v:servername
 source ~/vifm_devicons/favicons.vifm
 " source ~/.config/vifm/icons
-source ~/.config/vifm/monokai.vifm
+" source ~/.config/vifm/monokai.vifm
+source ~/.config/vifm/ayu.vifm

@@ -14,7 +14,10 @@ success_symbol = "[└ ](bold 208)"
 error_symbol = "[✗ ](bold 208)"
 
 [directory]
-style = "bold 117"
+# monokai color
+# style = "bold 117"
+# ayu color
+style = "bold 32"
 truncation_length = 5
 truncate_to_repo = false
 

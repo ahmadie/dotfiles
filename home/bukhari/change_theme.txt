@@ -1,0 +1,7 @@
+1. change ls color theme using vivid (use -m 8-bit option)
+2. change bat theme using tmTheme
+3. use vivid -m 8-bit option then generate vifm theme using vifm-convert-dircolors
+4. copy top part of .config/vifm/molokai.vim to new vifm theme
+5. change highlight CurrLine to a matching color
+6. change startship directory colory to match ls directory color
+
