@@ -18,3 +18,5 @@ nvim /home/bukhari/.config/vifm/vifmrc
 /home/bukhari/Downloads
 nvim /home/bukhari/.gitconfig
 nvim /home/bukhari/.bashrc
+grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-
+nvim /home/bukhari/.config/kanshi/config
