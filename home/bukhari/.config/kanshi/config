@@ -3,7 +3,7 @@
   output eDP-1 mode 2560x1440 position 0,1080 scale 1.5
 }
 
-
+# mama home LG screen setup
 {
   output HDMI-A-1 mode 1920x1080 position 0,0
   output eDP-1 mode 2560x1440 position 0,1080

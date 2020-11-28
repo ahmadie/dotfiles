@@ -249,25 +249,29 @@ bindcode 233 exec brightnessctl set +5%
     # workspace 6 output DP-3
     # workspace 7 output DP-3
     # workspace 10 output eDP-1
-    
 
+    # auto move window to workpace
+    # assign [class="Electron" title="Developer Tools"] 2 
+    # assign [class="Electron"] 6 
+    # assign [class="Google-chrome-unstable" window_role="browser"] 6 
 
-    assign [class="Electron" title="Developer Tools"] 2 
-    assign [class="Electron"] 6 
-    assign [class="Google-chrome-unstable" window_role="browser"] 6 
-    assign [class="Google-chrome-unstable"] 2 
     # for_window [class="Electron" title="Developer Tools"] move left, move left
     # for_window [class="Google-chrome-unstable" window_role="browser"] move right
     # for_window [class="Google-chrome-unstable"] move left 
     # for_window [class="Google-chrome-unstable"] focus left, split h, layout stacked
     # for_window [class="Electron"] floating disable
-    for_window [class="Electron"] floating enable 
+    # for_window [class="Electron"] floating enable 
 
-    workspace 1 output DP-4 
-    workspace 2 output DP-4
-    workspace 3 output DP-4
-    workspace 6 output eDP-1
-    workspace 7 output eDP-1
+    # 
+    # workspace 1 output DP-4 
+    # workspace 2 output DP-4
+    # workspace 3 output DP-4
+    # workspace 6 output eDP-1
+    # workspace 7 output eDP-1
+
+    # mama home LG screen setup
+    workspace 1 output eDP-1
+    workspace 2 output HDMI-A-1
 
     set $x_switch exec python3  ~/.config/sway/i3-wk-switch.py
     # Switch to workspace
