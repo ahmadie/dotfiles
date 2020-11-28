@@ -25,7 +25,7 @@ set signcolumn=yes
 " Use 'xdiff' library options: patience algorithm with indent-heuristics (same to Git options)
 " NOTE: vim uses the external diff utility which doesn't do word diffs nor can it find moved-and-modified lines.
 " See: https://stackoverflow.com/questions/36519864/the-way-to-improve-vimdiff-similarity-searching-mechanism
-set diffopt=internal,filler,vertical,context:5,foldcolumn:1,indent-heuristic,algorithm:patience
+set diffopt=internal,filler,vertical,context:5,foldcolumn:1,indent-heuristic,algorithm:histogram
 
 " set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 
@@ -804,7 +804,8 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme='base16_snazzy'
+" let g:airline_theme='base16_snazzy'
+let g:airline_theme='ayu'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
@@ -848,6 +849,18 @@ endfunction
 " }}}
 
 " colorscheme{{{
+augroup aug_color_scheme
+  au!
+  autocmd ColorScheme ayu call s:PatchColorScheme()
+augroup END
+
+function s:PatchColorScheme()
+  hi! link DiffChange NONE
+  hi! clear DiffChange
+  hi! DiffText term=NONE ctermfg=215 ctermbg=233 cterm=NONE guifg=#FFB86C guibg=#7B7BFF gui=NONE
+  hi! DiffChange term=NONE ctermfg=215 ctermbg=233 cterm=NONE guibg=#212131 gui=NONE
+endfunction
+
 " colorscheme onedark
 set termguicolors     " enable true colors support
 lua require'colorizer'.setup()
@@ -868,6 +881,7 @@ let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 " colorscheme monokai
 " colorscheme photon
+
 "}}}
 
 " indentLine{{{
@@ -917,7 +931,11 @@ highlight SignColumn guibg=NONE gui=NONE
 
 " statline line color{{{
 " got this colors from base16_snazzy.vim file, 
-let s:statuslineinsertcolor = '#5af78e'
+" let s:statuslineinsertcolor = '#5af78e'
+" let s:statuslinebg = '#2e3a36'  
+
+" got this colors from ayu file, 
+let s:statuslineinsertcolor = '#FFC44C'
 let s:statuslinebg = '#2e3a36'  
 
 exe 'highlight Pmenu guibg=' . s:statuslinebg . ' guifg=' . s:statuslineinsertcolor
@@ -1179,12 +1197,12 @@ augroup aug_diffs
   au!
   " Highlight VCS conflict markers
   au VimEnter,WinEnter * if !exists('w:_vsc_conflict_marker_match') |
-        \   let w:_vsc_conflict_marker_match = matchadd('ErrorMsg', '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$') |
+        \   let w:_vsc_conflict_marker_match = matchadd('PmenuSel', '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$') |
         \ endif
 augroup END
 
 function s:on_mergetool_set_layout(split)
-  set syntax=off
+  " set syntax=off
   set nospell
 endfunction
 
