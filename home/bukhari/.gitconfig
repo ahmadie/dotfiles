@@ -32,12 +32,14 @@
   colorMoved = default
 	algorithm = patience
 [delta]
-  syntax-theme = Solarized
+  syntax-theme = ayu-dark
   color-only = true
   line-numbers = true
   line-numbers-left-format = ""
   line-numbers-right-format = "{np} "
   # keep-plus-minus-markers = false
+  # minus-style = syntax "#003A11" 
+  # plus-style = syntax "#005617"
 [merge]
   tool = vim_mergetool
   conflictstyle = diff3
