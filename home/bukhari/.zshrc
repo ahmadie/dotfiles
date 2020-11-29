@@ -127,7 +127,7 @@ setopt  autocd autopushd pushdignoredups
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
-SAVEHIST=1000
+SAVEHIST=10000
 setopt SHARE_HISTORY
 export KEYTIMEOUT=1
 
@@ -140,6 +140,9 @@ alias v=vifmrun
 # alias vifm=vifmrun
 alias n=nvim
 alias c=clear
+alias ...=../..
+alias ....=../../..
+alias .....=../../../..
 
 # got colors from here https://github.com/trapd00r/LS_COLORS
 # source ~/.local/share/lscolors.sh
@@ -147,14 +150,18 @@ alias c=clear
 # https://github.com/sharkdp/vivid
 export LS_COLORS="$(vivid generate ayu)"
 
+# zsh-autocomplete
+# source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# fzf-tab
+source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 # autosuggestions plugin
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC='aa'
-
-
-
 
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[comment]='fg=cyan'
@@ -171,6 +178,7 @@ bindkey '^[[B' history-substring-search-down
 
 # Autojump
 [[ -s /home/bukhari/.autojump/etc/profile.d/autojump.sh ]] && source /home/bukhari/.autojump/etc/profile.d/autojump.sh
+
 
 # zfm
 source ~/.zsh/zfm/zfm.zsh
