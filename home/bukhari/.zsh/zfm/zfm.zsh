@@ -265,10 +265,10 @@ bindkey '^P' zfm-cd-to-bookmark
 # f - jump to directory with query
 function f()
 {
-    if [ -z "$@" ]; then
+    if [ -z "$*" ]; then
         local dir=$(zfm select --dirs)
     else
-        local dir=$(zfm query --dirs "$@")
+        local dir=$(zfm query --dirs "$*")
     fi
     if [[ -z "$dir" ]]; then
         return 0
@@ -279,6 +279,6 @@ function f()
 # x - execute commands
 function x()
 {
-    local com=$(zfm query --commands "$@")
+    local com=$(zfm query --commands "$*")
     eval ${com}
 }
