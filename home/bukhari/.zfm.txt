@@ -5,10 +5,10 @@ nvim /home/bukhari/.config/kitty/kitty.conf
 nvim /home/bukhari/.config/sway/config
 nvim /home/bukhari/.zsh/zfm/zfm.zsh
 nvim /home/bukhari/.config/nvim/init.vim
-cd /home/bukhari/TW.Electron && nvim
-cd /home/bukhari/Simple.Project && nvim
-cd /home/bukhari/Client && nvim
-cd /home/bukhari/AizawaDoc && nvim
+cd /home/bukhari/TW.Electron && nvim -S Session.vim
+cd /home/bukhari/Simple.Project && nvim -S Session.vim
+cd /home/bukhari/Client && nvim -S Session.vim
+cd /home/bukhari/AizawaDoc && nvim -S Session.vim
 nvim /home/bukhari/.zshrc
 nvim /home/bukhari/.config/vifm/monokai.vifm
 nvim /home/bukhari/.config/starship.toml
@@ -18,5 +18,5 @@ nvim /home/bukhari/.config/vifm/vifmrc
 /home/bukhari/Downloads
 nvim /home/bukhari/.gitconfig
 nvim /home/bukhari/.bashrc
-grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-
+grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- #pick color
 nvim /home/bukhari/.config/kanshi/config
