@@ -79,11 +79,11 @@ fcda() {
 }
 
 # use fd / fzf to navigate fast
-fdr () {
-  cd "$( fd --hidden $* --type d --exclude .git --exclude .local/share/nvim/undo | fzf -1 -0 +m )"
+ff () {
+  cd "$( fd --hidden --type d --exclude .git --exclude .local/share/nvim/undo $* | fzf -1 -0 +m )"
 }
 
-fdh () {
-  cd ~/"$( cd && fd --hidden "$*" --type d --exclude .git --exclude .local/share/nvim/undo | fzf -1 -0 +m )"
+ffh () {
+  cd "$( fd --hidden --type d --exclude .git --exclude .local/share/nvim/undo $* ~ | fzf -1 -0 +m )"
 }
 # -----------
