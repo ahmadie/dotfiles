@@ -706,8 +706,7 @@ nmap <C-z> zz
 " nmap <C-o> <C-O> 
 " nmap <C-6> <C-^> 
 " nmap <C-`> <C-^> 
-nnoremap <C-]> }
-nnoremap <C-[> {
+
 " vnoremap <C-]> }
 " vnoremap <C-[> {
 
