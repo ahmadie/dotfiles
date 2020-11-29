@@ -20,13 +20,13 @@ source "/home/bukhari/.fzf/shell/key-bindings.zsh"
 # f 'echo Selected:'
 # f 'echo Selected music:' --extention mp3
 # fm rm # To rm files in current directory
-f() {
+d() {
     sels=( "${(@f)$(fd "${fd_default[@]}" "${@:2}"| fzf)}" )
     test -n "$sels" && print -z -- "$1 ${sels[@]:q:q}"
 }
 
 # Like f, but not recursive.
-fm() f "$@" --max-depth 1
+dm() d "$@" --max-depth 1
 
 # Deps
 alias fz="fzf-noempty --bind 'tab:toggle,shift-tab:toggle+beginning-of-line+kill-line,ctrl-j:toggle+beginning-of-line+kill-line,ctrl-t:top' --color=light -1 -m"
@@ -68,8 +68,7 @@ fkill() {
 # fd - cd to selected directory
 fcd() {
   local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
+  dir=$(fd --type f --hidden --follow --exclude .git --exclude .local/share/nvim/undo | fzf +m)
   cd "$dir"
 }
 
@@ -77,5 +76,14 @@ fcd() {
 fcda() {
   local dir
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+# use fd / fzf to navigate fast
+fdr () {
+  cd "$( fd --hidden $* --type d --exclude .git --exclude .local/share/nvim/undo | fzf -1 -0 +m )"
+}
+
+fdh () {
+  cd ~/"$( cd && fd --hidden "$*" --type d --exclude .git --exclude .local/share/nvim/undo | fzf -1 -0 +m )"
 }
 # -----------
