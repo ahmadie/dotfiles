@@ -4,4 +4,5 @@
 4. copy top part of .config/vifm/molokai.vim to new vifm theme
 5. change highlight CurrLine to a matching color
 6. change startship directory colory to match ls directory color
+7. inside .gitconfig delta theme to the same theme of bat
 
