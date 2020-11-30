@@ -6,6 +6,11 @@ gui:
         - reverse
       selectedRangeBgColor:
         - reverse
+      activeBorderColor:
+        - red
+        - bold
+      inactiveBorderColor:
+        - black
 git:
   paging:
     colorArg: always -w
