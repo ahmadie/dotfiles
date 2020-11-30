@@ -80,10 +80,16 @@ fcda() {
 
 # use fd / fzf to navigate fast
 ff () {
-  cd "$( fd --hidden --type d --exclude .git --exclude .local/share/nvim/undo $* | fzf -1 -0 +m )"
+  cd "$( fd --color=always --hidden --type d --exclude .git --exclude .local/share/nvim/undo $* | fzf --ansi -1 -0 +m --height 40% --layout=reverse  )"
 }
 
 ffh () {
   cd "$( fd --hidden --type d --exclude .git --exclude .local/share/nvim/undo $* ~ | fzf -1 -0 +m )"
+}
+
+fff () {
+  local file
+  file="$( fd --color=always --hidden --type f --exclude .git --exclude .local/share/nvim/undo $* | fzf --ansi -1 -0 +m --height 40% --layout=reverse )"
+  cd "$(dirname "$file")"
 }
 # -----------
