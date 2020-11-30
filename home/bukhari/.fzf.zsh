@@ -84,7 +84,7 @@ ff () {
 }
 
 ffh () {
-  cd "$( fd --hidden --type d --exclude .git --exclude .local/share/nvim/undo $* ~ | fzf -1 -0 +m )"
+  cd "$( fd --hidden --type d --exclude .git --exclude .local/share/nvim/undo $* ~ | fzf -1 -0 +m --height 40% --layout=reverse )"
 }
 
 fff () {
