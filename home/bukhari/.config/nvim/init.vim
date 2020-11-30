@@ -116,6 +116,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'psliwka/vim-smoothie'
@@ -483,6 +484,7 @@ nnoremap <leader>/ :BLines<cr>
 nnoremap <leader>i :Lines!<cr>
 nnoremap <leader>e :GFiles<cr>
 nnoremap <leader>E :Files!<cr>
+nnoremap <leader>o :FZFMru<cr>
 nnoremap <leader>f :Rj<space>
 nnoremap <leader>F :Rg!<space>
 
@@ -500,6 +502,11 @@ let g:fzf_preview_default_fzf_options = { '--preview-window': 'wrap'}
 
 " value is not 0, then disable mru and mrw for speed up
 let g:fzf_preview_disable_mru = 1
+
+" fzf-mru.vim to only list files in current directory
+let g:fzf_mru_relative = 1
+" keep sorting by recent
+let g:fzf_mru_no_sort = 1
 
 nnoremap <silent> <leader>b :<C-u>FzfPreviewAllBuffers<CR>
 "
@@ -610,6 +617,9 @@ command! -bang -nargs=? -complete=dir Files
 
 command! -bang -nargs=? GFiles
     \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': $FZF_DEFAULT_OPTS}), <bang>0)
+
+command! -nargs=* FZFMru 
+      \ call fzf_mru#actions#mru(<q-args>, fzf#vim#with_preview({'options': $FZF_DEFAULT_OPTS}), <bang>0)
 
 command! -bar -bang -nargs=? -complete=buffer Buffers
     \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}", 'options': $FZF_DEFAULT_OPTS}), <bang>0)
