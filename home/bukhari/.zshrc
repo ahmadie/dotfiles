@@ -1,14 +1,19 @@
+# powerlevel10k
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # change default shell commands
 # sudo -s
 # chsh -s /bin/zsh root
 # chsh -s /bin/zsh bukhari
 
-
 path=(${HOME}/bin ${path})
 path=(${HOME}/.local/bin ${path})
 path=(${HOME}/.cargo/bin ${path})
-
-
 
 # Basic auto/tab complete
 autoload -U compinit
@@ -17,21 +22,14 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-
-# rever menu auto complete
+# reverse menu auto complete
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey -M vicmd '^I' menu-complete
 bindkey -M vicmd '^[[Z' reverse-menu-complete
 # bindkey '^[[Z' reverse-menu-complete
 
-# f fd into fzf
-# fdfind --type f | fzf
-
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .local/share/nvim/undo'
-
-# Now fzf (w/o pipe) will use fd instead of find
-# fzf
 
 # To apply the command to CTRL-T as well
 # export FZF_DEFAULT_COMMAND='rg --files' 
@@ -39,7 +37,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export FZF_PREVIEW_PREVIEW_BAT_THEME="ayu-dark"
 export BAT_THEME="ayu-dark"
-
 
 alias loadnvm=". ${HOME}/.nvm/nvm.sh"
 source ~/.zsh/zsh-async/async.zsh
@@ -73,8 +70,6 @@ async_start_worker nvm_worker -n
 async_register_callback nvm_worker load_nvm
 async_job nvm_worker sleep 0.1
 
-#  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 export GTK_IM_MODULE="ibus"
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=/'
@@ -96,10 +91,10 @@ export FZF_DEFAULT_OPTS=' --color=fg:#9aedfe,bg:-1,hl:#f50062:bold
 
 # enable vi mode
 bindkey -v
+
 # set -o vi
 export VISUAL="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
 export EDITOR="nvim"
-
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -131,13 +126,8 @@ SAVEHIST=10000
 setopt SHARE_HISTORY
 export KEYTIMEOUT=1
 
-# fpath+=$HOME/.zsh/pure
-# autoload -U promptinit; promptinit
-# prompt pure
-
 alias ls='ls --color=auto'
 alias v=vifmrun
-# alias vifm=vifmrun
 alias n=nvim
 alias c=clear
 alias ...=../..
@@ -149,9 +139,6 @@ alias .....=../../../..
 
 # https://github.com/sharkdp/vivid
 export LS_COLORS="$(vivid generate ayu)"
-
-# zsh-autocomplete
-# source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # fzf-tab
 source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
@@ -179,11 +166,8 @@ bindkey '^[[B' history-substring-search-down
 # Autojump
 [[ -s /home/bukhari/.autojump/etc/profile.d/autojump.sh ]] && source /home/bukhari/.autojump/etc/profile.d/autojump.sh
 
-
 # zfm
 source ~/.zsh/zfm/zfm.zsh
-
-eval "$(starship init zsh)"
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -206,5 +190,8 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-
 eval $(thefuck --alias)
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
