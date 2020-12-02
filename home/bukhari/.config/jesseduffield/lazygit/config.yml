@@ -13,6 +13,7 @@ gui:
         - black
 git:
   paging:
+    # do not show spaces in diff
     colorArg: always -w
     pager: delta --dark --paging=never --24-bit-color=never
     merging:
@@ -22,4 +23,9 @@ customCommands:
     command: "git mergetool {{ .SelectedFile.Name }}"
     context: "files"
     loadingText: "opening git mergetool"
+    subprocess: true
+  - key: "O"
+    command: "git difftool HEAD {{ .SelectedFile.Name }}"
+    context: "files"
+    loadingText: "opening git difftool"
     subprocess: true
