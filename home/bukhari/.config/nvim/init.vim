@@ -232,7 +232,6 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -866,8 +865,11 @@ augroup END
 function s:PatchColorScheme()
   hi! link DiffChange NONE
   hi! clear DiffChange
-  hi! DiffText term=NONE ctermfg=215 ctermbg=233 cterm=NONE guifg=#FFB86C guibg=#7B7BFF gui=NONE
-  hi! DiffChange term=NONE ctermfg=215 ctermbg=233 cterm=NONE guibg=#212131 gui=NONE
+  hi! DiffText term=NONE guifg=#FFEE99 guibg=#7B7BFF gui=NONE
+  hi! DiffChange term=NONE guibg=#212131 gui=NONE
+  hi! DiffAdd term=NONE guibg=#434F5B gui=NONE
+  hi! DiffDelete term=NONE guifg=#212131 guibg=#434F5B gui=NONE
+  hi CocHighlightText guibg=#5C6773
 endfunction
 
 " colorscheme onedark
