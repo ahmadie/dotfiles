@@ -15,12 +15,15 @@ path=(${HOME}/bin ${path})
 path=(${HOME}/.local/bin ${path})
 path=(${HOME}/.cargo/bin ${path})
 
+
 # Basic auto/tab complete
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
+
+fpath=(~/.zsh/zsh-completions/zsh-completions.plugin.zsh $fpath)
 
 # reverse menu auto complete
 bindkey -M menuselect '^[[Z' reverse-menu-complete
@@ -118,7 +121,17 @@ setopt interactivecomments
 #auto full directory
 setopt  autocd autopushd pushdignoredups
   
+_fzf_compgen_path() {
+  fd --hidden --exclude .git --exclude .local/share/nvim/undo . "$1"
+}
+
+#Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --hidden --type d --exclude .git --exclude .local/share/nvim/undo . "$1"
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -150,9 +163,16 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC='aa'
 
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[comment]='fg=cyan'
-source /home/bukhari/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/bukhari/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+function autosuggest-then-insert() {
+    zle autosuggest-accept
+    zle vi-add-next
+}
+zle -N autosuggest-then-insert
+bindkey -M vicmd 'l' autosuggest-then-insert
+bindkey -M vicmd ' ' autosuggest-execute
+
 
 # zsh history substing search
 source /home/bukhari/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
