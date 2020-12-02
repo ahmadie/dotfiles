@@ -869,7 +869,7 @@ function s:PatchColorScheme()
   hi! DiffChange term=NONE guibg=#212131 gui=NONE
   hi! DiffAdd term=NONE guibg=#434F5B gui=NONE
   hi! DiffDelete term=NONE guifg=#212131 guibg=#434F5B gui=NONE
-  hi CocHighlightText guibg=#5C6773
+  hi! CocHighlightText guibg=#253651
 endfunction
 
 " colorscheme onedark
