@@ -53,6 +53,7 @@ font pango:DejaVu Sans 16
 exec /usr/lib/gnome-settings-daemon/gsd-xsettings
 # exec mako
 
+exec_always pkill kanshi; exec kanshi
 # exec_always bash -c "killall kanshi; kanshi"
 # exec xrdb -load ~/.Xresources
 ### Variables
@@ -109,9 +110,10 @@ bindsym $mod+Control+l exec bash ~/.config/rofi/powermenu.sh
 #
 # set $swaylock swaylock -i /usr/local/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png -s fill --ring-color 859900 --inside-wrong-color d33682
 set $swaylock swaylock -i $background -s fill --ring-color 008599 --inside-wrong-color 991400 
-exec swayidle -w \
-          timeout 9999 '$swaylock -f' \
-          timeout 9999 'swaymsg "output * dpms off"' \
+
+exec_always pkill swayidle; exec swayidle -w \
+          timeout 99999 '$swaylock -f' \
+          timeout 99999 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
           before-sleep '$swaylock -f' 
 # Example configuration:
