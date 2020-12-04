@@ -130,7 +130,12 @@ _fzf_compgen_dir() {
   fd --hidden --type d --exclude .git --exclude .local/share/nvim/undo . "$1"
 }
 
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_COMPLETION_TRIGGER=''
+bindkey '^N' fzf-completion
+bindkey '^I' $fzf_default_completion
 
 
 HISTFILE=~/.zsh_history
@@ -156,6 +161,17 @@ export LS_COLORS="$(vivid generate ayu)"
 # fzf-tab
 source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# start fzf-tab after ~ or /
+insert-and-complete() {
+   zle self-insert
+   # check if string "vim" or "cd" exists in the left of cursor
+   if (( $LBUFFER[(I)(nvim|cd|n|dotfiles|zfm)] != 0 )); then
+       zle fzf-tab-complete
+   fi
+}
+zle -N insert-and-complete
+bindkey "/" insert-and-complete
 
 # autosuggestions plugin
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
