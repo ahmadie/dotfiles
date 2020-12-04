@@ -5,7 +5,7 @@ focus output eDP-1
 set $cl_high #E47926
 set $cl_fore2 #FFDCCA
 set $cl_indi #d9d8d8
-set $cl_back #93a1a1
+set $cl_back #212121
 set $cl_fore #E0D5D5
 set $cl_urge #ee2e24
 
@@ -261,6 +261,12 @@ bindcode 233 exec brightnessctl set +5%
     # for_window [class="Electron"] floating disable
     # for_window [class="Electron"] floating enable 
 
+    # VCoolor 
+    for_window [app_id="yad"] floating enable 
+
+    # this need to be the same as in .tridactylrc
+    for_window [class="floatingAppFocus"] floating enable, resize set 50ppt 40ppt
+
     # 
     # workspace 1 output DP-4 
     # workspace 2 output DP-4
@@ -337,6 +343,7 @@ bindcode 233 exec brightnessctl set +5%
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 
+    # use F1, F2, ... to hide / show window same window
     bindsym $mod+Shift+F1 mark --add "___temp1", move scratchpad
     bindsym $mod+F1 [con_mark="^___temp1$"] scratchpad show
     bindsym $mod+Shift+F2 mark --add "___temp2", move scratchpad
@@ -367,6 +374,9 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# resize to 1/3 of screen
+bindsym $mod+i resize set 35ppt
 
 
 set $mode_system L | lock\t\tE | logout\t\tS | suspend\t\tR | reboot\t\t SHIFT-S | shutdown \t\tSHIFT-R | UEFI
