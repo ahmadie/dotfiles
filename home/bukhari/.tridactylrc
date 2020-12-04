@@ -1,0 +1,4 @@
+" Set terminal
+set editorcmd kitty --class floatingAppFocus -- nvim -c "set noshowmode | set noruler | set laststatus=0 | set noshowcmd | set cmdheight=1 |  nnoremap <ESC><ESC> :q!<ENTER> | nnoremap <ENTER> :x<ENTER> | inoremap <ENTER> <ESC>:x!<ENTER>" %f
+
+bind --mode=normal gi composite focusinput -l | editor
