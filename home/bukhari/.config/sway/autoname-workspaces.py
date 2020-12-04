@@ -15,14 +15,14 @@ import signal
 import sys
 
 WINDOW_ICONS = {
-    "firefox": "",
+    "firefox": "",
     "kitty": "",
-    "firefox-esr": "",
+    "firefox-esr": "",
     "simplenote": "",
     "google-chrome-unstable": "",
 }
 
-DEFAULT_ICON = ""
+DEFAULT_ICON = ""
 
 
 def icon_for_window(window):
