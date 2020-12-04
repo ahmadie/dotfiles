@@ -186,7 +186,7 @@ function autosuggest-then-insert() {
     zle vi-add-next
 }
 zle -N autosuggest-then-insert
-bindkey -M vicmd 'l' autosuggest-then-insert
+# bindkey -M vicmd 'l' autosuggest-then-insert
 bindkey -M vicmd ' ' autosuggest-execute
 
 
