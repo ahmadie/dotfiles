@@ -7,9 +7,13 @@
 }
 
 window#waybar {
-  background: rgba(43, 48, 59, 0.7);
-  border-bottom: 2px solid rgba(155, 189, 194, 0.9);
+  background: rgba(24, 27, 35, 0.5);
+  border-bottom: 3px solid #292929;
   color: #ffffff;
+}
+
+window#waybar.solo {
+  border-bottom: 3px solid #e47926;
 }
 
 window#waybar.hidden {
@@ -30,11 +34,11 @@ window#waybar.hidden {
 
 #workspaces button.urgent {
   background-color: #eb4d4b;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 #mode {
-  color: #ff8167;
+  color: #ff9a4c;
 }
 
 #clock,
@@ -50,7 +54,7 @@ window#waybar.hidden {
 #mode,
 #idle_inhibitor {
   padding: 3px 10px;
-  margin: 0 5px 2px 5px;
+  margin: 2px 5px 4px 5px;
 }
 
 #clock {
@@ -86,7 +90,6 @@ window#waybar.hidden {
 
 #cpu {
   background: #2ecc71;
-  color: #000000;
 }
 
 #memory {

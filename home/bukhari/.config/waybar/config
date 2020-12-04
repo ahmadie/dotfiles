@@ -36,7 +36,7 @@
     }
   },
   "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
+    "format": "{}"
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -50,28 +50,27 @@
     "spacing": 10
   },
   "clock": {
-    "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-    "format-alt": "{:%Y-%m-%d}"
+    "tooltip-format": "{:%y-%m-%d | %H:%M}",
+    "format-alt": "{:20%y-%m-%d %a}"
   },
   "cpu": {
-    "format": "{usage}% ",
+    "format": "{usage}% ",
     "icon-size": 100
   },
   "memory": {
-    "format": "{}% "
+    "format": "{}% "
   },
   "temperature": {
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC}°C "
+    "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C "
   },
   "backlight": {
     // "device": "acpi_video1",
     "format": "{percent}% {icon}",
-    "states": [0, 50],
-    "format-icons": ["", ""]
+    "format-icons": ["盛"]
   },
   "battery": {
     "bat": "BAT0",
@@ -83,23 +82,23 @@
     "format": "{capacity}% {icon}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["", "", "", "", ""]
   },
   "battery#bat2": {
     "bat": "BAT2"
   },
   "network": {
     // "interface": "wlp2s0", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-wifi": "{essid} ({signalStrength}%) 直",
     "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-    "format-disconnected": "Disconnected ⚠",
+    "format-disconnected": "Disconnected 睊",
     "interval": 7
   },
   "pulseaudio": {
     //"scroll-step": 1,
     "format": "{volume}% {icon}",
     "format-bluetooth": "{volume}% {icon}",
-    "format-muted": "",
+    "format-muted": "婢",
     "format-icons": {
       "headphones": "",
       "handsfree": "",
@@ -107,7 +106,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", ""]
+      "default": ["奄", "墳"]
     },
     "on-click": "pavucontrol"
   },
