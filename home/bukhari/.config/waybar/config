@@ -1,7 +1,7 @@
 {
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
-  "height": 24, // Waybar height
+  "height": 30, // Waybar height
   // "width": 120, // Waybar width
   // Choose the order of the modules
   "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
@@ -64,13 +64,13 @@
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     "critical-threshold": 80,
-    "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC}°C "
+    "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C "
   },
   "backlight": {
     // "device": "acpi_video1",
     "format": "{percent}% {icon}",
-    "format-icons": ["盛"]
+    "format-icons": [""]
   },
   "battery": {
     "bat": "BAT0",

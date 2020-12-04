@@ -2,10 +2,10 @@
 
 focus output eDP-1
 
-set $cl_high #E47926
+set $cl_high #ed812d
 set $cl_fore2 #FFDCCA
 set $cl_indi #d9d8d8
-set $cl_back #212121
+set $cl_back #3B3B3B
 set $cl_fore #E0D5D5
 set $cl_urge #ee2e24
 
@@ -23,6 +23,7 @@ hide_edge_borders smart
 focus_on_window_activation urgent
 
 titlebar_padding 5 1
+title_align center
 
 smart_gaps on
 gaps inner 10

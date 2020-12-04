@@ -7,13 +7,13 @@
 }
 
 window#waybar {
-  background: rgba(24, 27, 35, 0.5);
-  border-bottom: 3px solid #292929;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid #333333;
   color: #ffffff;
 }
 
 window#waybar.solo {
-  border-bottom: 3px solid #e47926;
+  border-bottom: 3px solid #ed812d;
 }
 
 window#waybar.hidden {
@@ -25,11 +25,15 @@ window#waybar.hidden {
   background: transparent;
   color: #b2b2b2;
   border-bottom: 3px solid transparent;
+  margin: 2px 0px 0px 0px;
 }
 
 #workspaces button.focused {
+  border-radius: 1px;
+  background-color: rgba(24, 27, 35, 0.1);
   color: #ffffff;
   border-bottom: 3px solid #ffffff;
+  margin: 2px 0px 0px 0px;
 }
 
 #workspaces button.urgent {
@@ -38,9 +42,15 @@ window#waybar.hidden {
 }
 
 #mode {
-  color: #ff9a4c;
+  background-color: rgba(24, 27, 35, 0.1);
+  border-radius: 1px;
+  padding: 3px 10px;
+  color: #ffe4ce;
+  margin: 2px 0px 0px 20px;
+  border-bottom: 3px solid #ffffff;
 }
 
+/* generate color scheme: https://coolors.co/ */
 #clock,
 #battery,
 #cpu,
@@ -51,23 +61,23 @@ window#waybar.hidden {
 #pulseaudio,
 #custom-media,
 #tray,
-#mode,
 #idle_inhibitor {
+  border-radius: 1px;
   padding: 3px 10px;
-  margin: 2px 5px 4px 5px;
-}
-
-#clock {
-  background-color: #64727d;
-}
-
-#battery {
-  background-color: #ffffff;
+  margin: 2px 3px 4px 3px;
   color: #000000;
 }
 
+#clock {
+  background-color: #577590;
+}
+
+#battery {
+  background-color: #4d908e;
+}
+
 #battery.charging {
-  color: #ffffff;
+  color: #fba5d4;
   background-color: #26a65b;
 }
 
@@ -89,19 +99,19 @@ window#waybar.hidden {
 }
 
 #cpu {
-  background: #2ecc71;
+  background: #f9844a;
 }
 
 #memory {
-  background: #9b59b6;
+  background: #f9c74f;
 }
 
 #backlight {
-  background: #90b1b1;
+  background: #43aa8b;
 }
 
 #network {
-  background: #2980b9;
+  background: #f8961e;
 }
 
 #network.disconnected {
@@ -109,12 +119,11 @@ window#waybar.hidden {
 }
 
 #pulseaudio {
-  background: #f1c40f;
-  color: #000000;
+  background: #f3722c;
 }
 
 #pulseaudio.muted {
-  background: #90b1b1;
+  background: #ffadad;
   color: #2a5c45;
 }
 
@@ -132,7 +141,7 @@ window#waybar.hidden {
 }
 
 #temperature {
-  background: #f0932b;
+  background: #90be6d;
 }
 
 #temperature.critical {
@@ -140,7 +149,7 @@ window#waybar.hidden {
 }
 
 #tray {
-  background-color: #2980b9;
+  background-color: #ffc6ff;
 }
 
 #idle_inhibitor {
