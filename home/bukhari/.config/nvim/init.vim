@@ -176,6 +176,8 @@ Plug 'samoshkin/vim-mergetool'
 " to diff block by visual selection
 " Plug 'AndrewRadev/linediff.vim'
 
+" repeate last command try to repeate next/prev buffer
+" Houl/repmo-vim
 call plug#end()
 " }}}
 
@@ -736,6 +738,8 @@ onoremap L $
 
 nnoremap ; :
 nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 " nnoremap ` ;
 
 nnoremap <leader>m 'M
@@ -769,6 +773,11 @@ inoremap LL <Esc>la
 
 :nnoremap <leader>ve :vsplit $MYVIMRC<cr>
 :nnoremap <leader>vs :source $MYVIMRC<cr>
+
+:nnoremap <leader>vc :VCoolor<cr>
+:nnoremap <leader>w :w<cr>
+:nnoremap <leader><leader>w :x<cr>
+
 
 :iabbrev waht what
 augroup filetype_html
@@ -1218,4 +1227,10 @@ function s:on_mergetool_set_layout(split)
 endfunction
 
 let g:MergetoolSetLayoutCallback = function('s:on_mergetool_set_layout')
+
+nmap <expr> <C-Left> &diff? '<Plug>(MergetoolDiffExchangeLeft)' : '<C-Left>'
+nmap <expr> <C-Right> &diff? '<Plug>(MergetoolDiffExchangeRight)' : '<C-Right>'
+nmap <expr> <C-Down> &diff? '<Plug>(MergetoolDiffExchangeDown)' : '<C-Down>'
+nmap <expr> <C-Up> &diff? '<Plug>(MergetoolDiffExchangeUp)' : '<C-Up>'
+
 " }}}
