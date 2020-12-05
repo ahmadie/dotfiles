@@ -9,13 +9,11 @@ def on_window_focus(ipc, event):
     workspace = ipc.get_tree().find_focused().workspace().num
 
     ipc.get_tree().find_focused().workspace().num
-    if workspace % 10 != prev_workspace % 10:
-        ipc.command("unmark [__last]" + str(prev_workspace % 10))
-        prev_focused.command("mark --add ___last" + str(prev_workspace % 10))
-        print('prev_workspace', prev_workspace, 'prev_focused', prev_focused.id)
+    ipc.command("unmark [__last]" + str(workspace % 10))
+    focused.command("mark --add ___last" + str(workspace % 10))
 
-        prev_focused = focused
-        prev_workspace = workspace
+    prev_focused = focused
+    prev_workspace = workspace
 
 
 if __name__ == "__main__":
