@@ -69,7 +69,7 @@ def get_workspace(num):
 
 def switch_workspace(num):
     """Switches to workspace number"""
-    i3.command('workspace %d' % num)
+    i3.command('workspace number %d' % num)
 
 
 def move_workspace(s):
