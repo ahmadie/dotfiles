@@ -9,7 +9,7 @@ def on_window_focus(ipc, event):
     workspace = ipc.get_tree().find_focused().workspace().num
 
     ipc.get_tree().find_focused().workspace().num
-    ipc.command("unmark [__last]" + str(workspace % 10))
+    focused.command("unmark ___last" + str(prev_workspace % 10))
     focused.command("mark --add ___last" + str(workspace % 10))
 
     prev_focused = focused
