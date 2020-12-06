@@ -64,6 +64,7 @@ exec_always pkill kanshi; exec kanshi
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $alt Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -222,33 +223,28 @@ bindcode 233 exec brightnessctl set +5%
     bindcode $mod+43 focus left
     bindcode $mod+46 focus right
 
-    # move to workspace
-    # bindsym $mod+Left move container to workspace prev_on_output, workspace prev_on_output
-    # bindsym $mod+Left exec ~/.config/sway/move-next.sh -1
-    # bindsym $mod+Right move container to workspace next_on_output, workspace next_on_output
-    # bindsym $mod+Right exec ~/.config/sway/move-next.sh 1
-
-    set $ws-right "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 1))";
-    set $ws-left "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 1))";
-    set $ws-up "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 10))";
-    set $ws-down "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 10))";
-
-
-    bindsym Tab+$down move container to output down, focus output down
-    bindsym Tab+$up move container to output up, focus output up
-    bindsym Tab+$left exec swaymsg  move container to workspace number $ws-left, exec swaymsg workspace number $ws-left
-    bindsym Tab+$right exec swaymsg move container to workspace number $ws-right, exec swaymsg workspace number $ws-right
-
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
+
+    set $ws-right "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 1))";
+    set $ws-left "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 1))";
+    set $ws-up "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 10))";
+    set $ws-down "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 10))";
+    set $next_workspace "$(( python3 ~/.config/sway/next_workspace.py ))"
+
+    bindsym $alt+$mod+$down exec swaymsg move container to workspace number $ws-down, exec swaymsg workspace number $ws-down
+    bindsym $alt+$mod+$up exec swaymsg move container to workspace number $ws-up, exec swaymsg workspace number $ws-up
+    bindsym $alt+$mod+$left exec swaymsg  move container to workspace number $ws-left, exec swaymsg workspace number $ws-left
+    bindsym $alt+$mod+$right exec swaymsg move container to workspace number $ws-right, exec swaymsg workspace number $ws-right
+
     # Ditto, with arrow keys
-    bindsym $mod+Left exec swaymsg workspace number $ws-left
-    bindsym $mod+Down exec swaymsg workspace number $ws-down
-    bindsym $mod+Up exec swaymsg workspace number $ws-up
-    bindsym $mod+Right exec swaymsg workspace number $ws-right
+    bindsym $alt+$left exec swaymsg workspace number $ws-left
+    bindsym $alt+$down exec swaymsg workspace number $ws-down
+    bindsym $alt+$up exec swaymsg workspace number $ws-up
+    bindsym $alt+$right exec swaymsg workspace number $ws-right
 #
 # Workspaces:
 #
@@ -318,37 +314,36 @@ bindcode 233 exec brightnessctl set +5%
     workspace 20 output $d2
 
     set $x_switch exec python3 ~/.config/sway/i3-wk-switch.py
+    set $change_workspace exec python3 ~/.config/sway/change_workspace.py
+    set $move_container exec python3 ~/.config/sway/move_container.py
+
     exec python3 ~/.config/sway/mark_last_window.py
 
-    set $ws1 "$( if [ $(swaymsg -t get_workspaces | jq '.[] | select(.focused).num') -eq 1 ] ; then echo 11 ; else echo 1 ; fi )"  
-    set $alt1 "$( if [ $(swaymsg -t get_workspaces | jq '.[] | select(.focused).num') -eq 1 ] ; then echo 1 ; else echo 11 ; fi )"  
-
     # Switch to workspace
-    bindsym $mod+1 exec "swaymsg [con_mark=___last1] focus", workspace number 11, workspace number 1
-    bindsym $mod+2 exec "swaymsg [con_mark=___last2] focus", workspace number 12, workspace number 2
-    bindsym $mod+3 exec "swaymsg [con_mark=___last3] focus", workspace number 13, workspace number 3
-    bindsym $mod+4 exec "swaymsg [con_mark=___last4] focus", workspace number 14, workspace number 4
-    bindsym $mod+5 exec "swaymsg [con_mark=___last5] focus", workspace number 15, workspace number 5
-    bindsym $mod+6 exec "swaymsg [con_mark=___last6] focus", workspace number 16, workspace number 6
-    bindsym $mod+7 exec "swaymsg [con_mark=___last7] focus", workspace number 17, workspace number 7
-    bindsym $mod+8 exec "swaymsg [con_mark=___last8] focus", workspace number 18, workspace number 8
-    bindsym $mod+9 exec "swaymsg [con_mark=___last9] focus", workspace number 19, workspace number 9
+    bindsym $mod+1 $change_workspace 1
+    bindsym $mod+2 $change_workspace 2
+    bindsym $mod+3 $change_workspace 3
+    bindsym $mod+4 $change_workspace 4
+    bindsym $mod+5 $change_workspace 5
+    bindsym $mod+6 $change_workspace 6
+    bindsym $mod+7 $change_workspace 7
+    bindsym $mod+8 $change_workspace 8
+    bindsym $mod+9 $change_workspace 9
     # bindsym $mod+0 workspace 10
     bindsym $mod+0 $x_switch 20, $x_switch 10
-    # Move focused container to workspace
-    set $ws1 "$( if [ $(swaymsg -t get_workspaces | jq '.[] | select(.focused).num') -eq 1 ] ; then echo 11 ; else echo 1 ; fi )"  
-    set $ws2 "$( if [ $(swaymsg -t get_workspaces | jq '.[] | select(.focused).num') -eq 2 ] ; then echo 12 ; else echo 2 ; fi )"  
 
-    bindsym $mod+Shift+1 exec swaymsg move container to workspace number $ws1; exec swaymsg workspace number $ws1
-    bindsym $mod+Shift+2 exec swaymsg move container to workspace number $ws2; exec swaymsg workspace number $ws2
-    bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6; workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10; workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 $move_container 1
+    bindsym $mod+Shift+2 $move_container 2
+    bindsym $mod+Shift+3 $move_container 3
+    bindsym $mod+Shift+4 $move_container 4
+    bindsym $mod+Shift+5 $move_container 5
+    bindsym $mod+Shift+6 $move_container 6
+    bindsym $mod+Shift+7 $move_container 7
+    bindsym $mod+Shift+8 $move_container 8
+    bindsym $mod+Shift+9 $move_container 9
+    bindsym $mod+Shift+0 $move_container 10
+
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
     workspace 1
