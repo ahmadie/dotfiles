@@ -214,7 +214,7 @@ bindcode 233 exec brightnessctl set +5%
 #
 # Moving around:
 #
-    focus_wrapping no
+    focus_wrapping workspace
 
     set $next_workspace exec python3 ~/.config/sway/next_workspace.py
     
@@ -238,11 +238,17 @@ bindcode 233 exec brightnessctl set +5%
 
     set $move_next_workspace exec python3 ~/.config/sway/move_next_workspace.py
 
-    # Move the focused window with the same, but add Shift
+    # Move the focused window with the same, but add Shift (vertical)
     bindsym $mod+Shift+$left $move_next_workspace -1
     bindsym $mod+Shift+$down $move_next_workspace -10
     bindsym $mod+Shift+$up $move_next_workspace 10
     bindsym $mod+Shift+$right $move_next_workspace 1
+
+    # Move the focused window with the same, but add Shift (horizontal)
+    # bindsym $mod+Shift+$left $move_next_workspace -10
+    # bindsym $mod+Shift+$down $move_next_workspace -1
+    # bindsym $mod+Shift+$up $move_next_workspace 1
+    # bindsym $mod+Shift+$right $move_next_workspace 10
 
     set $ws-right "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 1))";
     set $ws-left "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 1))";
