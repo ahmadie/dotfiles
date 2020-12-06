@@ -47,11 +47,15 @@ def next_workspace(num):
         prev_window.deco_rect.x == next_window.deco_rect.x and \
         prev_window.deco_rect.y == next_window.deco_rect.y and \
         abs(num) == 1:
-            workspace = ipc.get_tree().find_focused().workspace().num
-            next = workspace + num
-            if next > 0 and next <= 20:
-                ipc.command(f"move container to workspace number {next}")
-                ipc.command(f"workspace number {next}")
+        prev_workspace = ipc.get_tree().find_focused().workspace().num
+        next_workspace = prev_workspace + num
+        if next_workspace == 10 and prev_workspace == 11:
+            return
+        if next_workspace == 11 and prev_workspace == 10:
+            return
+        if next_workspace > 0 and next_workspace <= 20:
+                ipc.command(f"move container to workspace number {next_workspace}")
+                ipc.command(f"workspace number {next_workspace}")
 
     ipc.main_quit()
     sys.exit(0)

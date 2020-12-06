@@ -35,12 +35,15 @@ def next_workspace(num):
         if window.focused:
             next_window = window
 
-    print('prev', prev_window.id, 'next', next_window.id)
     if prev_window.id == next_window.id and abs(num) == 1:
-        workspace = ipc.get_tree().find_focused().workspace().num
-        next = workspace + num
-        if next > 0 and next <= 20:
-            ipc.command(f"workspace number {next}")
+        prev_workspace = ipc.get_tree().find_focused().workspace().num
+        next_workspace = prev_workspace + num
+        if next_workspace == 10 and prev_workspace == 11:
+            return
+        if next_workspace == 11 and prev_workspace == 10:
+            return
+        if next_workspace > 0 and next_workspace <= 20:
+            ipc.command(f"workspace number {next_workspace}")
 
     ipc.main_quit()
     sys.exit(0)
