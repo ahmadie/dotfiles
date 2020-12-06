@@ -9,14 +9,27 @@ def next_workspace(num):
         if window.focused:
             prev_window = window
 
-    if abs(num) == 10 and num > 0:
-        ipc.command("focus up")
-    elif abs(num) == 10 and num < 0:
-        ipc.command("focus down")
-    elif abs(num) == 1 and num < 0:
-        ipc.command("focus left")
-    elif abs(num) == 1 and num > 0:
-        ipc.command("focus right")
+    setup = "vertical" # or horizontal
+
+    if setup == "vertical":
+        if abs(num) == 10 and num > 0:
+            ipc.command("focus up")
+        elif abs(num) == 10 and num < 0:
+            ipc.command("focus down")
+        elif abs(num) == 1 and num < 0:
+            ipc.command("focus left")
+        elif abs(num) == 1 and num > 0:
+            ipc.command("focus right")
+    else:
+        # for horizontal setup
+        if abs(num) == 10 and num > 0:
+            ipc.command("focus right")
+        elif abs(num) == 10 and num < 0:
+            ipc.command("focus left")
+        elif abs(num) == 1 and num < 0:
+            ipc.command("focus down")
+        elif abs(num) == 1 and num > 0:
+            ipc.command("focus up")
 
     for window in ipc.get_tree():
         if window.focused:

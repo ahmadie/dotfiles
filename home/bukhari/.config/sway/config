@@ -217,7 +217,7 @@ bindcode 233 exec brightnessctl set +5%
     focus_wrapping no
     set $next_workspace exec python3 ~/.config/sway/next_workspace.py
     
-    # Move your focus around
+    # Move your focus around (vertical)
     bindsym $mod+$left $next_workspace -1
     bindsym $mod+$down $next_workspace -10
     bindsym $mod+$up $next_workspace 10
@@ -225,6 +225,15 @@ bindcode 233 exec brightnessctl set +5%
 
     bindcode $mod+43 $next_workspace -1
     bindcode $mod+46 $next_workspace 1
+
+    # Move your focus around (horizontal)
+    # bindsym $mod+$left $next_workspace -10
+    # bindsym $mod+$down $next_workspace -1
+    # bindsym $mod+$up $next_workspace 1
+    # bindsym $mod+$right $next_workspace 10
+    #
+    # bindcode $mod+43 $next_workspace -10
+    # bindcode $mod+46 $next_workspace 10
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
