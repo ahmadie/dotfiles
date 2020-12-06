@@ -11,8 +11,8 @@ def change_workspace(num):
     elif workspace == num + 10:
         ipc.command(f"workspace number {num}")
     else:
-        ipc.command(f"workspace number {num}")
         ipc.command(f"workspace number {num + 10}")
+        ipc.command(f"workspace number {num}")
         ipc.command("[con_mark=___last%d] focus" % num)
 
     ipc.main_quit()

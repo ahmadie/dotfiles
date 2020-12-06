@@ -10,7 +10,7 @@ def change_workspace(num):
         next = num + 10
     else:
         next = num
-        
+
     ipc.command(f"move container to workspace number {next}")
     ipc.command(f"workspace number {next}")
 
