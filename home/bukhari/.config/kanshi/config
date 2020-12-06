@@ -16,5 +16,5 @@
 }
 
 {
-  output eDP-1 mode 2560x1440 position 0,0 scale 2
+  output eDP-1 mode 2560x1440 position 0,0 scale 1
 }
