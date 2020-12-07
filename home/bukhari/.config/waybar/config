@@ -46,8 +46,7 @@
     }
   },
   "tray": {
-    "icon-size": 21,
-    "spacing": 10
+    "spacing": 8
   },
   "clock": {
     "tooltip-format": "{:%y-%m-%d | %H:%M}",

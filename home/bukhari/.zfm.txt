@@ -26,8 +26,8 @@ nvim .p10k.zsh
 nvim .zprofile
 sudo nvim /etc/apt/sources.list
 .zprofile
-nvim .config/waybar/config
-nvim .config/waybar/style.css
+nvim ~/.config/waybar/config
+nvim ~/.config/waybar/style.css
 tail -f /home/bukhari/.config/sway/autoname-workspaces.log
 nvim /home/bukhari/.config/sway/autoname-workspaces.py
 exec python3 /home/bukhari/.config/sway/autoname-workspaces.py --logfile=.config/sway/autoname-workspaces.log
