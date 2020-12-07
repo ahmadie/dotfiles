@@ -66,10 +66,10 @@ exec_always pkill kanshi; exec kanshi
 set $mod Mod4
 set $alt Mod1
 # Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
+set $left 43 #h
+set $down 44 #j
+set $up 45 #j
+set $right 46 #l
 # Your preferred terminal emulator
 # set $term ~/.local/kitty.app/bin/kitty
 # set $term env GLFW_IM_MODULE=ibus /opt/alacritty/alacritty 
@@ -103,7 +103,7 @@ output eDP-1 res 2560x1440 scale 1 pos 0 0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 
-bindsym $mod+Control+l exec bash ~/.config/rofi/powermenu.sh 
+bindcode $mod+Control+l exec bash ~/.config/rofi/powermenu.sh 
 
 
 ### Idle configuration
@@ -131,7 +131,7 @@ exec_always pkill swayidle; exec swayidle -w \
 # ### Input configuration
 input type:keyboard {
   xkb_layout us,ara
-  xkb_options caps:swapescape,grp:alt_shift_toggle
+  xkb_options caps:swapescape,grp:ctrl_alt_toggle
   xkb_numlock enabled
 }
 
@@ -214,41 +214,35 @@ bindcode 233 exec brightnessctl set +5%
 #
 # Moving around:
 #
-    focus_wrapping workspace
+    focus_wrapping no
 
     set $next_workspace exec python3 ~/.config/sway/next_workspace.py
     
     # Move your focus around (vertical)
-    bindsym $mod+$left $next_workspace -1
-    bindsym $mod+$down $next_workspace -10
-    bindsym $mod+$up $next_workspace 10
-    bindsym $mod+$right $next_workspace 1
-
     bindcode $mod+43 $next_workspace -1
+    bindcode $mod+44 $next_workspace -10
+    bindcode $mod+45 $next_workspace 10
     bindcode $mod+46 $next_workspace 1
 
     # Move your focus around (horizontal)
-    # bindsym $mod+$left $next_workspace -10
-    # bindsym $mod+$down $next_workspace -1
-    # bindsym $mod+$up $next_workspace 1
-    # bindsym $mod+$right $next_workspace 10
-    #
     # bindcode $mod+43 $next_workspace -10
+    # bindcode $mod+44 $next_workspace -1
+    # bindcode $mod+45 $next_workspace 1
     # bindcode $mod+46 $next_workspace 10
 
     set $move_next_workspace exec python3 ~/.config/sway/move_next_workspace.py
 
     # Move the focused window with the same, but add Shift (vertical)
-    bindsym $mod+Shift+$left $move_next_workspace -1
-    bindsym $mod+Shift+$down $move_next_workspace -10
-    bindsym $mod+Shift+$up $move_next_workspace 10
-    bindsym $mod+Shift+$right $move_next_workspace 1
+    bindcode $mod+Shift+43 $move_next_workspace -1
+    bindcode $mod+Shift+44 $move_next_workspace -10
+    bindcode $mod+Shift+45 $move_next_workspace 10
+    bindcode $mod+Shift+46 $move_next_workspace 1
 
     # Move the focused window with the same, but add Shift (horizontal)
-    # bindsym $mod+Shift+$left $move_next_workspace -10
-    # bindsym $mod+Shift+$down $move_next_workspace -1
-    # bindsym $mod+Shift+$up $move_next_workspace 1
-    # bindsym $mod+Shift+$right $move_next_workspace 10
+    # bindsym $mod+Shift+43 $move_next_workspace -10
+    # bindsym $mod+Shift+44 $move_next_workspace -1
+    # bindsym $mod+Shift+45 $move_next_workspace 1
+    # bindsym $mod+Shift+46 $move_next_workspace 10
 
     set $ws-right "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 1))";
     set $ws-left "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 1))";
@@ -256,16 +250,16 @@ bindcode 233 exec brightnessctl set +5%
     set $ws-down "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 10))";
     set $next_workspace "$(( python3 ~/.config/sway/next_workspace.py ))"
 
-    bindsym $alt+$mod+$down exec swaymsg move container to workspace number $ws-down, exec swaymsg workspace number $ws-down
-    bindsym $alt+$mod+$up exec swaymsg move container to workspace number $ws-up, exec swaymsg workspace number $ws-up
-    bindsym $alt+$mod+$left exec swaymsg  move container to workspace number $ws-left, exec swaymsg workspace number $ws-left
-    bindsym $alt+$mod+$right exec swaymsg move container to workspace number $ws-right, exec swaymsg workspace number $ws-right
+    bindcode $alt+$mod+44 exec swaymsg move container to workspace number $ws-down, exec swaymsg workspace number $ws-down
+    bindcode $alt+$mod+45 exec swaymsg move container to workspace number $ws-up, exec swaymsg workspace number $ws-up
+    bindcode $alt+$mod+43 exec swaymsg  move container to workspace number $ws-left, exec swaymsg workspace number $ws-left
+    bindcode $alt+$mod+46 exec swaymsg move container to workspace number $ws-right, exec swaymsg workspace number $ws-right
 
     # Ditto, with arrow keys
-    bindsym $alt+$left exec swaymsg workspace number $ws-left
-    bindsym $alt+$down exec swaymsg workspace number $ws-down
-    bindsym $alt+$up exec swaymsg workspace number $ws-up
-    bindsym $alt+$right exec swaymsg workspace number $ws-right
+    bindcode $alt+43 exec swaymsg workspace number $ws-left
+    bindcode $alt+44 exec swaymsg workspace number $ws-down
+    bindcode $alt+45 exec swaymsg workspace number $ws-up
+    bindcode $alt+46 exec swaymsg workspace number $ws-right
 #
 # Workspaces:
 #
@@ -420,10 +414,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 20px
-    bindsym $down resize grow height 20px
-    bindsym $up resize shrink height 20px
-    bindsym $right resize grow width 20px
+    bindcode 43 resize shrink width 20px
+    bindcode 44 resize grow height 20px
+    bindcode 45 resize shrink height 20px
+    bindcode 46 resize grow width 20px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
