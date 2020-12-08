@@ -134,7 +134,7 @@ _fzf_compgen_dir() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_COMPLETION_TRIGGER=''
-bindkey '^N' fzf-completion
+bindkey '^[[Z' fzf-completion
 bindkey '^I' $fzf_default_completion
 
 

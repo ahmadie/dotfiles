@@ -33,3 +33,4 @@ nvim /home/bukhari/.config/sway/autoname-workspaces.py
 exec python3 /home/bukhari/.config/sway/autoname-workspaces.py --logfile=.config/sway/autoname-workspaces.log
 swaymsg -t get_tree
 nvim /home/bukhari/.config/rofi/config.rasi
+python3 /home/bukhari/.scripts/dropbox.py start
