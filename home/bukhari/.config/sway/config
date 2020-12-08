@@ -131,7 +131,7 @@ exec_always pkill swayidle; exec swayidle -w \
 # ### Input configuration
 input type:keyboard {
   xkb_layout us,ara
-  xkb_options caps:swapescape,grp:ctrl_alt_toggle
+  xkb_options caps:swapescape,grp:rctrl_toggle
   xkb_numlock enabled
 }
 
@@ -219,16 +219,16 @@ bindcode 233 exec brightnessctl set +5%
     set $next_workspace exec python3 ~/.config/sway/next_workspace.py
     
     # Move your focus around (vertical)
-    bindcode $mod+43 $next_workspace -1
-    bindcode $mod+44 $next_workspace -10
-    bindcode $mod+45 $next_workspace 10
-    bindcode $mod+46 $next_workspace 1
+    bindcode $mod+43 $next_workspace -1 #left
+    bindcode $mod+44 $next_workspace -10 #down
+    bindcode $mod+45 $next_workspace 10 #up
+    bindcode $mod+46 $next_workspace 1 #right
 
     # Move your focus around (horizontal)
-    # bindcode $mod+43 $next_workspace -10
+    # bindcode $mod+43 focus left
     # bindcode $mod+44 $next_workspace -1
     # bindcode $mod+45 $next_workspace 1
-    # bindcode $mod+46 $next_workspace 10
+    # bindcode $mod+46 focus right
 
     set $move_next_workspace exec python3 ~/.config/sway/move_next_workspace.py
 
@@ -239,10 +239,11 @@ bindcode 233 exec brightnessctl set +5%
     bindcode $mod+Shift+46 $move_next_workspace 1
 
     # Move the focused window with the same, but add Shift (horizontal)
-    # bindsym $mod+Shift+43 $move_next_workspace -10
-    # bindsym $mod+Shift+44 $move_next_workspace -1
-    # bindsym $mod+Shift+45 $move_next_workspace 1
-    # bindsym $mod+Shift+46 $move_next_workspace 10
+    # bindcode $mod+Shift+43 move left
+    # bindcode $mod+Shift+44 $move_next_workspace -1
+    # bindcode $mod+Shift+45 $move_next_workspace 1
+    # bindcode $mod+Shift+46 move right
+
 
     set $ws-right "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 1))";
     set $ws-left "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 1))";
