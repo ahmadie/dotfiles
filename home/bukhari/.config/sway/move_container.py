@@ -3,7 +3,7 @@ from functools import partial
 import argparse
 import sys
 
-def change_workspace(num):
+def move_container(num):
     workspace = ipc.get_tree().find_focused().workspace().num
 
     if workspace == num:
@@ -11,6 +11,7 @@ def change_workspace(num):
     else:
         next = num
 
+    ipc.command("unmark ___last" + str(workspace % 10))
     ipc.command(f"move container to workspace number {next}")
     ipc.command(f"workspace number {next}")
 
@@ -26,7 +27,7 @@ if __name__ == "__main__":
                         help='Workspace number to which to switch')
     args = parser.parse_args()
 
-    change_workspace(args.workspace)
+    move_container(args.workspace)
 
     ipc.main()
 
