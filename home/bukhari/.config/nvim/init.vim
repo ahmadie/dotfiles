@@ -847,6 +847,7 @@ let g:XkbSwitchIMappingsTr = {
           \ }
 
 function! RestoreKeyboardLayout()
+  call system("fcitx-remote -s fcitx-keyboard-us")
   call system("ibus engine xkb:us::eng")
   call system("xkb-switch -s 'us'")
 endfunction

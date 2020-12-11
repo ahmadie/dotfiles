@@ -28,4 +28,7 @@ fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+fcitx -r
+# ibus-daemon
+
 exec pkill kanshi; exec kanshi

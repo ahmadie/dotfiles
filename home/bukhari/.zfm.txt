@@ -35,3 +35,4 @@ swaymsg -t get_tree
 nvim /home/bukhari/.config/rofi/config.rasi
 python3 /home/bukhari/.scripts/dropbox.py start
 unzip -P password file.zip
+nvim /home/bukhari/.config/alacritty/alacritty.yml

@@ -74,7 +74,8 @@ set $right 46 #l
 # set $term ~/.local/kitty.app/bin/kitty
 # set $term env GLFW_IM_MODULE=ibus /opt/alacritty/alacritty 
 # set $term kitty
-set $term ~/Downloads/kitty-0.19.1-x86_64/bin/kitty
+# set $term ~/Downloads/kitty-0.19.1-x86_64/bin/kitty
+set $term env WINIT_UNIX_BACKEND=x11 alacritty
 #
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -140,8 +141,8 @@ input type:keyboard {
 # japanese input
 # exec_always bash -c "ibus exit;ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3"
 # exec ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
-exec_always bash -c "ibus exit;ibus-daemon"
-
+# exec_always bash -c "ibus exit;ibus-daemon"
+exec fcitx -r
 
 #set $MOUSE = 1133:49224:Logitech_G9_Laser_Mouse
 
@@ -194,7 +195,7 @@ bindcode 233 exec brightnessctl set +5%
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+x kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -291,8 +292,8 @@ bindcode 233 exec brightnessctl set +5%
     for_window [app_id="yad"] floating enable 
 
     # this need to be the same as in .tridactylrc
-    for_window [class="floatingAppFocus"] floating enable, resize set 50ppt 40ppt
-
+    for_window [class="floatingNvimFocus"] floating enable, resize set 80ppt 80ppt
+    
     # move firefox window to right side
     for_window [title=Picture-in-Picture] floating disable
     for_window [title=Picture-in-Picture] resize set 35ppt
@@ -415,10 +416,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindcode 43 resize shrink width 20px
-    bindcode 44 resize grow height 20px
-    bindcode 45 resize shrink height 20px
-    bindcode 46 resize grow width 20px
+    bindcode 43 resize shrink width 80px
+    bindcode 44 resize grow height 80px
+    bindcode 45 resize shrink height 80px
+    bindcode 46 resize grow width 80px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px

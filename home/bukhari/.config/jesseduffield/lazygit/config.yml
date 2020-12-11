@@ -8,7 +8,6 @@ gui:
         - reverse
       activeBorderColor:
         - red
-        - bold
       inactiveBorderColor:
         - black
 git:
