@@ -878,11 +878,11 @@ augroup END
 function s:PatchColorScheme()
   hi! link DiffChange NONE
   hi! clear DiffChange
-  hi! DiffText term=NONE guifg=#FFEE99 guibg=#7B7BFF gui=NONE
-  hi! DiffChange term=NONE guibg=#212131 gui=NONE
-  hi! DiffAdd term=NONE guibg=#434F5B gui=NONE
-  hi! DiffDelete term=NONE guifg=#212131 guibg=#434F5B gui=NONE
-  hi! CocHighlightText guibg=#253651
+  hi! DiffText term=NONE guifg=#CBCCC6 guibg=#d54e53 gui=NONE
+  hi! DiffChange term=NONE guibg=#373737 gui=NONE
+  hi! DiffAdd term=NONE guifg=#CBCCC6 guibg=#373737 gui=NONE
+  hi! DiffDelete term=NONE guifg=#212131 guibg=#373737 gui=NONE
+  hi! CocHighlightText guibg=#373737 guifg=#d54e53
 endfunction
 
 " colorscheme onedark

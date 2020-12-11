@@ -33,6 +33,7 @@
 	algorithm = patience
   tool = nvimdiff
 [delta]
+  # side-by-side = true
   syntax-theme = ayu-dark
   color-only = true
   line-numbers = true
@@ -41,6 +42,10 @@
   # keep-plus-minus-markers = false
   # minus-style = syntax "#003A11" 
   # plus-style = syntax "#005617"
+  # minus-style = syntax red
+  # plus-style = syntax green
+  plus-emph-style = normal green
+  minus-emph-style = normal red
 [merge]
   tool = vim_mergetool
   conflictstyle = diff3
