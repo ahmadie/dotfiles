@@ -795,6 +795,9 @@ autocmd FileType * set formatoptions-=o
 
 "center when insert mode
 autocmd InsertEnter * norm zz
+
+"to be used with alacritty
+autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 "}}}
 
 " airline{{{

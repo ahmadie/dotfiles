@@ -292,7 +292,7 @@ bindcode 233 exec brightnessctl set +5%
     for_window [app_id="yad"] floating enable 
 
     # this need to be the same as in .tridactylrc
-    for_window [class="floatingNvimFocus"] floating enable, resize set 80ppt 80ppt
+    for_window [instance="floatingNvimFocus"] floating enable, resize set 80ppt 80ppt
     
     # move firefox window to right side
     for_window [title=Picture-in-Picture] floating disable
