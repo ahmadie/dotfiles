@@ -193,7 +193,7 @@ colors:
   #
   # Bright colors
   bright:
-    black: '#373737'
+    black: '#303030'
     red: '#d54e53'
     green: '#A6CC70'
     yellow: '#FFCC66'
@@ -203,7 +203,7 @@ colors:
     white: '#FFFFFF'
 
   normal:
-    black: '#373737'
+    black: '#303030'
     red: '#d54e53'
     green: '#A6CC70'
     yellow: '#FFCC66'

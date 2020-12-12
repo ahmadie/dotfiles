@@ -15,19 +15,10 @@
 [color]
 	ui = true
 [color "diff"]
-  meta = "yellow bold"
-  commit = "green bold"
-  frag = "magenta bold"
-  old = "red bold"
-  new = "green bold"
-  whitespace = "red reverse"
-[color "diff-highlight"]
-  oldNormal = "red bold"
-  oldHighlight = "red bold 52"
-  newNormal = "green bold"
-  newHighlight = "green bold 22"
-  editor = nvim 
-  pager = delta
+  oldMoved = bold black
+  oldMovedAlternative = bold black
+  newMoved = bold red
+  newMovedAlternative = bold red
 [diff]
   colorMoved = default
 	algorithm = patience
@@ -42,9 +33,9 @@
   # keep-plus-minus-markers = false
   # minus-style = syntax "#003A11" 
   # plus-style = syntax "#005617"
-  # minus-style = syntax red
-  # plus-style = syntax green
-  plus-emph-style = normal green
+  minus-style = syntax black
+  # plus-style = black green
+  plus-emph-style = normal red
   minus-emph-style = normal red
 [merge]
   tool = vim_mergetool
