@@ -97,7 +97,7 @@ bindkey -v
 
 # set -o vi
 export VISUAL="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
-export EDITOR="alacritty"
+export EDITOR="nvim"
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
