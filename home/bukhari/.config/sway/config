@@ -5,7 +5,7 @@ focus output eDP-1
 set $cl_high #ed812d
 set $cl_fore2 #FFDCCA
 set $cl_indi #d9d8d8
-set $cl_back #3B3B3B
+set $cl_back #202020
 set $cl_fore #E0D5D5
 set $cl_urge #ee2e24
 
@@ -84,7 +84,7 @@ set $term env WINIT_UNIX_BACKEND=x11 alacritty
 # set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 # set $menu 'rofi -modi run, drun, window -show drun'
 # set $menu wofi -i -I --show drun
-set $menu "rofi -font 'InputMonoCondensed 16' -combi-modi window,drun -m $(swaymsg -t get_outputs | jq 'map(select(.active) | .focused) | index(true)') -show combi -modi combi -show-icons" 
+set $menu "rofi -font 'M+ 1mn 16' -combi-modi window,drun -m $(swaymsg -t get_outputs | jq 'map(select(.active) | .focused) | index(true)') -show combi -modi combi -show-icons" 
 
 ### Output configuration
 #
