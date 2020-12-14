@@ -22,10 +22,11 @@ WINDOW_ICONS = {
     "google-chrome-unstable": "",
     "telegramdesktop": "",
     "strawberry": "",
+    "alacritty": "גּ",
     "microsoft teams - preview": ""
 }
 
-DEFAULT_ICON = ""
+DEFAULT_ICON = ""
 
 
 def icon_for_window(window):

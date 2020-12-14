@@ -112,11 +112,15 @@ bindcode $mod+Control+l exec bash ~/.config/rofi/powermenu.sh
 # set $swaylock swaylock -i /usr/local/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png -s fill --ring-color 859900 --inside-wrong-color d33682
 set $swaylock swaylock -i $background -s fill --ring-color 008599 --inside-wrong-color 991400 
 
-exec_always pkill swayidle; exec swayidle -w \
-          timeout 99999 '$swaylock -f' \
-          timeout 99999 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-          before-sleep '$swaylock -f' 
+# enable swaylock
+# exec_always pkill swayidle; exec swayidle -w \
+#           timeout 99999 '$swaylock -f' \
+#           timeout 99999 'swaymsg "output * dpms off"' \
+#               resume 'swaymsg "output * dpms on"' \
+#           before-sleep '$swaylock -f' 
+
+
+#
 # Example configuration:
 #
 # exec swayidle -w \
@@ -292,7 +296,7 @@ bindcode 233 exec brightnessctl set +5%
     for_window [app_id="yad"] floating enable 
 
     # this need to be the same as in .tridactylrc
-    for_window [instance="floatingNvimFocus"] floating enable, resize set 80ppt 80ppt
+    for_window [instance="floatingNvimFocus"] floating enable, resize set 100ppt 100ppt
     
     # move firefox window to right side
     for_window [title=Picture-in-Picture] floating disable

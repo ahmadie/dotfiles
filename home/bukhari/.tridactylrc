@@ -3,6 +3,9 @@ set editorcmd env WINIT_UNIX_BACKEND=x11 alacritty --class floatingNvimFocus -e 
 
 bind --mode=normal gi composite focusinput -l | editor
 
+bind L tabnext
+bind H tabprev
+
 unbind <C-f>
 
 

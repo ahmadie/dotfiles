@@ -1,4 +1,3 @@
-
 nvim /home/bukhari/.vim/plugged/vim-airline-themes/autoload/airline/themes/base16_snazzy.vim
 nvim /home/bukhari/.vim/plugged/workspace.vim/plugin/workspace.vim
 nvim /home/bukhari/.config/kitty/kitty.conf
@@ -21,7 +20,6 @@ nvim /home/bukhari/.bashrc
 grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- #pick color
 nvim /home/bukhari/.config/kanshi/config
 nvim /home/bukhari/.fzf.zsh
-nvim .p10k.zsh
 /home/bukhari/TW.Electron
 nvim .zprofile
 sudo nvim /etc/apt/sources.list
@@ -37,3 +35,5 @@ python3 /home/bukhari/.scripts/dropbox.py start
 unzip -P password file.zip
 nvim /home/bukhari/.config/alacritty/alacritty.yml
 nvim /home/bukhari/.tridactylrc
+nvim /home/bukhari/.p10k.zsh
+./font-patcher font-name --complete --careful
