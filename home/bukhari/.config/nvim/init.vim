@@ -86,7 +86,7 @@ let mapleader =" "
 
 " plug#begin{{{
 call plug#begin('~/.vim/plugged')
-
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'dosimple/workspace.vim'
 Plug 'takac/vim-hardtime'
 " Plug 'altercation/vim-colors-solarized'
@@ -780,6 +780,9 @@ inoremap LL <Esc>la
 
 
 :iabbrev waht what
+:iabbrev lenght length
+
+
 augroup filetype_html
     autocmd!
     autocmd FileType typescript :iabbrev <buffer> arr ()=>{}<left>
