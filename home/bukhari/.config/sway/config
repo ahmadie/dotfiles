@@ -110,14 +110,16 @@ bindcode $mod+Control+l exec bash ~/.config/rofi/powermenu.sh
 ### Idle configuration
 #
 # set $swaylock swaylock -i /usr/local/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png -s fill --ring-color 859900 --inside-wrong-color d33682
-set $swaylock swaylock -i $background -s fill --ring-color 008599 --inside-wrong-color 991400 
+# set $swaylock swaylock -i $background -s fill --ring-color 008599 --inside-wrong-color 991400 
+set $swaylock swaylock --screenshot --effect-vignette 0.3:1 --effect-blur 2x9
+ 
 
 # enable swaylock
-# exec_always pkill swayidle; exec swayidle -w \
-#           timeout 99999 '$swaylock -f' \
-#           timeout 99999 'swaymsg "output * dpms off"' \
-#               resume 'swaymsg "output * dpms on"' \
-#           before-sleep '$swaylock -f' 
+exec_always pkill swayidle; exec swayidle -w \
+          timeout 99999 '$swaylock -f' \
+          timeout 99999 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+          before-sleep '$swaylock -f' 
 
 
 #
@@ -443,7 +445,7 @@ bindsym $mod+i resize set 65ppt
 
 set $mode_system L | lock\t\tE | logout\t\tS | suspend\t\tR | reboot\t\t SHIFT-S | shutdown \t\tSHIFT-R | UEFI
 mode "$mode_system" {
-    bindsym l exec swaylock -i $background fill --ring-color 859900 --inside-wrong-color d33682, mode "default"
+    bindsym l exec $swaylock
     bindsym e exit
     bindsym s exec systemctl suspend, mode "default"
     bindsym r exec systemctl reboot, mode "default"
