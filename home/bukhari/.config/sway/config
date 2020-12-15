@@ -66,10 +66,10 @@ exec_always pkill kanshi; exec kanshi
 set $mod Mod4
 set $alt Mod1
 # Home row direction keys, like vim
-set $left 43 #h
-set $down 44 #j
-set $up 45 #j
-set $right 46 #l
+set $left h
+set $down j
+set $up j
+set $right l
 # Your preferred terminal emulator
 # set $term ~/.local/kitty.app/bin/kitty
 # set $term env GLFW_IM_MODULE=ibus /opt/alacritty/alacritty 
@@ -104,7 +104,7 @@ output eDP-1 res 2560x1440 scale 1 pos 0 0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 
-bindcode $mod+Control+l exec bash ~/.config/rofi/powermenu.sh 
+# bindcode $mod+Control+l exec bash ~/.config/rofi/powermenu.sh 
 
 
 ### Idle configuration
@@ -201,10 +201,10 @@ bindcode 233 exec brightnessctl set +5%
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+x kill
+    bindsym --to-code $mod+x kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym --to-code $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -214,7 +214,7 @@ bindcode 233 exec brightnessctl set +5%
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym --to-code $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
     # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
@@ -227,29 +227,29 @@ bindcode 233 exec brightnessctl set +5%
      
     # Move your focus around (vertical)
     bindsym --to-code $mod+h $next_workspace -1 #left
-    bindcode $mod+44 $next_workspace -10 #down
-    bindcode $mod+45 $next_workspace 10 #up
-    bindcode $mod+46 $next_workspace 1 #right
+    bindsym --to-code $mod+j $next_workspace -10 #down
+    bindsym --to-code $mod+k $next_workspace 10 #up
+    bindsym --to-code $mod+l $next_workspace 1 #right
 
     # Move your focus around (horizontal)
-    # bindcode $mod+43 focus left
-    # bindcode $mod+44 $next_workspace -1
-    # bindcode $mod+45 $next_workspace 1
-    # bindcode $mod+46 focus right
+    # bindsym --to-code $mod+h focus left
+    # bindsym --to-code $mod+k $next_workspace -1
+    # bindsym --to-code $mod+j $next_workspace 1
+    # bindsym --to-code $mod+l focus right
 
     set $move_next_workspace exec python3 ~/.config/sway/move_next_workspace.py
 
     # Move the focused window with the same, but add Shift (vertical)
-    bindcode $mod+Shift+43 $move_next_workspace -1
-    bindcode $mod+Shift+44 $move_next_workspace -10
-    bindcode $mod+Shift+45 $move_next_workspace 10
-    bindcode $mod+Shift+46 $move_next_workspace 1
+    bindsym --to-code $mod+Shift+h $move_next_workspace -1
+    bindsym --to-code $mod+Shift+k $move_next_workspace -10
+    bindsym --to-code $mod+Shift+j $move_next_workspace 10
+    bindsym --to-code $mod+Shift+l $move_next_workspace 1
 
     # Move the focused window with the same, but add Shift (horizontal)
-    # bindcode $mod+Shift+43 move left
-    # bindcode $mod+Shift+44 $move_next_workspace -1
-    # bindcode $mod+Shift+45 $move_next_workspace 1
-    # bindcode $mod+Shift+46 move right
+    # bindsym --to-code $mod+Shift+h move left
+    # bindsym --to-code $mod+Shift+k $move_next_workspace -1
+    # bindsym --to-code $mod+Shift+j $move_next_workspace 1
+    # bindsym --to-code $mod+Shift+l move right
 
 
     set $ws-right "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 1))";
@@ -257,16 +257,16 @@ bindcode 233 exec brightnessctl set +5%
     set $ws-up "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 10))";
     set $ws-down "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 10))";
 
-    bindcode $alt+$mod+44 exec swaymsg move container to workspace number $ws-down, exec swaymsg workspace number $ws-down
-    bindcode $alt+$mod+45 exec swaymsg move container to workspace number $ws-up, exec swaymsg workspace number $ws-up
-    bindcode $alt+$mod+43 exec swaymsg  move container to workspace number $ws-left, exec swaymsg workspace number $ws-left
-    bindcode $alt+$mod+46 exec swaymsg move container to workspace number $ws-right, exec swaymsg workspace number $ws-right
+    bindsym --to-code $alt+$mod+j exec swaymsg move container to workspace number $ws-down, exec swaymsg workspace number $ws-down
+    bindsym --to-code $alt+$mod+k exec swaymsg move container to workspace number $ws-up, exec swaymsg workspace number $ws-up
+    bindsym --to-code $alt+$mod+h exec swaymsg  move container to workspace number $ws-left, exec swaymsg workspace number $ws-left
+    bindsym --to-code $alt+$mod+l exec swaymsg move container to workspace number $ws-right, exec swaymsg workspace number $ws-right
 
     # Ditto, with arrow keys
-    bindcode $alt+43 exec swaymsg workspace number $ws-left
-    bindcode $alt+44 exec swaymsg workspace number $ws-down
-    bindcode $alt+45 exec swaymsg workspace number $ws-up
-    bindcode $alt+46 exec swaymsg workspace number $ws-right
+    bindsym --to-code $alt+h exec swaymsg workspace number $ws-left
+    bindsym --to-code $alt+j exec swaymsg workspace number $ws-down
+    bindsym --to-code $alt+k exec swaymsg workspace number $ws-up
+    bindsym --to-code $alt+l exec swaymsg workspace number $ws-right
 #
 # Workspaces:
 #
@@ -375,24 +375,24 @@ bindcode 233 exec brightnessctl set +5%
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+v splitt
+    bindsym --to-code $mod+v splitt
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym --to-code $mod+s layout stacking
+    bindsym --to-code $mod+w layout tabbed
+    bindsym --to-code $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym --to-code $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+u floating toggle
+    bindsym --to-code $mod+Shift+u floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+u focus mode_toggle
+    bindsym --to-code $mod+u focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    bindsym --to-code $mod+a focus parent
 #
 # Scratchpad:
 #
@@ -400,11 +400,11 @@ bindcode 233 exec brightnessctl set +5%
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym --to-code $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym --to-code $mod+minus scratchpad show
 
     # use F1, F2, ... to hide / show window same window
     bindsym $mod+Shift+F1 mark --add "___temp1", move scratchpad
@@ -421,10 +421,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindcode 43 resize shrink width 80px
-    bindcode 44 resize grow height 80px
-    bindcode 45 resize shrink height 80px
-    bindcode 46 resize grow width 80px
+    bindsym --to-code h resize shrink width 80px
+    bindsym --to-code l resize grow height 80px
+    bindsym --to-code k resize shrink height 80px
+    bindsym --to-code j resize grow width 80px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
@@ -436,38 +436,38 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym --to-code $mod+r mode "resize"
 
 # resize to 1/3 of screen
-bindsym $mod+i resize set 65ppt
+bindsym --to-code $mod+i resize set 65ppt
 
 
 set $mode_system L | lock\t\tE | logout\t\tS | suspend\t\tR | reboot\t\t SHIFT-S | shutdown \t\tSHIFT-R | UEFI
 mode "$mode_system" {
-    bindsym l exec $swaylock, mode "default"
-    bindsym e exit, mode "default"
-    bindsym s exec systemctl suspend, mode "default"
-    bindsym r exec systemctl reboot, mode "default"
-    bindsym Shift+s exec systemctl poweroff -i, mode "default"
-    bindsym Shift+r exec systemctl reboot --firmware-setup, mode "default"
+    bindsym --to-code l exec $swaylock, mode "default"
+    bindsym --to-code e exit, mode "default"
+    bindsym --to-code s exec systemctl suspend, mode "default"
+    bindsym --to-code r exec systemctl reboot, mode "default"
+    bindsym --to-code Shift+s exec systemctl poweroff -i, mode "default"
+    bindsym --to-code Shift+r exec systemctl reboot --firmware-setup, mode "default"
 
     # return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+e mode "$mode_system"
+bindsym --to-code $mod+Shift+e mode "$mode_system"
 
 set $mode_screenshot O | focused output\t\tW | focused window\t\tS | selected area
 mode "$mode_screenshot" {
-    bindsym s exec ~/.config/sway/grimshot save area, mode "default"
-    bindsym w exec ~/.config/sway/grimshot save window, mode "default"
-    bindsym o exec ~/.config/sway/grimshot save output, mode "default"
+    bindsym --to-code s exec ~/.config/sway/grimshot save area, mode "default"
+    bindsym --to-code w exec ~/.config/sway/grimshot save window, mode "default"
+    bindsym --to-code o exec ~/.config/sway/grimshot save output, mode "default"
 
     # return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+p mode "$mode_screenshot"
+bindsym --to-code $mod+p mode "$mode_screenshot"
 #
 # Status Bar:
 #
