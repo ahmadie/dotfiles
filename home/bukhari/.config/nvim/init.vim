@@ -741,6 +741,7 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 " nnoremap ` ;
+inoremap ;w<CR> <ESC>:w<CR> 
 
 nnoremap <leader>m 'M
 nnoremap <leader><leader>m mM 
