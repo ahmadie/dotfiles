@@ -1,7 +1,11 @@
 reporting: "on"
 startuppopupversion: 1
 gui:
-   theme:
+    scrollHeight: 2 # how many lines you scroll by
+    scrollPastBottom: true # enable scrolling past the bottom
+    sidePanelWidth: 0.222
+    mainPanelSplitMode: 'horizontal'
+    theme:
       selectedLineBgColor:
         - reverse
       selectedRangeBgColor:
