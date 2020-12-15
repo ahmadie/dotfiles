@@ -37,3 +37,4 @@ nvim /home/bukhari/.config/alacritty/alacritty.yml
 nvim /home/bukhari/.tridactylrc
 nvim /home/bukhari/.p10k.zsh
 ./font-patcher font-name --complete --careful
+tar xvzf file.tar.gz -C /path/to/dir
