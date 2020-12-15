@@ -1,35 +1,55 @@
 ignore-empty-password
-font=Sans
-indicator-radius=60
-indicator-thickness=10
+font=M+ 1mn
+
+clock
+timestr=%R
+datestr=%a, %Y-%m-%d 
+
+screenshots
+
+effect-blur=30x3
+effect-vignette=0.8:0.2
+
+indicator
+indicator-radius=120
+indicator-thickness=8
 indicator-caps-lock
 
-inside-color=009ddc00
-inside-clear-color=ffd20400
-inside-caps-lock-color=009ddc00
-inside-ver-color=d9d8d800
-inside-wrong-color=ee2e2400
+disable-caps-lock-text
 
-ring-color=231f20D9
-ring-clear-color=231f20D9
-ring-caps-lock-color=231f20D9
-ring-ver-color=231f20D9
-ring-wrong-color=231f20D9
 
-line-color=009ddc00
-line-clear-color=ffd204FF
-line-caps-lock-color=009ddcFF
-line-ver-color=d9d8d8FF
-line-wrong-color=ee2e24FF
 
-text-color=009ddc00
-text-clear-color=ffd20400
-text-caps-lock-color=009ddc00
-text-ver-color=d9d8d800
-text-wrong-color=ee2e2400
 
-key-hl-color=009ddcFF
-bs-hl-color=ee2e24FF
-caps-lock-key-hl-color=ffd204FF
-caps-lock-bs-hl-color=ee2e24FF
-separator-color=231f2000
+inside-color=#00000014
+inside-clear-color=#00000032
+inside-caps-lock-color=#00000032
+inside-ver-color=#00000032
+inside-wrong-color=#00000032
+
+ring-color=#A37ACCE6
+ring-clear-color=#FFFFFFE6
+ring-caps-lock-color=#A37ACCE6
+ring-ver-color=#d9d8d8E6
+ring-wrong-color=#F07178E6
+
+line-color=00000000
+line-clear-color=00000000
+line-caps-lock-color=#000000FF
+line-ver-color=00000000
+line-wrong-color=00000000
+
+text-clear-color=#FFFFFF00
+text-caps-lock-color=#DEDEDEFF
+text-ver-color=#d9d8d8E6
+text-wrong-color=#FFFFFF00
+text-color=FFFFFFFF
+
+bs-hl-color=#F07178E6
+caps-lock-key-hl-color=#BBE67EE6
+key-hl-color=#BBE67EE6
+caps-lock-bs-hl-color=#F07178E6
+
+separator-color=#00000000
+
+layout-bg-color=#00000000
+layout-text-color=#FFFFFF1E

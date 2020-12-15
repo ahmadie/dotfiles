@@ -115,11 +115,11 @@ set $swaylock swaylock --screenshot --effect-vignette 0.3:1 --effect-blur 2x9
  
 
 # enable swaylock
-exec_always pkill swayidle; exec swayidle -w \
-          timeout 99999 '$swaylock -f' \
-          timeout 99999 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-          before-sleep '$swaylock -f' 
+# exec_always pkill swayidle; exec swayidle -w \
+#           timeout 99999 '$swaylock -f' \
+#           timeout 99999 'swaymsg "output * dpms off"' \
+#               resume 'swaymsg "output * dpms on"' \
+#           before-sleep '$swaylock -f' 
 
 
 #
@@ -224,9 +224,9 @@ bindcode 233 exec brightnessctl set +5%
     focus_wrapping no
 
     set $next_workspace exec python3 ~/.config/sway/next_workspace.py
-    
+     
     # Move your focus around (vertical)
-    bindcode $mod+43 $next_workspace -1 #left
+    bindsym --to-code $mod+h $next_workspace -1 #left
     bindcode $mod+44 $next_workspace -10 #down
     bindcode $mod+45 $next_workspace 10 #up
     bindcode $mod+46 $next_workspace 1 #right
@@ -256,7 +256,6 @@ bindcode 233 exec brightnessctl set +5%
     set $ws-left "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 1))";
     set $ws-up "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 10))";
     set $ws-down "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 10))";
-    set $next_workspace "$(( python3 ~/.config/sway/next_workspace.py ))"
 
     bindcode $alt+$mod+44 exec swaymsg move container to workspace number $ws-down, exec swaymsg workspace number $ws-down
     bindcode $alt+$mod+45 exec swaymsg move container to workspace number $ws-up, exec swaymsg workspace number $ws-up
@@ -445,8 +444,8 @@ bindsym $mod+i resize set 65ppt
 
 set $mode_system L | lock\t\tE | logout\t\tS | suspend\t\tR | reboot\t\t SHIFT-S | shutdown \t\tSHIFT-R | UEFI
 mode "$mode_system" {
-    bindsym l exec $swaylock
-    bindsym e exit
+    bindsym l exec $swaylock, mode "default"
+    bindsym e exit, mode "default"
     bindsym s exec systemctl suspend, mode "default"
     bindsym r exec systemctl reboot, mode "default"
     bindsym Shift+s exec systemctl poweroff -i, mode "default"
