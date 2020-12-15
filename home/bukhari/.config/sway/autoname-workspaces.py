@@ -22,7 +22,7 @@ WINDOW_ICONS = {
     "google-chrome-unstable": "",
     "telegramdesktop": "",
     "strawberry": "",
-    "alacritty": "גּ",
+    "alacritty": "",
     "microsoft teams - preview": ""
 }
 
