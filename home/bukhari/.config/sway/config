@@ -68,7 +68,7 @@ set $alt Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
-set $up j
+set $up k
 set $right l
 # Your preferred terminal emulator
 # set $term ~/.local/kitty.app/bin/kitty
@@ -149,6 +149,7 @@ input type:keyboard {
 # exec ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
 # exec_always bash -c "ibus exit;ibus-daemon"
 exec fcitx -r
+# exec nm-applet --indicator &
 
 #set $MOUSE = 1133:49224:Logitech_G9_Laser_Mouse
 
@@ -247,8 +248,8 @@ bindcode 233 exec brightnessctl set +5%
 
     # Move the focused window with the same, but add Shift (horizontal)
     # bindsym --to-code $mod+Shift+h move left
-    # bindsym --to-code $mod+Shift+k $move_next_workspace -1
-    # bindsym --to-code $mod+Shift+j $move_next_workspace 1
+    # bindsym --to-code $mod+Shift+j $move_next_workspace -1
+    # bindsym --to-code $mod+Shift+k $move_next_workspace 1
     # bindsym --to-code $mod+Shift+l move right
 
 
@@ -339,7 +340,7 @@ bindcode 233 exec brightnessctl set +5%
     set $change_workspace exec python3 ~/.config/sway/change_workspace.py
     set $move_container exec python3 ~/.config/sway/move_container.py
 
-    exec python3 ~/.config/sway/mark_last_window.py
+    # exec python3 ~/.config/sway/mark_last_window.py
 
     # Switch to workspace
     bindsym $mod+1 $change_workspace 1
@@ -422,9 +423,9 @@ mode "resize" {
     # up will shrink the containers height
     # down will grow the containers height
     bindsym --to-code h resize shrink width 80px
-    bindsym --to-code l resize grow height 80px
+    bindsym --to-code j resize grow height 80px
     bindsym --to-code k resize shrink height 80px
-    bindsym --to-code j resize grow width 80px
+    bindsym --to-code l resize grow width 80px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
