@@ -28,7 +28,17 @@ fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# sway wiki Development Setup
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PKG_CONFIG_PATH="/usr/local/lib64/pkgconfig:$PKG_CONFIG_PATH"
+export PKG_CONFIG_PATH="/usr/local/share/pkgconfig:$PKG_CONFIG_PATH"
+
+# sway wiki Development Setup
+export LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/usr/local/lib64/:$LD_LIBRARY_PATH"
+
 fcitx -r
 # ibus-daemon
 
-exec pkill kanshi; exec kanshi
+# exec pkill kanshi; exec kanshi
+kanshi
