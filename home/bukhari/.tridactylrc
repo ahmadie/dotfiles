@@ -6,6 +6,9 @@ bind --mode=normal gi composite focusinput -l | editor
 bind L tabnext
 bind H tabprev
 
+bind gt back
+bind gT forward
+
 unbind <C-f>
 
 
