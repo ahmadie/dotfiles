@@ -21,9 +21,8 @@ grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- #pick
 nvim /home/bukhari/.config/kanshi/config
 nvim /home/bukhari/.fzf.zsh
 /home/bukhari/TW.Electron
-nvim .zprofile
+nvim ~/.zprofile
 sudo nvim /etc/apt/sources.list
-.zprofile
 nvim ~/.config/waybar/config
 nvim ~/.config/waybar/style.css
 tail -f /home/bukhari/.config/sway/autoname-workspaces.log
@@ -38,3 +37,8 @@ nvim /home/bukhari/.tridactylrc
 nvim /home/bukhari/.p10k.zsh
 ./font-patcher font-name --complete --careful
 tar xvzf file.tar.gz -C /path/to/dir
+nixGLIntel kdenlive
+tar xvf file.tar.xz -C /path/to/dir
+tar xvzf file.tgz -C /path/to/dir
+nm-applet --indicator
+sudo chmod +x file
