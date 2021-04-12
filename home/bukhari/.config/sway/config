@@ -241,8 +241,8 @@ bindcode 233 exec brightnessctl set +5%
 
     # Move the focused window with the same, but add Shift (vertical)
     bindsym --to-code $mod+Shift+h $move_next_workspace -1
-    bindsym --to-code $mod+Shift+k $move_next_workspace -10
-    bindsym --to-code $mod+Shift+j $move_next_workspace 10
+    bindsym --to-code $mod+Shift+j $move_next_workspace -10
+    bindsym --to-code $mod+Shift+k $move_next_workspace 10
     bindsym --to-code $mod+Shift+l $move_next_workspace 1
 
     # Move the focused window with the same, but add Shift (horizontal)
