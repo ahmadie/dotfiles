@@ -82,6 +82,11 @@ let g:sandwich_no_default_key_mappings = 1
 let g:textobj_sandwich_no_default_key_mappings = 1
 
 let mapleader =" "
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+
 " }}}
 
 " plug#begin{{{
@@ -92,6 +97,7 @@ Plug 'takac/vim-hardtime'
 " Plug 'altercation/vim-colors-solarized'
 Plug 'ayu-theme/ayu-vim'
 Plug 'keyvchan/vim-monokai'
+Plug 'mhartington/oceanic-next'
 Plug 'axvr/photon.vim'
 
 " Plug 'jiangmiao/auto-pairs'
@@ -110,11 +116,12 @@ Plug 'leafOfTree/vim-svelte-plugin'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mhinz/vim-signify'
 " Plug 'tpope/vim-commentary'
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'Yggdroot/indentLine'
@@ -168,6 +175,12 @@ Plug 'moll/vim-bbye'
 Plug 'wellle/targets.vim'
 Plug 'vifm/vifm.vim'
 Plug 'samoshkin/vim-mergetool'
+Plug 'nacro90/numb.nvim'
+Plug 'andymass/vim-matchup'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':tsupdate'}
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'ThePrimeagen/harpoon'
 
 " to align text
 " Plug 'tommcdo/vim-lion'
@@ -180,6 +193,17 @@ Plug 'samoshkin/vim-mergetool'
 " Houl/repmo-vim
 call plug#end()
 " }}}
+
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  matchup = {
+    enable = true,              -- mandatory, false will disable the whole extension
+    disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+  },
+}
+-- require('numb').setup()
+EOF
 
 " coc {{{
 " Use tab for trigger completion with characters ahead and navigate.
@@ -218,7 +242,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gw <Plug>(coc-references)
-nmap <silent> gl <Plug>(coc-declaration)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -226,10 +249,12 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
 if (index(['vim','help'], &filetype) >= 0)
   execute 'h '.expand('<cword>')
+elseif (coc#rpc#ready())
+  call CocActionAsync('doHover')
 else
-  call CocAction('doHover')
+  execute '!' . &keywordprg . " " . expand('<cword>')
 endif
-endfunction
+  endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -597,7 +622,7 @@ command! -bang -nargs=* Rg
 
 command! -bang -nargs=* Rj
   \ call fzf#vim#grep(
-  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case --type=project ".shellescape(<q-args>), 1,
+  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx,vim,rs}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case  ".shellescape(<q-args>), 1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. ' . $FZF_DEFAULT_OPTS}), <bang>0)
 
 command! -bang -nargs=* Lines
@@ -898,6 +923,7 @@ let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
 syntax enable
 syntax sync fromstart
+" colorscheme OceanicNext
 "
 let g:solarized_italic = 1
 let g:solarized_bold = 1 
@@ -1137,29 +1163,27 @@ nnoremap <silent> <leader><leader>9 :WSbmv 9<CR>
 
 nnoremap <silent> <leader>` :call WS_Backforth()<CR>
 
-nnoremap <silent> <leader>t :call GotoTerminal(0)<CR>
-nnoremap <silent> <leader><leader>t :call GotoTerminal(1)<CR>
-nnoremap <silent> <leader><leader><leader>t :call GotoTerminal(2)<CR>
+nnoremap <silent> <leader>t :lua require("harpoon.term").gotoTerminal(1)<CR>
+nnoremap <silent> <leader><leader>t :lua require("harpoon.term").gotoTerminal(2)<CR>
+nnoremap <silent> <leader><leader><leader>t :lua require("harpoon.term").gotoTerminal(3)<CR>
 
 let g:ctrlId = -1
 let g:win_ctrl_buf_list = [0,0,0,0]
 
+
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufWritePost *.vim source $MYVIMRC
+    autocmd BufWritePost *.dart lua require"harpoon.term".sendCommand(1, "r")
+augroup END
+
+" noremap <silent> <leader>dr :lua require("harpoon.term").sendCommand(1, "r")<CR>
+
 augroup terminalgrp
   autocmd!
   autocmd VimLeavePre * nested call CleanTerminals()
-  autocmd TermOpen * nested call TerminalOpen()
+  autocmd TermEnter * nested call TerminalOpen()
 augroup END
-
-fun! GotoTerminal(ctrlId)
-  let g:ctrlId = a:ctrlId
-  let l:contents = g:win_ctrl_buf_list[a:ctrlId]
-  if(l:contents == 0 || len(getbufinfo(l:contents)) == 0)
-    exe "terminal"
-  else
-    exe "buffer " . l:contents
-  endif
-  " exe ":normal i"
-endfun
 
 fun! TerminalOpen()
   let bnr = bufnr('%') 

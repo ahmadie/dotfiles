@@ -14,7 +14,17 @@ fi
 path=(${HOME}/bin ${path})
 path=(${HOME}/.local/bin ${path})
 path=(${HOME}/.cargo/bin ${path})
+path=(${HOME}/flutter/bin ${path})
 
+export ANDROID_SDK_ROOT=$HOME/Android
+export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools:$PATH
+export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:$PATH
+export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools/lib:$PATH
+export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH
+export PATH=$ANDROID_SDK_ROOT/emulator:$PATH
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
 
 # Basic auto/tab complete
 autoload -U compinit
@@ -161,6 +171,7 @@ export LS_COLORS="$(vivid generate ayu)"
 # fzf-tab
 source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:*' fzf-pad 4
 
 # start fzf-tab after ~ or /
 insert-and-complete() {

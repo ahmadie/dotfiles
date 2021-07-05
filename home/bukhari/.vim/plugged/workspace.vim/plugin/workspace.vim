@@ -21,6 +21,7 @@ if v:version < 700
 endif
 
 let s:trydeleteprev = 0
+let s:tryopensplit = 0
 " Open the workspace
 "
 " Return:   true - for workspace created new
@@ -131,8 +132,12 @@ function! WS_B_Move(to)
     let bnr = bufnr("%")
     " this fixes: WSbmv N, then immediatly :bd will unexpectedly close tab N 
     exe 'bn'
+    " if len(nvim_tabpage_list_wins(tabpagenr())) > 1
+      " exe 'hide'
+    " endif
 
     let s:trydeleteprev = 1
+    let s:tryopensplit = 1
     call setbufvar(bnr, 'WS', a:to)
     call WS_Open(a:to)
     exe "buffer " . bnr
@@ -257,6 +262,7 @@ function! s:tabenter()
         endif
     endfor
     if(empty(target)) 
+        let s:tryopensplit = 0
         let switchbuf = 0
         enew
         setl nobuflisted
@@ -273,6 +279,10 @@ function! s:tabenter()
     " will try to remove previous empty workspace 
     if(s:trydeleteprev)
       let s:trydeleteprev = 0
+      if(s:tryopensplit)
+        exe 'vs'
+        let s:tryopensplit = 0
+      endif
       for b in WS_Buffers(s:prev)
          if(s:isbufdummy(b.bufnr))
            exe 'bw ' . b.bufnr 
@@ -304,7 +314,7 @@ function! s:bufenter()
     " for an already opened buffer, on c-o, :e, mark etc.
     " focuses an existing tab or window.
     let bWS = get(b:, "WS")
-    if bWS && bWS != t:WS
+    " if bWS && bWS != t:WS
         let tabnum = WS_Tabnum(bWS)
         if tabnum
             let foundWindow = 0
@@ -319,7 +329,7 @@ function! s:bufenter()
               exe "buffer " . bnr 
             endif
         endif
-    endif
+    " endif
 
     let b:WS = t:WS
     " Workaround for BufAdd

@@ -13,7 +13,8 @@
     "javascriptreact",
     "css",
     "markdown",
-    "md"
+    "md",
+    "dart"
   ],
   "json.format.enable": false,
   "explorer.width": 30,

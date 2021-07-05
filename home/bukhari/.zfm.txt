@@ -42,3 +42,9 @@ tar xvf file.tar.xz -C /path/to/dir
 tar xvzf file.tgz -C /path/to/dir
 nm-applet --indicator
 sudo chmod +x file
+adb.exe shell ip route | awk '{print $9}'
+adb.exe devices
+adb.exe tcpip 5555
+adb connect :5555
+adb kill-server
+adb start-server
