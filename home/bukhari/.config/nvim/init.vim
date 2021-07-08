@@ -179,9 +179,10 @@ Plug 'nacro90/numb.nvim'
 Plug 'andymass/vim-matchup'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':tsupdate'}
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'ThePrimeagen/harpoon'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'ThePrimeagen/harpoon'
 
+Plug 'akinsho/nvim-toggleterm.lua'
 " to align text
 " Plug 'tommcdo/vim-lion'
 " to aling text 2
@@ -200,11 +201,59 @@ require'nvim-treesitter.configs'.setup {
   matchup = {
     enable = true,              -- mandatory, false will disable the whole extension
     disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-  },
+  }
 }
--- require('numb').setup()
+
+require("toggleterm").setup{
+  -- size can be a number or function which is passed the current terminal
+  size = function(term)
+    if term.direction == "horizontal" then
+      return 15
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.4
+    end
+  end,
+  open_mapping = [[<c-\>]],
+  hide_numbers = true, -- hide the number column in toggleterm buffers
+  shade_filetypes = {},
+  shade_terminals = true,
+  shading_factor = 1, -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
+  start_in_insert = true,
+  insert_mappings = true, -- whether or not the open mapping applies in insert mode
+  persist_size = true,
+  direction = 'vertical',
+  close_on_exit = true, -- close the terminal window when the process exits
+  shell = vim.o.shell, -- change the default shell
+  -- This field is only relevant if direction is set to 'float'
+  float_opts = {
+    -- The border key is *almost* the same as 'nvim_win_open'
+    -- see :h nvim_win_open for details on borders however
+    -- the 'curved' border is a custom border type
+    -- not natively supported but implemented in this plugin.
+    border = 'single',
+    width = 100,
+    height = 30,
+    winblend = 3,
+    highlights = {
+      border = "Normal",
+      background = "Normal",
+    }
+  }
+}
+
+require('numb').setup()
+
 EOF
 
+" command! -count=1 -complete=shellcmd -nargs=* TermExec lua require'toggleterm'.exec(<q-args>, <count>, 12)
+" command! -count=1 TermR lua require'toggleterm'.exec("r", <count>, 12)
+
+autocmd TermEnter term://*toggleterm#*
+      \ tnoremap <silent><c-\> <C-\><C-n>:exe v:count1 . "ToggleTerm"<CR>
+" nnoremap <silent><leader>t <Cmd>exe v:count1 . "ToggleTerm"<CR>
+nnoremap <silent><leader>t <Cmd>exe "1ToggleTerm"<CR>
+nnoremap <silent><leader><leader>t <Cmd>exe "2ToggleTerm"<CR>
+nnoremap <silent><leader><leader><leader>t <Cmd>exe "3ToggleTerm"<CR>
 " coc {{{
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -429,9 +478,9 @@ nnoremap <silent> <leader>n :call GotoVifm()<CR>
 fun! GotoVifm()
   let pathstr = expand('%:p:h')
   if -1 == stridx(pathstr, "term://")
-    exe "VsplitVifm " . expand('%:p:h')
+    exe "EditVifm " . expand('%:p:h')
   else
-    exe "VsplitVifm " . getcwd()
+    exe "EditVifm " . getcwd()
   endif
   " exe ":normal i"
 endfun
@@ -1140,7 +1189,7 @@ call s:map('x', ']e', '<Plug>unimpairedMoveSelectionDown')
 call s:maps()
 "}}}
 
-" vim-workpace{{{
+" vim-workpace, terminal {{{
 nnoremap <silent> <leader>1 :WS 1<CR>
 nnoremap <silent> <leader>2 :WS 2<CR>
 nnoremap <silent> <leader>3 :WS 3<CR>
@@ -1163,22 +1212,14 @@ nnoremap <silent> <leader><leader>9 :WSbmv 9<CR>
 
 nnoremap <silent> <leader>` :call WS_Backforth()<CR>
 
-nnoremap <silent> <leader>t :lua require("harpoon.term").gotoTerminal(1)<CR>
-nnoremap <silent> <leader><leader>t :lua require("harpoon.term").gotoTerminal(2)<CR>
-nnoremap <silent> <leader><leader><leader>t :lua require("harpoon.term").gotoTerminal(3)<CR>
-
 let g:ctrlId = -1
 let g:win_ctrl_buf_list = [0,0,0,0]
-
 
 augroup SyntaxSettings
     autocmd!
     autocmd BufWritePost *.vim source $MYVIMRC
-    autocmd BufWritePost *.dart lua require"harpoon.term".sendCommand(1, "r")
+    autocmd BufWritePost *.dart 1TermExec cmd="r"
 augroup END
-
-" noremap <silent> <leader>dr :lua require("harpoon.term").sendCommand(1, "r")<CR>
-
 augroup terminalgrp
   autocmd!
   autocmd VimLeavePre * nested call CleanTerminals()
@@ -1198,9 +1239,8 @@ fun! TerminalOpen()
     " terminal stuff
     " https://www.youtube.com/watch?v=8m5t9VDAqDE 
     " https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
-    exe ":tnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n><C-^>"
-    exe ":nnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n><C-^>"
-    exe ":tnoremap <silent> <buffer> <C-\\> <C-\\><C-n>"
+    exe ":tnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n>"
+    exe ":nnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n>"
   endif
 endfun
 
