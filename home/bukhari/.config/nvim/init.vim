@@ -126,7 +126,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
-Plug 'psliwka/vim-smoothie'
+" Plug 'psliwka/vim-smoothie'
+Plug 'karb94/neoscroll.nvim'
 
 " Plug 'tpope/vim-surround'
 Plug 'machakann/vim-sandwich'
@@ -181,7 +182,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':tsupdate'}
 
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'ThePrimeagen/harpoon'
-
+Plug 'phaazon/hop.nvim'
 Plug 'akinsho/nvim-toggleterm.lua'
 " to align text
 " Plug 'tommcdo/vim-lion'
@@ -197,6 +198,23 @@ call plug#end()
 
 
 lua <<EOF
+require('neoscroll').setup()
+
+local t = {}
+-- Syntax: t[keys] = {function, {function arguments}}
+t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '100'}}
+t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '100'}}
+t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '250'}}
+t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '250'}}
+t['<C-y>'] = {'scroll', {'-0.10', 'false', '100'}}
+t['<C-e>'] = {'scroll', { '0.10', 'false', '100'}}
+t['zt']    = {'zt', {'100'}}
+t['zz']    = {'zz', {'100'}}
+t['zb']    = {'zb', {'100'}}
+
+require('neoscroll.config').set_mappings(t)
+require'hop'.setup()
+
 require'nvim-treesitter.configs'.setup {
   matchup = {
     enable = true,              -- mandatory, false will disable the whole extension
@@ -273,14 +291,20 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " for auto-pairs to work
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+"       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Disable automapping so we can fix Coc mapping with pear-tree.
+let g:pear_tree_map_special_keys = 0
+imap <BS> <Plug>(PearTreeBackspace)
+imap <Esc> <Plug>(PearTreeFinishExpansion)
+imap <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<Plug>(PearTreeExpand)"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -352,7 +376,8 @@ imap <C-l> <Plug>(coc-snippets-expand)
 let g:coc_node_path='/home/bukhari/.nvm/versions/node/v12.19.0/bin/node'
 
 
-let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte', 'coc-prettier']
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte', 'coc-prettier', 'coc-flutter', 'coc-go', 'coc-snippets', 'coc-pairs']
+
 
 nnoremap <leader><leader>pc :call CocAction('pickColor')<CR>
 nnoremap <leader><leader>cp :call CocAction('colorPresentation')<CR>
@@ -361,6 +386,10 @@ nnoremap <leader><leader>cp :call CocAction('colorPresentation')<CR>
 " nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <leader>p :CocCommand prettier.formatFile<cr>
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " nmap <silent> <C-d> <Plug>(coc-cursors-position)
 " nmap <leader>d  <Plug>(coc-cursors-operator)
@@ -376,9 +405,6 @@ xmap s <Nop>
 
 " vim targets
 let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr rr ll lb ar ab lB Ar aB Ab AB rb rB al Al'
-
-" auto-pars
-let g:AutoPairsMapBS = 0
 
 " Smart pairs are disabled by default:
 let g:pear_tree_smart_openers = 1
@@ -782,10 +808,10 @@ nnoremap <C-m> M
 " shift problem
 map <C-k> 3-
 map <C-j> 3+ 
-nmap <C-u> <Plug>(SmoothieUpwards)
-nmap <C-d> <Plug>(SmoothieDownwards)
-nmap <C-f> <Plug>(SmoothieForwards)
-nmap <C-b> <Plug>(SmoothieBackwards)
+" nmap <C-u> <Plug>(SmoothieUpwards)
+" nmap <C-d> <Plug>(SmoothieDownwards)
+" nmap <C-f> <Plug>(SmoothieForwards)
+" nmap <C-b> <Plug>(SmoothieBackwards)
 nmap <C-z> zz
 " nmap <C-i> <C-I>
 " nmap <C-o> <C-O> 
@@ -850,7 +876,7 @@ inoremap LL <Esc>la
 :nnoremap <leader>vs :source $MYVIMRC<cr>
 
 :nnoremap <leader>vc :VCoolor<cr>
-:nnoremap <leader>w :w<cr>
+:nnoremap <leader>w :HopChar1<cr>
 :nnoremap <leader><leader>w :x<cr>
 
 
@@ -1306,3 +1332,4 @@ nmap <expr> <C-Down> &diff? '<Plug>(MergetoolDiffExchangeDown)' : '<C-Down>'
 nmap <expr> <C-Up> &diff? '<Plug>(MergetoolDiffExchangeUp)' : '<C-Up>'
 
 " }}}
+
