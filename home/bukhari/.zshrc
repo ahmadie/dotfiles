@@ -23,7 +23,10 @@ export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools/lib:$PATH
 export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH
 export PATH=$ANDROID_SDK_ROOT/emulator:$PATH
 
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export GOPATH=$HOME/work
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_301
 export PATH=$JAVA_HOME/bin:$PATH
 
 # Basic auto/tab complete
@@ -238,6 +241,7 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 eval $(thefuck --alias)
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
