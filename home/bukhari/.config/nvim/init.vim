@@ -179,6 +179,7 @@ Plug 'samoshkin/vim-mergetool'
 Plug 'nacro90/numb.nvim'
 Plug 'andymass/vim-matchup'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':tsupdate'}
+Plug 'dart-lang/dart-vim-plugin'
 
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'ThePrimeagen/harpoon'
@@ -190,7 +191,9 @@ Plug 'akinsho/nvim-toggleterm.lua'
 " Plug 'junegunn/vim-easy-align'
 " to diff block by visual selection
 " Plug 'AndrewRadev/linediff.vim'
-
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-packager'
+Plug 'kristijanhusak/vim-dadbod-ui', { 'type': 'opt' }
 " repeate last command try to repeate next/prev buffer
 " Houl/repmo-vim
 call plug#end()
@@ -239,7 +242,7 @@ require("toggleterm").setup{
   start_in_insert = true,
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   persist_size = true,
-  direction = 'vertical',
+  direction = 'window',
   close_on_exit = true, -- close the terminal window when the process exits
   shell = vim.o.shell, -- change the default shell
   -- This field is only relevant if direction is set to 'float'
@@ -272,6 +275,13 @@ autocmd TermEnter term://*toggleterm#*
 nnoremap <silent><leader>t <Cmd>exe "1ToggleTerm"<CR>
 nnoremap <silent><leader><leader>t <Cmd>exe "2ToggleTerm"<CR>
 nnoremap <silent><leader><leader><leader>t <Cmd>exe "3ToggleTerm"<CR>
+
+
+" This is just an example. Keep this out of version control. Check for more examples below.
+let g:dbs = {
+\  'dev': 'mysql://root:ipaqipaq@0.0.0.0:3306/beautysql'
+\ }
+
 " coc {{{
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -388,8 +398,8 @@ nnoremap <leader><leader>cp :call CocAction('colorPresentation')<CR>
 nnoremap <leader>p :CocCommand prettier.formatFile<cr>
 
 " Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" vmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 " nmap <silent> <C-d> <Plug>(coc-cursors-position)
 " nmap <leader>d  <Plug>(coc-cursors-operator)
@@ -579,7 +589,7 @@ let $FZF_DEFAULT_OPTS=" --color=fg:#9aedfe,bg:-1,hl:#f50062:bold
 
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden  --no-ignore-vcs --follow --exclude .git --exclude .local/share/nvim/undo'
 
-" nnoremap <leader>d :BD<cr>
+nnoremap <leader>d :BD<cr>
 " nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :BLines<cr>
 nnoremap <leader>i :Lines!<cr>
@@ -697,7 +707,7 @@ command! -bang -nargs=* Rg
 
 command! -bang -nargs=* Rj
   \ call fzf#vim#grep(
-  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx,vim,rs}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case  ".shellescape(<q-args>), 1,
+  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx,vim,rs,dart}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case  ".shellescape(<q-args>), 1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. ' . $FZF_DEFAULT_OPTS}), <bang>0)
 
 command! -bang -nargs=* Lines
@@ -1244,7 +1254,7 @@ let g:win_ctrl_buf_list = [0,0,0,0]
 augroup SyntaxSettings
     autocmd!
     autocmd BufWritePost *.vim source $MYVIMRC
-    autocmd BufWritePost *.dart 1TermExec cmd="r"
+    " autocmd BufWritePost *.dart 1TermExec cmd="r"
 augroup END
 augroup terminalgrp
   autocmd!
@@ -1333,3 +1343,4 @@ nmap <expr> <C-Up> &diff? '<Plug>(MergetoolDiffExchangeUp)' : '<C-Up>'
 
 " }}}
 
+command S :w | set splitright | vnew | set filetype=sh | read !sh #
