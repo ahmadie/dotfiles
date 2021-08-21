@@ -48,3 +48,5 @@ adb.exe tcpip 5555
 adb connect :5555
 adb kill-server
 adb start-server
+wsl.exe hostname -I
+adb reverse tcp:8080 tcp:8080
