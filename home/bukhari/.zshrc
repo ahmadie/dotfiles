@@ -149,7 +149,17 @@ _fzf_compgen_dir() {
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^[[Z' fzf-completion
 bindkey '^I' $fzf_default_completion
-
+first-tab() {
+    if [[ $#BUFFER == 0 ]]; then
+        BUFFER="cd "
+        CURSOR=3
+        zle list-choices
+    else
+        zle expand-or-complete
+    fi
+}
+zle -N first-tab
+bindkey '^I' first-tab
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -157,7 +167,7 @@ SAVEHIST=10000
 setopt SHARE_HISTORY
 export KEYTIMEOUT=1
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -ltrh'
 alias v=vifmrun
 alias n=nvim
 alias c=clear

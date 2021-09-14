@@ -464,7 +464,7 @@ let g:yoinkIncludeDeleteOperations=1
 let g:subversivePromptWithActualCommand=1
 
 " ie = inner entire buffer
-onoremap ie :exec "normal! ggVG"<cr>
+onoremap ih :exec "normal! ggVG"<cr>
 
 " iv = current viewable text in the buffer
 " onoremap iv :exec "normal! HVL"<cr>
