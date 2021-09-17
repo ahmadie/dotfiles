@@ -50,3 +50,5 @@ adb kill-server
 adb start-server
 wsl.exe hostname -I
 adb reverse tcp:8080 tcp:8080
+git remote set-url origin https://<token>@github.com/<username>/<repo>
+sudo mongod --dbpath /home/bukhari/data/db

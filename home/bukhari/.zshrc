@@ -32,6 +32,10 @@ export PATH=$JAVA_HOME/bin:$PATH
 # Basic auto/tab complete
 autoload -U compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' completer _complete
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+autoload -Uz compinit
+compinit
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
