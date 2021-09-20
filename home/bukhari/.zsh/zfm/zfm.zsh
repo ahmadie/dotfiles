@@ -218,7 +218,7 @@ local com=$(zfm select --commands)
 zle redisplay
 eval ${com}
 local ret=$?
-zle fzf-redraw-prompt
+zle reset-prompt
 return $ret
 }
 zle     -N    zfm-exec-command
@@ -229,12 +229,12 @@ bindkey '^B' zfm-exec-command
 function __zfm_append_to_prompt()
 {
     if [[ -z "$1" ]]; then
-        zle fzf-redraw-prompt
+        zle reset-prompt
         return 0
     fi
     LBUFFER="${LBUFFER}$(echo "$1" | tr '\r\n' ' '| sed -e 's/\s$//')"
     local ret=$?
-    zle fzf-redraw-prompt
+    zle reset-prompt
     return $ret
 }
 function zfm-insert-bookmark()
@@ -255,7 +255,7 @@ fi
 cd "${dir%% }"
 # cd "$dir"
 local ret=$?
-zle fzf-redraw-prompt
+zle reset-prompt
 return $ret
 }
 zle     -N    zfm-cd-to-bookmark

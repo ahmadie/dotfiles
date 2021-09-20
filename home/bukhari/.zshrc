@@ -29,6 +29,9 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_301
 export PATH=$JAVA_HOME/bin:$PATH
 
+
+fpath=(~/.zsh/zsh-comletions/zsh-completions.plugin.zsh $fpath)
+
 # Basic auto/tab complete
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -40,7 +43,6 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-fpath=(~/.zsh/zsh-completions/zsh-completions.plugin.zsh $fpath)
 
 # reverse menu auto complete
 bindkey -M menuselect '^[[Z' reverse-menu-complete
@@ -113,7 +115,7 @@ export FZF_DEFAULT_OPTS=' --color=fg:#9aedfe,bg:-1,hl:#f50062:bold
 bindkey -v
 
 # set -o vi
-export VISUAL="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
+export VISUAL="nvim"
 export EDITOR="nvim"
 
 # Use vim keys in tab complete menu:

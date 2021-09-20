@@ -22,7 +22,7 @@ nvim /home/bukhari/.config/kanshi/config
 nvim /home/bukhari/.fzf.zsh
 /home/bukhari/TW.Electron
 nvim ~/.zprofile
-sudo nvim /etc/apt/sources.list
+sudoedit nvim /etc/apt/sources.list
 nvim ~/.config/waybar/config
 nvim ~/.config/waybar/style.css
 tail -f /home/bukhari/.config/sway/autoname-workspaces.log
