@@ -1343,5 +1343,4 @@ nmap <expr> <C-Up> &diff? '<Plug>(MergetoolDiffExchangeUp)' : '<C-Up>'
 
 " }}}
 
-command S :w | set splitright | vnew | set filetype=sh | read !sh #
-:nnoremap <leader>S :w \| set splitright \| vnew \| set filetype=sh \| read !sh #<CR>
+:nnoremap <leader>S :.w! temp.sh \| set splitright \| vnew \| set filetype=sh \| read !sh temp.sh<CR>
