@@ -393,7 +393,7 @@ nnoremap <leader><leader>pc :call CocAction('pickColor')<CR>
 nnoremap <leader><leader>cp :call CocAction('colorPresentation')<CR>
 
 " Remap for rename current word
-" nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <leader>p :CocCommand prettier.formatFile<cr>
 
@@ -1344,3 +1344,6 @@ nmap <expr> <C-Up> &diff? '<Plug>(MergetoolDiffExchangeUp)' : '<C-Up>'
 " }}}
 
 :nnoremap <leader>S :.w! temp.sh \| set splitright \| vnew \| set filetype=sh \| read !sh temp.sh<CR>
+
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
