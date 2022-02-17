@@ -3,8 +3,6 @@
 	email = ahmadieb@gmail.com
 [gc]
 	autoDetach = false
-[credential]
-	helper = store
 [push]
 	default = current
 [core]
@@ -49,3 +47,5 @@
   prompt = false
 [difftool "nvimdiff"]
   cmd = nvim -d "$REMOTE" "$LOCAL"
+[status]
+	showUntrackedFiles = no
