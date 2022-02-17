@@ -291,7 +291,8 @@ require'fzf-lua'.setup {
     row              = 0.35,
     col              = 0.5,
     hl = {
-      border = 'Identifier'
+      border = 'Identifier',
+      cursorline      = 'DiffAdd',
       },
     preview = {
       scrollbar = false
@@ -576,7 +577,7 @@ fun! GotoVifm()
 endfun
 "}}}
 
-" startify{{{
+" startify, hardtime{{{
 " remove blank to not see empty buffer when close with coc-explorer opened
 " set sessionoptions-=blank
 set sessionoptions-=blank
@@ -594,6 +595,8 @@ let g:startify_lists = [
           \ ]
 let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, {'s': '~/.config/sway/config'},
       \ {'t': '~/.config/kitty/kitty.conf'}, {'n': '~/.config/kanshi/config'}, {'b': '~/.bashrc'}]
+
+let g:hardtime_default_on = 1
 "}}}
 
 " vim-indent-object, vim-textobj-line{{{
