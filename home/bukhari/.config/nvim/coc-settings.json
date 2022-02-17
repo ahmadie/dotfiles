@@ -1,6 +1,7 @@
 {
   "tsserver.npm": "/home/bukhari/.nvm/versions/node/v12.19.0/bin/npm",
   "coc.preferences.formatOnType": true,
+  "diagnostic.checkCurrentLine": true,
   "javascript.suggestionActions.enabled": false,
   "typescript.suggestionActions.enabled": false,
   "javascript.validate.enable": false,
@@ -27,5 +28,6 @@
   },
   "explorer.buffer.showHiddenBuffers": true,
   "pairs.enableBackspace": false,
-  "coc.preferences.colorSupport": true
+  "coc.preferences.colorSupport": true,
+  "python.jediPath": "/home/bukhari/.local/lib/python3.8/site-packages"
 }
