@@ -118,16 +118,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mhinz/vim-signify'
-" Plug 'tpope/vim-commentary'
-Plug 'tomtom/tcomment_vim'
+Plug 'numToStr/Comment.nvim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
+Plug 'ibhagwan/fzf-lua'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
-" Plug 'psliwka/vim-smoothie'
-Plug 'karb94/neoscroll.nvim'
 
 " Plug 'tpope/vim-surround'
 Plug 'machakann/vim-sandwich'
@@ -152,7 +150,7 @@ Plug 'thinca/vim-textobj-function-javascript'         " Add JS function object
 " Plug 'kana/vim-textobj-indent'
 Plug 'ryanoasis/vim-devicons'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'unblevable/quick-scope'
+" Plug 'unblevable/quick-scope'
 " Plug 'rhysd/clever-f.vim'
 " Plug 'justinmk/vim-sneak'
 " Plug 'b4winckler/vim-angry'
@@ -162,7 +160,6 @@ Plug 'ThePrimeagen/vim-be-good'
 
 Plug 'bronson/vim-visual-star-search'
 Plug 'rhysd/clever-f.vim'
-
 Plug 'diepm/vim-rest-console'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
@@ -178,12 +175,11 @@ Plug 'vifm/vifm.vim'
 Plug 'samoshkin/vim-mergetool'
 Plug 'nacro90/numb.nvim'
 Plug 'andymass/vim-matchup'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':tsupdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'dart-lang/dart-vim-plugin'
 
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'ThePrimeagen/harpoon'
-Plug 'phaazon/hop.nvim'
 Plug 'akinsho/nvim-toggleterm.lua'
 " to align text
 " Plug 'tommcdo/vim-lion'
@@ -196,33 +192,27 @@ Plug 'kristijanhusak/vim-packager'
 Plug 'kristijanhusak/vim-dadbod-ui', { 'type': 'opt' }
 " repeate last command try to repeate next/prev buffer
 " Houl/repmo-vim
+" Plug '907th/vim-auto-save'
+Plug 'rlane/pounce.nvim'
+
+Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
+
 call plug#end()
 " }}}
 
 
 lua <<EOF
-require('neoscroll').setup()
 
-local t = {}
--- Syntax: t[keys] = {function, {function arguments}}
-t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '100'}}
-t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '100'}}
-t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '250'}}
-t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '250'}}
-t['<C-y>'] = {'scroll', {'-0.10', 'false', '100'}}
-t['<C-e>'] = {'scroll', { '0.10', 'false', '100'}}
-t['zt']    = {'zt', {'100'}}
-t['zz']    = {'zz', {'100'}}
-t['zb']    = {'zb', {'100'}}
-
-require('neoscroll.config').set_mappings(t)
-require'hop'.setup()
+require('Comment').setup()
 
 require'nvim-treesitter.configs'.setup {
-  matchup = {
-    enable = true,              -- mandatory, false will disable the whole extension
-    disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-  }
+  ensure_installed = "maintained",
+  sync_install = false,
+  ignore_install = { },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
 }
 
 require("toggleterm").setup{
@@ -263,6 +253,67 @@ require("toggleterm").setup{
 }
 
 require('numb').setup()
+
+local actions = require "fzf-lua.actions"
+require'fzf-lua'.setup {
+  border           = "single",
+  grep = {
+      prompt            = ' ',
+      multiprocess      = true,           -- run command in a separate process
+      git_icons         = true,           -- show git icons?
+      file_icons        = true,           -- show file icons?
+      color_icons       = true,           -- colorize file|git icons
+      rg_opts           = "--type-add='project:*.{js,jsx,vue,ts,tsx,vim,rs,dart,py}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case",
+    },
+  files = {
+      prompt            = ' ',
+    },
+  oldfiles = {
+      prompt            = ' ',
+    },
+  lines = {
+      prompt            = ' ',
+    },
+  blines = {
+      prompt            = ' ',
+    },
+  buffers = {
+      prompt            = ' ',
+    },
+  git = {
+    files = {
+        prompt            = ' ',
+      },
+  },
+  winopts = {
+    height           = 0.95,
+    width            = 0.95,
+    row              = 0.35,
+    col              = 0.5,
+    hl = {
+      border = 'Identifier'
+      },
+    preview = {
+      scrollbar = false
+      }
+  },
+  fzf_opts = {
+      ['--marker']      = '→',
+      ['--color']       = 'fg:#9aedfe,bg:-1,hl:#f50062:bold',
+      ['--color']       = 'fg+:#FFFFFF',
+      ['--color']       = 'info:#f50062,prompt:-1,pointer:#af5fff',
+      ['--color']       = 'marker:#f50062,spinner:#af5fff,header:#525252',
+      ['--color']       = 'border:#57c7ff',
+      ['--color']       = 'pointer:reverse,prompt:#57c7ff,input:159',
+      ['--color']       = 'fg+:bold,hl+:#f50062:bold',
+      ['--prompt']      = ' ',
+      ['--info']        = 'inline',
+      ['--height']      = '100%',
+      ['--layout']      = 'reverse-list',
+      ['--preview-window'] = 'sharp',
+      ['--pointer'] = '⠀'
+    },
+  }
 
 EOF
 
@@ -408,6 +459,7 @@ nnoremap <leader>p :CocCommand prettier.formatFile<cr>
 " vim-sandwich, auto-pairs, pear-tree, vim-targets {{{
 nmap sd <Plug>(operator-sandwich-delete)A
 nmap sr <Plug>(operator-sandwich-replace)A
+nmap sa <Plug>(operator-sandwich-add)
 
 " let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 nmap s <Nop>
@@ -423,6 +475,8 @@ let g:pear_tree_smart_backspace = 1
 "}}}
 
 " vim-yoink, yoinkvim-cutlass, vim-subversive{{{
+" let g:auto_save = 1 
+
 nnoremap m d
 xnoremap m d
 nnoremap mm dd
@@ -589,15 +643,13 @@ let $FZF_DEFAULT_OPTS=" --color=fg:#9aedfe,bg:-1,hl:#f50062:bold
 
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden  --no-ignore-vcs --follow --exclude .git --exclude .local/share/nvim/undo'
 
-nnoremap <leader>d :BD<cr>
-" nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>/ :BLines<cr>
-nnoremap <leader>i :Lines!<cr>
-nnoremap <leader>e :GFiles<cr>
-nnoremap <leader>E :Files!<cr>
-nnoremap <leader>o :FZFMru<cr>
-nnoremap <leader>f :Rj<space>
-nnoremap <leader>F :Rg!<space>
+nnoremap <silent> <leader>/ <cmd>lua require('fzf-lua').blines()<CR>
+nnoremap <silent> <leader>i <cmd>lua require('fzf-lua').lines()<CR>
+nnoremap <silent> <leader>e <cmd>lua require('fzf-lua').files()<CR>
+nnoremap <silent> <leader>E <cmd>lua require('fzf-lua').git_files()<CR>
+nnoremap <silent> <leader>o <cmd>lua require('fzf-lua').oldfiles()<CR>
+nnoremap <silent> <leader>f <cmd>lua require('fzf-lua').grep()<CR>
+nnoremap <silent> <leader>F <cmd>lua require('fzf-lua').grep_project()<CR>
 
 augroup fzf_preview
   autocmd!
@@ -619,7 +671,7 @@ let g:fzf_mru_relative = 1
 " keep sorting by recent
 let g:fzf_mru_no_sort = 1
 
-nnoremap <silent> <leader>b :<C-u>FzfPreviewAllBuffers<CR>
+nnoremap <silent> <leader>b <cmd>lua require('fzf-lua').buffers()<CR> 
 "
 " nnoremap <silent> <leader>/ :<C-u>FzfPreviewLines --add-fzf-arg=--no-sort  
 "    \  --add-fzf-arg=--reverse --add-fzf-arg=--query="'"<CR>
@@ -707,7 +759,7 @@ command! -bang -nargs=* Rg
 
 command! -bang -nargs=* Rj
   \ call fzf#vim#grep(
-  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx,vim,rs,dart}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case  ".shellescape(<q-args>), 1,
+  \   "rg --type-add='project:*.{js,jsx,vue,ts,tsx,vim,rs,dart,py}' -g='!renderer.dev.js' --column --line-number --no-heading --color=always --smart-case  ".shellescape(<q-args>), 1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. ' . $FZF_DEFAULT_OPTS}), <bang>0)
 
 command! -bang -nargs=* Lines
@@ -816,8 +868,8 @@ nnoremap <C-h> H
 nnoremap <C-m> M 
 " use + instead of j and - instead of k for mapping bcz j & k cause cursor to
 " shift problem
-map <C-k> 3-
-map <C-j> 3+ 
+map <C-k> 7-
+map <C-j> 7+ 
 " nmap <C-u> <Plug>(SmoothieUpwards)
 " nmap <C-d> <Plug>(SmoothieDownwards)
 " nmap <C-f> <Plug>(SmoothieForwards)
@@ -886,9 +938,8 @@ inoremap LL <Esc>la
 :nnoremap <leader>vs :source $MYVIMRC<cr>
 
 :nnoremap <leader>vc :VCoolor<cr>
-:nnoremap <leader>w :HopChar1<cr>
-:nnoremap <leader><leader>w :x<cr>
 
+nmap <silent> <cr> <cmd>Pounce<CR>
 
 :iabbrev waht what
 :iabbrev lenght length
@@ -908,7 +959,7 @@ augroup END
 autocmd FileType * set formatoptions-=o
 
 "center when insert mode
-autocmd InsertEnter * norm zz
+" autocmd InsertEnter * norm zz
 
 "to be used with alacritty
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
@@ -1000,7 +1051,11 @@ function s:PatchColorScheme()
 endfunction
 
 " colorscheme onedark
-set termguicolors     " enable true colors support
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 lua require'colorizer'.setup()
 " let ayucolor="light"  " for light version of theme
 " let ayucolor="mirage" " for mirage version of theme
@@ -1087,6 +1142,7 @@ exe 'hi StatusLineNC guifg=' . s:statuslinebg . ' guibg=NONE gui=NONE'
 "}}}
 
 " quickscope, cleve_f{{{
+
 highlight QuickScopePrimary guifg='#898989' gui=underline ctermfg=155 cterm=underline
 highlight QuickScopeSecondary guifg='#898989' ctermfg=81 
 let g:qs_second_highlight = 0
@@ -1275,8 +1331,8 @@ fun! TerminalOpen()
     " terminal stuff
     " https://www.youtube.com/watch?v=8m5t9VDAqDE 
     " https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
-    exe ":tnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n>"
-    exe ":nnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n>"
+    " exe ":tnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n>"
+    " exe ":nnoremap <silent> <buffer> <C-[><C-[> <C-\\><C-n>"
   endif
 endfun
 
@@ -1347,3 +1403,6 @@ nmap <expr> <C-Up> &diff? '<Plug>(MergetoolDiffExchangeUp)' : '<C-Up>'
 
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
+
+highlight ScrollView ctermbg=159 guibg=#36A3D9
+" highlight link ScrollView Special
