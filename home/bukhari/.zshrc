@@ -152,20 +152,20 @@ _fzf_compgen_dir() {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_COMPLETION_TRIGGER=''
-bindkey '^[[Z' fzf-completion
-bindkey '^I' $fzf_default_completion
-first-tab() {
-    if [[ $#BUFFER == 0 ]]; then
-        BUFFER="cd "
-        CURSOR=3
-        zle list-choices
-    else
-        zle expand-or-complete
-    fi
-}
-zle -N first-tab
-bindkey '^I' first-tab
+# export FZF_COMPLETION_TRIGGER=''
+# bindkey '^[[Z' fzf-completion
+# bindkey '^I' $fzf_default_completion
+# first-tab() {
+#     if [[ $#BUFFER == 0 ]]; then
+#         BUFFER="cd "
+#         CURSOR=3
+#         zle list-choices
+#     else
+#         zle expand-or-complete
+#     fi
+# }
+# zle -N first-tab
+# bindkey '^I' first-tab
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -193,15 +193,15 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:*' fzf-pad 4
 
 # start fzf-tab after ~ or /
-insert-and-complete() {
-   zle self-insert
-   # check if string "vim" or "cd" exists in the left of cursor
-   if (( $LBUFFER[(I)(nvim|cd|n|dotfiles|zfm)] != 0 )); then
-       zle fzf-tab-complete
-   fi
-}
-zle -N insert-and-complete
-bindkey "/" insert-and-complete
+# insert-and-complete() {
+#    zle self-insert
+#    # check if string "vim" or "cd" exists in the left of cursor
+#    if (( $LBUFFER[(I)(nvim|cd|n|dotfiles|zfm)] != 0 )); then
+#        zle fzf-tab-complete
+#    fi
+# }
+# zle -N insert-and-complete
+# bindkey "/" insert-and-complete
 
 # autosuggestions plugin
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
