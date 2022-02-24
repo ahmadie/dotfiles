@@ -1,6 +1,7 @@
 vim.g['sandwich_no_default_key_mappings'] = 1
 vim.g['textobj_sandwich_no_default_key_mapping'] = 1
-vim.g['targets_seekRanges'] = 'cc cr cb cB lc ac Ac lr rr lb ar ab lB Ar aB Ab AB rb rB bb bB BB'
+-- vim.g['targets_seekRanges'] = 'cc cr cb cB lc ac Ac lr rr lb ar ab lB Ar aB Ab AB rb rB bb bB BB'
+-- vim.g['targets_seekRanges'] = 'cc cr cb cB lr rr lb ab lB aB rb rB'
 
 vim.api.nvim_set_keymap("n", "sd", "<Plug>(operator-sandwich-delete)A", { silent = true })
 vim.api.nvim_set_keymap("n", "sr", "<Plug>(operator-sandwich-replace)A", { silent = true })

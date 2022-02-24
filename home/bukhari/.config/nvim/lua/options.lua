@@ -33,3 +33,9 @@ vim.opt.shortmess:append('s')
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.cmd [[
+  " adjust scroll height to 1/3 of screen
+  au BufEnter * execute "set scroll=" . winheight('.') / 3
+  au VimResized * execute "set scroll=" . winheight('.') / 3
+]]

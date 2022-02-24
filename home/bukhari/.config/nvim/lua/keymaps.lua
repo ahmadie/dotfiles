@@ -23,9 +23,9 @@ keymap("n", "<leader><leader>h", "<c-w>H", { noremap = true, silent = true })
 keymap("n", "<leader><leader>k", "<c-w>K", { noremap = true, silent = true })
 keymap("n", "<leader><leader>j", "<c-w>J", { noremap = true, silent = true })
 
-keymap("n", ":", ";", { noremap = true })
+-- keymap("n", ":", ";", { noremap = true })
 keymap("n", ";", ":", { noremap = true })
-keymap("v", ":", ";", { noremap = true })
+-- keymap("v", ":", ";", { noremap = true })
 keymap("v", ";", ":", { noremap = true })
 
 keymap("n", "<leader>1", "<cmd>tabn 1<cr>", { noremap = true, silent = true })

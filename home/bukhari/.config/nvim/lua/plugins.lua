@@ -55,8 +55,14 @@ return require('packer').startup(function()
       vim.g['pear_tree_smart_closers'] = 1
       vim.g['pear_tree_smart_backspace'] = 1 
     end }
-  --[[ use { "beauwilliams/focus.nvim", 
-    config = function() require("focus").setup() end } ]]
+  use { "beauwilliams/focus.nvim",
+    config = load_setup('foc') }
+  use { 'kana/vim-textobj-user' }
+  use { 'kana/vim-textobj-line' }
+  use { 'ColinKennedy/vim-indent-object' }
+  use { 'Julian/vim-textobj-variable-segment' }
+  use { 'tkhren/vim-textobj-numeral', 
+    config = load_setup('textobj') }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
