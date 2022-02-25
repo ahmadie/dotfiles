@@ -22,4 +22,10 @@ vim.cmd [[
 
   " clear sign
   highlight clear SignColumn
+
+
+  highlight! PounceAccept term=NONE guifg=black guibg=white gui=NONE
+  highlight! PounceGap term=NONE guifg=default guibg=#404040 gui=NONE 
+  highlight! PounceMatch  term=NONE guifg=#d54e53 guibg=#404040 gui=NONE
+  highlight! PounceAcceptBest  term=NONE guifg=black guibg=yellow gui=NONE
 ]]

@@ -2,8 +2,10 @@ local options = {
   backup = false,
   clipboard = "unnamed,unnamedplus",
   hlsearch = true, 
+  number = true,
   relativenumber = true,
-  signcolumn = "yes",
+  termguicolors = true,
+  signcolumn = "yes:2",
   cursorline = true,
   fillchars = "eob: ",
   mouse = "a",
@@ -13,7 +15,7 @@ local options = {
   tabstop = 2,
   shiftwidth = 2,
   expandtab = true,
-  scrolloff = 8,
+  scrolloff = 10,
   undofile = true,
   encoding= "UTF-8",
   foldnestmax = 2,
@@ -24,7 +26,8 @@ local options = {
   virtualedit = 'onemore,block',
   termguicolors = true,
   background = 'dark',
-  hidden = true
+  hidden = true,
+  wrap = false
 }
 
 -- vim.opt.wop:sub('pum')

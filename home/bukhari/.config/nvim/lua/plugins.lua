@@ -63,6 +63,16 @@ return require('packer').startup(function()
   use { 'Julian/vim-textobj-variable-segment' }
   use { 'tkhren/vim-textobj-numeral', 
     config = load_setup('textobj') }
+  use 'andymass/vim-matchup'
+  -- use { 'sunjon/shade.nvim',
+  --   config = function() require'shade'.setup({ overlay_opacity = 50, opacity_step = 1}) end }
+  -- use { 'jamestrew/dimmer.nvim', 
+  --   config = function() require'dimmer'.setup() end }
+  -- use 'vim-airline/vim-airline'
+  -- use { 'vim-airline/vim-airline-themes',
+  --   config = load_setup('airline') }
+  use { 'crispgm/nvim-tabline',
+      config = function() require('tabline').setup({}) end }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
