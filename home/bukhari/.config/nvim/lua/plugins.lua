@@ -73,6 +73,8 @@ return require('packer').startup(function()
   --   config = load_setup('airline') }
   use { 'crispgm/nvim-tabline',
       config = function() require('tabline').setup({}) end }
+  use { 'lukas-reineke/indent-blankline.nvim', 
+    config = load_setup('indent') }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

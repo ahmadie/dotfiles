@@ -34,9 +34,9 @@
               border = 'none',
               layout = 'vertical',
               vertical       = 'up:80%', 
-              scrollbar = false,
               title = false,
               winopts = {
+                scrollbar = false,
                 signcolumn = 'yes:2'
               }
             },
@@ -88,7 +88,8 @@
       }
 
 
-  vim.api.nvim_set_keymap('n', '<leader>/', "<cmd>lua require('fzf-lua').blines()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>/', "<cmd>lua require('fzf-lua').blines()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><cr>', "<cmd>lua require('fzf-lua').blines()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>i', "<cmd>lua require('fzf-lua').lines()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>e', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>E', "<cmd>lua require('fzf-lua').git_files()<CR>", { noremap = true, silent = true })
