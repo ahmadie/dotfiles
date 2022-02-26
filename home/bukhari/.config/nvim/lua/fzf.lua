@@ -97,3 +97,4 @@ vim.api.nvim_set_keymap('n', '<leader>o', "<cmd>lua require('fzf-lua').oldfiles(
 vim.api.nvim_set_keymap('n', '<leader>f', "<cmd>lua require('fzf-lua').grep()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>F', "<cmd>lua require('fzf-lua').grep_project()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>t', "<cmd>lua require('fzf-lua').tabs()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>b', "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })

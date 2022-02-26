@@ -1,16 +1,9 @@
 vim.cmd [[
-
   " to integrate with tmux true-color
   if exists('+termguicolors')
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   endif
-
-  " let ayucolor = "light"  " for light version of theme
-  let ayucolor = "mirage" " for mirage version of theme
-  " let ayucolor = "dark"   " for dark version of theme
-
-  colorscheme ayu
 
   hi! link DiffChange NONE
   hi! clear DiffChange
@@ -23,9 +16,17 @@ vim.cmd [[
   " clear sign
   highlight clear SignColumn
 
-
   highlight! PounceAccept term=NONE guifg=black guibg=white gui=NONE
   highlight! PounceGap term=NONE guifg=default guibg=#404040 gui=NONE 
   highlight! PounceMatch  term=NONE guifg=#d54e53 guibg=#404040 gui=NONE
   highlight! PounceAcceptBest  term=NONE guifg=black guibg=yellow gui=NONE
 ]]
+
+require('ayu').setup({
+    mirage = true,
+    overrides = {
+      Normal = { bg = 'None' }
+    }, 
+})
+
+require('ayu').colorscheme()

@@ -21,7 +21,9 @@ return require('packer').startup(function()
    config = function() vim.g['hardtime_default_on'] = 1 end }
   use { 'neoclide/coc.nvim',
     branch = 'release' }
-  use { 'ayu-theme/ayu-vim',
+  -- use { 'ayu-theme/ayu-vim',
+  --   config = load_setup('colorscheme') }
+  use { 'Shatur/neovim-ayu',
     config = load_setup('colorscheme') }
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -73,8 +75,9 @@ return require('packer').startup(function()
   --   config = load_setup('airline') }
   use { 'crispgm/nvim-tabline',
       config = function() require('tabline').setup({}) end }
-  use { 'lukas-reineke/indent-blankline.nvim', 
-    config = load_setup('indent') }
+  -- use { 'lukas-reineke/indent-blankline.nvim', 
+  --   config = load_setup('indent') }
+  -- use 'romgrk/nvim-treesitter-context'
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
