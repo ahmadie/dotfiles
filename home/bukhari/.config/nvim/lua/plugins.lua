@@ -21,10 +21,17 @@ return require('packer').startup(function()
    config = function() vim.g['hardtime_default_on'] = 1 end }
   use { 'neoclide/coc.nvim',
     branch = 'release' }
-  -- use { 'ayu-theme/ayu-vim',
-  --   config = load_setup('colorscheme') }
   use { 'Shatur/neovim-ayu',
     config = load_setup('colorscheme') }
+  use { 'nvim-lualine/lualine.nvim',
+    config = function() 
+      require('lualine').setup({
+        options = {
+          theme = 'ayu_mirage',
+          section_separators = '',
+          component_separators = ''
+        },
+    }) end }
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = load_setup('treesitter') }
@@ -68,11 +75,6 @@ return require('packer').startup(function()
   use 'andymass/vim-matchup'
   -- use { 'sunjon/shade.nvim',
   --   config = function() require'shade'.setup({ overlay_opacity = 50, opacity_step = 1}) end }
-  -- use { 'jamestrew/dimmer.nvim', 
-  --   config = function() require'dimmer'.setup() end }
-  -- use 'vim-airline/vim-airline'
-  -- use { 'vim-airline/vim-airline-themes',
-  --   config = load_setup('airline') }
   use { 'crispgm/nvim-tabline',
       config = function() require('tabline').setup({}) end }
   -- use { 'lukas-reineke/indent-blankline.nvim', 
@@ -82,4 +84,5 @@ return require('packer').startup(function()
     require("packer").sync()
   end
 end)
+
 

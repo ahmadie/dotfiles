@@ -25,7 +25,8 @@ vim.cmd [[
 require('ayu').setup({
     mirage = true,
     overrides = {
-      Normal = { bg = 'None' }
+      Normal = { bg = 'None' },
+      SignColumn = { bg = 'None' } 
     }, 
 })
 
