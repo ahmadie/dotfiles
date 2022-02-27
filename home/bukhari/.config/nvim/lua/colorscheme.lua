@@ -1,3 +1,12 @@
+require('ayu').setup({
+    mirage = true,
+    overrides = {
+      Normal = { bg = 'None' },
+      SignColumn = { bg = 'None' } 
+    }, 
+})
+
+require('ayu').colorscheme()
 vim.cmd [[
   " to integrate with tmux true-color
   if exists('+termguicolors')
@@ -22,12 +31,3 @@ vim.cmd [[
   highlight! PounceAcceptBest  term=NONE guifg=black guibg=yellow gui=NONE
 ]]
 
-require('ayu').setup({
-    mirage = true,
-    overrides = {
-      Normal = { bg = 'None' },
-      SignColumn = { bg = 'None' } 
-    }, 
-})
-
-require('ayu').colorscheme()
