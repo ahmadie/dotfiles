@@ -77,6 +77,14 @@ return require('packer').startup(function()
   --   config = function() require'shade'.setup({ overlay_opacity = 50, opacity_step = 1}) end }
   use { 'crispgm/nvim-tabline',
       config = function() require('tabline').setup({}) end }
+  -- use { 'rafcamlet/tabline-framework.nvim',
+  --   config = load_setup('tabline') }
+  use 'kyazdani42/nvim-web-devicons'
+  use { 'nacro90/numb.nvim', 
+    config = exec_setup('numb') }
+  use { 'lewis6991/gitsigns.nvim',
+    config = load_setup('git'),
+  }
   -- use { 'lukas-reineke/indent-blankline.nvim', 
   --   config = load_setup('indent') }
   -- use 'romgrk/nvim-treesitter-context'

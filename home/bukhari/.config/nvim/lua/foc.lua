@@ -4,7 +4,7 @@ require("focus").setup({
   number = false,
   signcolumn = false,
   winhighlight = false,
-  width = 120,
-  minwidth = 50,
+  width = 160,
+  minwidth = 30,
   compatible_filetrees = {"packer"}
 })

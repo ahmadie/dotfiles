@@ -25,7 +25,7 @@ set signcolumn=yes
 " Use 'xdiff' library options: patience algorithm with indent-heuristics (same to Git options)
 " NOTE: vim uses the external diff utility which doesn't do word diffs nor can it find moved-and-modified lines.
 " See: https://stackoverflow.com/questions/36519864/the-way-to-improve-vimdiff-similarity-searching-mechanism
-set diffopt=internal,filler,vertical,context:5,foldcolumn:1,indent-heuristic,algorithm:histogram
+set diffopt=internal,filler,vertical,context:5,foldcolumn:1,indent-heuristic,algorithm:histogram,closeoff
 
 " set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 
