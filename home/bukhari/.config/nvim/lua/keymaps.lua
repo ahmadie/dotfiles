@@ -29,6 +29,9 @@ keymap("n", ";", ":", { noremap = true })
 keymap("v", ";", ":", { noremap = true })
 
 keymap("n", "<leader>1", "<cmd>tabn 1<cr>", { noremap = true, silent = true })
+keymap("n", "<leader>1", "<cmd>tabn 1<cr>", { noremap = true, silent = true })
+
+keymap("n", "<leader>1", "<cmd>tabn 1<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>2", "<cmd>tabn 2<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>3", "<cmd>tabn 3<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>4", "<cmd>tabn 4<cr>", { noremap = true, silent = true })
@@ -37,3 +40,10 @@ keymap("n", "<leader>6", "<cmd>tabn 6<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>7", "<cmd>tabn 7<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>8", "<cmd>tabn 8<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>9", "<cmd>tabn 9<cr>", { noremap = true, silent = true })
+
+vim.cmd [[
+" Go to last active tab
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent> <tab> :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> <tab> :exe "tabn ".g:lasttab<cr>
+]]

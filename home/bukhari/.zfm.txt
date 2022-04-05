@@ -33,6 +33,7 @@ nvim /home/bukhari/.config/rofi/config.rasi
 python3 /home/bukhari/.scripts/dropbox.py start
 unzip -P password file.zip
 nvim /home/bukhari/.config/alacritty/alacritty.yml
+nvim /mnt/c/Users/ahmed.bukhari/AppData/Roaming/alacritty/alacritty.yml
 nvim /home/bukhari/.tridactylrc
 nvim /home/bukhari/.p10k.zsh
 ./font-patcher font-name --complete --careful
