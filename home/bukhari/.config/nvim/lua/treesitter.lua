@@ -1,7 +1,7 @@
 local configs = require("nvim-treesitter.configs")
 
 configs.setup {
-  ensure_installed = "maintained",
+  ensure_installed = {'python', 'lua'},
   sync_install = false, 
   ignore_install = { "" }, -- List of parsers to ignore installing
 
