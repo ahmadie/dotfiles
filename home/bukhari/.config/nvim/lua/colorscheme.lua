@@ -6,7 +6,10 @@ require('ayu').setup({
     }, 
 })
 
-require('ayu').colorscheme()
+vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+require("catppuccin").setup()
+vim.cmd [[colorscheme catppuccin]]
+-- require('ayu').colorscheme()
 vim.cmd [[
   " to integrate with tmux true-color
   if exists('+termguicolors')

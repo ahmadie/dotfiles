@@ -18,7 +18,7 @@ return require('packer').startup(function()
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
   use { 'takac/vim-hardtime', 
-   config = function() vim.g['hardtime_default_on'] = 1 end }
+   config = function() vim.g['hardtime_default_on'] = 0 end }
   use { 'neoclide/coc.nvim',
     branch = 'release' }
   use { 'Shatur/neovim-ayu',
@@ -64,14 +64,16 @@ return require('packer').startup(function()
       vim.g['pear_tree_smart_closers'] = 1
       vim.g['pear_tree_smart_backspace'] = 1 
     end }
-  use { "beauwilliams/focus.nvim",
-    config = load_setup('foc') }
+  -- use { "beauwilliams/focus.nvim",
+    -- config = load_setup('foc') }
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'kana/vim-textobj-user' }
   use { 'kana/vim-textobj-line' }
   use { 'ColinKennedy/vim-indent-object' }
   use { 'Julian/vim-textobj-variable-segment' }
   use { 'tkhren/vim-textobj-numeral', 
     config = load_setup('textobj') }
+  use { 'catppuccin/nvim', as = 'catppuccin'}
   use 'andymass/vim-matchup'
   -- use { 'sunjon/shade.nvim',
   --   config = function() require'shade'.setup({ overlay_opacity = 50, opacity_step = 1}) end }
@@ -84,6 +86,9 @@ return require('packer').startup(function()
     config = exec_setup('numb') }
   use { 'lewis6991/gitsigns.nvim',
     config = load_setup('git'),
+  }
+  use { 'glepnir/indent-guides.nvim',
+    config = load_setup('indent_guides'),
   }
   -- use { 'lukas-reineke/indent-blankline.nvim', 
   --   config = load_setup('indent') }

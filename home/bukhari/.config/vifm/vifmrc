@@ -548,4 +548,5 @@ nnoremap gl :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' 
 source ~/vifm_devicons/favicons.vifm
 " source ~/.config/vifm/icons
 " source ~/.config/vifm/monokai.vifm
-source ~/.config/vifm/ayu.vifm
+" source ~/.config/vifm/ayu.vifm
+source ~/.config/vifm/catppuccin-mocha.vifm

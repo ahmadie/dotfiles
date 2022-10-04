@@ -28,11 +28,8 @@
   line-numbers = true
   line-numbers-left-format = ""
   line-numbers-right-format = "{np} "
-  # keep-plus-minus-markers = false
-  # minus-style = syntax "#003A11" 
-  # plus-style = syntax "#005617"
   minus-style = syntax red
-  # plus-style = black green
+  plus-style = black green
   plus-emph-style = black white
   minus-emph-style = black white
 [merge]
