@@ -41,6 +41,8 @@ keymap("n", "<leader>7", "<cmd>tabn 7<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>8", "<cmd>tabn 8<cr>", { noremap = true, silent = true })
 keymap("n", "<leader>9", "<cmd>tabn 9<cr>", { noremap = true, silent = true })
 
+keymap("n", "<leader><cr>", ":FuzzySearch<cr>", { noremap = true, silent = true })
+
 vim.cmd [[
 " Go to last active tab
 au TabLeave * let g:lasttab = tabpagenr()

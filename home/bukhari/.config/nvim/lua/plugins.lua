@@ -93,6 +93,12 @@ return require('packer').startup(function()
   -- use { 'lukas-reineke/indent-blankline.nvim', 
   --   config = load_setup('indent') }
   -- use 'romgrk/nvim-treesitter-context'
+  use {'ggVGc/vim-fuzzysearch',
+    config = function() 
+      vim.g['fuzzysearch_match_spaces'] = 1 
+      vim.g['fuzzysearch_prompt'] = '/'
+      vim.g['fuzzysearch_ignorecase'] = 1 
+    end }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
