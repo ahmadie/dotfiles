@@ -88,8 +88,12 @@ return require('packer').startup(function()
     config = load_setup('git'),
   }
   use { 'glepnir/indent-guides.nvim',
-    config = load_setup('indent_guides'),
-  }
+    config = function() 
+      require('indent_guides').setup({
+      indent_start_level = 2,
+      even_colors = { fg='#FFFFFF', bg='#252636'},
+      odd_colors = { fg='#FFFFFF', bg='#252636'},
+    }) end }
   -- use { 'lukas-reineke/indent-blankline.nvim', 
   --   config = load_setup('indent') }
   -- use 'romgrk/nvim-treesitter-context'
