@@ -121,8 +121,8 @@ function M.pounce(opts)
       })
     end
 
+    local hits = {}
     if input ~= "" then
-      local hits = {}
       local current_win = vim.api.nvim_get_current_win()
 
       -- Find and score all matches in visible buffer regions.
@@ -140,7 +140,7 @@ function M.pounce(opts)
               score = score + calculate_proximity_bonus(cursor_line, cursor_col, line, col)
             end
             score = score + #hits * 1e-9 -- stabilize sort
-            table.insert(hits, { window = win, line = line, indices = m.indices, score = score })
+            table.insert(hits, { window = win, line = line, indices = m.indices, score = score , match_haystack = m.match_haystack })
             if getconfig("debug", opts) then
               vim.api.nvim_buf_set_extmark(buf, ns, line - 1, -1, { virt_text = { { tostring(score), "IncSearch" } } })
             end
@@ -221,6 +221,16 @@ function M.pounce(opts)
         vim.cmd "normal! m'"
         vim.api.nvim_win_set_cursor(accepted.window, accepted.position)
         vim.api.nvim_set_current_win(accepted.window)
+
+        local n_search = ""
+        for idx, hit in ipairs(hits) do
+          if idx == 1 then
+            n_search = hit.match_haystack
+          else
+            n_search = n_search .. "\\|" ..hit.match_haystack
+          end
+        end
+        vim.cmd("/" .. n_search)
         break
       elseif type(nr) == "number" and (nr < 32 or nr == 127) then
         -- ignore

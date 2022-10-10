@@ -17,6 +17,7 @@ function M.match(needle_, haystack_)
       local indices, score = fzy.positions(needle, haystack, false)
       local left_haystack = string.sub(haystack, 1, indices[1] - 1)
       local right_haystack = string.sub(haystack, indices[#indices] + 1, -1)
+      local match_haystack = string.sub(haystack, indices[1], indices[#indices])
       assert(left_haystack:len() < haystack:len())
       assert(right_haystack:len() < haystack:len())
 
@@ -24,7 +25,7 @@ function M.match(needle_, haystack_)
         indices[i] = v + offset
         assert(indices[i] <= haystack_:len())
       end
-      table.insert(results, { indices = indices, score = score })
+      table.insert(results, { indices = indices, score = score , match_haystack = match_haystack})
 
       match_inner(needle, left_haystack, offset)
       return match_inner(needle, right_haystack, indices[#indices])
