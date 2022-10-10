@@ -130,7 +130,8 @@ function M.pounce(opts)
         local buf = vim.api.nvim_win_get_buf(win)
         local win_info = vim.fn.getwininfo(win)[1]
         local cursor_line, cursor_col = unpack(vim.api.nvim_win_get_cursor(win))
-        for line = win_info.topline, win_info.botline do
+        -- for line = win_info.topline, win_info.botline do
+        for line = 1, vim.api.nvim_buf_line_count(buf) do
           local text = vim.api.nvim_buf_get_lines(buf, line - 1, line, false)[1]
           local matches = matcher.match(input, text)
           for _, m in ipairs(matches) do
@@ -213,6 +214,17 @@ function M.pounce(opts)
       break
     elseif nr == "\x80kb" or nr == 8 then -- backspace or <C-h>
       input = input:sub(1, -2)
+    elseif nr == 13 then
+      local n_search = ""
+      for idx, hit in ipairs(hits) do
+        if idx == 1 then
+          n_search = hit.match_haystack
+        else
+          n_search = n_search .. "\\|" ..hit.match_haystack
+        end
+      end
+      vim.cmd("/" .. n_search)
+      break
     else
       local ch = vim.fn.nr2char(nr)
       local accepted = accept_key_map[ch]
@@ -221,16 +233,6 @@ function M.pounce(opts)
         vim.cmd "normal! m'"
         vim.api.nvim_win_set_cursor(accepted.window, accepted.position)
         vim.api.nvim_set_current_win(accepted.window)
-
-        local n_search = ""
-        for idx, hit in ipairs(hits) do
-          if idx == 1 then
-            n_search = hit.match_haystack
-          else
-            n_search = n_search .. "\\|" ..hit.match_haystack
-          end
-        end
-        vim.cmd("/" .. n_search)
         break
       elseif type(nr) == "number" and (nr < 32 or nr == 127) then
         -- ignore
