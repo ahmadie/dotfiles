@@ -122,6 +122,7 @@ function M.pounce(opts)
     end
 
     local hits = {}
+    local buff_hits = {}
     if input ~= "" then
       local current_win = vim.api.nvim_get_current_win()
 
@@ -130,8 +131,7 @@ function M.pounce(opts)
         local buf = vim.api.nvim_win_get_buf(win)
         local win_info = vim.fn.getwininfo(win)[1]
         local cursor_line, cursor_col = unpack(vim.api.nvim_win_get_cursor(win))
-        -- for line = win_info.topline, win_info.botline do
-        for line = 1, vim.api.nvim_buf_line_count(buf) do
+        for line = win_info.topline, win_info.botline do
           local text = vim.api.nvim_buf_get_lines(buf, line - 1, line, false)[1]
           local matches = matcher.match(input, text)
           for _, m in ipairs(matches) do
@@ -149,10 +149,32 @@ function M.pounce(opts)
         end
       end
 
+
+      local curr_win_info = vim.fn.getwininfo(current_win)[1]
+      local curr_buf = vim.api.nvim_get_current_buf()
+      for line = 1, vim.api.nvim_buf_line_count(curr_buf) do
+        if line < curr_win_info.topline or line > curr_win_info.botline then
+          local text = vim.api.nvim_buf_get_lines(curr_buf, line - 1, line, false)[1]
+          local matches = matcher.match(input, text)
+          for _, m in ipairs(matches) do
+            local score = m.score
+            score = score + #buff_hits * 1e-9 -- stabilize sort
+            table.insert(buff_hits, { line = line, indices = m.indices, score = score , match_haystack = m.match_haystack })
+          end
+        end
+      end
+
+
       -- Discard relatively low-scoring matches.
       hits = matcher.filter(hits)
 
       table.sort(hits, function(a, b)
+        return a.score > b.score
+      end)
+
+      buff_hits = matcher.filter(buff_hits)
+
+      table.sort(buff_hits, function(a, b)
         return a.score > b.score
       end)
 
@@ -216,7 +238,7 @@ function M.pounce(opts)
       input = input:sub(1, -2)
     elseif nr == 13 then
       local n_search = ""
-      for idx, hit in ipairs(hits) do
+      for idx, hit in ipairs(buff_hits) do
         if idx == 1 then
           n_search = hit.match_haystack
         else
