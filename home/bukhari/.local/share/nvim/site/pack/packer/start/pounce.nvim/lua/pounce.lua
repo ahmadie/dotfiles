@@ -237,15 +237,25 @@ function M.pounce(opts)
     elseif nr == "\x80kb" or nr == 8 then -- backspace or <C-h>
       input = input:sub(1, -2)
     elseif nr == 13 then
+      vim.cmd "normal! m'"
+
+      local current_win = vim.api.nvim_get_current_win()
+      local curr_win_info = vim.fn.getwininfo(current_win)[1]
+      local curr_buf = vim.api.nvim_get_current_buf()
+      local top_l = curr_win_info.topline
+      local bot_l = curr_win_info.botline
+      local last_l = vim.api.nvim_buf_line_count(curr_buf) + 1
+
       local n_search = ""
       for idx, hit in ipairs(buff_hits) do
         if idx == 1 then
-          n_search = hit.match_haystack
+          n_search = "\\%>0l\\%<" .. top_l .. "l" .. hit.match_haystack .. "\\|\\%>" .. bot_l .. "l\\%<" .. last_l .. "l" .. hit.match_haystack
         else
-          n_search = n_search .. "\\|" ..hit.match_haystack
+          n_search = n_search .. "\\|" .. "\\%>0l\\%<" .. top_l .. "l" .. hit.match_haystack .. "\\|\\%>" .. bot_l .. "l\\%<" .. last_l .. "l" .. hit.match_haystack
         end
       end
-      vim.cmd("/" .. n_search)
+      -- \%>12l\%<24lm\|\%>100l\%<120lm
+      vim.cmd("/" .. n_search .. "<cr>")
       break
     else
       local ch = vim.fn.nr2char(nr)
