@@ -246,7 +246,6 @@ function M.pounce(opts)
       local bot_l = curr_win_info.botline
       local last_l = vim.api.nvim_buf_line_count(curr_buf) + 1
 
-||||||| 0b290c8
       local n_search = ""
       for idx, hit in ipairs(buff_hits) do
         if idx == 1 then
@@ -257,7 +256,6 @@ function M.pounce(opts)
       end
       -- \%>12l\%<24lm\|\%>100l\%<120lm
       vim.cmd("/" .. n_search .. "<cr>")
-||||||| 0b290c8
       vim.cmd("/" .. n_search)
       break
     else
