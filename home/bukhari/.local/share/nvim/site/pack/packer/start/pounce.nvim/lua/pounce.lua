@@ -245,7 +245,7 @@ function M.pounce(opts)
       local bot_l = curr_win_info.botline
       local last_l = vim.api.nvim_buf_line_count(curr_buf) + 1
 
-      local n_search = ""
+      local n_search = nil
       for idx, hit in ipairs(buff_hits) do
         if idx == 1 then
           n_search = "\\%>0l\\%<" .. top_l .. "l" .. hit.match_haystack .. "\\|\\%>" .. bot_l .. "l\\%<" .. last_l .. "l" .. hit.match_haystack
@@ -253,9 +253,11 @@ function M.pounce(opts)
           n_search = n_search .. "\\|" .. "\\%>0l\\%<" .. top_l .. "l" .. hit.match_haystack .. "\\|\\%>" .. bot_l .. "l\\%<" .. last_l .. "l" .. hit.match_haystack
         end
       end
-      -- \%>12l\%<24lm\|\%>100l\%<120lm
-      vim.cmd("/" .. n_search)
-      vim.cmd "normal! m'n"
+
+      if n_search ~= nil then
+        vim.cmd("/" .. n_search)
+        vim.cmd "normal! m'n"
+      end
       break
     else
       local ch = vim.fn.nr2char(nr)
