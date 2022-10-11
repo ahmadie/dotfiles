@@ -27,15 +27,15 @@
 # deb-src http://ftp.jp.debian.org/debian/ buster/updates main contrib non-free
 
 # buster-updates, previously known as 'volatile'
-deb http://ftp.jp.debian.org/debian/ buster-updates main contrib non-free
-deb-src http://ftp.jp.debian.org/debian/ buster-updates main contrib non-free
+deb http://ftp.jp.debian.org/debian/ bullseye-updates main contrib non-free
+deb-src http://ftp.jp.debian.org/debian/ bullseye-updates main contrib non-free
 
-# deb http://ftp.jp.debian.org/debian/ buster-backports main contrib non-free
+# deb http://ftp.jp.debian.org/debian/ bullseye-backports main contrib non-free
 
-deb http://ftp.tr.debian.org/debian/ buster main non-free contrib
-deb-src http://ftp.tr.debian.org/debian/ buster main non-free contrib
-deb http://ftp.tr.debian.org/debian/ buster-backports main non-free contrib
-deb-src http://ftp.tr.debian.org/debian/ buster-backports main non-free contrib
+deb http://ftp.debian.org/debian/ bullseye main non-free contrib
+deb-src http://ftp.debian.org/debian/ bullseye main non-free contrib
+deb http://ftp.debian.org/debian/ bullseye-backports main non-free contrib
+deb-src http://ftp.debian.org/debian/ bullseye-backports main non-free contrib
 
 #
 # deb http://ftp.de.debian.org/debian sid main contrib non-free
