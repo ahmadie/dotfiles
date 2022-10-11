@@ -237,7 +237,6 @@ function M.pounce(opts)
     elseif nr == "\x80kb" or nr == 8 then -- backspace or <C-h>
       input = input:sub(1, -2)
     elseif nr == 13 then
-      vim.cmd "normal! m'"
 
       local current_win = vim.api.nvim_get_current_win()
       local curr_win_info = vim.fn.getwininfo(current_win)[1]
@@ -255,8 +254,8 @@ function M.pounce(opts)
         end
       end
       -- \%>12l\%<24lm\|\%>100l\%<120lm
-      vim.cmd("/" .. n_search .. "<cr>")
       vim.cmd("/" .. n_search)
+      vim.cmd "normal! m'n"
       break
     else
       local ch = vim.fn.nr2char(nr)
