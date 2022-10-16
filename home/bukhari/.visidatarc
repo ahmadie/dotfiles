@@ -1,0 +1,23 @@
+options.color_default = "white"
+options.color_menu = "green"
+options.color_default_hdr = "blue on"
+options.color_bottom_hdr = "blue on"
+options.color_current_hdr = ""
+options.color_status = "green"
+options.color_active_status = "green"
+options.color_current_col = ""
+options.color_current_row = "on black"
+options.color_selected_row = "237 on red"
+options.color_note_row = "red"
+options.color_keystrokes = "black on"
+options.color_menu_help = "green on "
+options.color_column_sep = "white"
+
+options.disp_rowend_sep = " "
+options.disp_keycol_sep = ""
+options.disp_column_sep = ""
+options.disp_selected_note = ""
+
+TableSheet.colorizers += [
+    CellColorizer(3, "235 on white", lambda s,c,r,v: c is s.cursorCol and r is s.cursorRow)
+]
