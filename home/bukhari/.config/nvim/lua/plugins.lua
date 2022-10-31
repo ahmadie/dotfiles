@@ -13,6 +13,8 @@ function load_setup(name)
   return string.format('require("./%s")', name)
 end
 
+vim.opt.termguicolors = true
+
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use "nvim-lua/popup.nvim"
@@ -77,11 +79,26 @@ return require('packer').startup(function()
   use 'andymass/vim-matchup'
   -- use { 'sunjon/shade.nvim',
   --   config = function() require'shade'.setup({ overlay_opacity = 50, opacity_step = 1}) end }
-  use { 'crispgm/nvim-tabline',
-      config = function() require('tabline').setup({}) end }
+  -- use { 'crispgm/nvim-tabline',
+      -- config = function() require('tabline').setup({}) end }
+  use 'kyazdani42/nvim-web-devicons'
+  use { 'akinsho/bufferline.nvim', tag = "v3.*",
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = function() 
+        require('bufferline').setup({
+        options = {
+            mode = "tabs", -- set to "tabs" to only show tabpages instead
+            numbers = function(opts)
+              return string.format('%s', opts.raise(opts.ordinal))
+            end,
+            separator_style = {"", ""},
+            show_close_icon = false,
+            show_buffer_close_icons = false,
+            color_icons = false
+        }
+      }) end }
   -- use { 'rafcamlet/tabline-framework.nvim',
   --   config = load_setup('tabline') }
-  use 'kyazdani42/nvim-web-devicons'
   use { 'nacro90/numb.nvim', 
     config = exec_setup('numb') }
   use { 'lewis6991/gitsigns.nvim',
@@ -94,6 +111,7 @@ return require('packer').startup(function()
       even_colors = { fg='#FFFFFF', bg='#252636'},
       odd_colors = { fg='#FFFFFF', bg='#252636'},
     }) end }
+  use { 'chrisbra/csv.vim'}
   -- use { 'lukas-reineke/indent-blankline.nvim', 
   --   config = load_setup('indent') }
   -- use 'romgrk/nvim-treesitter-context'
