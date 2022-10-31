@@ -245,8 +245,10 @@ function M.pounce(opts)
       local bot_l = curr_win_info.botline
       local last_l = vim.api.nvim_buf_line_count(curr_buf) + 1
 
+
       local n_search = nil
       for idx, hit in ipairs(buff_hits) do
+        hit.match_haystack = hit.match_haystack:gsub("/", "\\/")
         if idx == 1 then
           n_search = "\\%>0l\\%<" .. top_l .. "l" .. hit.match_haystack .. "\\|\\%>" .. bot_l .. "l\\%<" .. last_l .. "l" .. hit.match_haystack
         else
