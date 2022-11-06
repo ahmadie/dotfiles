@@ -126,3 +126,9 @@ nnoremap <leader>p :CocCommand prettier.formatFile<cr>
 
 " nmap <silent> <C-d> <Plug>(coc-cursors-position)
 " nmap <leader>d  <Plug>(coc-cursors-operator)
+
+
+autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+autocmd VimLeave * call system("tmux rename-window bash")
+autocmd BufEnter * let &titlestring = ' ' . expand("%:t")                                                                 
+set title
