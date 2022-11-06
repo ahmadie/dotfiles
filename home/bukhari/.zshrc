@@ -97,6 +97,8 @@ export GTK_IM_MODULE="ibus"
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=/'
 alias lgdotfiles='lg --work-tree / --git-dir ~/.dotfiles'
 
+alias lg='lazygit'
+
 # fzf color picker =D >>> https://minsw.github.io/fzf-color-picker/
 export FZF_DEFAULT_OPTS=' --color=fg:#cdd6f4,bg:-1,hl:#f38ba8:bold 
 --color=fg+:#f5e0dc 
