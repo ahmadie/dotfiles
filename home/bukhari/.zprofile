@@ -46,6 +46,7 @@ kanshi
 
 #start tmux
 if [ -z "$TMUX" ]; then
+    cd ~
     base_session='0'
     # Create a new session if it doesn't exist
     if [[ -n $(tmux has-session -t $base_session 2>&1) ]]; then
