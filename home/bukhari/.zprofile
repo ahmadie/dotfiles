@@ -50,6 +50,7 @@ if [ -z "$TMUX" ]; then
     base_session='0'
     # Create a new session if it doesn't exist
     if [[ -n $(tmux has-session -t $base_session 2>&1) ]]; then
+      tmux new-session -d -s 1
       tmux new-session -d -s $base_session
     fi
     # Are there any clients connected already?
