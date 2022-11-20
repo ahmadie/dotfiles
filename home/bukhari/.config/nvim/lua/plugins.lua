@@ -119,6 +119,14 @@ return require('packer').startup(function()
       odd_colors = { fg='#FFFFFF', bg='#252639'},
     }) end }
   use { 'chrisbra/csv.vim'}
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+      }
+  end
+}
   -- use { 'lukas-reineke/indent-blankline.nvim', 
   --   config = load_setup('indent') }
   -- use 'romgrk/nvim-treesitter-context'

@@ -129,6 +129,8 @@ nnoremap <leader>p :CocCommand prettier.formatFile<cr>
 
 
 autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
-autocmd VimLeave * call system("tmux rename-window bash")
+autocmd VimLeave * call system("tmux set-option -w automatic-rename on")
 autocmd BufEnter * let &titlestring = ' ' . expand("%:t")                                                                 
 set title
+
+

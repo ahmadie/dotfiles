@@ -47,19 +47,14 @@ kanshi
 #start tmux
 if [ -z "$TMUX" ]; then
     cd ~
-    base_session='0'
     # Create a new session if it doesn't exist
-    if [[ -n $(tmux has-session -t $base_session 2>&1) ]]; then
+    if [[ -n $(tmux has-session -t 0 2>&1) ]]; then
+      tmux new-session -d -s 0
+    fi
+
+    if [[ -n $(tmux has-session -t 1 2>&1) ]]; then
       tmux new-session -d -s 1
-      tmux new-session -d -s $base_session
     fi
-    # Are there any clients connected already?
-    client_cnt=$(tmux list-clients | wc -l)
-    if [ $client_cnt -ge 1 ]; then
-        session_name=$base_session"-"$client_cnt
-        tmux new-session -d -t $base_session -s $session_name
-        tmux -2 attach-session -t $session_name \; set-option destroy-unattached
-    else
-        tmux -2 attach-session -t $base_session
-    fi
+
+    tmux -2 attach-session -t 0
 fi
