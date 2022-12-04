@@ -25,15 +25,6 @@ return require('packer').startup(function()
     branch = 'release' }
   use { 'Shatur/neovim-ayu',
     config = load_setup('colorscheme') }
-  use { 'nvim-lualine/lualine.nvim',
-    config = function() 
-      require('lualine').setup({
-        options = {
-          theme = 'ayu_mirage',
-          section_separators = '',
-          component_separators = ''
-        },
-    }) end }
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = load_setup('treesitter') }

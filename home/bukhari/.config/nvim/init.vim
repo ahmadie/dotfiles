@@ -133,4 +133,9 @@ autocmd VimLeave * call system("tmux set-option -w automatic-rename on")
 autocmd BufEnter * let &titlestring = ' ' . expand("%:t")                                                                 
 set title
 
+set laststatus=0
+hi User1 guifg=black
+set statusline=
+set statusline+=%1*%{repeat('─',winwidth('.'))}
+
 
