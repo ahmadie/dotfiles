@@ -13,8 +13,6 @@ cd /home/bukhari/AizawaDoc && nvim -S Session.vim
 nvim /home/bukhari/.config/vifm/monokai.vifm
 nvim /home/bukhari/.config/starship.toml
 nvim /home/bukhari/.config/vifm/vifmrc
-./font-patcher /home/bukhari/.fonts/InputMono-Italic.ttf -c --careful
-./font-patcher /home/bukhari/.fonts/InputMono-Regular.ttf -c --careful
 /home/bukhari/Downloads
 nvim /home/bukhari/.gitconfig
 nvim /home/bukhari/.bashrc
@@ -37,7 +35,6 @@ nvim /home/bukhari/.config/alacritty/alacritty.yml
 nvim /mnt/c/Users/ahmed.bukhari/AppData/Roaming/alacritty/alacritty.yml
 nvim /home/bukhari/.tridactylrc
 nvim /home/bukhari/.p10k.zsh
-./font-patcher font-name --complete --careful
 tar xvzf file.tar.gz -C /path/to/dir
 nixGLIntel kdenlive
 tar xvf file.tar.xz -C /path/to/dir
@@ -54,6 +51,6 @@ wsl.exe hostname -I
 adb reverse tcp:8080 tcp:8080
 git remote set-url origin https://<token>@github.com/<username>/<repo>
 sudo mongod --dbpath /home/bukhari/data/db
-nvim .fzf-command-bookmarks.txt
-nvim /home/bukhari/.zsh/fzf-command-bookmarks/fzf-command-bookmarks.plugin.zsh
+nvim ~/.fzf-command-bookmarks.txt
 nvim /home/bukhari/.fzf/shell/key-bindings.zsh
+./FontForge-2023-01-01-a1dad3e-x86_64.AppImage --script ~/Downloads/FontPatcher/font-patcher --complete ~/.fonts/InputMonoCondensed-Regular.ttf  --out ~/.fonts/ #must use absolute path, also must use --out
