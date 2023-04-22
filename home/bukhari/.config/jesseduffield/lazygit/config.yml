@@ -7,14 +7,19 @@ gui:
     sidePanelWidth: 0.222
     mainPanelSplitMode: 'horizontal'
     theme:
+      optionsTextColor:
+        - blue
       selectedLineBgColor:
-        - reverse
+        - black
       selectedRangeBgColor:
-        - reverse
+        - black
       activeBorderColor:
         - red
+        - bold
       inactiveBorderColor:
         - black
+      defaultFgColor:
+        - default
 git:
   paging:
     # -w do not show spaces in diff
