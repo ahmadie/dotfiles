@@ -76,6 +76,7 @@ set $right l
 # set $term kitty
 # set $term ~/Downloads/kitty-0.19.1-x86_64/bin/kitty
 set $term env WINIT_UNIX_BACKEND=x11 alacritty
+set $toolbox alacritty -e distrobox enter fedora-toolbox-38
 #
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -205,7 +206,9 @@ bindcode 233 exec brightnessctl set +5%
     bindsym --to-code $mod+x kill
 
     # Start your launcher
-    bindsym --to-code $mod+d exec $menu
+    # bindsym --to-code $mod+e exec $menu
+    for_window [title="fzf-switcher"] floating enable, sticky enable, border pixel 2
+    bindsym --to-code $mod+e exec 'SHELL=/bin/zsh /home/bukhari/.config/sway/sway-dmenu'
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -258,16 +261,17 @@ bindcode 233 exec brightnessctl set +5%
     set $ws-up "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 10))";
     set $ws-down "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 10))";
 
-    bindsym --to-code $alt+$mod+j exec swaymsg move container to workspace number $ws-down, exec swaymsg workspace number $ws-down
-    bindsym --to-code $alt+$mod+k exec swaymsg move container to workspace number $ws-up, exec swaymsg workspace number $ws-up
-    bindsym --to-code $alt+$mod+h exec swaymsg  move container to workspace number $ws-left, exec swaymsg workspace number $ws-left
-    bindsym --to-code $alt+$mod+l exec swaymsg move container to workspace number $ws-right, exec swaymsg workspace number $ws-right
+    # bindsym --to-code $alt+$mod+j exec swaymsg move container to workspace number $ws-down, exec swaymsg workspace number $ws-down
+    # bindsym --to-code $alt+$mod+k exec swaymsg move container to workspace number $ws-up, exec swaymsg workspace number $ws-up
+    # bindsym --to-code $alt+$mod+h exec swaymsg  move container to workspace number $ws-left, exec swaymsg workspace number $ws-left
+    # bindsym --to-code $alt+$mod+l exec swaymsg move container to workspace number $ws-right, exec swaymsg workspace number $ws-right
 
-    # Ditto, with arrow keys
-    bindsym --to-code $alt+h exec swaymsg workspace number $ws-left
-    bindsym --to-code $alt+j exec swaymsg workspace number $ws-down
-    bindsym --to-code $alt+k exec swaymsg workspace number $ws-up
-    bindsym --to-code $alt+l exec swaymsg workspace number $ws-right
+    # # Ditto, with arrow keys
+    # bindsym --to-code $alt+h exec swaymsg workspace number $ws-left
+    # bindsym --to-code $alt+j exec swaymsg workspace number $ws-down
+    # bindsym --to-code $alt+k exec swaymsg workspace number $ws-up
+    # bindsym --to-code $alt+l exec swaymsg workspace number $ws-right
+
 #
 # Workspaces:
 #
@@ -352,6 +356,7 @@ bindcode 233 exec brightnessctl set +5%
     bindsym $mod+7 $change_workspace 7
     bindsym $mod+8 $change_workspace 8
     bindsym $mod+9 $change_workspace 9
+    bindsym $mod+q $change_workspace q
     # bindsym $mod+0 workspace 10
     bindsym $mod+0 $x_switch 20, $x_switch 10
 
@@ -365,7 +370,7 @@ bindcode 233 exec brightnessctl set +5%
     bindsym $mod+Shift+7 $move_container 7
     bindsym $mod+Shift+8 $move_container 8
     bindsym $mod+Shift+9 $move_container 9
-    bindsym $mod+Shift+0 $move_container 10
+    bindsym $mod+Shift+q $move_container q
 
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
@@ -381,7 +386,7 @@ bindcode 233 exec brightnessctl set +5%
     # Switch the current container between different layout styles
     bindsym --to-code $mod+s layout stacking
     bindsym --to-code $mod+w layout tabbed
-    bindsym --to-code $mod+e layout toggle split
+    bindsym --to-code $mod+d layout toggle split
 
     # Make the current focus fullscreen
     bindsym --to-code $mod+f fullscreen

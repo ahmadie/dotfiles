@@ -56,6 +56,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclu
 # To apply the command to CTRL-T as well
 # export FZF_DEFAULT_COMMAND='rg --files' 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --exclude .git --exclude .local/share/nvim/undo --search-path ~"
 
 export FZF_PREVIEW_PREVIEW_BAT_THEME="ayu-dark"
 export BAT_THEME="ayu-dark"
@@ -106,9 +107,11 @@ export FZF_DEFAULT_OPTS=' --color=fg:#cdd6f4,bg:-1,hl:#f38ba8:bold
 --color=marker:#f38ba8,spinner:#f5e0dc,header:#525252 
 --color=border:#57c7ff 
 --preview-window=sharp 
+--no-separator 
+--no-scrollbar 
 --pointer=" " 
+--reverse 
 --marker="→" 
---border=sharp 
 --prompt=" " 
 --color=pointer:reverse,prompt:#cba6f7,input:159 
 --color=fg+:bold,hl+:#f38ba8:bold'
@@ -237,6 +240,12 @@ bindkey '^[[B' history-substring-search-down
 
 # zfm
 source ~/.zsh/zfm/zfm.zsh
+
+# fzf-commands-bookmarks
+source ~/.zsh/fzf-command-bookmarks/fzf-command-bookmarks.sh
+export FZF_COMMAND_BOOKMARKS_ADD="C-@"
+export FZF_COMMAND_BOOKMARKS_SHOW="C-k"
+export FZF_COMMAND_BOOKMARKS_FILE=~/.fzf-command-bookmarks.txt
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {

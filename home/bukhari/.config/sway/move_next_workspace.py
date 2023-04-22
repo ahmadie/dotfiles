@@ -2,8 +2,9 @@ import i3ipc
 from functools import partial
 import argparse
 import sys
+import time
 
-def next_workspace(num):
+def next_workspace(next):
 
     for window in ipc.get_tree():
         if window.focused:
@@ -11,6 +12,8 @@ def next_workspace(num):
 
     # print(prev_window.ipc_data)
     setup = "vertical" # or horizontal
+
+    num = int(next)
 
     if setup == "vertical":
         if abs(num) == 10 and num > 0:
@@ -44,18 +47,22 @@ def next_workspace(num):
     # print('prev', prev_window.id, 'next', next_window.id)
     if prev_window.rect.x == next_window.rect.x and \
         prev_window.rect.y == next_window.rect.y and \
-        prev_window.deco_rect.x == next_window.deco_rect.x and \
-        prev_window.deco_rect.y == next_window.deco_rect.y and \
-        abs(num) == 1:
+        prev_window.rect.width == next_window.rect.width and \
+        prev_window.rect.height == next_window.rect.height:
+        
         prev_workspace = ipc.get_tree().find_focused().workspace().num
         next_workspace = prev_workspace + num
-        if next_workspace == 10 and prev_workspace == 11:
-            return
-        if next_workspace == 11 and prev_workspace == 10:
-            return
-        if next_workspace > 0 and next_workspace <= 20:
-                ipc.command(f"move container to workspace number {next_workspace}")
-                ipc.command(f"workspace number {next_workspace}")
+
+        if abs(num) == 1:
+            if (prev_workspace > 10 and prev_workspace < 20) and (next_workspace > 19 or next_workspace < 11):
+                return
+            if (prev_workspace > 0 and prev_workspace < 10) and (next_workspace > 9 or next_workspace < 1):
+                return
+        if abs(num) == 10:
+            if next_workspace > 19:
+                return
+        ipc.command(f"move container to workspace number {next_workspace}")
+        ipc.command(f"workspace number {next_workspace}")
 
     ipc.main_quit()
     sys.exit(0)

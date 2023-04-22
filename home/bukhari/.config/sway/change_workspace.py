@@ -6,14 +6,18 @@ import sys
 def change_workspace(num):
     workspace = ipc.get_tree().find_focused().workspace().num
 
-    if workspace == num:
-        ipc.command(f"workspace number {num + 10}")
-    elif workspace == num + 10:
-        ipc.command(f"workspace number {num}")
+    if num == 'q' and workspace < 10:
+        ipc.command(f"workspace number {workspace + 10}")
+    elif num == 'q' and workspace > 10:
+        ipc.command(f"workspace number {workspace - 10}")
+    if workspace > 10 and workspace == int(num) + 10:
+        ipc.command(f"workspace number {int(num)}")
+    elif workspace > 10:
+        ipc.command(f"workspace number {int(num) + 10}")
+    elif workspace == int(num):
+        ipc.command(f"workspace number {int(num) + 10}")
     else:
-        ipc.command(f"workspace number {num + 10}")
-        ipc.command(f"workspace number {num}")
-        ipc.command("[con_mark=___last%d] focus" % num)
+        ipc.command(f"workspace number {int(num)}")
 
     ipc.main_quit()
     sys.exit(0)
@@ -23,7 +27,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         description='Switch workspaces in both outputs')
-    parser.add_argument('workspace', metavar='WORKSPACE_NUM', type=int,
+    parser.add_argument('workspace', metavar='WORKSPACE_NUM',
                         help='Workspace number to which to switch')
     args = parser.parse_args()
 

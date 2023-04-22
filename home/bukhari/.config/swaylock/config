@@ -7,7 +7,7 @@ datestr=%a, %Y-%m-%d
 
 screenshots
 
-effect-blur=30x3
+effect-blur=2x5
 effect-vignette=0.8:0.2
 
 indicator

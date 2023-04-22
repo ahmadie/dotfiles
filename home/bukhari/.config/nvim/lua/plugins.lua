@@ -102,14 +102,6 @@ return require('packer').startup(function()
   use { 'lewis6991/gitsigns.nvim',
     config = load_setup('git'),
   }
-  use { 'glepnir/indent-guides.nvim',
-    config = function() 
-      require('indent_guides').setup({
-      indent_start_level = 2,
-      even_colors = { fg='#FFFFFF', bg='#252639'},
-      odd_colors = { fg='#FFFFFF', bg='#252639'},
-    }) end }
-  use { 'chrisbra/csv.vim'}
   use {
     'rmagatti/auto-session',
     config = function()
