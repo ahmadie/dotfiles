@@ -238,13 +238,10 @@ bindkey '^[[B' history-substring-search-down
 # Autojump
 [[ -s /home/bukhari/.autojump/etc/profile.d/autojump.sh ]] && source /home/bukhari/.autojump/etc/profile.d/autojump.sh
 
-# zfm
-source ~/.zsh/zfm/zfm.zsh
-
 # fzf-commands-bookmarks
 source ~/.zsh/fzf-command-bookmarks/fzf-command-bookmarks.sh
-export FZF_COMMAND_BOOKMARKS_ADD="C-@"
-export FZF_COMMAND_BOOKMARKS_SHOW="C-k"
+export FZF_COMMAND_BOOKMARKS_ADD="\C-k"
+export FZF_COMMAND_BOOKMARKS_SHOW="\C-o"
 export FZF_COMMAND_BOOKMARKS_FILE=~/.fzf-command-bookmarks.txt
 
 # Change cursor shape for different vi modes.

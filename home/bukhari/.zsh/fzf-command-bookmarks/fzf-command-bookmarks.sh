@@ -5,7 +5,7 @@ hash highlight 2> /dev/null || echo "[fzf-command-bookmarks] highlight binary no
 
 export FZF_COMMAND_BOOKMARKS_FILE="${HOME}/.fzf_command_bookmarks.txt"
 export FZF_COMMAND_BOOKMARKS_ADD="\C-k"
-export FZF_COMMAND_BOOKMARKS_SHOW="\C-@"
+export FZF_COMMAND_BOOKMARKS_SHOW="\C-o"
 
 
 # Readline magic helper for bash
