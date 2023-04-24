@@ -27,7 +27,8 @@ local options = {
   termguicolors = true,
   background = 'dark',
   hidden = true,
-  wrap = false
+  wrap = false,
+  cmdheight = 0
 }
 
 -- vim.opt.wop:sub('pum')
