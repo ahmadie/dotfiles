@@ -37,24 +37,31 @@ export PKG_CONFIG_PATH="/usr/local/share/pkgconfig:$PKG_CONFIG_PATH"
 export LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="/usr/local/lib64/:$LD_LIBRARY_PATH"
 
-fcitx -r
+if type fcitx &> /dev/null; then
+  fcitx -r
+fi
+
 # ibus-daemon
 
 # exec pkill kanshi; exec kanshi
-kanshi
+if type kanshi &> /dev/null; then
+ kanshi
+fi
 
 
 #start tmux
-if [ -z "$TMUX" ]; then
-    cd ~
-    # Create a new session if it doesn't exist
-    if [[ -n $(tmux has-session -t 0 2>&1) ]]; then
-      tmux new-session -d -s 0
-    fi
+if type tmux &> /dev/null; then
+  if [ -z "$TMUX" ]; then
+      cd ~
+      # Create a new session if it doesn't exist
+      if [[ -n $(tmux has-session -t 0 2>&1) ]]; then
+        tmux new-session -d -s 0
+      fi
 
-    if [[ -n $(tmux has-session -t 1 2>&1) ]]; then
-      tmux new-session -d -s 1
-    fi
+      if [[ -n $(tmux has-session -t 1 2>&1) ]]; then
+        tmux new-session -d -s 1
+      fi
 
-    tmux -2 attach-session -t 0
+      tmux -2 attach-session -t 0
+  fi
 fi

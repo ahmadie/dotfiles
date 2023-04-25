@@ -5,8 +5,8 @@
   // "width": 120, // Waybar width
   // Choose the order of the modules
   "modules-left": [
-    "clock",
     "custom/weather",
+    "clock",
     "custom/uptime",
     "custom/media",
     "sway/workspaces",
@@ -66,17 +66,20 @@
   },
   "cpu": {
     "format": "{usage}% ",
-    "icon-size": 100
+    "icon-size": 100,
+    "interval": 1
   },
   "memory": {
-    "format": "{}% "
+    "format": "{}% ",
+    "interval": 1
   },
   "temperature": {
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     "critical-threshold": 80,
     "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC}°C "
+    "format": "{temperatureC}°C ",
+    "interval": 1
   },
   "backlight": {
     // "device": "acpi_video1",
@@ -103,7 +106,7 @@
     "format-wifi": "{essid} ({signalStrength}%) 直",
     "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
     "format-disconnected": "Disconnected 睊",
-    "interval": 7
+    "interval": 1
   },
   "pulseaudio": {
     //"scroll-step": 1,
@@ -135,7 +138,7 @@
   "custom/uptime":{
     "format": "{} 神",
     "exec": "$HOME/.config/waybar/uptime.sh",
-    "interval": 60,
+    "interval": 30,
   },
   "custom/weather": {
     "tooltip": true,
