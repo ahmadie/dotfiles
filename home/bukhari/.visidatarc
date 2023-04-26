@@ -17,6 +17,8 @@ options.disp_rowend_sep = " "
 options.disp_keycol_sep = ""
 options.disp_column_sep = ""
 options.disp_selected_note = ""
+options.disp_float_fmt = "{:.2f}"
+options.default_width = 20
 
 TableSheet.colorizers += [
     CellColorizer(3, "235 on white", lambda s,c,r,v: c is s.cursorCol and r is s.cursorRow)

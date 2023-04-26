@@ -33,7 +33,6 @@ vim.cmd [[
   highlight! PounceMatch  term=NONE guifg=#d54e53 guibg=#404040 gui=NONE
   highlight! PounceAcceptBest  term=NONE guifg=black guibg=yellow gui=NONE
 
-
-  highlight! link CocInlayHint Conceal
+  highlight! CocInlayHint term=NONE guifg=black guibg=NONE gui=NONE
 ]]
 

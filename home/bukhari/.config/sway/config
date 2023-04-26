@@ -235,6 +235,10 @@ bindcode 233 exec brightnessctl set +5%
     bindsym --to-code $mod+k $next_workspace 10 #up
     bindsym --to-code $mod+l $next_workspace 1 #right
 
+    bindsym --to-code $mod+left $next_workspace -1 #left
+    bindsym --to-code $mod+down $next_workspace -10 #down
+    bindsym --to-code $mod+up $next_workspace 10 #up
+    bindsym --to-code $mod+right $next_workspace 1 #right
     # Move your focus around (horizontal)
     # bindsym --to-code $mod+h focus left
     # bindsym --to-code $mod+k $next_workspace -1
@@ -249,6 +253,10 @@ bindcode 233 exec brightnessctl set +5%
     bindsym --to-code $mod+Shift+k $move_next_workspace 10
     bindsym --to-code $mod+Shift+l $move_next_workspace 1
 
+    bindsym --to-code $mod+Shift+left $move_next_workspace -1
+    bindsym --to-code $mod+Shift+down $move_next_workspace -10
+    bindsym --to-code $mod+Shift+up $move_next_workspace 10
+    bindsym --to-code $mod+Shift+right $move_next_workspace 1
     # Move the focused window with the same, but add Shift (horizontal)
     # bindsym --to-code $mod+Shift+h move left
     # bindsym --to-code $mod+Shift+j $move_next_workspace -1

@@ -43,6 +43,8 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
+#remove indent from right-site
+ZLE_RPROMPT_INDENT=0
 
 # reverse menu auto complete
 bindkey -M menuselect '^[[Z' reverse-menu-complete
@@ -267,8 +269,11 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 eval $(thefuck --alias)
 
+source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-ZLE_RPROMPT_INDENT=0
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme

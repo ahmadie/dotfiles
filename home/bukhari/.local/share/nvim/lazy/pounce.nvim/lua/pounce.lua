@@ -388,7 +388,6 @@ function M.pounce(opts, ns)
 
         if n_search ~= nil then
           vim.cmd("/" .. n_search)
-          vim.cmd "normal! m'n"
         end
         break
       elseif nr == 27 then -- escape
