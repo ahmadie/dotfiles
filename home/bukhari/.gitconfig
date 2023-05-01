@@ -46,3 +46,5 @@
   cmd = nvim -d "$REMOTE" "$LOCAL"
 [status]
 	showUntrackedFiles = no
+[credential]
+	helper = store
