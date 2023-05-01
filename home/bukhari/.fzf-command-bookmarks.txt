@@ -56,3 +56,5 @@ nvim /home/bukhari/.fzf/shell/key-bindings.zsh
 ./FontForge-2023-01-01-a1dad3e-x86_64.AppImage --script ~/Downloads/FontPatcher/font-patcher --complete ~/.fonts/InputMonoCondensed-Regular.ttf  --out ~/.fonts/ #must use absolute path, also must use --out
 fc-list #font list
 nvim /home/bukhari/.config/nvim/init.lua #lua init
+nvim ./.local/share/nvim/lazy/pounce.nvim/lua/pounce.lua
+nvim ~/.tmux.conf

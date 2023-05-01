@@ -1,4 +1,5 @@
   require'fzf-lua'.setup {
+      fullscreen = true,
       border           = "single",
       grep = {
         prompt            = ' ',
@@ -54,12 +55,12 @@
         },
       },
       winopts = {
-        height           = 0.95,
-        width            = 0.95,
+        height           = 1,
+        width            = 1,
         row              = 0.35,
         col              = 0.5,
         hl = {
-              border            = 'Identifier',
+              border            = 'Error',
               -- builtin preview only
               cursor            = 'Error',
               -- cursorline        = 'DiffAdd',
@@ -67,23 +68,23 @@
               -- title          = 'Normal',
               -- scrollbar_f    = 'PmenuThumb',
               -- scrollbar_e    = 'PmenuSbar',
-            },
+        },
       },
       fzf_opts = {
         ['--marker']      = '→',
-        ['--color']       = 'fg:#9aedfe,bg:-1,hl:#f50062:bold',
-        ['--color']       = 'fg+:#FFFFFF',
-        ['--color']       = 'info:#f50062,prompt:-1,pointer:#af5fff',
-        ['--color']       = 'marker:#f50062,spinner:#af5fff,header:#525252',
+        ['--color']       = 'fg:#cdd6f4,bg:-1,hl:#f38ba8:bold ',
+        ['--color']       = 'fg+:#f5e0dc',
+        ['--color']       = 'info:#f38ba8,prompt:-1,pointer:#af5fff ',
+        ['--color']       = 'marker:#f38ba8,spinner:#f5e0dc,header:#525252 ',
         ['--color']       = 'border:#57c7ff',
-        ['--color']       = 'pointer:reverse,prompt:#57c7ff,input:159',
-        ['--color']       = 'fg+:bold,hl+:#f50062:bold',
+        ['--color']       = 'pointer:reverse,prompt:#cba6f7,input:159 ',
+        ['--color']       = 'fg+:bold,hl+:#f38ba8:bold',
         ['--prompt']      = ' ',
-        ['--info']        = 'inline',
+        ['--info']        = 'default',
         ['--height']      = '100%',
-        ['--layout']      = 'reverse-list',
+        -- ['--layout']      = 'reverse-list',
         ['--preview-window'] = 'sharp',
-        ['--pointer'] = '⠀'
+        ['--pointer'] = '⠀',
         },
       }
 

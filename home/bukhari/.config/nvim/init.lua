@@ -5,6 +5,12 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.termguicolors = true
 
+-- disable all vimwiki mapping
+vim.g.vimwiki_key_mappings = { all_maps = 0}
+vim.cmd [[
+  let g:vimwiki_list = [{'path': '~/Beauty/vimwiki/', 'path_html' : '~/Beauty/vimwiki_html'}]
+]]
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -25,6 +31,8 @@ end
 function load_setup(name)
   return string.format('require("./lua/%s")', name)
 end
+
+
 
 require('lazy').setup({
   "nvim-lua/popup.nvim",
@@ -63,9 +71,11 @@ require('lazy').setup({
   'nacro90/numb.nvim', 
   'lewis6991/gitsigns.nvim',
   'rmagatti/auto-session',
-  'nvim-treesitter/nvim-treesitter-context'
+  'nvim-treesitter/nvim-treesitter-context',
+  'vimwiki/vimwiki'
 }, {} )
 
+require('wiki')
 require('colorscheme')
 require('treesitter')
 require('colorizer')
@@ -117,12 +127,12 @@ vim.cmd [[
   autocmd BufEnter * let &titlestring = ' ' . expand("%:t")                                                                 
   set title
 
+  autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
+
   set laststatus=0
   hi User1 guifg=black
   set statusline=
   set statusline+=%1*%{repeat('─',winwidth('.'))}
-
-  autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 ]]
 
 vim.cmd [[
@@ -268,6 +278,5 @@ vim.cmd [[
 
   " nmap <silent> <C-d> <Plug>(coc-cursors-position)
   " nmap <leader>d  <Plug>(coc-cursors-operator)
-
 ]]
 

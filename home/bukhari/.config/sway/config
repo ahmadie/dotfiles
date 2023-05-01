@@ -112,7 +112,7 @@ output eDP-1 res 2560x1440 scale 1 pos 0 0
 #
 # set $swaylock swaylock -i /usr/local/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png -s fill --ring-color 859900 --inside-wrong-color d33682
 # set $swaylock swaylock -i $background -s fill --ring-color 008599 --inside-wrong-color 991400 
-set $swaylock swaylock --screenshot --effect-vignette 0.3:1 --effect-blur 2x9
+set $swaylock ~/Downloads/swaylock-effects/build/swaylock
  
 
 # enable swaylock
@@ -389,7 +389,7 @@ bindcode 233 exec brightnessctl set +5%
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym --to-code $mod+v splitt
+    bindsym --to-code $mod+v split
 
     # Switch the current container between different layout styles
     bindsym --to-code $mod+s layout stacking
