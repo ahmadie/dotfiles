@@ -99,6 +99,7 @@ export GTK_IM_MODULE="ibus"
 
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=/'
 alias lgdotfiles='lg --work-tree / --git-dir ~/.dotfiles'
+# then dotfiles reset --keep (for home PC machine it works flawlessly)
 
 alias lg='lazygit'
 

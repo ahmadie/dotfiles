@@ -58,3 +58,4 @@ fc-list #font list
 nvim /home/bukhari/.config/nvim/init.lua #lua init
 nvim ./.local/share/nvim/lazy/pounce.nvim/lua/pounce.lua
 nvim ~/.tmux.conf
+nvim ~/.config/jesseduffield/lazygit/config.yml

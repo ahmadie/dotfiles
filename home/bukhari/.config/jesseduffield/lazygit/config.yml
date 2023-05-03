@@ -24,7 +24,7 @@ git:
   paging:
     # -w do not show spaces in diff
     colorArg: always -w
-    pager: delta --dark --paging=never --24-bit-color=never
+    pager: delta --dark --paging=never --24-bit-color=never --diff-highlight
     merging:
       args: "--no-ff"
 customCommands:

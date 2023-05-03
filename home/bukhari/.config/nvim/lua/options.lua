@@ -24,10 +24,9 @@ local options = {
   incsearch = true,
   showmode = false,
   virtualedit = 'onemore,block',
-  termguicolors = true,
   background = 'dark',
   hidden = true,
-  wrap = false,
+  wrap = true,
   cmdheight = 0
 }
 

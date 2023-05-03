@@ -9,7 +9,7 @@
   editor = nvim 
   pager = delta
 [interactive]
-  diffFilter = delta --color-only
+  diffFilter = delta --color-only --features=interactive
 [color]
 	ui = true
 [color "diff"]
@@ -18,20 +18,23 @@
   newMoved = bold red
   newMovedAlternative = bold red
 [diff]
-  colorMoved = default
+  ; colorMoved = default
 	algorithm = patience
   tool = nvimdiff
 [delta]
-  # side-by-side = true
-  syntax-theme = ayu-dark
-  color-only = true
+  syntax-theme = Catppuccin-mocha
   line-numbers = true
   line-numbers-left-format = ""
   line-numbers-right-format = "{np} "
-  minus-style = syntax red
+  minus-style = black red
   plus-style = black green
   plus-emph-style = black white
-  minus-emph-style = black white
+  minus-emph-style = white black
+  line-numbers-minus-style = black
+  line-numbers-plus-style = black
+  hunk-header-style = omit
+  file-style = omit
+  zero-style = syntax
 [merge]
   tool = vim_mergetool
   conflictstyle = diff3
