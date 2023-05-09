@@ -542,6 +542,8 @@ live_config_reload: true
 key_bindings:
   - { key: RBracket,        mods: Control,         chars: "\x7d"     }
   - { key: LBracket,        mods: Control,         chars: "\x7b"     }
+  - { key: Return, mods: Control, chars: "\x1b[13;5u" }
+  - { key: Return, mods: Shift,   chars: "\x1b[13;2u" }
   # (Windows, Linux, and BSD only)
   # - { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }

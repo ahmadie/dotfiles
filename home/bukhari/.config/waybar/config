@@ -62,7 +62,7 @@
   },
   "clock": {
     "tooltip-format": "{:%y-%m-%d | %H:%M}",
-    "format": "{:%b %d  %H:%M} 羽"
+    "format": "{:%b %d  %H:%M} 神"
   },
   "cpu": {
     "format": "{usage}% ",
@@ -136,7 +136,7 @@
     "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
   },
   "custom/uptime":{
-    "format": "{} 神",
+    "format": "{} 羽",
     "exec": "$HOME/.config/waybar/uptime.sh",
     "interval": 30,
   },

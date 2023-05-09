@@ -23,7 +23,7 @@ function __ehc() {
 
 function _fzf_command_bookmark_show() {
 	local result=$(cat $FZF_COMMAND_BOOKMARKS_FILE | \
-    fzf --exact --no-sort --cycle --height ${FZF_TMUX_HEIGHT:-40%})
+    fzf --no-sort --cycle --height ${FZF_TMUX_HEIGHT:-40%})
 
 	if [ -z "$ZSH_VERSION" ]; then
 		__ehc "$result"
