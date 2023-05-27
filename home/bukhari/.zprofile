@@ -62,6 +62,10 @@ if type tmux &> /dev/null; then
         tmux new-session -d -s 1
       fi
 
+      if [[ -n $(tmux has-session -t 2 2>&1) ]]; then
+        tmux new-session -d -s 2
+      fi
+
       tmux -2 attach-session -t 0
   fi
 fi

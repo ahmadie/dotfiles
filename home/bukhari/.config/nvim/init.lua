@@ -68,15 +68,17 @@ require('lazy').setup({
   },
   { 'catppuccin/nvim', as = 'catppuccin'},
   'andymass/vim-matchup',
-  'kyazdani42/nvim-web-devicons',
-  { 'akinsho/bufferline.nvim', tag = "v3.*" },
+  'nvim-tree/nvim-web-devicons',
+  { 'akinsho/bufferline.nvim', version = "*" },
   'nacro90/numb.nvim', 
   'lewis6991/gitsigns.nvim',
   'rmagatti/auto-session',
   'nvim-treesitter/nvim-treesitter-context',
   'vimwiki/vimwiki',
   'luk400/vim-jukit',
-  { 'Wansmer/treesj', dependencies = 'nvim-treesitter/nvim-treesitter' }
+  { 'Wansmer/treesj', dependencies = 'nvim-treesitter/nvim-treesitter' },
+  'rcarriga/nvim-notify',
+  'stevearc/oil.nvim'
 }, {} )
 
 require('wiki')
@@ -92,6 +94,15 @@ require('textobj')
 require('numb').setup()
 require("auto-session").setup { log_level = "error" }
 require("jukit")
+require("oil").setup({
+columns = {
+    "icon",
+    "permissions",
+    "size",
+    "mtime",
+  },
+  use_default_keymaps = true,
+})
 require('bufferline').setup({
         options = {
             mode = "tabs", -- set to "tabs" to only show tabpages instead
@@ -111,7 +122,13 @@ require('bufferline').setup({
             },
         }
       })
-require('treesj').setup()
+require('treesj').setup({ use_default_keymaps = false })
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
 
 vim.g['hardtime_default_on'] = 0
 
