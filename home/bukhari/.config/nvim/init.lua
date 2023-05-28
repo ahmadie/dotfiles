@@ -26,16 +26,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-function exec_setup(name)
-  require(name).setup()
-end
-
-function load_setup(name)
-  return string.format('require("./lua/%s")', name)
-end
-
-
-
 require('lazy').setup({
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
@@ -103,25 +93,7 @@ columns = {
   },
   use_default_keymaps = true,
 })
-require('bufferline').setup({
-        options = {
-            mode = "tabs", -- set to "tabs" to only show tabpages instead
-            numbers = function(opts)
-              return string.format('%s', opts.ordinal)
-            end,
-            separator_style = {"", ""},
-            show_close_icon = false,
-            show_buffer_close_icons = false,
-            show_tab_indicators = false,
-            color_icons = false,
-            enforce_regular_tabs = false,
-            max_name_length = 30,
-            indicator = {
-              icon = '', -- this should be omitted if indicator style is not 'icon'
-              style = 'none',
-            },
-        }
-      })
+require('bufferline-setup')
 require('treesj').setup({ use_default_keymaps = false })
 require'nvim-treesitter.configs'.setup {
   highlight = {
