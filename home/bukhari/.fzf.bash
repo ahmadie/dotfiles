@@ -1,7 +1,7 @@
 # Setup fzf
 # ---------
 if [[ ! "$PATH" == */home/bukhari/.fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/home/bukhari/.fzf/bin"
+  PATH="${PATH:+${PATH}:}/home/bukhari/.fzf/bin"
 fi
 
 # Auto-completion
