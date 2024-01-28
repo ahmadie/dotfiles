@@ -75,7 +75,7 @@ set $right l
 # set $term env GLFW_IM_MODULE=ibus /opt/alacritty/alacritty 
 # set $term kitty
 # set $term ~/Downloads/kitty-0.19.1-x86_64/bin/kitty
-set $term env WINIT_UNIX_BACKEND=x11 alacritty
+set $term alacritty
 set $toolbox alacritty -e distrobox enter fedora-toolbox-38
 #
 # Your preferred application launcher
