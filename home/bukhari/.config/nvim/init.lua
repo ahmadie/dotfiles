@@ -68,7 +68,8 @@ require('lazy').setup({
   'luk400/vim-jukit',
   { 'Wansmer/treesj', dependencies = 'nvim-treesitter/nvim-treesitter' },
   'rcarriga/nvim-notify',
-  'stevearc/oil.nvim'
+  'stevearc/oil.nvim',
+  { 'nvim-treesitter/nvim-treesitter-textobjects', dependencies = 'nvim-treesitter/nvim-treesitter' },
 }, {} )
 
 require('wiki')
@@ -84,28 +85,15 @@ require('textobj')
 require('numb').setup()
 require("auto-session").setup { log_level = "error" }
 require("jukit")
-require("oil").setup({
-columns = {
-    "icon",
-    "permissions",
-    "size",
-    "mtime",
-  },
-  use_default_keymaps = true,
-})
+require("oil-setup")
 require('bufferline-setup')
 require('treesj').setup({ use_default_keymaps = false })
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
 
 vim.g['hardtime_default_on'] = 0
 
 vim.g['clever_f_ignore_case'] = 1
 vim.g['clever_f_fix_key_direction'] = 1
+vim.g["clever_f_use_migemo"] = 1
 
 vim.g['pear_tree_smart_openers'] = 1
 vim.g['pear_tree_smart_closers'] = 1

@@ -1,5 +1,5 @@
 {
-  "tsserver.npm": "/home/bukhari/.nvm/versions/node/v12.19.0/bin/npm",
+  "tsserver.npm": "/home/bukhari/.nvm/versions/node/v16.18.0/bin/npm",
   "coc.preferences.formatOnType": true,
   "diagnostic.checkCurrentLine": true,
   "javascript.suggestionActions.enabled": false,
@@ -37,5 +37,6 @@
   "diagnostic.hintSign": "",
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
-  "diagnostic.enableHighlightLineNumber": false
+  "diagnostic.enableHighlightLineNumber": false,
+  "Lua.telemetry.enable": true
 }
