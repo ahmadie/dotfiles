@@ -66,6 +66,6 @@ if type tmux &> /dev/null; then
         tmux new-session -d -s 2
       fi
 
-      tmux -2 attach-session -t 0
+      tmux attach-session -t 0
   fi
 fi
