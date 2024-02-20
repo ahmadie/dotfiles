@@ -30,7 +30,7 @@ export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_301
 export PATH=$JAVA_HOME/bin:$PATH
 
 
-fpath=(~/.zsh/zsh-comletions/zsh-completions.plugin.zsh $fpath)
+fpath=(~/.zsh/zsh-completions/zsh-completions.plugin.zsh $fpath)
 
 # Basic auto/tab complete
 autoload -U compinit
@@ -51,6 +51,9 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey -M vicmd '^I' menu-complete
 bindkey -M vicmd '^[[Z' reverse-menu-complete
 # bindkey '^[[Z' reverse-menu-complete
+
+# enable vi mode
+bindkey -v
 
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .local/share/nvim/undo'
@@ -102,6 +105,7 @@ alias lgdotfiles='lg --work-tree / --git-dir ~/.dotfiles'
 # then dotfiles reset --keep (for home PC machine it works flawlessly)
 
 alias lg='lazygit'
+alias v='nvim'
 
 # fzf color picker =D >>> https://minsw.github.io/fzf-color-picker/
 export FZF_DEFAULT_OPTS=' --color=fg:#cdd6f4,bg:-1,hl:#f38ba8:bold 
@@ -119,19 +123,9 @@ export FZF_DEFAULT_OPTS=' --color=fg:#cdd6f4,bg:-1,hl:#f38ba8:bold
 --color=pointer:reverse,prompt:#cba6f7,input:159 
 --color=fg+:bold,hl+:#f38ba8:bold'
 
-# enable vi mode
-bindkey -v
-
 # set -o vi
 export VISUAL="nvim"
 export EDITOR="nvim"
-
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
 
 # Exit menuselect
 bindkey -M menuselect '\e' send-break
@@ -157,24 +151,7 @@ _fzf_compgen_dir() {
   fd --hidden --type d --exclude .git --exclude .local/share/nvim/undo . "$1"
 }
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# export FZF_COMPLETION_TRIGGER=''
-# bindkey '^[[Z' fzf-completion
-# bindkey '^I' $fzf_default_completion
-# first-tab() {
-#     if [[ $#BUFFER == 0 ]]; then
-#         BUFFER="cd "
-#         CURSOR=3
-#         zle list-choices
-#     else
-#         zle expand-or-complete
-#     fi
-# }
-# zle -N first-tab
-# bindkey '^I' first-tab
-
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -182,15 +159,12 @@ setopt SHARE_HISTORY
 export KEYTIMEOUT=1
 
 alias ls='ls --color=auto -ltrh'
-alias v=vifmrun
+# alias v=vifmrun
 alias n=nvim
 alias c=clear
 alias ...=../..
 alias ....=../../..
 alias .....=../../../..
-
-# got colors from here https://github.com/trapd00r/LS_COLORS
-# source ~/.local/share/lscolors.sh
 
 # https://github.com/sharkdp/vivid
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
@@ -201,24 +175,13 @@ source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:*' fzf-pad 4
 
-# start fzf-tab after ~ or /
-# insert-and-complete() {
-#    zle self-insert
-#    # check if string "vim" or "cd" exists in the left of cursor
-#    if (( $LBUFFER[(I)(nvim|cd|n|dotfiles|zfm)] != 0 )); then
-#        zle fzf-tab-complete
-#    fi
-# }
-# zle -N insert-and-complete
-# bindkey "/" insert-and-complete
-
 # autosuggestions plugin
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#777777"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC='aa'
 
-source /home/bukhari/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 function autosuggest-then-insert() {
     zle autosuggest-accept
@@ -230,16 +193,13 @@ bindkey -M vicmd ' ' autosuggest-execute
 
 
 # zsh history substing search
-source /home/bukhari/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE='aa'
 HISTORY_SUBSTRING_SEARCH_FUZZY='aa'
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-# Autojump
-[[ -s /home/bukhari/.autojump/etc/profile.d/autojump.sh ]] && source /home/bukhari/.autojump/etc/profile.d/autojump.sh
 
 # fzf-commands-bookmarks
 source ~/.zsh/fzf-command-bookmarks/fzf-command-bookmarks.sh
@@ -267,10 +227,8 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-eval $(thefuck --alias)
-
 source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
