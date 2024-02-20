@@ -5,6 +5,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.termguicolors = true
 
+vim.g.python3_host_prog = "~/.pyenv/shims/python3"
+
 -- disable plugin mappings
 vim.g.vimwiki_key_mappings = { all_maps = 0}
 vim.cmd [[
@@ -250,7 +252,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 imap <C-l> <Plug>(coc-snippets-expand)
 
-let g:coc_node_path='/home/bukhari/.nvm/versions/node/v14.14.0/bin/node'
+let g:coc_node_path='/home/bukhari/.nvm/versions/node/v16.18.0/bin/node'
 
 
 let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vimlsp', 'coc-svelte', 'coc-prettier', 'coc-flutter', 'coc-go', 'coc-snippets']
