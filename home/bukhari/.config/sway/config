@@ -102,6 +102,7 @@ output * bg $background fill
 # output DP-3 res 2560x1440 scale 1 pos 0 0
 #
 output eDP-1 res 2560x1440 scale 1 pos 0 0
+output HEADLESS-1 res 1920x1080 scale 1 pos 0 0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 
@@ -502,4 +503,6 @@ bar {
     # }
 }
 
+exec env WAYLAND_DISPLAY=wayland-1 wayvnc 0.0.0.0
 include /usr/local/etc/sway/config.d/*
+

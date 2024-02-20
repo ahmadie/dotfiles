@@ -59,3 +59,4 @@ nvim /home/bukhari/.config/nvim/init.lua #lua init
 nvim ./.local/share/nvim/lazy/pounce.nvim/lua/pounce.lua
 nvim ~/.tmux.conf
 nvim ~/.config/jesseduffield/lazygit/config.yml
+env WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVES=1 sway -c ~/.config/sway/config #remote desktop server
