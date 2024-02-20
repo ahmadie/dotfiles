@@ -17,9 +17,8 @@ vim.cmd [[
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
+  vim.fn.system({ "git",
+  "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
@@ -45,6 +44,7 @@ require('lazy').setup({
   'svermeulen/vim-cutlass',
   'svermeulen/vim-subversive',
   'numToStr/Comment.nvim',
+  'JoosepAlviste/nvim-ts-context-commentstring',
   'machakann/vim-highlightedyank',
   'ibhagwan/fzf-lua',
   'rhysd/clever-f.vim',
@@ -72,6 +72,7 @@ require('lazy').setup({
   'rcarriga/nvim-notify',
   'stevearc/oil.nvim',
   { 'nvim-treesitter/nvim-treesitter-textobjects', dependencies = 'nvim-treesitter/nvim-treesitter' },
+  { 'stevearc/conform.nvim', opts = {} },
 }, {} )
 
 require('wiki')
@@ -90,6 +91,14 @@ require("jukit")
 require("oil-setup")
 require('bufferline-setup')
 require('treesj').setup({ use_default_keymaps = false })
+require('conform').setup({
+  format_on_save = {
+    timeout_ms = 2000,
+    lsp_fallback = true,
+  },
+  formatters_by_ft = {
+  python = { "isort", "black" },
+}})
 
 vim.g['hardtime_default_on'] = 0
 
@@ -105,10 +114,10 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':TabVifm:<cr>', { noremap = true, sil
 
 vim.api.nvim_set_keymap('n', '<cr>', "<cmd>Pounce<CR>", { noremap = true, silent = true })
 
-vim.keymap.set('n', '<leader>m', require('treesj').toggle)
-vim.keymap.set('n', '<leader>M', function()
-    require('treesj').toggle({ split = { recursive = true } })
-end)
+vim.keymap.set('n', '<leader>j', require('treesj').toggle)
+vim.keymap.set('n', '<leader>J', function() require('treesj').toggle({ split = { recursive = true } }) end)
+
+vim.opt.fillchars:append { diff = "╱" }
 
 vim.cmd [[
 nmap <space>x :w<CR> <Plug>JupyterExecute
@@ -126,6 +135,8 @@ set laststatus=0
 hi User1 guifg=black
 set statusline=
 set statusline+=%1*%{repeat('─',winwidth('.'))}
+
+
 
 ]]
 
