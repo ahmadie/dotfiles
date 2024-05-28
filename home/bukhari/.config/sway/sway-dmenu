@@ -2,6 +2,7 @@
 SCRIPTNAME=$(basename $0)
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
+
 export FZF_DEFAULT_OPTS='--reverse --bind alt-j:down,alt-k:up,alt-u:up,alt-d:down,alt-i:toggle+up'
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'  --color=fg:#cdd6f4,bg:-1,hl:#f38ba8:bold 
@@ -87,7 +88,6 @@ if [[ -n $SMD_FIFO ]]; then
     fi
     ex=$(rm_field_codes ${name_to_exec[$selection]})
     setsid --fork bash -c $ex &> /dev/null
-    exit
 fi
 
 lines=14
