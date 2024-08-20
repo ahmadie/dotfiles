@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Name=Sway
-Comment=Sway - i3 on Wayland
-# Please choose matching path
-#Exec=/usr/bin/sway
-#Exec=/usr/local/bin/sway
-Type=Application
