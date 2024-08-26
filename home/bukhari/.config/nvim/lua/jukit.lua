@@ -15,4 +15,5 @@ nnoremap <c-j> :call jukit#cells#jump_to_next_cell()<cr>
 nnoremap <c-k> :call jukit#cells#jump_to_previous_cell()<cr>
 nnoremap <leader>hs :call jukit#splits#history()<cr>
 vnoremap <leader><leader> :<C-U>call jukit#send#selection()<cr>
+nnoremap <leader>np :call jukit#convert#notebook_convert("jupyter-notebook")<cr>
 ]]

@@ -36,7 +36,6 @@ require('lazy').setup({
   'Shatur/neovim-ayu',
   { 'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate'},
-  'vifm/vifm.vim',
   'norcalli/nvim-colorizer.lua',
   'machakann/vim-sandwich',
   'wellle/targets.vim',
@@ -110,7 +109,6 @@ vim.g['pear_tree_smart_openers'] = 1
 vim.g['pear_tree_smart_closers'] = 1
 vim.g['pear_tree_smart_backspace'] = 1 
 
-vim.api.nvim_set_keymap('n', '<leader>n', ':TabVifm:<cr>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<cr>', "<cmd>Pounce<CR>", { noremap = true, silent = true })
 
