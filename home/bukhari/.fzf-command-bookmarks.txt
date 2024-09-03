@@ -1,3 +1,4 @@
+du -cha --max-depth=1 /home/bukhari | grep -E "M|G" # check space
 nvim /home/bukhari/.zshrc
 nvim /home/bukhari/.config/nvim/lua/plugins.lua
 nvim /home/bukhari/.vim/plugged/vim-airline-themes/autoload/airline/themes/base16_snazzy.vim
@@ -60,3 +61,4 @@ nvim ./.local/share/nvim/lazy/pounce.nvim/lua/pounce.lua
 nvim ~/.tmux.conf
 nvim ~/.config/jesseduffield/lazygit/config.yml
 env WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVES=1 sway -c ~/.config/sway/config #remote desktop server
+##ls
