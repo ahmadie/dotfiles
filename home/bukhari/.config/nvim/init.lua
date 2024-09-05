@@ -17,7 +17,7 @@ vim.cmd [[
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({ "git",
+  vim.fn.system({"git",
   "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
@@ -48,20 +48,20 @@ require('lazy').setup({
   'ibhagwan/fzf-lua',
   'rhysd/clever-f.vim',
   'rlane/pounce.nvim',
-  'tmsvg/pear-tree', 
+  'tmsvg/pear-tree',
   { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
   { 'kana/vim-textobj-user', dependencies = {
     'kana/vim-textobj-line',
     'ColinKennedy/vim-indent-object',
     'Julian/vim-textobj-variable-segment',
-    'tkhren/vim-textobj-numeral', 
+    'tkhren/vim-textobj-numeral',
     } 
   },
   { 'catppuccin/nvim', as = 'catppuccin'},
   'andymass/vim-matchup',
   'nvim-tree/nvim-web-devicons',
   { 'akinsho/bufferline.nvim', version = "*" },
-  'nacro90/numb.nvim', 
+  'nacro90/numb.nvim',
   'lewis6991/gitsigns.nvim',
   'rmagatti/auto-session',
   'nvim-treesitter/nvim-treesitter-context',
@@ -81,6 +81,11 @@ require('colorizer')
 require('sandwich')
 require('yoink')
 require('Comment').setup()
+require('treesitter-context').setup { max_linex = 0, multiline_threshold = 1, separator = nil, zindex = 20 }
+vim.cmd [[
+hi TreesitterContextBottom gui=none guisp=Grey
+hi TreesitterContextLineNumberBottom gui=none guisp=Grey
+]]
 require('fzf')
 require('git')
 require('textobj')
@@ -281,5 +286,6 @@ nnoremap <leader>p :CocCommand prettier.formatFile<cr>
 
 " nmap <silent> <C-d> <Plug>(coc-cursors-position)
 " nmap <leader>d  <Plug>(coc-cursors-operator)
+
 ]]
 

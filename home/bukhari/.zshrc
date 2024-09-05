@@ -15,6 +15,7 @@ path=(${HOME}/bin ${path})
 path=(${HOME}/.local/bin ${path})
 path=(${HOME}/.cargo/bin ${path})
 path=(${HOME}/flutter/bin ${path})
+path=(/usr/local/bin/nvim-linux64/bin ${path})
 
 export ANDROID_SDK_ROOT=$HOME/Android
 export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools:$PATH
@@ -153,8 +154,8 @@ _fzf_compgen_dir() {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt SHARE_HISTORY
 export KEYTIMEOUT=1
 
