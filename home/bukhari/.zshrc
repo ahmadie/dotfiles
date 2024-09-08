@@ -155,8 +155,15 @@ _fzf_compgen_dir() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
-SAVEHIST=100000
-setopt SHARE_HISTORY
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt sharehistory
+setopt appendhistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 export KEYTIMEOUT=1
 
 alias ls='ls --color=auto -ltrh'
