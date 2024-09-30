@@ -23,13 +23,13 @@ configs.setup({
 vim.cmd [[
 nnoremap <silent><Tab> :BufferLineCycleNext<CR>
 nnoremap <silent><S-Tab> :BufferLineCyclePrev<CR>
-nnoremap <silent><leader>1 :tabm 0<CR>
-nnoremap <silent><leader>2 :tabm 2<CR>
-nnoremap <silent><leader>3 :tabm 3<CR>
-nnoremap <silent><leader>4 :tabm 4<CR>
-nnoremap <silent><leader>5 :tabm 5<CR>
-nnoremap <silent><leader>6 :tabm 6<CR>
-nnoremap <silent><leader>7 :tabm 7<CR>
-nnoremap <silent><leader>8 :tabm 8<CR>
-nnoremap <silent><leader>9 :tabm 9<CR>
+nnoremap <silent><leader>1 <cmd>BufferLineGoToBuffer 1<CR>
+nnoremap <silent><leader>2 <cmd>BufferLineGoToBuffer 2<CR>
+nnoremap <silent><leader>3 <cmd>BufferLineGoToBuffer 3<CR>
+nnoremap <silent><leader>4 <cmd>BufferLineGoToBuffer 4<CR>
+nnoremap <silent><leader>5 <cmd>BufferLineGoToBuffer 5<CR>
+nnoremap <silent><leader>6 <cmd>BufferLineGoToBuffer 6<CR>
+nnoremap <silent><leader>7 <cmd>BufferLineGoToBuffer 7<CR>
+nnoremap <silent><leader>8 <cmd>BufferLineGoToBuffer 8<CR>
+nnoremap <silent><leader>9 <cmd>BufferLineGoToBuffer 9<CR>
 ]]
