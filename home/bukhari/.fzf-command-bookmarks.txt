@@ -6,7 +6,7 @@ nvim /home/bukhari/.vim/plugged/workspace.vim/plugin/workspace.vim
 nvim /home/bukhari/.config/kitty/kitty.conf
 nvim /home/bukhari/.config/sway/config #swc
 nvim /home/bukhari/.zsh/zfm/zfm.zsh
-nvim /home/bukhari/.config/nvim/init.vim
+nvim /home/bukhari/.config/nvim/init.lua
 cd /home/bukhari/TW.Electron && nvim -S Session.vim
 cd /home/bukhari/Simple.Project && nvim -S Session.vim
 cd /home/bukhari/Client && nvim -S Session.vim
