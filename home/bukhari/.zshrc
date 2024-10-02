@@ -24,6 +24,8 @@ export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools/lib:$PATH
 export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH
 export PATH=$ANDROID_SDK_ROOT/emulator:$PATH
 
+# export PYTHONPATH=/home/bukhari/backtest-algos/:$PYTHONPATH
+
 export GOPATH=$HOME/work
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
@@ -37,7 +39,8 @@ fpath=(~/.zsh/zsh-completions/zsh-completions.plugin.zsh $fpath)
 autoload -U compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+# zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 autoload -Uz compinit
 compinit
 zmodload zsh/complist

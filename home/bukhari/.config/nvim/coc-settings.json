@@ -18,16 +18,6 @@
     "dart"
   ],
   "json.format.enable": false,
-  "explorer.width": 30,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.previewAction.onHover": true,
-  "explorer.file.showHiddenFiles": true,
-  "explorer.keyMappings.global": {
-    "v": "open:vsplit",
-    "o": ["expandable?", ["expanded?", "collapse", "expand"], "open"]
-  },
-  "explorer.buffer.showHiddenBuffers": true,
-  "pairs.enableBackspace": false,
   "coc.preferences.colorSupport": true,
   "python.pythonPath": "/home/bukhari/.local/lib/python3.9/site-packages",
   "python.venvPath": "/home/bukhari/freqtrade-short/freqtrade",
@@ -38,5 +28,10 @@
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
   "diagnostic.enableHighlightLineNumber": false,
-  "Lua.telemetry.enable": true
+  "Lua.telemetry.enable": true,
+  "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"],
+  "snippets.ultisnips.pythonPrompt": false,
+  "rust-analyzer.cargo.buildScripts.enable": false,
+  "rust-analyzer.checkOnSave": false,
+  "rust-analyzer.cargo.autoreload": false
 }
