@@ -15,7 +15,9 @@ path=(${HOME}/bin ${path})
 path=(${HOME}/.local/bin ${path})
 path=(${HOME}/.cargo/bin ${path})
 path=(${HOME}/flutter/bin ${path})
+path=(${HOME}/work/bin ${path})
 path=(/usr/local/bin/nvim-linux64/bin ${path})
+path=(/opt/nvim-linux64/bin/ ${path})
 
 export ANDROID_SDK_ROOT=$HOME/Android
 export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools:$PATH
