@@ -51,7 +51,7 @@ seat seat0 xcursor_theme 'Adwaita' 32
 #  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'  
 #  gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'  
 # }
-font pango:Ubuntu Nerd Font 12 
+font pango: Jost Medium 10
 # exec dump_xsettings >~/.xsettingsd
 # exec xsettingsd
 exec /usr/lib/gnome-settings-daemon/gsd-xsettings
