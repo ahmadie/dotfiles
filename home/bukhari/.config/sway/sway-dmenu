@@ -107,6 +107,6 @@ SMD_FIFO=$fifo /bin/bash -c "alacritty \
     -o window.dimensions.lines=$lines \
     -o window.padding.y=10 \
     -o window.opacity=0.9 \
-    -o font.size=12 \
+    -o font.size=13 \
     --title "fzf-switcher" \
     -e $SCRIPTPATH/$SCRIPTNAME"&
