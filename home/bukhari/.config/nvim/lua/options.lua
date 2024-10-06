@@ -1,44 +1,43 @@
-local options = {
-  backup = false,
-  clipboard = "unnamed,unnamedplus",
-  hlsearch = true, 
-  number = true,
-  relativenumber = true,
-  termguicolors = true,
-  signcolumn = "yes:2",
-  cursorline = true,
-  fillchars = "eob: ",
-  mouse = "a",
-  ignorecase = true,
-  smartcase = true,
-  smarttab = true,
-  tabstop = 2,
-  shiftwidth = 2,
-  expandtab = true,
-  scrolloff = 10,
-  undofile = true,
-  encoding= "UTF-8",
-  foldnestmax = 2,
-  foldlevel = 20,
-  swapfile = false,
-  incsearch = true,
-  showmode = false,
-  virtualedit = 'onemore,block',
-  background = 'dark',
-  hidden = true,
-  wrap = true,
-  cmdheight = 0
-}
+local opt = vim.opt
 
--- vim.opt.wop:sub('pum')
-vim.opt.shortmess:append('s')
+opt.backup = false
+opt.clipboard:append("unnamed,unnamedplus")
+opt.hlsearch = true
+opt.number = true
+opt.relativenumber = true
+opt.termguicolors = true
+opt.signcolumn = "yes:2"
+opt.cursorline = true
+opt.fillchars = { eob = " " }
+opt.mouse:append("a")
+opt.ignorecase = true
+opt.smartcase = true
+opt.smarttab = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.autoindent = true
+opt.autoread = true
+opt.termguicolors = true
+opt.scrolloff = 10
+opt.sidescrolloff = 10
+opt.undofile = true
+opt.encoding = "UTF-8"
+opt.foldnestmax = 2
+opt.foldlevel = 20
+opt.swapfile = false
+opt.incsearch = true
+opt.showmode = false
+opt.virtualedit = "onemore,block"
+opt.background = "dark"
+opt.hidden = true
+opt.wrap = true
+opt.cmdheight = 0
+opt.shortmess:append("s")
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
-
-vim.cmd [[
+vim.cmd([[
   " adjust scroll height to 1/3 of screen
   au BufEnter * execute "set scroll=" . winheight('.') / 3
   au VimResized * execute "set scroll=" . winheight('.') / 3
-]]
+]])

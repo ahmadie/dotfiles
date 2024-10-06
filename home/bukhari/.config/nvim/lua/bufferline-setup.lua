@@ -10,7 +10,7 @@ configs.setup({
             show_close_icon = false,
             show_buffer_close_icons = false,
             show_tab_indicators = false,
-            color_icons = false,
+            color_icons = true,
             enforce_regular_tabs = false,
             max_name_length = 30,
             indicator = {

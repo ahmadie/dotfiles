@@ -1,3 +1,6 @@
+vim.g.python3_host_prog = "~/backtest-algos/.venv/bin/python3"
+
+
 vim.cmd [[
 augroup packer_user_config
 	autocmd!
