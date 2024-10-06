@@ -98,8 +98,11 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: InputMonoCondensed Nerd Font
-    style: Italic
+    # family: InputMonoCondensed Nerd Font
+    # family: maple mono
+    family: MonoLisa Trial
+    # family: Berkeley Mono Trial
+    # style: Italic
     # The `style` can be specified to pick a specific face.
 
   # Bold font face
@@ -108,13 +111,15 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: InputMonoCondensed Nerd Font
+    # family: InputMonoCondensed Nerd Font
+    family: MonoLisa Trial
+    # family: maple mono
     # family: M+ 1m
-    style: Bold
+    # style: Bold
 
     # The `style` can be specified to pick a specific face.
     # style: Oblique
-    # style: Regular
+    style: Regular
 
   # Italic font face
   Italic:
@@ -123,11 +128,15 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     # family: FantasqueSansMono Nerd Font Mono
-    family: InputMonoCondensed Nerd Font
+    # family: InputMonoCondensed Nerd Font
+    family: Berkeley Mono Trial
+    # family: maple mono
+    # family: MonoLisa Trial
+    style: Regular
 
     # The `style` can be specified to pick a specific face.
     # style: Oblique
-    style: Normal
+    # style: Regular
 
   # Bold italic font face
   bold_italic:
@@ -136,11 +145,14 @@ font:
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
     # family: InputMono Nerd Font
-    family: InputMonoCondensed Nerd Font
+    # family: maple mono
+    family: Berkeley Mono Trial
+    # family: MonoLisa Trial
+    # style: Regular
 
     # The `style` can be specified to pick a specific face.
     # style: Bold Oblique
-    style: Bold Italic
+    # style: Bold Italic
 
   # Point size
   size: 9.5
@@ -148,8 +160,8 @@ font:
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
-    x: 2
-    y: 9
+    x: 1
+    y: 10
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
