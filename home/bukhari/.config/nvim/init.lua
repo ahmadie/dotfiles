@@ -39,20 +39,15 @@ require("lazy").setup({
 	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig",
 	"WhoIsSethDaniel/mason-tool-installer.nvim",
+	{ "stevearc/conform.nvim", opts = {} },
 
-	-- comp & format
+	-- comp
 	"neovim/nvim-lspconfig",
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-cmdline",
 	"hrsh7th/nvim-cmp",
-	"hrsh7th/cmp-nvim-lsp",
-
-	{ "stevearc/conform.nvim", opts = {} },
-
-	-- programming languages
-	"mrcjkb/rustaceanvim",
 
 	-- UI and Aesthetics
 	"Shatur/neovim-ayu",
@@ -112,9 +107,7 @@ require("lazy").setup({
 		"MeanderingProgrammer/render-markdown.nvim",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
-			"echasnovski/mini.nvim", -- if you use the mini.nvim suite
-			-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-			-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+			dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 			---@module 'render-markdown'
 			---@type render.md.UserConfig
 			opts = {},
