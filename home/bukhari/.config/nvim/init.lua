@@ -38,7 +38,6 @@ require("lazy").setup({
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig",
-	"WhoIsSethDaniel/mason-tool-installer.nvim",
 	{ "stevearc/conform.nvim", opts = {} },
 
 	-- comp
@@ -120,7 +119,7 @@ require("lazy").setup({
 }, {})
 
 require("p-comp")
-require("p-meson")
+require("p-mason")
 require("p-lsp")
 require("p-conform")
 require("wiki")
