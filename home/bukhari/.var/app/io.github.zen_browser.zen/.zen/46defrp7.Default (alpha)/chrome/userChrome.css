@@ -1,0 +1,13 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+#nav-bar {
+  height: 0px !important;
+  min-height: 0px !important;
+  overflow: hidden !important;
+}
+
+#tabbrowser-tabpanels {
+	padding-top: var(--zen-element-separation) !important;
+}
+
+/* chrome://browser/content/browser.xhtml */
