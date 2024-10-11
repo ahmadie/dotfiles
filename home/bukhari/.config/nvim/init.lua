@@ -89,6 +89,7 @@ require("lazy").setup({
 	"machakann/vim-highlightedyank",
 	"rhysd/clever-f.vim",
 	"rlane/pounce.nvim",
+	"brenoprata10/nvim-highlight-colors",
 	-- "tmsvg/pear-tree",
 
 	-- File management and navigation
@@ -124,6 +125,7 @@ require("p-mason")
 require("p-lsp")
 require("p-conform")
 require("wiki")
+require("nvim-highlight-colors").setup({})
 
 require("render-markdown").setup({
 	file_types = { "markdown", "vimwiki" },

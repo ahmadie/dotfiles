@@ -1,5 +1,11 @@
 local cmp = require("cmp")
 
+require("cmp").setup({
+	formatting = {
+		format = require("nvim-highlight-colors").format,
+	},
+})
+
 cmp.setup({
 	snippet = {},
 	mapping = cmp.mapping.preset.insert({
