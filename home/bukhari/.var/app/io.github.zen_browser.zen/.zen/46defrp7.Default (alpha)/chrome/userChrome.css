@@ -6,7 +6,7 @@
   overflow: hidden !important;
 }
 
-#tabbrowser-tabpanels {
+#tabbrowser-tabpanels, #tabbrowser-tabs {
 	padding-top: var(--zen-element-separation) !important;
 }
 
