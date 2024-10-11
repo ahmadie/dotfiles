@@ -1,3 +1,4 @@
+rpm-copr
 du -cha --max-depth=1 /home/bukhari | grep -E "M|G" # check space
 nvim /home/bukhari/.zshrc
 nvim /home/bukhari/.config/nvim/lua/plugins.lua
@@ -12,7 +13,6 @@ cd /home/bukhari/Simple.Project && nvim -S Session.vim
 cd /home/bukhari/Client && nvim -S Session.vim
 cd /home/bukhari/AizawaDoc && nvim -S Session.vim
 nvim /home/bukhari/.config/vifm/monokai.vifm
-nvim /home/bukhari/.config/starship.toml
 nvim /home/bukhari/.config/vifm/vifmrc
 /home/bukhari/Downloads
 nvim /home/bukhari/.gitconfig
@@ -32,7 +32,7 @@ swaymsg -t get_tree
 nvim /home/bukhari/.config/rofi/config.rasi
 python3 /home/bukhari/.scripts/dropbox.py start
 unzip -P password file.zip
-nvim /home/bukhari/.config/alacritty/alacritty.yml
+nvim /home/bukhari/.config/alacritty/alacritty.toml
 nvim /mnt/c/Users/ahmed.bukhari/AppData/Roaming/alacritty/alacritty.yml
 nvim /home/bukhari/.tridactylrc
 nvim /home/bukhari/.p10k.zsh
