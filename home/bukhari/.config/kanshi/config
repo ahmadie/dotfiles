@@ -1,20 +1,20 @@
-{
+profile {
   output DP-4 mode 2560x1080 position 0,0
   output eDP-1 mode 2560x1440 position 0,1080 scale 1.5
 }
 
 # mama home LG screen setup
-{
-  output HDMI-A-1 mode 1920x1080 position 0,0
-  output eDP-1 mode 2560x1440 position 0,1080
+profile {
+  output HDMI-A-1 mode 1920x1080 position -100,0 scale 1
+  output eDP-1 mode 2560x1440 position 0,1080 scale 1.4
 }
 
-{
+profile {
   output eDP-1 disable
   output DP-3 mode 2560x1440 position 0,0
   output DP-4 mode 2560x1440 position 2560,0
 }
 
-{
-  output eDP-1 mode 2560x1440 position 0,0 scale 1
+profile {
+  output eDP-1 mode 2560x1440 position 0,0 scale 1.4
 }
