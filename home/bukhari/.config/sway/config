@@ -2,7 +2,8 @@
 
 focus output eDP-1
 
-set $cl_high #ed812d
+set $cl_dark #8F3E00
+set $cl_high #B04C00
 set $cl_fore2 #FFDCCA
 set $cl_indi #d9d8d8
 set $cl_back #202020
@@ -10,23 +11,23 @@ set $cl_fore #E0D5D5
 set $cl_urge #ee2e24
 
 # Colors                border   bg       text     indi     childborder
-client.focused          $cl_high $cl_high $cl_fore2 $cl_indi $cl_high
-client.focused_inactive $cl_back $cl_back $cl_fore  $cl_back $cl_back
-client.unfocused        $cl_back $cl_back $cl_fore  $cl_back $cl_back
-client.urgent           $cl_urge $cl_urge $cl_fore  $cl_urge $cl_urge
+client.focused          $cl_high $cl_high $cl_back  $cl_indi $cl_high
+client.focused_inactive $cl_high $cl_high $cl_fore  $cl_indi $cl_dark
+client.unfocused        $cl_back $cl_back $cl_fore  $cl_indi $cl_dark
+client.urgent           $cl_urge $cl_urge $cl_fore  $cl_indi $cl_urge
 
 # Window borders
-default_border pixel 3
+default_border pixel 2
 default_floating_border normal
 hide_edge_borders smart
 # focus_follows_mouse no
 focus_on_window_activation urgent
 
-titlebar_padding 5 1
+titlebar_padding 3 1
 title_align center
 
 smart_gaps on
-gaps inner 10
+gaps inner 3
 
 #opacity
 exec python3 ~/.config/sway/swayfader.py
@@ -51,7 +52,7 @@ seat seat0 xcursor_theme 'Adwaita' 32
 #  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'  
 #  gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'  
 # }
-font pango: Jost Medium 10
+font pango: Jost Medium Italic 8
 # exec dump_xsettings >~/.xsettingsd
 # exec xsettingsd
 exec /usr/lib/gnome-settings-daemon/gsd-xsettings
@@ -92,7 +93,7 @@ set $menu "rofi -font 'M+ 1mn 16' -combi-modi window,drun -m $(swaymsg -t get_ou
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
 # set $background "/usr/local/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png"
 # set $background "~/Downloads/alexandr-bormotin-FuHKcKoPl0c-unsplash.jpg"
-set $background "~/Wallpapers/wallhaven-rd7drw.jpg"
+set $background "~/Downloads/atul-vinayak-hZioHCEWSAE-unsplash.jpg"
 output * bg $background fill
 #
 # Example configuration:
@@ -171,6 +172,10 @@ exec fcitx -r
       middle_emulation enabled
       left_handed enabled
       tap_button_map lrm
+      pointer_accel 0.9
+      scroll_factor 2
+      accel_profile flat
+
   }
 
 input "1133:49224:Logitech_G9_Laser_Mouse" {
@@ -183,7 +188,7 @@ input "1133:49224:Logitech_G9_Laser_Mouse" {
 input "6899:1:Kingsis_Peripherals_ZOWIE_Gaming_mouse" {
   accel_profile flat
   pointer_accel 0.4 
-  scroll_factor 5 
+  scroll_factor 1
 }
 
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
@@ -474,9 +479,9 @@ bindsym --to-code $mod+Shift+e mode "$mode_system"
 
 set $mode_screenshot O | focused output\t\tW | focused window\t\tS | selected area
 mode "$mode_screenshot" {
-    bindsym --to-code s exec ~/.config/sway/grimshot save area, mode "default"
-    bindsym --to-code w exec ~/.config/sway/grimshot save window, mode "default"
-    bindsym --to-code o exec ~/.config/sway/grimshot save output, mode "default"
+    bindsym --to-code s exec grimshot save area, mode "default"
+    bindsym --to-code w exec grimshot save window, mode "default"
+    bindsym --to-code o exec grimshot save output, mode "default"
 
     # return to default mode
     bindsym Return mode "default"

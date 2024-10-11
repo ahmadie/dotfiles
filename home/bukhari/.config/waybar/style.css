@@ -12,17 +12,26 @@ window#waybar {
 }
 
 window#waybar.solo {
-  border-bottom: 3px solid #ed812d;
+  border-bottom: 2px solid #D56712;
 }
 
 window#waybar.hidden {
   opacity: 0;
 }
+
+#workspaces {
+  margin: 2px 3px 4px 3px;
+  border-radius: 2px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #1f2037;
+}
+
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button {
   padding: 0 5px;
   background: transparent;
-  color: #b2b2b2;
+  color: black;
   border-bottom: 3px solid transparent;
   margin: 2px 0px 0px 0px;
 }
@@ -68,14 +77,6 @@ window#waybar.hidden {
   padding: 3px 10px;
   margin: 2px 3px 4px 3px;
   color: #000000;
-}
-
-#workspaces {
-  margin: 2px 3px 4px 3px;
-  border-radius: 2px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: #1f2037;
 }
 
 #custom-uptime {
