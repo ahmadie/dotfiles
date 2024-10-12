@@ -79,7 +79,7 @@ vi_mode_style = "Block"
 TERM = "xterm-256color"
 
 [font]
-size = 10.8
+size = 11
 
 [font.normal]
 family = "InputMonoCompressed Nerd Font"
