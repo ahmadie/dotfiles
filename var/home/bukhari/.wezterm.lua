@@ -1,8 +1,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
--- config.font = wezterm.font("InputMonoCompressed Nerd Font", { italic = true })
--- config.font = wezterm.font_with_fallback("Operator Mono SSm Lig Medium")
 config.font_rules = {
 	-- normal-intensity-and-not-italic
 	{
@@ -70,9 +68,9 @@ config.font_rules = {
 	},
 }
 
-config.font_size = 10.6
+config.font_size = 11.5
 config.cell_width = 1.1
-config.line_height = 1.4
+config.line_height = 1.3
 
 config.colors = {
 	foreground = "#CDD6F4",
@@ -105,6 +103,27 @@ config.colors = {
 
 config.enable_tab_bar = false
 
+config.freetype_load_target = "Normal"
+-- config.freetype_load_target = "Light"
+-- config.freetype_load_target = "Mono"
+-- config.freetype_load_target = "HorizontalLcd"
+
+-- config.freetype_interpreter_version = 35
+-- config.freetype_interpreter_version = 38
+-- config.freetype_interpreter_version = 40
+
+-- config.freetype_load_flags = "NO_HINTING"
+
+config.front_end = "WebGpu"
+
+config.foreground_text_hsb = {
+	hue = 1.0,
+	saturation = 1.0,
+	brightness = 1.0,
+}
+
+config.window_background_opacity = 0.92
+
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -112,6 +131,7 @@ config.window_padding = {
 	bottom = 0,
 }
 
--- config.enable_wayland = true
+config.window_close_confirmation = "NeverPrompt"
+config.enable_wayland = true
 
 return config

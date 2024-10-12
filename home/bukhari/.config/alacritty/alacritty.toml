@@ -116,6 +116,7 @@ save_to_clipboard = true
 
 [window]
 dynamic_padding = true
+opacity = 0.92
 
 [window.padding]
 x = 1
