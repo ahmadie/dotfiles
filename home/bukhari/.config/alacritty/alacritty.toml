@@ -9,14 +9,14 @@ color = "#F5E0DC"
 index = 17
 
 [colors.bright]
-black = "#585B70"
-blue = "#89B4FA"
-cyan = "#94E2D5"
-green = "#A6E3A1"
-magenta = "#F5C2E7"
-red = "#F38BA8"
-white = "#A6ADC8"
-yellow = "#F9E2AF"
+black =	"#383A4A"
+blue = 	"#4E9FFF"
+cyan = 	"#54FFE8"
+green =	"#7AFF6E"
+magenta	= "#FF8AE5"
+red = 	"#FF5D8F"
+white =	"#E0E9FF"
+yellow =	"#FFD454"
 
 [colors.cursor]
 cursor = "#F5E0DC"
@@ -79,7 +79,7 @@ vi_mode_style = "Block"
 TERM = "xterm-256color"
 
 [font]
-size = 14
+size = 10.8
 
 [font.bold]
 family = "InputMonoCompressed Nerd Font"
@@ -90,13 +90,15 @@ family = "InputMonoCompressed Nerd Font"
 style = "Italic"
 
 [font.italic]
-family = "FantasqueSansMono Nerd Font Mono"
-style = "Normal"
+family = "MonoLisa Trial"
+style = "Italic"
+# family = "FantasqueSansMono Nerd Font Mono"
+# style = "Normal"
 
 [font.normal]
-# family = "InputMonoCompressed Nerd Font"
-family = "MonoLisa Trial"
-# style = "Italic"
+family = "InputMonoCompressed Nerd Font"
+# family = "MonoLisa Trial"
+style = "Italic"
 # family = "InputMonoCondensed Nerd Font"
 # style = "Italic"
 # family = "mononoki"
@@ -104,7 +106,7 @@ family = "MonoLisa Trial"
 # style = ""
 
 [font.offset]
-x = 1
+x = 2
 y = 9
 
 [[keyboard.bindings]]
