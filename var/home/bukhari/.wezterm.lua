@@ -76,7 +76,9 @@ config.line_height = 1.4
 
 config.colors = {
 	foreground = "#CDD6F4",
-	background = "black",
+	background = "#0A0C0E",
+
+	compose_cursor = "orange",
 
 	ansi = {
 		"#45475A",
@@ -87,6 +89,17 @@ config.colors = {
 		"#F5C2E7",
 		"#94E2D5",
 		"#CDD6F4",
+	},
+
+	brights = {
+		"#383A4A",
+		"#FF5D8F",
+		"#7AFF6E",
+		"#FFD454",
+		"#4E9FFF",
+		"#FF8AE5",
+		"#54FFE8",
+		"#E0E9FF",
 	},
 }
 
