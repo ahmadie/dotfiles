@@ -11,8 +11,7 @@ profile {
 
 profile {
   output eDP-1 disable
-  output DP-3 mode 2560x1440 position 0,0
-  output DP-4 mode 2560x1440 position 2560,0
+  output DP-1 mode 2560x2880 0,0 scale 1
 }
 
 profile {
