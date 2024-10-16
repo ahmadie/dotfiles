@@ -70,7 +70,7 @@ config.font_rules = {
 
 config.font_size = 11.5
 config.cell_width = 1.1
-config.line_height = 1.3
+config.line_height = 1.5
 
 config.colors = {
 	foreground = "#CDD6F4",
@@ -103,8 +103,8 @@ config.colors = {
 
 config.enable_tab_bar = false
 
-config.freetype_load_target = "Normal"
--- config.freetype_load_target = "Light"
+-- config.freetype_load_target = "Normal"
+config.freetype_load_target = "Light"
 -- config.freetype_load_target = "Mono"
 -- config.freetype_load_target = "HorizontalLcd"
 
@@ -122,7 +122,7 @@ config.foreground_text_hsb = {
 	brightness = 1.0,
 }
 
-config.window_background_opacity = 0.92
+config.window_background_opacity = 0.95
 
 config.window_padding = {
 	left = 0,
