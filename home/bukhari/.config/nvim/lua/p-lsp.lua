@@ -20,7 +20,15 @@ lspconfig.rust_analyzer.setup({
 
 lspconfig.pyright.setup({
 	capabilities = capabilities,
-	settings = {},
+	settings = {
+		python = {
+			analysis = {
+				typeStubSearchPaths = {
+					"./trading_engine/nautilus_trader/nautilus_trader/core",
+				},
+			},
+		},
+	},
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
