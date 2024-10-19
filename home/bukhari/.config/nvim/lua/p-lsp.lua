@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = ev.buf }
 
 		-- Map to show references using fzf-lua
-		vim.keymap.set("n", "gr", function()
+		vim.keymap.set("n", "gw", function()
 			require("fzf-lua").lsp_references({
 				jump_to_single_result = true,
 				fzf_opts = {
