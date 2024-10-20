@@ -47,7 +47,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			})
 		end, opts)
 
+		vim.keymap.set("n", "gt", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", {})
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "gl", function()
+			vim.diagnostic.open_float(nil, { focusable = false, scope = "line" })
+		end, opts)
 	end,
 })
