@@ -48,6 +48,7 @@ require("lazy").setup({
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-cmdline",
 	"hrsh7th/nvim-cmp",
+	"onsails/lspkind.nvim",
 
 	-- UI and Aesthetics
 	"Shatur/neovim-ayu",
@@ -124,6 +125,7 @@ require("p-comp")
 require("p-mason")
 require("p-lsp")
 require("p-conform")
+require("p-lspkind")
 require("wiki")
 require("nvim-highlight-colors").setup({})
 
