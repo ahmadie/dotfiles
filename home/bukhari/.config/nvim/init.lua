@@ -140,6 +140,7 @@ require("lazy").setup({
 	"luk400/vim-jukit",
 }, {})
 
+require("debugprint").setup({})
 require("p-comp")
 require("p-mason")
 require("p-lsp")
