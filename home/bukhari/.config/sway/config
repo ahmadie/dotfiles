@@ -11,9 +11,9 @@ set $cl_fore #E0D5D5
 set $cl_urge #ee2e24
 
 # Colors                border   bg       text     indi     childborder
-client.focused          $cl_high $cl_high $cl_back  $cl_indi $cl_high
-client.focused_inactive $cl_high $cl_high $cl_fore  $cl_indi $cl_dark
-client.unfocused        $cl_back $cl_back $cl_fore  $cl_indi $cl_dark
+client.focused          $cl_high $cl_high $cl_back  $cl_high $cl_high
+client.focused_inactive $cl_high $cl_high $cl_fore  $cl_indi $cl_back
+client.unfocused        $cl_back $cl_back $cl_fore  $cl_indi $cl_back
 client.urgent           $cl_urge $cl_urge $cl_fore  $cl_indi $cl_urge
 
 # Window borders
@@ -167,13 +167,14 @@ exec fcitx -r
 #
   input "2:7:SynPS/2_Synaptics_TouchPad" {
       dwt enabled
+      dwtp enabled
       tap enabled
       natural_scroll enabled
       middle_emulation enabled
       left_handed enabled
       tap_button_map lrm
-      pointer_accel 0.9
-      scroll_factor 2
+      pointer_accel 1
+      scroll_factor 0.4
       accel_profile flat
 
   }
@@ -425,6 +426,7 @@ bindcode 233 exec brightnessctl set +5%
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym --to-code $mod+minus scratchpad show
+    bindsym --to-code $alt+f scratchpad show
 
     # use F1, F2, ... to hide / show window same window
     bindsym $mod+Shift+F1 mark --add "___temp1", move scratchpad
