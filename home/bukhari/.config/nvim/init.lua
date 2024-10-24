@@ -138,6 +138,7 @@ require("lazy").setup({
 	-- Specific tools
 	"vimwiki/vimwiki",
 	"luk400/vim-jukit",
+	"benlubas/molten-nvim",
 }, {})
 
 require("debugprint").setup({})
