@@ -91,7 +91,19 @@ require("lazy").setup({
 	"rhysd/clever-f.vim",
 	"rlane/pounce.nvim",
 	"brenoprata10/nvim-highlight-colors",
+	-- "MagicDuck/grug-far.nvim"
+	-- "stevearc/overseer.nvim"
 	-- "tmsvg/pear-tree",
+	{
+		"mcauley-penney/visual-whitespace.nvim",
+		opts = {
+			highlight = { link = "Visual" },
+			space_char = " ",
+			tab_char = "→",
+			nl_char = "↲",
+			cr_char = "←",
+		},
+	},
 
 	-- File management and navigation
 	"ibhagwan/fzf-lua",
@@ -102,6 +114,7 @@ require("lazy").setup({
 	{ "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
 
 	-- Utility and enhancement
+	"itchyny/calendar.vim",
 	"takac/vim-hardtime",
 	"nacro90/numb.nvim",
 	"rmagatti/auto-session",
@@ -113,6 +126,12 @@ require("lazy").setup({
 			---@module 'render-markdown'
 			---@type render.md.UserConfig
 			opts = {},
+		},
+	},
+	{
+		"andrewferrier/debugprint.nvim",
+		dependencies = {
+			"echasnovski/mini.nvim", -- Needed for :ToggleCommentDebugPrints (not needed for NeoVim 0.10+)
 		},
 	},
 
@@ -173,7 +192,6 @@ vim.keymap.set("n", "<leader>J", function()
 end)
 
 vim.opt.fillchars:append({ diff = "╱" })
-
 vim.cmd([[
 nmap <space>x :w<CR> <Plug>JupyterExecute
 nmap <space>X :w<CR> <Plug>JupyterExecuteAll
