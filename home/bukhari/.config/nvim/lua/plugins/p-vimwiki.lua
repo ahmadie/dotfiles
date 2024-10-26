@@ -1,6 +1,6 @@
 return {
 	"vimwiki/vimwiki",
-	config = function()
+	init = function()
 		vim.g.vimwiki_key_mappings = { all_maps = 0 }
 		vim.cmd([[
           let g:vimwiki_list = [{'path': '~/Beauty/vimwiki/', 'path_html' : '~/Beauty/vimwiki_html'}]
@@ -8,6 +8,10 @@ return {
           set nocompatible
           filetype plugin on
           syntax on
+          ]])
+	end,
+	config = function()
+		vim.cmd([[
           nmap <leader>ww :VimwikiTabIndex 1<CR>
           nmap <leader><CR> <Plug>VimwikiFollowLink
           vmap <leader><CR> <Plug>VimwikiFollowLink
