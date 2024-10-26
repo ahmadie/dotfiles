@@ -124,6 +124,8 @@ export FZF_DEFAULT_OPTS=' --color=fg:#cdd6f4,bg:-1,hl:#f38ba8:bold
 --no-separator 
 --no-scrollbar 
 --pointer=" " 
+--ansi
+--cycle
 --reverse 
 --marker="→" 
 --prompt=" " 
@@ -215,11 +217,17 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# fzf-commands-bookmarks
-source ~/.zsh/fzf-command-bookmarks/fzf-command-bookmarks.sh
-export FZF_COMMAND_BOOKMARKS_ADD="\C-k"
-export FZF_COMMAND_BOOKMARKS_SHOW="\C-o"
-export FZF_COMMAND_BOOKMARKS_FILE=~/.fzf-command-bookmarks.txt
+# pet
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+if [ -t 0 ]; then
+  stty -ixon
+fi
+bindkey '^o' pet-select
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {

@@ -1,0 +1,215 @@
+[[snippets]]
+description = "Manage Copr repositories on fedora atomic systems"
+command = "rpm-copr"
+output = ""
+tag = ["rpm", "copr", "package-management", "atomic", "silverblue"]
+
+[[snippets]]
+description = "Check disk space usage in /home/bukhari"
+command = "du -cha --max-depth=1 /home/bukhari | grep -E \"M|G\""
+output = ""
+tag = ["disk", "du", "usage", "space"]
+
+[[snippets]]
+description = "Edit Zsh configuration file"
+command = "nvim /home/bukhari/.zshrc"
+output = ""
+tag = ["nvim", "zsh", "config"]
+
+[[snippets]]
+description = "Edit Sway window manager configuration"
+command = "nvim /home/bukhari/.config/sway/config"
+output = ""
+tag = ["sway", "window-manager", "config"]
+
+[[snippets]]
+description = "Edit Bash configuration file"
+command = "nvim /home/bukhari/.bashrc"
+output = ""
+tag = ["bash", "config", "shell"]
+
+[[snippets]]
+description = "Edit Bash configuration file"
+command = "nvim /home/bukhari/.zsh"
+output = ""
+tag = ["zsh", "config", "shell"]
+
+[[snippets]]
+description = "Pick a color from the screen using grim and slurp"
+command = "grim -g \"$(slurp -p)\" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- #pick color"
+output = ""
+tag = ["color", "screenshot", "grim", "slurp", "imagemagick"]
+
+[[snippets]]
+description = "Edit Kanshi display management configuration"
+command = "nvim /home/bukhari/.config/kanshi/config"
+output = ""
+tag = ["kanshi", "display", "config"]
+
+[[snippets]]
+description = "Edit Waybar configuration file"
+command = "nvim ~/.config/waybar/config"
+output = ""
+tag = ["waybar", "config", "statusbar"]
+
+[[snippets]]
+description = "Edit Waybar stylesheet (CSS)"
+command = "nvim ~/.config/waybar/style.css"
+output = ""
+tag = ["waybar", "css", "style"]
+
+[[snippets]]
+description = "Start Dropbox using custom script"
+command = "python3 /home/bukhari/.scripts/dropbox.py start"
+output = ""
+tag = ["dropbox", "script", "python"]
+
+[[snippets]]
+description = "Unzip a password-protected file"
+command = "unzip -P [password] file.zip"
+output = ""
+tag = ["unzip", "password", "archive"]
+
+[[snippets]]
+description = "Edit Alacritty terminal configuration on Linux"
+command = "nvim /home/bukhari/.config/alacritty/alacritty.toml"
+output = ""
+tag = ["alacritty", "terminal", "config", "linux"]
+
+[[snippets]]
+description = "Edit Alacritty terminal configuration on Windows"
+command = "nvim /mnt/c/Users/ahmed.bukhari/AppData/Roaming/alacritty/alacritty.yml"
+output = ""
+tag = ["alacritty", "terminal", "config", "windows"]
+
+[[snippets]]
+description = "Edit Powerlevel10k Zsh theme configuration"
+command = "nvim /home/bukhari/.p10k.zsh"
+output = ""
+tag = ["zsh", "powerlevel10k", "theme"]
+
+[[snippets]]
+description = "Extract a .tar.gz file to a specific directory"
+command = "tar xvzf file.tar.gz -C /path/to/dir"
+output = ""
+tag = ["tar", "extract", "archive"]
+
+[[snippets]]
+description = "Launch Kdenlive using NixGLIntel for graphics"
+command = "nixGLIntel kdenlive"
+output = ""
+tag = ["kdenlive", "nix", "graphics"]
+
+[[snippets]]
+description = "Extract a .tar.xz file to a specific directory"
+command = "tar xvf file.tar.xz -C /path/to/dir"
+output = ""
+tag = ["tar", "extract", "archive"]
+
+[[snippets]]
+description = "Extract a .tgz file to a specific directory"
+command = "tar xvzf file.tgz -C /path/to/dir"
+output = ""
+tag = ["tar", "extract", "archive"]
+
+[[snippets]]
+description = "Start Network Manager applet with indicator"
+command = "nm-applet --indicator"
+output = ""
+tag = ["network", "nm-applet", "indicator"]
+
+[[snippets]]
+description = "Change file permissions to make it executable"
+command = "sudo chmod +x file"
+output = ""
+tag = ["chmod", "permissions", "executable"]
+
+[[snippets]]
+description = "Retrieve Android device IP address using ADB"
+command = "adb shell ip route | awk '{print $9}'"
+output = ""
+tag = ["adb", "android", "ip"]
+
+[[snippets]]
+description = "List connected ADB devices"
+command = "adb devices"
+output = ""
+tag = ["adb", "devices", "android"]
+
+[[snippets]]
+description = "Set ADB to listen over TCP/IP on port 5555"
+command = "adb tcpip 5555"
+output = ""
+tag = ["adb", "tcpip", "android"]
+
+[[snippets]]
+description = "Connect to Android device over network using ADB"
+command = "adb connect <device_ip>:5555"
+output = ""
+tag = ["adb", "connect", "network"]
+
+[[snippets]]
+description = "Kill and restart ADB server"
+command = "adb kill-server && adb start-server"
+output = ""
+tag = ["adb", "server", "restart"]
+
+[[snippets]]
+description = "Get IP address of WSL host"
+command = "wsl.exe hostname -I"
+output = ""
+tag = ["wsl", "ip", "windows"]
+
+[[snippets]]
+description = "Set up reverse port forwarding on port 8080 using ADB"
+command = "adb reverse tcp:8080 tcp:8080"
+output = ""
+tag = ["adb", "reverse", "port-forwarding"]
+
+[[snippets]]
+description = "Update Git remote URL to include personal access token"
+command = "git remote set-url origin https://<token>@github.com/<username>/<repo>"
+output = ""
+tag = ["git", "remote", "token"]
+
+[[snippets]]
+description = "Patch font using FontForge and FontPatcher"
+command = "./FontForge-2023-01-01-a1dad3e-x86_64.AppImage --script ~/Downloads/FontPatcher/font-patcher --complete ~/.fonts/InputMonoCondensed-Regular.ttf --out ~/.fonts/"
+output = ""
+tag = ["fontforge", "fonts", "patch"]
+
+[[snippets]]
+description = "List all installed fonts"
+command = "fc-list"
+output = ""
+tag = ["fonts", "list", "fc-list"]
+
+[[snippets]]
+description = "Edit Neovim lazy.lua configuration"
+command = "nvim /home/bukhari/.config/nvim/lua/config/lazy.lua"
+output = ""
+tag = ["nvim", "config", "lazy.lua"]
+
+[[snippets]]
+description = "Edit Pounce.nvim plugin file"
+command = "nvim ~/.local/share/nvim/lazy/pounce.nvim/lua/pounce.lua"
+output = ""
+tag = ["nvim", "plugin", "pounce"]
+
+[[snippets]]
+description = "Edit tmux configuration file"
+command = "nvim ~/.tmux.conf"
+output = ""
+tag = ["tmux", "config", "terminal"]
+
+[[snippets]]
+description = "Edit Lazygit configuration file"
+command = "nvim ~/.config/jesseduffield/lazygit/config.yml"
+output = ""
+tag = ["lazygit", "git", "config"]
+
+[[snippets]]
+description = "Start a headless Sway session for remote desktop"
+command = "env WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 sway -c ~/.config/sway/config"
+output = ""
+tag = ["sway", "headless", "remote-desktop"]
