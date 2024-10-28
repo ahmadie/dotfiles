@@ -66,7 +66,7 @@ tag = ["dropbox", "script", "python"]
 
 [[snippets]]
 description = "Unzip a password-protected file"
-command = "unzip -P [password] file.zip"
+command = "unzip -P <password> file.zip"
 output = ""
 tag = ["unzip", "password", "archive"]
 
@@ -174,7 +174,7 @@ tag = ["git", "remote", "token"]
 
 [[snippets]]
 description = "Patch font using FontForge and FontPatcher"
-command = "./FontForge-2023-01-01-a1dad3e-x86_64.AppImage --script ~/Downloads/FontPatcher/font-patcher --complete ~/.fonts/InputMonoCondensed-Regular.ttf --out ~/.fonts/"
+command = "./FontForge-2023-01-01-a1dad3e-x86_64.AppImage --script ~/Downloads/FontPatcher/font-patcher --complete --mono --adjust-line-height ~/.fonts/ttf/MonoLisaTrial-RegularItalic.ttf --out ~/.fonts/ttf/"
 output = ""
 tag = ["fontforge", "fonts", "patch"]
 
