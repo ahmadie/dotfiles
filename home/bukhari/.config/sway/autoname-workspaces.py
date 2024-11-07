@@ -67,7 +67,7 @@ WINDOW_ICONS = {
     "VirtualBox Manager": "",
     "VirtualBox Machine": "",
     "VirtualBox": "",
-    "zen-alpha": "ℤ",  # Double-struck capital Z
+    "zen-alpha": "ⓩ",
     "thunar": "",
     "imv": "",
     "xdg-desktop-portal-gtk": "",
