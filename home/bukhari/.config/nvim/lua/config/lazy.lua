@@ -54,6 +54,7 @@ opt.cmdheight = 0
 opt.shortmess:append("s")
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.g.have_nerd_font = true
+vim.o.laststatus = 0
 
 vim.cmd([[
   " adjust scroll height to 1/3 of screen

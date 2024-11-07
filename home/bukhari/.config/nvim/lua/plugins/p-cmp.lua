@@ -10,6 +10,12 @@ return {
 	config = function()
 		local cmp = require("cmp")
 
+		cmp.setup.filetype({ "sql", "mysql", "plsql", "redis" }, {
+			sources = {
+				{ name = "vim-dadbod-completion" },
+				{ name = "buffer" },
+			},
+		})
 
 		cmp.setup({
 			snippet = {},

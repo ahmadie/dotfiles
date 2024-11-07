@@ -25,6 +25,7 @@ lspconfig.pyright.setup({
 			analysis = {
 				typeStubSearchPaths = {
 					"./trading_engine/nautilus_trader/nautilus_trader/core",
+					"./viz_bridge/core/",
 				},
 			},
 		},
