@@ -15,7 +15,8 @@ return {
 				},
 			},
 			system_clipboard = {
-				sync_with_ring = false,
+				sync_with_ring = true,
+				clipboard_register = nil,
 			},
 			highlight = {
 				on_put = true,
@@ -28,6 +29,10 @@ return {
 			{ "Y", "y$", mode = "n" },
 			-- Your original visual y mapping
 			{ "y", '"+y', mode = "v" },
+			-- Delete mappings (won't yank)
+			{ "d", '"_d', mode = { "n", "v" } },
+			{ "D", '"_D', mode = "n" },
+			{ "dd", '"_dd', mode = "n" },
 			-- Navigation in history
 			{ "<c-n>", "<Plug>(YankyPreviousEntry)", mode = "n" },
 			{ "<c-p>", "<Plug>(YankyNextEntry)", mode = "n" },
