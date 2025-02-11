@@ -52,7 +52,7 @@ return {
 					},
 					stopOnEntry = false,
 					sourceLanguages = { "rust" },
-					args = { vim.fn.expand("%:p") },
+					args = { "${file}" },
 				},
 			}
 
