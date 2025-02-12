@@ -24,7 +24,8 @@ opt.hlsearch = true
 opt.number = true
 opt.relativenumber = true
 opt.termguicolors = true
-opt.signcolumn = "yes:2"
+opt.signcolumn = "yes:1"
+opt.numberwidth = 1
 opt.cursorline = true
 opt.fillchars = { eob = " " }
 opt.mouse:append("a")
