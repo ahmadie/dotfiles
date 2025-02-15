@@ -44,14 +44,14 @@ Xwayland enable
 # gaps horizontal 10
 # gaps top -5 
 # gaps bottom 10
-seat seat0 xcursor_theme 'Adwaita' 32
-# exec_always {
-#  gsettings set org.gnome.desktop.interface text-scaling-factor 1.5 
-#  gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'  
-#  gsettings set org.gnome.desktop.interface cursor-size 42  
-#  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'  
-#  gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'  
-# }
+seat seat0 xcursor_theme 'Adwaita' 42
+exec_always {
+ gsettings set org.gnome.desktop.interface text-scaling-factor 1
+ gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'  
+ gsettings set org.gnome.desktop.interface cursor-size 42  
+ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'  
+ gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'  
+}
 font pango: Jost Medium Italic 8
 # exec dump_xsettings >~/.xsettingsd
 # exec xsettingsd
