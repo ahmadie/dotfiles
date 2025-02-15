@@ -76,8 +76,8 @@ set $right l
 # set $term env GLFW_IM_MODULE=ibus /opt/alacritty/alacritty 
 # set $term kitty
 # set $term ~/Downloads/kitty-0.19.1-x86_64/bin/kitty
-set $term alacritty
-set $toolbox alacritty -e distrobox enter fedora-toolbox-38
+set $term ghostty
+set $toolbox ghostty -e distrobox enter fedora-toolbox-40
 #
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -93,7 +93,9 @@ set $menu "rofi -font 'M+ 1mn 16' -combi-modi window,drun -m $(swaymsg -t get_ou
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
 # set $background "/usr/local/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png"
 # set $background "~/Downloads/alexandr-bormotin-FuHKcKoPl0c-unsplash.jpg"
-set $background "~/Downloads/atul-vinayak-hZioHCEWSAE-unsplash.jpg"
+# set $background "~/Downloads/atul-vinayak-hZioHCEWSAE-unsplash.jpg"
+set $background "~/Pictures/background/photo_5836844831844976107_y_LE_upscale_magic_x4_strength_51_similarity_90.jpg"
+
 output * bg $background fill
 #
 # Example configuration:
@@ -207,7 +209,8 @@ bindcode 233 exec brightnessctl set +5%
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec $toolbox
+    bindsym $mod+Shift+Return exec $term
 
     # Kill focused window
     bindsym --to-code $mod+x kill

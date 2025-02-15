@@ -1,5 +1,8 @@
+[general]
 live_config_reload = true
-colors.draw_bold_text_with_bright_colors = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
 
 [[colors.indexed_colors]]
 color = "#FAB387"
@@ -82,32 +85,39 @@ TERM = "xterm-256color"
 [font]
 size = 11
 
-[font.normal]
-family = "InputMonoCompressed Nerd Font"
+[font.italic]
+# family = "InputMonoCompressed Nerd Font"
+family = "InputMonoCondensed Nerd Font"
+# family = "InputMono Nerd Font"
 # family = "MonoLisa Trial"
 style = "Italic"
-# family = "InputMonoCondensed Nerd Font"
+# family = "InputMono Nerd Font"
 # style = "Italic"
 # family = "mononoki"
 # family = "Iosevka Term"
 # style = ""
 
-[font.italic]
-family = "MonoLisa Trial"
-style = "Italic"
+[font.normal]
+# family = "MapleMono Light"
+family = "MonoLisa Trial Nerd Font Mono"
+# style = "Italic"
 # family = "FantasqueSansMono Nerd Font Mono"
-# style = "Normal"
+style = "Normal"
 
-[font.bold]
+[font.bold_italic]
+# family = "InputMonoCondensed Nerd Font"
 family = "InputMonoCompressed Nerd Font"
 style = "Black Italic"
 
-[font.bold_italic]
+[font.bold]
 family = "MonoLisa Trial"
+# family = "MapleMono ExtraBold"
+# style = "Normal"
+
 
 [font.offset]
-x = 2
-y = 9
+x = 1
+y = 6
 
 [scrolling]
 history = 10000
@@ -116,8 +126,9 @@ history = 10000
 save_to_clipboard = true
 
 [window]
+option_as_alt = "OnlyRight"
 dynamic_padding = true
-opacity = 0.92
+opacity = 0.95
 
 [window.padding]
 x = 1

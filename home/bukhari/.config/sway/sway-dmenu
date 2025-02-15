@@ -90,11 +90,11 @@ if [[ -n $SMD_FIFO ]]; then
     setsid --fork bash -c $ex &> /dev/null
 fi
 
-lines=14
-columns=$((columns+"${#header}"+100))
-if [[ columns -gt 100 ]];
+lines=16
+columns=$((columns+"${#header}"+110))
+if [[ columns -gt 110 ]];
 then
-    columns=100
+    columns=110
 fi
 
 # create fifo and launch a terminal with the title "fzf-switcher"
@@ -107,6 +107,6 @@ SMD_FIFO=$fifo /bin/bash -c "alacritty \
     -o window.dimensions.lines=$lines \
     -o window.padding.y=10 \
     -o window.opacity=0.9 \
-    -o font.size=13 \
+    -o font.size=11 \
     --title "fzf-switcher" \
     -e $SCRIPTPATH/$SCRIPTNAME"&

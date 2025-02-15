@@ -11,12 +11,13 @@ profile {
 
 # LG vertical display
 profile {
-  output DP-1 mode 2560x2880 position -200,0 scale 1.1
-  #output eDP-1 mode 2560x1440 position 0,2620 scale 1.4
+  output DP-1 mode 2560x2880 position 0,0 scale 1
   output eDP-1 disable
+  #output DP-1 disable
+  #output eDP-1 mode 2560x1440 position 0,0 scale 1.4
 }
 
 # Single laptop monitor
 profile {
-  output eDP-1 mode 2560x1440 position 0,0 scale 1.4
+  output eDP-1 mode 2560x1440 position 0,0 scale 1
 }

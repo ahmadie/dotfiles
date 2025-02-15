@@ -1,5 +1,5 @@
 ignore-empty-password
-font=M+ 1mn
+font=Jost Medium
 
 clock
 timestr=%R
@@ -7,8 +7,9 @@ datestr=%a, %Y-%m-%d
 
 screenshots
 
-effect-blur=2x5
+effect-blur=20x10
 effect-vignette=0.8:0.2
+effect-compose=src-over:0,0:black_overlay.png
 
 indicator
 indicator-radius=120

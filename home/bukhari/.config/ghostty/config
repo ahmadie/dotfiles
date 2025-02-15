@@ -1,4 +1,4 @@
-font-size = 11.5
+font-size = 15
 font-family = MonoLisaTrial Nerd Font Mono
 font-family-italic = InputMonoCompressed Nerd Font 
 # font-family-bold = MonoLisaTrial Nerd Font Mono
@@ -6,6 +6,7 @@ font-family-italic = InputMonoCompressed Nerd Font
 # font-synthetic-style = true
 font-family-bold-italic = InputMonoCompressed Nerd Font 
 adjust-cell-height = 7
+adjust-cell-width = 1
 bold-is-bright = true
 
 adjust-cursor-height = 10

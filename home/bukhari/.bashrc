@@ -155,3 +155,4 @@ export VISUAL="nvim -c \"set norelativenumber nonumber nolist showtabline=0 fold
 export EDITOR="nvim -c \"set norelativenumber nonumber nolist showtabline=0 foldcolumn=0 laststatus=0\""
 
 eval "$(starship init bash)"
+. "$HOME/.cargo/env"
