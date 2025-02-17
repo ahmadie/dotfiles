@@ -52,10 +52,10 @@ window#waybar.hidden {
 #mode {
   background-color: rgba(24, 27, 35, 0);
   border-radius: 2px;
-  padding: 5px 15px;
+  padding: 2px 15px;
   color: #ffe4ce;
   margin: 3px 0px 0px 20px;
-  border-bottom: 5px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
 }
 
 /* generate color scheme: https://coolors.co/ */
@@ -75,7 +75,7 @@ window#waybar.hidden {
 #tray,
 #idle_inhibitor {
   border-radius: 3px;
-  padding: 5px 15px;
+  padding: 2px 15px;
   margin: 3px 5px 6px 5px;
   color: #000000;
 }
@@ -92,7 +92,7 @@ window#waybar.hidden {
   font-family: "Jost Medium";
   font-size: 16px;
   color: white;
-  padding: 5px 15px;
+  padding: 2px 15px;
   margin: 3px 0px 0px 35px;
 }
 
