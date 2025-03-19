@@ -16,7 +16,7 @@ return {
 			},
 			system_clipboard = {
 				sync_with_ring = true,
-				clipboard_register = nil,
+				clipboard_register = "+",
 			},
 			highlight = {
 				on_put = true,
