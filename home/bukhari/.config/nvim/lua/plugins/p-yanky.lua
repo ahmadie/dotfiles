@@ -45,16 +45,12 @@ return {
 	},
 	{
 		"gbprod/cutlass.nvim",
-		opts = {
-			cut_key = "m",
-			override_del = true,
-			exclude = { "ns", "nS" },
-		},
-		keys = {
-			{ "m", mode = { "n", "x" } },
-			{ "mm", mode = "n" },
-			{ "M", mode = "n" },
-		},
+		event = "VeryLazy", -- Ensure it loads early
+		config = function()
+			require("cutlass").setup({
+				cut_key = "m", -- Your cut key
+			})
+		end,
 	},
 	{
 		"gbprod/substitute.nvim",
