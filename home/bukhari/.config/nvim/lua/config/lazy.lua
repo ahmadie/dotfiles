@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 local opt = vim.opt
 
 opt.backup = false
-opt.clipboard:append("unnamed,unnamedplus")
+opt.clipboard = "unnamed,unnamedplus"
 opt.hlsearch = true
 opt.number = true
 opt.relativenumber = true
