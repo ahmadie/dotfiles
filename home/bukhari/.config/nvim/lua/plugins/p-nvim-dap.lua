@@ -33,13 +33,14 @@ return {
 
 			dap.configurations.python = {
 				{
-					name = "Debug Python",
+					name = "Debug Python for Backtest-algo",
 					type = "python",
 					request = "launch",
 					program = "${file}",
-					env = {
-						PYTHONPATH = "${workspaceFolder}",
-					},
+					console = "internalConsole",
+					-- env = {
+					-- 	PYTHONPATH = "${workspaceFolder}",
+					-- },
 				},
 				{
 					name = "Debug Pyo3",

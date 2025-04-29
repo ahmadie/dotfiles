@@ -27,6 +27,9 @@ return {
 				"black",
 				"isort",
 				"pyright",
+				"typescript-language-server",
+				"eslint-lsp",
+				"tailwindcss-language-server",
 			},
 		})
 	end,

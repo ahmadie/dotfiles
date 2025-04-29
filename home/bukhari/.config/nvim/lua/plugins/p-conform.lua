@@ -6,7 +6,7 @@ return {
 			lsp_fallback = true,
 		},
 		formatters_by_ft = {
-			python = { "isort", "black" },
+			-- python = { "isort", "black" },
 			lua = { "stylua" },
 		},
 	},

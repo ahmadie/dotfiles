@@ -39,6 +39,66 @@ return {
 			},
 		})
 
+		lspconfig.ts_ls.setup({
+			capabilities = capabilities,
+			init_options = {
+				preferences = {
+					disableSuggestions = false,
+					importModuleSpecifierPreference = "relative",
+				},
+			},
+			-- Add root_dir pattern to properly identify project root
+			root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+			-- Enable inlay hints for TypeScript (available in newer versions of tsserver)
+			settings = {
+				typescript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+					},
+				},
+				javascript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+					},
+				},
+			},
+		})
+
+		lspconfig.eslint.setup({
+			capabilities = capabilities,
+			settings = {
+				packageManager = "npm",
+			},
+			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+		})
+
+		lspconfig.tailwindcss.setup({
+			capabilities = capabilities,
+			filetypes = {
+				"html",
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+			},
+			init_options = {
+				userLanguages = {
+					typescript = "javascript",
+					typescriptreact = "javascriptreact",
+				},
+			},
+		})
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
