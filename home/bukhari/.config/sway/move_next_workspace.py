@@ -1,59 +1,55 @@
 import i3ipc
-from functools import partial
 import argparse
 import sys
-import time
 
-def get_tree_position(tree):
-    """Return (parent_id, child_index) for the focused window."""
+def is_at_edge(tree, direction):
+    """Check if focused window is at the edge of its parent in the given direction.
+    direction: 'left'/'up' = first child, 'right'/'down' = last child."""
     focused = tree.find_focused()
-    if not focused:
-        return (None, None)
-    parent = focused.parent
-    if not parent:
-        return (None, None)
-    for i, child in enumerate(parent.nodes + parent.floating_nodes):
-        if child.id == focused.id:
-            return (parent.id, i)
-    return (parent.id, None)
+    if not focused or not focused.parent:
+        return True
+    siblings = focused.parent.nodes
+    if not siblings:
+        return True
+    if direction in ('left', 'up'):
+        return siblings[0].id == focused.id
+    else:  # right, down
+        return siblings[-1].id == focused.id
 
 def next_workspace(next):
-
-    prev_parent_id, prev_index = get_tree_position(ipc.get_tree())
 
     setup = "vertical" # or horizontal
 
     num = int(next)
 
+    # Determine the move direction
     if setup == "vertical":
         if abs(num) == 10 and num > 0:
-            ipc.command("move up")
+            direction = "up"
         elif abs(num) == 10 and num < 0:
-            ipc.command("move down")
+            direction = "down"
         elif abs(num) == 1 and num < 0:
-            ipc.command("move left")
-        elif abs(num) == 1 and num > 0:
-            ipc.command("move right")
+            direction = "left"
+        else:
+            direction = "right"
     else:
-        # for horizontal setup
         if abs(num) == 10 and num > 0:
-            ipc.command("move right")
+            direction = "right"
         elif abs(num) == 10 and num < 0:
-            ipc.command("move left")
+            direction = "left"
         elif abs(num) == 1 and num < 0:
-            ipc.command("move down")
-        elif abs(num) == 1 and num > 0:
-            ipc.command("move up")
+            direction = "down"
+        else:
+            direction = "up"
 
-    next_parent_id, next_index = get_tree_position(ipc.get_tree())
-
-    # If parent or index changed, the container moved within the workspace
-    if prev_parent_id != next_parent_id or prev_index != next_index:
+    # If not at edge, move within the layout and stop
+    if not is_at_edge(ipc.get_tree(), direction):
+        ipc.command(f"move {direction}")
         ipc.main_quit()
         sys.exit(0)
         return
 
-    # Container didn't move — it's at the edge, move to next workspace
+    # At the edge — move to next workspace
     prev_workspace = ipc.get_tree().find_focused().workspace().num
     next_ws = prev_workspace + num
 
