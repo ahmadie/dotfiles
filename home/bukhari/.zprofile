@@ -44,8 +44,8 @@ fi
 # ibus-daemon
 
 # exec pkill kanshi; exec kanshi
-if type kanshi &> /dev/null; then
- kanshi
+if type kanshi &> /dev/null && ! pgrep -x kanshi &>/dev/null; then
+ kanshi &>/dev/null &!
 fi
 
 
