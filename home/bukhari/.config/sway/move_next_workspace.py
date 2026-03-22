@@ -4,13 +4,28 @@ import sys
 
 def is_at_edge(tree, direction):
     """Check if focused window is at the edge of its parent in the given direction.
-    direction: 'left'/'up' = first child, 'right'/'down' = last child."""
+    Only considers it 'at edge' when the direction aligns with the parent layout:
+    - splith/tabbed: left/right can be at edge
+    - splitv/stacking: up/down can be at edge
+    - orthogonal directions always return False (not at edge → do local move)"""
     focused = tree.find_focused()
     if not focused or not focused.parent:
         return True
-    siblings = focused.parent.nodes
+    parent = focused.parent
+    siblings = parent.nodes
     if not siblings:
         return True
+
+    layout = parent.layout
+    # Check if direction aligns with parent layout
+    horizontal_layouts = ('splith', 'tabbed')
+    vertical_layouts = ('splitv', 'stacking')
+
+    if direction in ('left', 'right') and layout not in horizontal_layouts:
+        return False  # orthogonal — always do local move
+    if direction in ('up', 'down') and layout not in vertical_layouts:
+        return False  # orthogonal — always do local move
+
     if direction in ('left', 'up'):
         return siblings[0].id == focused.id
     else:  # right, down
